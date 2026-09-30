@@ -3,12 +3,14 @@ import { hasLocale, NextIntlClientProvider } from 'next-intl'
 import { getTranslations } from 'next-intl/server'
 import { Be_Vietnam_Pro, Fraunces, JetBrains_Mono } from 'next/font/google'
 import { notFound } from 'next/navigation'
+import { JsonLd } from '@/components/seo/JsonLd'
 import { AnalyticsGate } from '@/components/site/AnalyticsGate'
 import { ConsentBar } from '@/components/site/ConsentBar'
 import { Footer } from '@/components/site/Footer'
 import { Header } from '@/components/site/Header'
 import { SkipLink } from '@/components/site/SkipLink'
 import { routing } from '@/i18n/routing'
+import { organization } from '@/lib/seo/jsonld'
 import { site } from '@/lib/site'
 import '@/app/globals.css'
 
@@ -52,6 +54,7 @@ export default async function LocaleLayout({ children, params }: { children: Rea
           <Footer />
           <ConsentBar />
           <AnalyticsGate gaId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID} />
+          <JsonLd data={organization(locale)} />
         </NextIntlClientProvider>
       </body>
     </html>

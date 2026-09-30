@@ -220,7 +220,7 @@
       },
       "q7": {
         "q": "Can a school turn off AI for a project?",
-        "a": "Yes. Turn on the AI off switch in the project details and the app sends no AI calls for that project, including the assistant; everything that runs on your computer keeps working as usual."
+        "a": "Yes. Switch AI off in the project details and the app sends no AI calls for that project, including the assistant; everything that runs on your computer keeps working as usual."
       },
       "q8": {
         "q": "How do I update to a new version?",
@@ -317,7 +317,7 @@
     "university": {
       "card": {
         "title": "University courses",
-        "p1": "CLOs, weekly plans, 90 or 150 minute session plans",
+        "p1": "CLOs, weekly plans, 90- or 150-minute session plans",
         "p2": "10-section course syllabus",
         "p3": "12 gates, G1..G12",
         "link": "Explore the University courses level"
@@ -345,7 +345,7 @@
           "desc": "Each week carries its LLOs, Bloom level, linked CLOs and AI level; the weeks run continuously, with no gaps."
         },
         "o3": {
-          "title": "90 or 150 minute session plans",
+          "title": "90- or 150-minute session plans",
           "desc": "A phase table with lecturer activities, student activities and checks; total minutes match the session length."
         },
         "o4": {
@@ -475,7 +475,7 @@
   },
   "assistant": {
     "meta": {
-      "title": "The EduFlow AI assistant",
+      "title": "The in-app AI assistant",
       "description": "EduFlow's always-present AI assistant reads the open screen, answers in three tiers, offers action cards, suggests edits to a draft and never signs for you."
     },
     "hero": {
@@ -490,7 +490,7 @@
       "h2": "Always next to the work you are doing",
       "w1": {
         "title": "The home screen is a chat box",
-        "desc": "Type something like “Create a 45 minute Grade 10 Math test, 4 test versions” and the assistant prepares the setup for you to check."
+        "desc": "Type something like “Create a 45-minute Grade 10 Math test, 4 test versions” and the assistant prepares the setup for you to check."
       },
       "w2": {
         "title": "A panel on every screen",
@@ -510,7 +510,7 @@
       },
       "c2": {
         "title": "Answers in three tiers",
-        "desc": "Tier 1 blocks only quote the app's deterministic results, in the app's own words. Tier 2 says “not found yet”. Tier 3 is a suggestion that needs human review."
+        "desc": "Tier 1 blocks only quote the app's deterministic results, in the app's own words. Tier 2 says “not found yet”. Tier 3 is a suggestion that needs human review. Every citation opens its source."
       },
       "c3": {
         "title": "Action cards",
@@ -571,7 +571,7 @@
   },
   "pricing": {
     "meta": {
-      "title": "EduFlow pricing",
+      "title": "How pricing works",
       "description": "EduFlow charges by the AI tokens used, with a monthly budget per key and costs shown before anything runs; local work is free. Contact Agentra for a quote."
     },
     "hero": {
@@ -693,12 +693,12 @@
     },
     "p8": {
       "title": "AI off per project",
-      "body": "Turn on the AI off switch in the project details and the app sends no AI calls for that project, including the assistant."
+      "body": "Switch AI off in the project details and the app sends no AI calls for that project, including the assistant."
     }
   },
   "download": {
     "meta": {
-      "title": "Download EduFlow for macOS and Windows",
+      "title": "Download for macOS and Windows",
       "description": "Download the EduFlow installer for macOS (Apple Silicon, Intel) and Windows, with SHA-512 checksums, system requirements and installation guides."
     },
     "eyebrow": "Download",
@@ -770,19 +770,19 @@
     },
     "meta": {
       "macos": {
-        "title": "Install EduFlow on macOS",
+        "title": "Install on macOS",
         "description": "Choose the right installer for your chip, install into Applications, activate with a license key or a trial, choose a work profile and update to new versions."
       },
       "windows": {
-        "title": "Install EduFlow on Windows",
-        "description": "Download the signed installer, run it, handle SmartScreen if it appears, activate with a license key or a trial and update to new versions."
+        "title": "Install on Windows",
+        "description": "Download the signed EduFlow installer for Windows, run it, handle SmartScreen if it appears, activate with a license key or a trial, and get new versions."
       }
     }
   },
   "contact": {
     "meta": {
-      "title": "Contact Agentra about EduFlow",
-      "description": "Contact Agentra for a quote, a license key for your school, a trial or to report an EduFlow bug."
+      "title": "Contact Agentra",
+      "description": "Contact Agentra for an EduFlow quote for your school, a license key, a trial or a bug report; the page lists the email, the address and how to get a key."
     },
     "eyebrow": "Contact",
     "h1": "Contact Agentra",

@@ -12,7 +12,7 @@ import { TrustGrid } from '@/components/home/TrustGrid'
 import { JsonLd } from '@/components/seo/JsonLd'
 import type { Locale } from '@/i18n/routing'
 import { getReleases, latestRelease } from '@/lib/releases'
-import { faqPage, organization, softwareApplication } from '@/lib/seo/jsonld'
+import { faqPage, softwareApplication } from '@/lib/seo/jsonld'
 import { buildMetadata } from '@/lib/seo/metadata'
 import { absoluteUrl } from '@/lib/seo/urls'
 
@@ -37,7 +37,6 @@ export default async function HomePage() {
       <DownloadBlock assets={assets} locale={locale} latest={latest} />
       <FaqSection />
       <FinalCta />
-      <JsonLd data={organization()} />
       <JsonLd data={softwareApplication(assets, locale, absoluteUrl(locale, '/download'))} />
       <JsonLd data={faqPage(FAQ_KEYS.map((k) => ({ q: t(`${k}.q`), a: t(`${k}.a`) })))} />
     </main>

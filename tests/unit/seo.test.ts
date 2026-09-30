@@ -1,4 +1,6 @@
-import { beforeAll, expect, test } from 'vitest'
+import { beforeAll, expect, test, vi } from 'vitest'
+
+vi.mock('@/lib/releases/feed', () => ({ fetchFeed: async () => null }))
 
 beforeAll(() => {
   process.env.NEXT_PUBLIC_SITE_URL = 'https://eduflow.test'
@@ -26,4 +28,16 @@ test('buildMetadata emits canonical + hreflang with x-default = vi', async () =>
   })
   expect(m.openGraph).toMatchObject({ locale: 'en_US', siteName: 'EduFlow', url: 'https://eduflow.test/en/pricing' })
   expect(buildMetadata({ locale: 'vi', page: '/', title: 'T', description: 'd', absoluteTitle: true }).title).toEqual({ absolute: 'T' })
+})
+
+test('sitemap lists 24 urls (12 pages × 2 locales) with alternates', async () => {
+  const { default: sitemap } = await import('@/app/sitemap')
+  const entries = await sitemap()
+  expect(entries).toHaveLength(24)
+  const urls = entries.map((e) => e.url)
+  for (const u of ['https://eduflow.test', 'https://eduflow.test/pho-thong', 'https://eduflow.test/en/program-review', 'https://eduflow.test/cach-tinh-phi', 'https://eduflow.test/en/install/windows']) {
+    expect(urls).toContain(u)
+  }
+  const dl = entries.find((e) => e.url.endsWith('/tai-ve'))!
+  expect(dl.alternates?.languages).toMatchObject({ en: 'https://eduflow.test/en/download', 'x-default': 'https://eduflow.test/tai-ve' })
 })

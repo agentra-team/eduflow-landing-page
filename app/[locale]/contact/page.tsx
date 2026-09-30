@@ -10,7 +10,7 @@ import { Icon } from '@/components/ui/Icon'
 import type { IconName } from '@/components/ui/icons'
 import { Section } from '@/components/ui/Section'
 import type { Locale } from '@/i18n/routing'
-import { breadcrumb, organization } from '@/lib/seo/jsonld'
+import { breadcrumb } from '@/lib/seo/jsonld'
 import { buildMetadata } from '@/lib/seo/metadata'
 import { absoluteUrl } from '@/lib/seo/urls'
 import { site } from '@/lib/site'
@@ -135,7 +135,6 @@ export default async function ContactPage() {
           </div>
         </Container>
       </Section>
-      <JsonLd data={organization()} />
       <JsonLd data={breadcrumb([{ name: tc('siteName'), url: absoluteUrl(locale, '/') }, { name: t('h1'), url: absoluteUrl(locale, '/contact') }])} />
     </main>
   )

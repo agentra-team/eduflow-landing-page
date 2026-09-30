@@ -12,13 +12,15 @@ const asset = {
 }
 
 test('organization', () => {
-  expect(organization()).toMatchObject({
+  expect(organization('vi')).toMatchObject({
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: 'Agentra JSC',
     email: 'info@agentra.io.vn',
     url: 'https://agentra.io.vn',
+    address: { addressLocality: 'Đà Nẵng', addressCountry: 'VN' },
   })
+  expect(organization('en')).toMatchObject({ address: { addressLocality: 'Da Nang', addressCountry: 'VN' } })
 })
 
 test('softwareApplication uses the feed version and both OS families', () => {

@@ -5,7 +5,7 @@ import { site } from '@/lib/site'
 type JsonLd = Record<string, unknown>
 const CONTEXT = 'https://schema.org'
 
-export function organization(): JsonLd {
+export function organization(locale: Locale): JsonLd {
   return {
     '@context': CONTEXT,
     '@type': 'Organization',
@@ -13,7 +13,7 @@ export function organization(): JsonLd {
     url: site.companyUrl,
     logo: `${site.siteUrl()}/icon.svg`,
     email: site.email,
-    address: { '@type': 'PostalAddress', addressLocality: 'Đà Nẵng', addressCountry: 'VN' },
+    address: { '@type': 'PostalAddress', addressLocality: site.city[locale], addressCountry: 'VN' },
     contactPoint: [{ '@type': 'ContactPoint', email: site.email, contactType: 'customer support', availableLanguage: ['vi', 'en'] }],
   }
 }

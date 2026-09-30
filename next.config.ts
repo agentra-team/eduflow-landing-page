@@ -1,6 +1,9 @@
 import createMDX from '@next/mdx'
 import type { NextConfig } from 'next'
 import createNextIntlPlugin from 'next-intl/plugin'
+import { assertProductionEnv } from './lib/env'
+
+assertProductionEnv(process.env)
 
 const securityHeaders = [
   { key: 'Strict-Transport-Security', value: 'max-age=63072000; includeSubDomains; preload' },
