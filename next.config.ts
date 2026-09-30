@@ -12,6 +12,8 @@ const securityHeaders = [
 
 const nextConfig: NextConfig = {
   pageExtensions: ['ts', 'tsx', 'md', 'mdx'],
+  // Next 16.3 bật optimisticRouting mặc định: nó đoán sai tuyến của slug tiếng Anh do proxy rewrite và gửi lại yêu cầu _rsc không ngừng (vercel/next.js#96893). Bỏ dòng này khi bản sửa của Next ra.
+  experimental: { optimisticRouting: false },
   async headers() {
     return [{ source: '/(.*)', headers: securityHeaders }]
   },
