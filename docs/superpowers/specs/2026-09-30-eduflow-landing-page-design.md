@@ -303,7 +303,7 @@ Giữ nguyên của DocOps: `Platform = 'windows-x64' | 'macos-arm64' | 'macos-x
 
 - Tải hai tệp song song, timeout 5 giây, `revalidate: 600`.
 - Tệp lỗi (không 2xx, hết giờ, YAML hỏng) → phần tương ứng trong `content/releases.json`, ghi một dòng log có nhãn cố định.
-- `content/releases.json` ban đầu rỗng (`{"windows": null, "mac": null}`): chưa có bản phát hành nào.
+- `content/releases.json` ban đầu rỗng (`{"baseUrl": null, "windows": null, "mac": null}`): chưa có bản phát hành nào. `baseUrl` là URL gốc của feed lúc chụp, để dựng link tải khi chỉ còn snapshot.
 - Không có mục nào ở cả feed và snapshot → `assets = []` → trạng thái sắp phát hành (mục 6.8).
 - Một nguồn dữ liệu cho trang chủ, Tải về, hai trang cài đặt, JSON-LD và sitemap, qua `React.cache`.
 - `pnpm sync-releases` ghi snapshot từ feed hoặc thư mục `release/` cục bộ, chạy khi phát hành bản mới.
