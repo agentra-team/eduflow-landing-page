@@ -1216,8 +1216,9 @@ export function Footer() {
   return (
     <footer className="border-t border-line bg-sidebar pt-14 pb-8 md:pt-16">
       <Container>
-        <div className="grid gap-10 md:grid-cols-[1.4fr_repeat(4,minmax(0,1fr))] md:gap-10">
-          <div className="flex max-w-[340px] flex-col gap-4">
+        {/* Năm cột từ 1024 px. Ở 768 px cột cuối chỉ rộng khoảng 104 px, email không ngắt dòng được sẽ tràn ngang (Ruling 29). */}
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.4fr_repeat(4,minmax(0,1fr))]">
+          <div className="flex max-w-[340px] flex-col gap-4 sm:col-span-2 lg:col-span-1">
             <Link href="/" className="flex min-h-11 items-center gap-2.5 md:min-h-0">
               <LogoMark size={30} />
               <Wordmark />
@@ -1268,7 +1269,7 @@ function FooterColumn({ title, children }: { title: string; children: React.Reac
 }
 ```
 
-In `app/[locale]/layout.tsx`, add the imports and wrap the children exactly like DOCOPS:
+In `app/[locale]/layout.tsx`, add `data-scroll-behavior="smooth"` to the `<html>` element (Next 16 turns smooth scrolling off during route changes only when this attribute is present, Ruling 30), then add the imports and wrap the children exactly like DOCOPS:
 
 ```tsx
 import { AnalyticsGate } from '@/components/site/AnalyticsGate'
@@ -3392,6 +3393,18 @@ for (const path of ['/', '/en', '/en/no-such-page']) {
     expect(rsc).toBeLessThan(60)
   })
 }
+
+// Ruling 29: không cuộn ngang ở bề rộng máy tính bảng (spec §8.3); lưới footer từng tràn từ 768 tới 829 px.
+for (const width of [640, 768, 820, 1024]) {
+  test(`no horizontal overflow at ${width} px`, async ({ page }) => {
+    await page.setViewportSize({ width, height: 900 })
+    for (const path of ['/', '/en', '/tai-ve', '/en/pricing']) {
+      await page.goto(path)
+      const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth)
+      expect(overflow, path).toBeLessThanOrEqual(0)
+    }
+  })
+}
 ```
 
 `tests/e2e/download.spec.ts` (feed mode):
@@ -3556,7 +3569,7 @@ git commit -m "test(e2e): Playwright hai chế độ feed và sắp phát hành,
 
 - [ ] **Step 1: README**
 
-Write `README.md` in Vietnamese with these sections: what the site is (one paragraph from spec §1); commands (`pnpm dev`, `pnpm build`, `pnpm verify`, `pnpm e2e` with `E2E_MODE`, `pnpm lhci`, `pnpm sync-releases`, `pnpm capture-images`); folder structure (the File Structure block of this plan); how to edit copy (`messages/vi.json` then `messages/en.json`, `content/**/*.mdx`, `lib/site.ts`); env vars (the table of spec §11 with the OQ references); Vercel settings (framework Next.js, Node 24, function region `sin1`); the pre-launch state and how it ends (first release on the feed, then `pnpm sync-releases`); the design canvas link from `docs/thiet-ke/README.md`; the open questions OQ-L01 to OQ-L08 that block production.
+Write `README.md` in Vietnamese with these sections: what the site is (one paragraph from spec §1); commands (`pnpm dev`, `pnpm build`, `pnpm verify`, `pnpm e2e` with `E2E_MODE`, `pnpm lhci`, `pnpm sync-releases`, `pnpm capture-images`); folder structure (the File Structure block of this plan); how to edit copy (`messages/vi.json` then `messages/en.json`, `content/**/*.mdx`, `lib/site.ts`); env vars (the table of spec §11 with the OQ references); Vercel settings (framework Next.js, Node 24, function region `sin1`); the pre-launch state and how it ends (first release on the feed, then `pnpm sync-releases`); the design canvas link from `docs/thiet-ke/README.md`; the open questions OQ-L01 to OQ-L08 that block production; and a note that `pnpm dev` under Next 16.3.7 writes `AGENTS.md` and `CLAUDE.md` into the repository root on its first run (the team decides whether to commit them or to set `agentRules: false` in `next.config.ts`).
 
 - [ ] **Step 2: Ops runbook**
 
