@@ -1,0 +1,837 @@
+{
+  "common": {
+    "siteName": "EduFlow",
+    "tagline": "Desktop app for test papers, lesson plans, course syllabi and degree program review, with an AI assistant always at your side",
+    "download": "Download EduFlow",
+    "earlyAccess": "Contact us for early access",
+    "contactSales": "Request a quote",
+    "retry": "Try again",
+    "skipToContent": "Skip to content",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "language": "Language",
+    "mainNav": "Main navigation",
+    "copy": "Copy",
+    "copied": "Copied",
+    "privacyPolicy": "Privacy policy",
+    "sampleData": "Figures in the screenshots are sample data for illustration."
+  },
+  "nav": {
+    "k12": "K-12",
+    "university": "University courses",
+    "program": "Degree program",
+    "assistant": "AI assistant",
+    "pricing": "Pricing",
+    "download": "Download",
+    "contact": "Contact",
+    "transparency": "AI transparency"
+  },
+  "footer": {
+    "tagline": "EduFlow is a product of Agentra JSC. The app builds the standard structure, AI fills in the content, and you review and sign.",
+    "product": "Product",
+    "guides": "Guides",
+    "trust": "Trust",
+    "company": "Company",
+    "installMacos": "Install on macOS",
+    "installWindows": "Install on Windows",
+    "privacy": "Privacy policy",
+    "copyright": "© {year} Agentra JSC · Da Nang, Vietnam"
+  },
+  "consent": {
+    "text": "This site uses analytics cookies (Google Analytics) to understand how visitors use it. Declining does not affect downloading EduFlow.",
+    "policy": "Privacy policy",
+    "accept": "Accept",
+    "decline": "Decline"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "body": "This link does not exist or has been moved.",
+    "home": "Back to home",
+    "download": "Download EduFlow"
+  },
+  "error": {
+    "title": "Something went wrong while displaying this page",
+    "body": "Try reloading the page. If the error persists, please contact Agentra."
+  },
+  "home": {
+    "meta": {
+      "title": "EduFlow · Test papers, lesson plans and course syllabi with an AI assistant",
+      "description": "Desktop app for macOS and Windows: test papers, lesson plans, course syllabi and degree program review, with an AI assistant and your data on your computer."
+    },
+    "hero": {
+      "eyebrow": "Desktop app for macOS and Windows",
+      "h1": "Write test papers, lesson plans and course syllabi, and review degree programs, with one AI assistant",
+      "sub": "Chat with the assistant right beside the screen you are working on. The app builds the standard structure, AI fills in the content, and you review and sign.",
+      "platformNote": "EduFlow runs on macOS and Windows computers.",
+      "ctaDefault": "Download EduFlow",
+      "ctaMac": "Download for macOS",
+      "ctaWindows": "Download for Windows",
+      "ctaPrelaunch": "Contact us for early access",
+      "cta2": "See the assistant at work",
+      "trust1": "Your data stays on your computer",
+      "trust2": "Costs shown before anything runs",
+      "trust3": "People review, people sign",
+      "windowTitle": "EduFlow · Home",
+      "imageAlt": "EduFlow home screen: the chat column with the assistant and a preview of the test paper about to be created"
+    },
+    "levels": {
+      "eyebrow": "Three levels, one app",
+      "h2": "A workspace for every role, one way of working",
+      "lead": "K-12 teachers, lecturers and the Quality Assurance Office share one app. All three levels are open to everyone, with nothing locked behind a plan."
+    },
+    "assistant": {
+      "eyebrow": "AI assistant always at hand",
+      "h2": "Ask, request edits and hand over tasks right on the screen you are working on",
+      "lead": "The assistant understands the project and artifact you have open, answers in three tiers of conclusions and offers action cards, so the app does the work when you click.",
+      "p1": {
+        "title": "Knows what you are looking at",
+        "desc": "The “Viewing” chips show each item that is sent. The assistant only receives a structured summary, never the original files; remove a chip and that item is not sent."
+      },
+      "p2": {
+        "title": "Local actions cost nothing, AI tasks quote first",
+        "desc": "Cards like running a gate, recompiling or opening the right screen run directly on your computer. AI tasks always show a cost range before they run."
+      },
+      "p3": {
+        "title": "Suggests edits, you decide",
+        "desc": "The assistant shows changes as before and after. Applying one creates a new draft; a signed version is never modified."
+      },
+      "p4": {
+        "title": "Never approves or signs on your behalf",
+        "desc": "The Approve and Sign buttons live only on the main screen. Ask the assistant to sign and it lists the missing conditions and opens the right screen for you."
+      },
+      "windowTitle": "EduFlow · Results and quality gates",
+      "imageAlt": "Test paper results screen with the assistant panel explaining gate P5 and suggesting a fix to one answer option",
+      "link": "Learn about the assistant"
+    },
+    "pipeline": {
+      "eyebrow": "How EduFlow works",
+      "h2": "Five steps, with a person deciding at the last one",
+      "caption": "Every step leaves a trail: who did it, when, and against which standard.",
+      "s1": {
+        "title": "Set up",
+        "desc": "Choose the standards framework, subject, course or degree program records. You can start with a single sentence to the assistant."
+      },
+      "s2": {
+        "title": "AI fills in structured content",
+        "desc": "The app builds a fixed structure; AI only fills in the content under a strict data contract."
+      },
+      "s3": {
+        "title": "Quality gates check",
+        "desc": "Each gate prints how many units it checked. A gate that checked 0 units counts as an error and never reports a pass."
+      },
+      "s4": {
+        "title": "You review and sign",
+        "desc": "AI content carries the Suggestion label until it is approved. Signing locks the version, and its hash is notarized."
+      },
+      "s5": {
+        "title": "Export and share",
+        "desc": "Export PDF, DOCX, PPTX or a signed package for the head of subject group, the head of department or the Quality Assurance Office."
+      }
+    },
+    "trust": {
+      "eyebrow": "Transparency and safety",
+      "h2": "The machine suggests, people decide",
+      "t1": {
+        "title": "Your data stays on your computer",
+        "desc": "Projects, artifacts and chat history stay on your computer. The server only relays content to the model and records token counts; it never stores content."
+      },
+      "t2": {
+        "title": "Three tiers of conclusions, never mixed",
+        "desc": "The deterministic tier states facts with their basis. The comparative tier says “not found yet” with the number checked. The suggestion tier always needs human review."
+      },
+      "t3": {
+        "title": "Checking 0 units does not mean clean",
+        "desc": "Every quality gate prints how many units it checked; a gate that checked nothing counts as an error."
+      },
+      "t4": {
+        "title": "Signatures and hash notarization",
+        "desc": "Signed versions are locked against edits. The server notarizes the hash without seeing the content, and package recipients can verify it."
+      },
+      "t5": {
+        "title": "Works offline",
+        "desc": "Quality gates, recompiling, signing and exporting files keep working offline. Only the AI parts need a connection."
+      },
+      "t6": {
+        "title": "Transparent costs",
+        "desc": "Every AI task shows an estimated cost before it runs and the actual cost after it runs."
+      },
+      "link": "Read the AI transparency policy"
+    },
+    "cost": {
+      "eyebrow": "Usage-based cost",
+      "h2": "Pay for the AI you use; what runs on your computer is free",
+      "body": "EduFlow charges by the AI tokens used. Quality gates, test version shuffling, compiling and “what if” scenarios run on your computer at no cost. Each key has a monthly budget and warns you at 80% usage.",
+      "link": "See how pricing works"
+    },
+    "download": {
+      "eyebrow": "Download",
+      "h2": "Download EduFlow for your computer",
+      "lead": "Version {version}, released {date}.",
+      "note": "Not sure which chip your Mac has? Open the Apple menu, choose About This Mac and read the Chip line.",
+      "btn": "Download",
+      "guide": "Installation guide",
+      "checksum": "Verify file integrity (SHA-512)",
+      "platforms": {
+        "windows-x64": {
+          "title": "Windows",
+          "sub": "Windows 10 22H2 or later, 64-bit"
+        },
+        "macos-arm64": {
+          "title": "macOS · Apple Silicon",
+          "sub": "Mac with an Apple M chip"
+        },
+        "macos-x64": {
+          "title": "macOS · Intel",
+          "sub": "Mac with an Intel chip"
+        }
+      },
+      "prelaunch": {
+        "title": "EduFlow is coming soon",
+        "body": "Installers for macOS and Windows will be available here at release. Schools that want early access can contact Agentra.",
+        "cta": "Contact us for early access"
+      }
+    },
+    "faq": {
+      "eyebrow": "Questions and answers",
+      "h2": "Frequently asked questions",
+      "q1": {
+        "q": "What is a license key and where do I get one?",
+        "a": "Each school, faculty or individual receives one license key for an agreed number of computers. Send a request right in the app or contact Agentra to get a key."
+      },
+      "q2": {
+        "q": "How do I try it?",
+        "a": "Download and open EduFlow, click Try it on the first screen and fill in the form. A trial key works on 1 computer, with a trial budget and an expiry date."
+      },
+      "q3": {
+        "q": "Do I need an Internet connection?",
+        "a": "Yes, to activate, to run AI tasks and to ask the assistant. Quality gates, recompiling, signing and exporting files keep working offline."
+      },
+      "q4": {
+        "q": "Where is my data stored, and what does the assistant send?",
+        "a": "Projects and artifacts stay on your computer. The assistant only sends a structured summary of the open screen, never the original files. The server does not store content."
+      },
+      "q5": {
+        "q": "How am I charged?",
+        "a": "By the AI tokens used, with a monthly budget per key. What runs on your computer is free. Details are on the Pricing page; schools can contact Agentra for a quote."
+      },
+      "q6": {
+        "q": "How many computers can one key be used on?",
+        "a": "As many as the number of devices on your organization's key. When you change computers, an Agentra administrator revokes the old one to free a slot for the new one."
+      },
+      "q7": {
+        "q": "Can a school turn off AI for a project?",
+        "a": "Yes. Turn on the AI off switch in the project details and the app sends no AI calls for that project, including the assistant; everything that runs on your computer keeps working as usual."
+      },
+      "q8": {
+        "q": "How do I update to a new version?",
+        "a": "The app tells you when a new version is available. Click Download, then Restart to install; your projects and data stay as they are."
+      }
+    },
+    "cta": {
+      "h2": "Bring EduFlow to your subject group, department or quality assurance office",
+      "sub": "Download the app to try it, or contact Agentra for a quote based on the size of your school.",
+      "b1": "Download EduFlow",
+      "b2": "Request a quote"
+    }
+  },
+  "levels": {
+    "k12": {
+      "card": {
+        "title": "K-12",
+        "p1": "Test papers from a four-level test blueprint, multiple test versions",
+        "p2": "Lesson plans per Official Letter 5512 (CV5512)",
+        "p3": "Lecture slides with quizzes",
+        "link": "Explore the K-12 level"
+      },
+      "meta": {
+        "title": "K-12 level: test papers, lesson plans, slides",
+        "description": "Four-level test blueprints and multiple test versions, Official Letter 5512 (CV5512) lesson plans, quiz slides, 12 quality gates, sign-off before publishing."
+      },
+      "hero": {
+        "eyebrow": "K-12 level",
+        "h1": "Test papers, lesson plans and slides for every lesson",
+        "lead": "Choose the curriculum framework, build the test blueprint, let AI fill in the content, then review each warning yourself before publishing.",
+        "audience": "For K-12 teachers, heads of subject groups and school leadership.",
+        "note": "Exports carry the TRIAL (DÙNG THỬ) watermark until you sign."
+      },
+      "outcomes": {
+        "eyebrow": "What it does",
+        "h2": "From test blueprint to a full test set with appendices",
+        "o1": {
+          "title": "Test papers from a four-level test blueprint",
+          "desc": "A test blueprint of recall, understanding, application and advanced application by topic; the question count per level is the source of truth."
+        },
+        "o2": {
+          "title": "Multiple test versions, deterministic shuffling",
+          "desc": "Each test version shuffles question and option order with a fixed seed and comes with a specification table, answer key and marking guide."
+        },
+        "o3": {
+          "title": "Independent answer check",
+          "desc": "A separate AI pass solves the test again. Any question whose answer changes becomes a warning, and you confirm each one."
+        },
+        "o4": {
+          "title": "Lesson plans per Official Letter 5512 (CV5512)",
+          "desc": "Period-by-period lesson plans with an implementation table, teacher notes and your school's header."
+        },
+        "o5": {
+          "title": "Slides with quizzes",
+          "desc": "Decks follow the required layout, with quizzes spread through the lesson and a preview from the very first step."
+        },
+        "o6": {
+          "title": "Full sets and a template library",
+          "desc": "One setup for the slides, lesson plan and test paper of the same lesson; the template library works offline."
+        }
+      },
+      "screens": {
+        "eyebrow": "On screen",
+        "h2": "You always see what the app is doing",
+        "s1": {
+          "title": "Test paper setup",
+          "desc": "Test blueprint, standards framework and cost estimate on a single screen.",
+          "alt": "Test paper setup screen",
+          "windowTitle": "EduFlow · Test paper setup"
+        },
+        "s2": {
+          "title": "Results and 12 gates",
+          "desc": "The P1..P12 gate table prints how many units were checked; answer warnings must be confirmed question by question.",
+          "alt": "Results screen with the P1..P12 gate table",
+          "windowTitle": "EduFlow · Results and quality gates"
+        },
+        "s3": {
+          "title": "Slide studio",
+          "desc": "Preview the deck, the draft scoring rubric and the slide gates before exporting PDF or PPTX.",
+          "alt": "Slide studio screen",
+          "windowTitle": "EduFlow · Slide studio"
+        }
+      },
+      "gates": {
+        "title": "12 gates, P1..P12",
+        "body": "Gates check compilation, the question count in each blueprint cell, the share of questions with figures, confirmed answers, lesson plan and slide structure, and the standards library stamp.",
+        "rule": "A gate that checked 0 units shows Gate error, never Pass."
+      },
+      "cta": {
+        "h2": "Prepare your next lesson with EduFlow",
+        "sub": "Download the app and click Try it on the first screen."
+      }
+    },
+    "university": {
+      "card": {
+        "title": "University courses",
+        "p1": "CLOs, weekly plans, 90 or 150 minute session plans",
+        "p2": "10-section course syllabus",
+        "p3": "12 gates, G1..G12",
+        "link": "Explore the University courses level"
+      },
+      "meta": {
+        "title": "University courses level: CLOs, weekly plans, course syllabi",
+        "description": "From lectures to CLOs, weekly plans, session plans, slides, assessments and a 10-section course syllabus; 12 gates G1..G12; sign-off by the head of department."
+      },
+      "hero": {
+        "eyebrow": "University courses level",
+        "h1": "From lecture materials to a course syllabus with an approval signature",
+        "lead": "Load your lecture materials, let AI suggest CLOs, a weekly plan and session plans, then run the 12 gates before sending everything to the head of department.",
+        "audience": "For lecturers and heads of department.",
+        "note": "Lecture materials are parsed on your computer; their content is never sent out."
+      },
+      "outcomes": {
+        "eyebrow": "What it does",
+        "h2": "Every element traces back to CLOs and standards",
+        "o1": {
+          "title": "CLOs by Bloom level",
+          "desc": "A CLO set with every field of the standard template and verbs that match the Bloom level; gate G3 catches level mismatches."
+        },
+        "o2": {
+          "title": "Weekly plan and LLOs",
+          "desc": "Each week carries its LLOs, Bloom level, linked CLOs and AI level; the weeks run continuously, with no gaps."
+        },
+        "o3": {
+          "title": "90 or 150 minute session plans",
+          "desc": "A phase table with lecturer activities, student activities and checks; total minutes match the session length."
+        },
+        "o4": {
+          "title": "Beamer and PPTX slides",
+          "desc": "A neutral SlideSpec renders Beamer PDF and PPTX on your computer; each slide's minute range matches the session plan."
+        },
+        "o5": {
+          "title": "Assessments with AI levels",
+          "desc": "Exams built from a CLO test blueprint, and assessment briefs that state the permitted AI level for each task."
+        },
+        "o6": {
+          "title": "10-section course syllabus",
+          "desc": "Ten sections following the standard template, each paragraph with its source; a section only moves to approved when the lecturer clicks Pass."
+        }
+      },
+      "screens": {
+        "eyebrow": "On screen",
+        "h2": "Every violation leads straight to what needs fixing",
+        "s1": {
+          "title": "Workbench",
+          "desc": "CLOs, the weekly plan and sessions on one screen, each with its related gates.",
+          "alt": "Course workbench",
+          "windowTitle": "EduFlow · Course workbench"
+        },
+        "s2": {
+          "title": "12 gates, G1..G12",
+          "desc": "Violations are sorted by severity, and each one opens exactly what needs fixing and the source standard.",
+          "alt": "Course quality gates screen",
+          "windowTitle": "EduFlow · Course quality gates"
+        },
+        "s3": {
+          "title": "Approve, sign and export",
+          "desc": "The signing checklist, hash notarization and the package sent to the head of department for approval.",
+          "alt": "Approve, sign and export screen",
+          "windowTitle": "EduFlow · Approve, sign and export"
+        }
+      },
+      "gates": {
+        "title": "12 gates, G1..G12",
+        "body": "Gates check inputs, CLO fields, Bloom levels, weekly traceability, assessment weights, AI resistance, timing, figures backed by a basis and the approval signature.",
+        "rule": "A gate that checked 0 units shows Gate error, never Pass."
+      },
+      "cta": {
+        "h2": "Prepare next term's course with EduFlow",
+        "sub": "Download the app and click Try it on the first screen."
+      }
+    },
+    "program": {
+      "card": {
+        "title": "Degree program",
+        "p1": "A digital twin of the degree program",
+        "p2": "Legal validity checks at a review date",
+        "p3": "“What if” scenarios before you change anything",
+        "link": "Explore the Degree program level"
+      },
+      "meta": {
+        "title": "Degree program level: digital twin, three-tier review",
+        "description": "Build your degree program's digital twin, check legal validity at a review date and run seven curriculum map checks, a criteria overlay and what-if scenarios."
+      },
+      "hero": {
+        "eyebrow": "Degree program level",
+        "h1": "A digital twin of your degree program, checked at a review date",
+        "lead": "Load the degree program records and the course syllabus package, build a graph with the provenance of every edge, then review in three tiers: deterministic, comparative, suggestion.",
+        "audience": "For the Quality Assurance Office, the Program Council and school leadership.",
+        "note": "This is an internal working document, not a self-assessment report."
+      },
+      "outcomes": {
+        "eyebrow": "What it does",
+        "h2": "Conclusions with a basis, no guessing",
+        "o1": {
+          "title": "A digital twin with provenance",
+          "desc": "Every node and edge of the graph records its file, page and line; unknown codes must be confirmed by a person before the graph is built."
+        },
+        "o2": {
+          "title": "Legal validity at the review date",
+          "desc": "Dead basis, expiring basis and not yet in force are three separate counts, never added into one."
+        },
+        "o3": {
+          "title": "Seven curriculum map checks",
+          "desc": "PLO coverage, PI coverage, progression, 5T, overload, gap, duplication; each check prints how many units it checked."
+        },
+        "o4": {
+          "title": "Criteria overlay",
+          "desc": "Each criterion under Circular 04/2025 has exactly one status: evidenced, evidence expired or not found yet."
+        },
+        "o5": {
+          "title": "Suggestions need human review",
+          "desc": "Tier 3 shows suggestions with a dashed border; only approved suggestions go into the report."
+        },
+        "o6": {
+          "title": "“What if” scenarios",
+          "desc": "Try removing a course or changing a PLO on a copy of the graph and see the effect spread to the criteria before making the real change."
+        }
+      },
+      "screens": {
+        "eyebrow": "On screen",
+        "h2": "From graph to signed report",
+        "s1": {
+          "title": "Digital twin",
+          "desc": "A layered graph, the provenance of every edge and bridges placed by people.",
+          "alt": "Degree program digital twin screen",
+          "windowTitle": "EduFlow · Digital twin"
+        },
+        "s2": {
+          "title": "Three-tier review",
+          "desc": "The review date bar and the tier 1, tier 2 and tier 3 blocks; every number opens a list when clicked.",
+          "alt": "Three-tier review screen",
+          "windowTitle": "EduFlow · Three-tier review"
+        },
+        "s3": {
+          "title": "What-if scenario",
+          "desc": "A before and after table with the spread drawn on the graph, run on your computer at no cost.",
+          "alt": "What-if scenario screen",
+          "windowTitle": "EduFlow · What-if scenario"
+        }
+      },
+      "gates": {
+        "title": "12 gates, K1..K12",
+        "body": "Gates check edge provenance, unknown codes, the review date on every result, all seven checks and the prerequisite criteria before the report is signed.",
+        "rule": "A gate that checked 0 units shows Gate error, never Pass."
+      },
+      "cta": {
+        "h2": "Review your degree program on a clear basis",
+        "sub": "Download the app and click Try it on the first screen."
+      }
+    }
+  },
+  "assistant": {
+    "meta": {
+      "title": "The EduFlow AI assistant",
+      "description": "EduFlow's always-present AI assistant reads the open screen, answers in three tiers, offers action cards, suggests edits to a draft and never signs for you."
+    },
+    "hero": {
+      "eyebrow": "AI assistant",
+      "h1": "Chat with AI throughout your work, while people still make the decisions",
+      "lead": "The home screen is a chat box. Every work screen has an assistant panel on the right that expands to full screen when needed.",
+      "windowTitle": "EduFlow · Home",
+      "imageAlt": "The assistant expanded to full screen with a test paper plan and a test blueprint preview"
+    },
+    "where": {
+      "eyebrow": "Where it is",
+      "h2": "Always next to the work you are doing",
+      "w1": {
+        "title": "The home screen is a chat box",
+        "desc": "Type something like “Create a 45 minute Grade 10 Math test, 4 test versions” and the assistant prepares the setup for you to check."
+      },
+      "w2": {
+        "title": "A panel on every screen",
+        "desc": "A panel on the right of every work screen that collapses and opens with the ⌘J or Ctrl J shortcut."
+      },
+      "w3": {
+        "title": "Expand to full screen",
+        "desc": "Chat in full screen with a preview pane alongside, then shrink back to the panel without losing a single message."
+      }
+    },
+    "how": {
+      "eyebrow": "How the assistant works",
+      "h2": "Clear about what the assistant knows and what it may do",
+      "c1": {
+        "title": "Knows what you are looking at",
+        "desc": "The “Viewing” chips list each context item. Only a structured summary is sent; remove a chip and that item is not sent."
+      },
+      "c2": {
+        "title": "Answers in three tiers",
+        "desc": "Tier 1 blocks only quote the app's deterministic results, in the app's own words. Tier 2 says “not found yet”. Tier 3 is a suggestion that needs human review."
+      },
+      "c3": {
+        "title": "Action cards",
+        "desc": "Local actions such as opening a screen, running a gate, recompiling or running a what-if scenario cost nothing and run when you click. AI tasks open a cost estimate first."
+      },
+      "c4": {
+        "title": "Suggested edits go into a draft",
+        "desc": "Changes appear as before and after. Applying one creates a new draft version and reruns the affected gates."
+      },
+      "windowTitle": "EduFlow · Results and quality gates",
+      "imageAlt": "The assistant panel explaining a P5 violation and suggesting a fix to one answer option"
+    },
+    "never": {
+      "eyebrow": "Limits",
+      "h2": "What the assistant never does",
+      "lead": "These actions exist only on the main screen, and you click them yourself.",
+      "n1": "Approve an artifact",
+      "n2": "Sign a version",
+      "n3": "Confirm answer warnings or gate warnings",
+      "n4": "Publish officially",
+      "n5": "Send or import packages"
+    },
+    "cost": {
+      "title": "Cost per message",
+      "body": "The message box shows the cost range per message. Every answer shows its actual cost and token count. Clicking Stop still charges for the part already answered."
+    },
+    "states": {
+      "eyebrow": "When it cannot answer",
+      "h2": "The assistant says why, and local work keeps running",
+      "lead": "Messages are never silently queued; you know right away what you can still do.",
+      "windowTitle": "EduFlow · Assistant states",
+      "imageAlt": "Four states of the assistant panel: offline, AI off, key locked, over budget",
+      "s1": {
+        "title": "Offline",
+        "desc": "The message box is locked; local commands typed with / still run."
+      },
+      "s2": {
+        "title": "Project has AI off",
+        "desc": "Nothing leaves your computer for that project."
+      },
+      "s3": {
+        "title": "Key locked",
+        "desc": "The assistant stops while features that do not use AI keep working; a button lets you ask for the key to be reissued."
+      },
+      "s4": {
+        "title": "Over budget",
+        "desc": "In block mode, the assistant stops until next month or until the budget is raised; a button lets you request a higher budget."
+      }
+    },
+    "privacy": {
+      "title": "Chat history stays on your computer",
+      "body": "Conversations are saved per project on your computer and can be deleted at any time. The server does not store chat content; packages sent to colleagues do not carry the history."
+    },
+    "cta": {
+      "h2": "Try the assistant on your own lesson, course or degree program",
+      "sub": "Download the app and click Try it on the first screen."
+    }
+  },
+  "pricing": {
+    "meta": {
+      "title": "EduFlow pricing",
+      "description": "EduFlow charges by the AI tokens used, with a monthly budget per key and costs shown before anything runs; local work is free. Contact Agentra for a quote."
+    },
+    "hero": {
+      "eyebrow": "Pricing",
+      "h1": "Pay for the AI you use, and know the cost before it runs",
+      "lead": "EduFlow is not sold in feature plans. All three levels are open to everyone; costs come from AI calls and are always shown before they run."
+    },
+    "steps": {
+      "eyebrow": "Step by step",
+      "h2": "How a charge comes about",
+      "s1": {
+        "title": "One key per organization",
+        "body": "Each school, faculty or individual receives one key for an agreed number of computers."
+      },
+      "s2": {
+        "title": "Try it in the app",
+        "body": "Click Try it on the first screen. A trial key works on 1 computer, with a trial budget and an expiry date."
+      },
+      "s3": {
+        "title": "Measured in tokens",
+        "body": "Every AI call measures four token classes: input, output, cache write, cache read. Each class has its own unit price per model."
+      },
+      "s4": {
+        "title": "Locked in when recorded",
+        "body": "The amount for each call is locked in when it is recorded, at the current price list; a new price list only applies to later calls."
+      },
+      "s5": {
+        "title": "Know before it runs",
+        "body": "Every AI task shows an estimated range before it runs and the actual cost after it runs. Assistant messages show the cost under each answer."
+      },
+      "s6": {
+        "title": "Monthly budget per key",
+        "body": "Your organization chooses warn mode or block mode. The app notifies you at 80% and 100% of the budget."
+      },
+      "s7": {
+        "title": "Monthly reconciliation",
+        "body": "Agentra sends a monthly statement per organization as CSV and PDF. The statement is for reconciliation and is not an invoice."
+      }
+    },
+    "formula": {
+      "title": "The formula for one AI step",
+      "expr": "Cost = sum over classes (tokens in the class × class unit price) ÷ 1,000,000",
+      "note": "Unit prices are in VND per million tokens, by model and token class. This page does not publish unit prices; schools receive a quote from Agentra."
+    },
+    "budget": {
+      "eyebrow": "Budget",
+      "h2": "Three states of the monthly budget",
+      "normal": {
+        "title": "Normal",
+        "desc": "Below 80% of the monthly budget."
+      },
+      "near": {
+        "title": "Near the limit",
+        "desc": "From 80% of the budget, the app notifies you once on the home screen and in the estimate dialog."
+      },
+      "over": {
+        "title": "Over budget",
+        "desc": "Warn mode: tasks keep running. Block mode: AI tasks stop until the 1st of next month or until the budget is raised."
+      },
+      "essential": "When blocked, OCR of scanned pages and LaTeX compile-error fixes still run, so your exports never get stuck."
+    },
+    "free": {
+      "eyebrow": "Free",
+      "h2": "What runs on your computer, free of charge",
+      "i1": "Quality gates P, G, K",
+      "i2": "Shuffling test versions and building test blueprints",
+      "i3": "Recompiling and exporting PDF, DOCX, PPTX",
+      "i4": "Tiers 1 and 2 of degree program review",
+      "i5": "“What if” scenarios",
+      "i6": "Signing and verifying packages",
+      "i7": "The assistant's local action cards",
+      "i8": "Viewing your organization's costs and usage"
+    },
+    "windowTitle": "EduFlow · Usage and costs",
+    "imageAlt": "Usage and costs screen with the monthly total, four token classes and a breakdown by skill",
+    "cta": {
+      "h2": "Get a quote for your school",
+      "sub": "Send your organization's name, the expected number of computers and the main level you will use; Agentra will get back to you with a quote.",
+      "sales": "Request a quote",
+      "download": "Download EduFlow to try it"
+    }
+  },
+  "transparency": {
+    "meta": {
+      "title": "AI and data transparency",
+      "description": "Where EduFlow uses AI, what data it sends, which data never leaves your computer, and the principle that the machine suggests and people decide."
+    },
+    "eyebrow": "AI transparency",
+    "h1": "AI and data transparency",
+    "lead": "This page matches the AI transparency page in the app: which skills use AI, what data is sent and which data never leaves your computer.",
+    "updated": "Updated {date}",
+    "p1": {
+      "title": "Where AI is used",
+      "body": "AI fills in structured content for test papers, answer rechecks, lesson plans, slides, CLOs, weekly plans, session plans, course syllabi, assessment briefs, tier 3 suggestions in degree program review and the chat assistant. Everything else runs on your computer."
+    },
+    "p2": {
+      "title": "Model tiers",
+      "body": "Each skill runs on the fast, standard or strong tier. Agentra maps each tier to a specific model; the AI transparency page in the app lists the tier of every skill."
+    },
+    "p3": {
+      "title": "Data sent out",
+      "body": "Each call sends only the content the skill needs, under a strict data contract. The assistant sends a structured summary of the open screen with the latest messages of the conversation, never the original files."
+    },
+    "p4": {
+      "title": "Data that stays on your computer",
+      "body": "The project store, chat history, signatures and activation secrets stay on your computer. Imported files are parsed locally; only when you run OCR on a scanned page is that page image sent for text recognition."
+    },
+    "p5": {
+      "title": "The server stores no content",
+      "body": "The server relays content to the model and records token counts, amounts and hashes. Content is neither stored nor written to logs."
+    },
+    "p6": {
+      "title": "The machine suggests, people decide",
+      "body": "AI content carries the Suggestion label until you approve it. There is no button to skip a quality gate; the assistant does not approve or sign."
+    },
+    "p7": {
+      "title": "Three tiers of conclusions",
+      "body": "The deterministic tier states facts with their basis and review date. The comparative tier says “not found yet” with the number of units checked. The suggestion tier opens with “Suggestion, needs human review”."
+    },
+    "p8": {
+      "title": "AI off per project",
+      "body": "Turn on the AI off switch in the project details and the app sends no AI calls for that project, including the assistant."
+    }
+  },
+  "download": {
+    "meta": {
+      "title": "Download EduFlow for macOS and Windows",
+      "description": "Download the EduFlow installer for macOS (Apple Silicon, Intel) and Windows, with SHA-512 checksums, system requirements and installation guides."
+    },
+    "eyebrow": "Download",
+    "h1": "Download EduFlow for your computer",
+    "lead": "Version {version}, released {date}. The installers are digitally signed.",
+    "detected": {
+      "windows": "Your computer runs Windows",
+      "macos": "Your computer runs macOS"
+    },
+    "badge": "This computer",
+    "guideWindows": "How to install on Windows",
+    "guideMac": "How to install on macOS",
+    "chipNote": "Not sure which chip your Mac has? Open the Apple menu and choose About This Mac: if the Chip line says Apple M, choose Apple Silicon; if it says Intel, choose Intel.",
+    "missing": {
+      "windows": "The Windows version is coming soon. The versions available now are listed below.",
+      "macos": "The macOS version is coming soon. The versions available now are listed below."
+    },
+    "desktopOnly": "EduFlow is a desktop app. Open this page on a macOS or Windows computer to download it.",
+    "req": {
+      "eyebrow": "System requirements",
+      "h2": "What your computer needs to run EduFlow",
+      "windows": {
+        "os": "Windows 10 22H2 or later, 64-bit",
+        "disk": "Free disk space: announced with the first release",
+        "net": "Internet for activation and AI steps"
+      },
+      "macos": {
+        "os": "macOS 12 or later",
+        "chip": "Apple Silicon or Intel",
+        "disk": "Free disk space: announced with the first release",
+        "net": "Internet for activation and AI steps"
+      }
+    },
+    "signed": {
+      "title": "Digitally signed installers",
+      "body": "The macOS build is signed with a Developer ID and notarized by Apple; the Windows build is code-signed by Agentra JSC. Windows SmartScreen may still ask for confirmation on a newly released version; the installation guide explains what to do."
+    },
+    "update": {
+      "title": "Already installed?",
+      "body": "The app tells you when a new version is available: click Download, then Restart to install. Your projects and data stay as they are."
+    },
+    "help": "Download not working? Send an email to <email></email>.",
+    "prelaunch": {
+      "title": "EduFlow is coming soon",
+      "body": "Installers for macOS and Windows will be on this page as soon as they are released. Schools that want early access can contact Agentra.",
+      "cta": "Contact us for early access"
+    }
+  },
+  "install": {
+    "eyebrow": "Installation guide",
+    "breadcrumbDownload": "Download",
+    "breadcrumbInstall": "Installation guide",
+    "tocTitle": "On this page",
+    "tabs": {
+      "macos": "macOS",
+      "windows": "Windows"
+    },
+    "updated": "Updated {date}",
+    "minutes": "{n} min read",
+    "bottom": {
+      "title": "Ready to install?",
+      "body": "Download the right installer for your computer, then follow the steps above.",
+      "downloadMac": "Choose a macOS installer",
+      "downloadWindows": "Download the Windows installer",
+      "other": {
+        "macos": "See the macOS guide",
+        "windows": "See the Windows guide"
+      }
+    },
+    "meta": {
+      "macos": {
+        "title": "Install EduFlow on macOS",
+        "description": "Choose the right installer for your chip, install into Applications, activate with a license key or a trial, choose a work profile and update to new versions."
+      },
+      "windows": {
+        "title": "Install EduFlow on Windows",
+        "description": "Download the signed installer, run it, handle SmartScreen if it appears, activate with a license key or a trial and update to new versions."
+      }
+    }
+  },
+  "contact": {
+    "meta": {
+      "title": "Contact Agentra about EduFlow",
+      "description": "Contact Agentra for a quote, a license key for your school, a trial or to report an EduFlow bug."
+    },
+    "eyebrow": "Contact",
+    "h1": "Contact Agentra",
+    "lead": "A quote for your school, a license key, a trial or a bug report: choose whatever is most convenient.",
+    "email": {
+      "label": "Email",
+      "sub": "The main channel for quotes, keys and support.",
+      "copy": "Copy email",
+      "copied": "Copied"
+    },
+    "phone": {
+      "label": "Phone",
+      "sub": "Call or message Agentra on Zalo.",
+      "zalo": "Message on Zalo"
+    },
+    "address": {
+      "label": "Address",
+      "maps": "Open Google Maps"
+    },
+    "key": {
+      "eyebrow": "License key",
+      "h2": "Get a key for your school",
+      "step": "Step {n}",
+      "s1": {
+        "title": "Download and install EduFlow",
+        "desc": "Choose the right installer for your computer on the Download page."
+      },
+      "s2": {
+        "title": "Send a request",
+        "desc": "On the app's first screen, send a key request with your organization's name and a contact person; or email Agentra with your organization's name and the number of computers."
+      },
+      "s3": {
+        "title": "Receive your key",
+        "desc": "Agentra reviews the request and sends the key to your organization. Enter the key on the Activation screen."
+      },
+      "note": "Want to try it first? Click Try it on the app's first screen; a trial key works on 1 computer."
+    },
+    "support": {
+      "eyebrow": "Support",
+      "h2": "Bug reports and feedback",
+      "lead": "The fastest way is the Feedback section in the app: it attaches sanitized diagnostics and never sends project content.",
+      "i1": "A screenshot of the error",
+      "i2": "The steps you were taking",
+      "i3": "The error message, if any",
+      "i4": "App version and operating system",
+      "boxTitle": "Email Agentra",
+      "boxBody": "Include your organization's name and the details above so Agentra can help faster.",
+      "btn": "Send email",
+      "subject": "EduFlow support"
+    }
+  }
+}

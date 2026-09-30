@@ -1,0 +1,121 @@
+{
+ "v": 3,
+ "createdOnFiles": {
+  "v": 1,
+  "at": "2026-09-30T08:25:36Z"
+ },
+ "title": "EduFlow Landing",
+ "launch": {
+  "view": "canvas"
+ },
+ "pages": [],
+ "boards": {
+  "Main.dc.html": {
+   "x": 0,
+   "y": 0,
+   "w": 1440,
+   "h": 7659,
+   "title": "Trang chủ (VI, desktop 1440)"
+  },
+  "HomeMobile.dc.html": {
+   "x": 1520,
+   "y": 0,
+   "w": 390,
+   "h": 4568,
+   "title": "Trang chủ (VI, điện thoại 390), phần 1/2"
+  },
+  "HomeMobile2.dc.html": {
+   "x": 1990,
+   "y": 0,
+   "w": 390,
+   "h": 4886,
+   "title": "Trang chủ (VI, điện thoại 390), phần 2/2"
+  },
+  "HomeEN.dc.html": {
+   "x": 2460,
+   "y": 0,
+   "w": 1440,
+   "h": 7586,
+   "title": "Home (EN, desktop 1440)"
+  },
+  "LevelK12.dc.html": {
+   "x": 0,
+   "y": 8060,
+   "w": 1440,
+   "h": 4294,
+   "title": "Phổ thông (VI)"
+  },
+  "Assistant.dc.html": {
+   "x": 1520,
+   "y": 8060,
+   "w": 1440,
+   "h": 5142,
+   "title": "Trợ lý AI (VI)"
+  },
+  "Pricing.dc.html": {
+   "x": 3040,
+   "y": 8060,
+   "w": 1440,
+   "h": 3413,
+   "title": "Cách tính phí (VI)"
+  },
+  "Download.dc.html": {
+   "x": 4560,
+   "y": 8060,
+   "w": 1440,
+   "h": 2796,
+   "title": "Tải về (VI): có bản phát hành, sắp phát hành"
+  }
+ },
+ "order": [
+  "Main.dc.html",
+  "HomeMobile.dc.html",
+  "HomeMobile2.dc.html",
+  "HomeEN.dc.html",
+  "LevelK12.dc.html",
+  "Assistant.dc.html",
+  "Pricing.dc.html",
+  "Download.dc.html"
+ ],
+ "notes": {
+  "r1": {
+   "x": 0,
+   "y": -250,
+   "text": "Trang chủ: desktop tiếng Việt, điện thoại (hai phần), desktop tiếng Anh",
+   "kind": "title1",
+   "maxW": 3900
+  },
+  "r2": {
+   "x": 0,
+   "y": 7810,
+   "text": "Trang con: Phổ thông, Trợ lý AI, Cách tính phí, Tải về",
+   "kind": "title1",
+   "maxW": 6000
+  },
+  "n1": {
+   "x": 3980,
+   "y": 0,
+   "w": 420,
+   "text": "Main: phần Hỏi đáp mở cả 8 câu để duyệt chữ; trang thật chỉ mở câu đầu. Phiên bản 1.0.0, ngày 01/10/2026 và dung lượng tệp là dữ liệu mẫu lấy từ fixture test của kế hoạch."
+  },
+  "n2": {
+   "x": 3980,
+   "y": 640,
+   "w": 420,
+   "text": "HomeMobile và HomeMobile2 là một trang chủ trên điện thoại 390 px, cắt làm hai artboard vì canvas giới hạn 8000 px mỗi artboard. Trang ở trạng thái sắp phát hành: nút chính Liên hệ để dùng sớm, khối Tải về hiện thông báo EduFlow sắp phát hành."
+  },
+  "n3": {
+   "x": 3980,
+   "y": 1280,
+   "w": 420,
+   "text": "Ảnh sản phẩm là khung giữ chỗ ghi tên artboard của canvas app (ví dụ Ảnh: AssistantHome) kèm chữ thay thế. Task 5 thay bằng ảnh WebP chụp từ canvas app."
+  },
+  "n4": {
+   "x": 6080,
+   "y": 8060,
+   "w": 420,
+   "text": "Tải về: nửa trên là trang khi feed có bản phát hành (dữ liệu mẫu, khách dùng macOS nên hai thẻ Mac xếp đầu); nửa dưới là trang khi feed và snapshot đều rỗng, hiện thông báo sắp phát hành. Yêu cầu hệ thống, dòng bộ cài đã ký và footer dùng chung cho cả hai trạng thái."
+  }
+ },
+ "designSystems": []
+}
