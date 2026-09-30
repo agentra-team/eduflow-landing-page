@@ -1,0 +1,837 @@
+{
+  "common": {
+    "siteName": "EduFlow",
+    "tagline": "App desktop soạn đề, giáo án, đề cương và rà soát chương trình đào tạo, có trợ lý AI luôn bên cạnh",
+    "download": "Tải EduFlow",
+    "earlyAccess": "Liên hệ để dùng sớm",
+    "contactSales": "Liên hệ báo giá",
+    "retry": "Thử lại",
+    "skipToContent": "Bỏ qua tới nội dung",
+    "openMenu": "Mở menu",
+    "closeMenu": "Đóng menu",
+    "language": "Ngôn ngữ",
+    "mainNav": "Điều hướng chính",
+    "copy": "Sao chép",
+    "copied": "Đã sao chép",
+    "privacyPolicy": "Chính sách bảo mật",
+    "sampleData": "Số liệu trên ảnh là dữ liệu mẫu minh hoạ."
+  },
+  "nav": {
+    "k12": "Phổ thông",
+    "university": "Học phần",
+    "program": "Chương trình",
+    "assistant": "Trợ lý AI",
+    "pricing": "Cách tính phí",
+    "download": "Tải về",
+    "contact": "Liên hệ",
+    "transparency": "Minh bạch AI"
+  },
+  "footer": {
+    "tagline": "EduFlow là sản phẩm của Agentra JSC. Máy dựng khung chuẩn, AI điền nội dung, thầy cô duyệt và ký.",
+    "product": "Sản phẩm",
+    "guides": "Hướng dẫn",
+    "trust": "Tin cậy",
+    "company": "Công ty",
+    "installMacos": "Cài đặt trên macOS",
+    "installWindows": "Cài đặt trên Windows",
+    "privacy": "Chính sách bảo mật",
+    "copyright": "© {year} Agentra JSC · Đà Nẵng, Việt Nam"
+  },
+  "consent": {
+    "text": "Trang này dùng cookie phân tích (Google Analytics) để hiểu cách khách truy cập dùng trang. Từ chối không ảnh hưởng tới việc tải EduFlow.",
+    "policy": "Chính sách bảo mật",
+    "accept": "Đồng ý",
+    "decline": "Từ chối"
+  },
+  "notFound": {
+    "title": "Không tìm thấy trang",
+    "body": "Đường dẫn này không tồn tại hoặc đã được chuyển đi.",
+    "home": "Về trang chủ",
+    "download": "Tải EduFlow"
+  },
+  "error": {
+    "title": "Trang gặp lỗi khi hiển thị",
+    "body": "Thầy cô thử tải lại trang. Nếu lỗi vẫn còn, hãy liên hệ Agentra."
+  },
+  "home": {
+    "meta": {
+      "title": "EduFlow · Soạn đề, giáo án, đề cương cùng trợ lý AI",
+      "description": "App desktop cho macOS và Windows: soạn đề kiểm tra, giáo án, đề cương học phần, rà soát chương trình đào tạo, có trợ lý AI và dữ liệu nằm ở máy thầy cô."
+    },
+    "hero": {
+      "eyebrow": "App desktop cho macOS và Windows",
+      "h1": "Soạn đề, giáo án, đề cương và rà soát chương trình cùng một trợ lý AI",
+      "sub": "Trò chuyện với trợ lý ngay cạnh màn đang làm. Máy dựng khung chuẩn, AI điền nội dung, thầy cô duyệt và ký.",
+      "platformNote": "EduFlow chạy trên máy tính macOS và Windows.",
+      "ctaDefault": "Tải EduFlow",
+      "ctaMac": "Tải về cho macOS",
+      "ctaWindows": "Tải về cho Windows",
+      "ctaPrelaunch": "Liên hệ để dùng sớm",
+      "cta2": "Xem trợ lý làm việc",
+      "trust1": "Dữ liệu nằm ở máy thầy cô",
+      "trust2": "Chi phí hiện trước khi chạy",
+      "trust3": "Người duyệt, người ký",
+      "windowTitle": "EduFlow · Trang chủ",
+      "imageAlt": "Trang chủ EduFlow: cột trò chuyện với trợ lý và bản xem trước đề kiểm tra sẽ tạo"
+    },
+    "levels": {
+      "eyebrow": "Ba cấp, một app",
+      "h2": "Mỗi vai một chỗ làm việc, chung một cách làm",
+      "lead": "Giáo viên phổ thông, giảng viên và Phòng Đảm bảo chất lượng dùng chung một app. Cả ba cấp mở cho mọi người, không khoá theo gói."
+    },
+    "assistant": {
+      "eyebrow": "Trợ lý AI luôn có mặt",
+      "h2": "Hỏi, nhờ sửa và giao việc ngay trên màn đang làm",
+      "lead": "Trợ lý hiểu dự án và hiện vật thầy cô đang mở, trả lời theo ba tầng kết luận và đưa thẻ hành động để app làm việc khi thầy cô bấm.",
+      "p1": {
+        "title": "Biết thầy cô đang xem gì",
+        "desc": "Chip “Đang xem” cho thấy từng mục gửi đi. Trợ lý chỉ nhận bản tóm tắt có cấu trúc, không nhận tệp gốc; bỏ chip là mục đó không được gửi."
+      },
+      "p2": {
+        "title": "Việc tại máy 0 đồng, việc AI báo giá trước",
+        "desc": "Thẻ như chạy cổng, biên dịch lại hay mở đúng màn chạy ngay tại máy. Tác vụ AI luôn hiện khoảng chi phí trước khi chạy."
+      },
+      "p3": {
+        "title": "Đề xuất sửa, thầy cô quyết",
+        "desc": "Trợ lý đưa thay đổi dạng trước và sau. Áp vào là tạo bản nháp mới; phiên bản đã ký không bao giờ bị sửa."
+      },
+      "p4": {
+        "title": "Không duyệt, không ký thay người",
+        "desc": "Nút Duyệt và Ký chỉ nằm ở màn chính. Nhờ trợ lý ký thì trợ lý liệt kê điều kiện còn thiếu và mở đúng màn cho thầy cô."
+      },
+      "windowTitle": "EduFlow · Kết quả và cổng chất lượng",
+      "imageAlt": "Màn kết quả đề kiểm tra với panel trợ lý giải thích cổng P5 và đề xuất sửa một phương án",
+      "link": "Tìm hiểu trợ lý"
+    },
+    "pipeline": {
+      "eyebrow": "Cách EduFlow làm việc",
+      "h2": "Năm bước, người quyết ở bước cuối",
+      "caption": "Mỗi bước để lại dấu vết: ai làm, lúc nào, dựa trên chuẩn nào.",
+      "s1": {
+        "title": "Thiết lập",
+        "desc": "Chọn khung chuẩn, môn, học phần hoặc hồ sơ CTĐT. Có thể bắt đầu bằng một câu gửi trợ lý."
+      },
+      "s2": {
+        "title": "AI điền nội dung có cấu trúc",
+        "desc": "Máy dựng khung cố định, AI chỉ điền phần nội dung theo hợp đồng dữ liệu chặt."
+      },
+      "s3": {
+        "title": "Cổng chất lượng kiểm",
+        "desc": "Mỗi cổng in số đơn vị đã kiểm. Cổng kiểm 0 đơn vị bị coi là lỗi, không bao giờ báo đạt."
+      },
+      "s4": {
+        "title": "Thầy cô duyệt và ký",
+        "desc": "Nội dung AI mang nhãn Đề xuất cho tới khi được duyệt. Chữ ký khoá phiên bản, mã băm được công chứng."
+      },
+      "s5": {
+        "title": "Xuất và chia sẻ",
+        "desc": "Xuất PDF, DOCX, PPTX hoặc gói đã ký gửi tổ trưởng, trưởng bộ môn, Phòng Đảm bảo chất lượng."
+      }
+    },
+    "trust": {
+      "eyebrow": "Minh bạch và an toàn",
+      "h2": "Máy đề xuất, người quyết định",
+      "t1": {
+        "title": "Dữ liệu ở máy thầy cô",
+        "desc": "Dự án, hiện vật và lịch sử trò chuyện nằm ở máy. Máy chủ chỉ chuyển nội dung cho mô hình và ghi số token, không lưu nội dung."
+      },
+      "t2": {
+        "title": "Ba tầng kết luận không trộn",
+        "desc": "Tầng tất định khẳng định kèm căn cứ. Tầng đối sánh nói “chưa thấy” kèm số đã kiểm. Tầng đề xuất luôn cần người duyệt."
+      },
+      "t3": {
+        "title": "Kiểm 0 đơn vị không phải là sạch",
+        "desc": "Mọi cổng chất lượng in số đơn vị đã kiểm; cổng không kiểm được gì bị coi là lỗi."
+      },
+      "t4": {
+        "title": "Chữ ký và công chứng mã băm",
+        "desc": "Phiên bản đã ký bị khoá sửa. Máy chủ công chứng mã băm mà không thấy nội dung, người nhận gói xác minh được."
+      },
+      "t5": {
+        "title": "Làm việc khi mất mạng",
+        "desc": "Cổng chất lượng, biên dịch lại, ký và xuất tệp vẫn chạy khi mất mạng. Chỉ phần AI cần kết nối."
+      },
+      "t6": {
+        "title": "Chi phí minh bạch",
+        "desc": "Mỗi tác vụ AI hiện chi phí ước tính trước khi chạy và chi phí thật sau khi chạy."
+      },
+      "link": "Đọc chính sách minh bạch AI"
+    },
+    "cost": {
+      "eyebrow": "Chi phí theo mức dùng",
+      "h2": "Trả cho phần AI đã dùng, phần chạy tại máy không tốn tiền",
+      "body": "EduFlow tính theo token AI đã dùng. Cổng chất lượng, trộn mã đề, biên dịch và kịch bản “nếu” chạy tại máy, 0 đồng. Mỗi key có ngân sách tháng và cảnh báo khi dùng tới 80%.",
+      "link": "Xem cách tính phí"
+    },
+    "download": {
+      "eyebrow": "Tải về",
+      "h2": "Tải EduFlow cho máy tính của thầy cô",
+      "lead": "Phiên bản {version}, phát hành {date}.",
+      "note": "Không chắc máy Mac dùng chip gì? Mở Apple menu, chọn Giới thiệu về máy Mac này và đọc dòng Chip.",
+      "btn": "Tải về",
+      "guide": "Hướng dẫn cài đặt",
+      "checksum": "Kiểm tra toàn vẹn tệp (SHA-512)",
+      "platforms": {
+        "windows-x64": {
+          "title": "Windows",
+          "sub": "Windows 10 22H2 trở lên, 64-bit"
+        },
+        "macos-arm64": {
+          "title": "macOS · Apple Silicon",
+          "sub": "Máy Mac chip Apple M"
+        },
+        "macos-x64": {
+          "title": "macOS · Intel",
+          "sub": "Máy Mac chip Intel"
+        }
+      },
+      "prelaunch": {
+        "title": "EduFlow sắp phát hành",
+        "body": "Bản cài cho macOS và Windows sẽ có ở đây khi phát hành. Trường muốn dùng sớm có thể liên hệ Agentra.",
+        "cta": "Liên hệ để dùng sớm"
+      }
+    },
+    "faq": {
+      "eyebrow": "Hỏi đáp",
+      "h2": "Câu hỏi thường gặp",
+      "q1": {
+        "q": "Key kích hoạt là gì, lấy ở đâu?",
+        "a": "Mỗi trường, khoa hoặc cá nhân nhận một key dùng trên số máy đã thoả thuận. Thầy cô gửi yêu cầu ngay trong app hoặc liên hệ Agentra để nhận key."
+      },
+      "q2": {
+        "q": "Dùng thử thế nào?",
+        "a": "Tải và mở EduFlow, bấm Dùng thử ở màn đầu và điền đơn. Key dùng thử chạy trên 1 máy, có ngân sách dùng thử và ngày hết hạn."
+      },
+      "q3": {
+        "q": "Có cần Internet không?",
+        "a": "Cần khi kích hoạt, khi chạy tác vụ AI và khi hỏi trợ lý. Cổng chất lượng, biên dịch lại, ký và xuất tệp vẫn chạy khi mất mạng."
+      },
+      "q4": {
+        "q": "Dữ liệu lưu ở đâu, trợ lý gửi gì đi?",
+        "a": "Dự án và hiện vật nằm ở máy thầy cô. Trợ lý chỉ gửi bản tóm tắt có cấu trúc của màn đang mở, không gửi tệp gốc. Máy chủ không lưu nội dung."
+      },
+      "q5": {
+        "q": "Tính phí thế nào?",
+        "a": "Theo token AI đã dùng, với ngân sách tháng theo key. Phần chạy tại máy không tốn tiền. Chi tiết ở trang Cách tính phí; trường liên hệ Agentra để nhận báo giá."
+      },
+      "q6": {
+        "q": "Một key dùng cho mấy máy?",
+        "a": "Theo số thiết bị ghi trên key của đơn vị. Khi đổi máy, quản trị Agentra thu hồi máy cũ để trả chỗ cho máy mới."
+      },
+      "q7": {
+        "q": "Trường tắt AI cho một dự án được không?",
+        "a": "Được. Bật Tắt AI trong chi tiết dự án thì app không gửi lời gọi AI nào cho dự án đó, kể cả trợ lý; phần chạy tại máy vẫn dùng bình thường."
+      },
+      "q8": {
+        "q": "Cập nhật bản mới thế nào?",
+        "a": "App tự báo khi có bản mới. Thầy cô bấm Tải về, rồi Khởi động lại để cài; dự án và dữ liệu giữ nguyên."
+      }
+    },
+    "cta": {
+      "h2": "Mang EduFlow về tổ chuyên môn, bộ môn hay phòng đảm bảo chất lượng",
+      "sub": "Tải app để dùng thử, hoặc liên hệ Agentra để nhận báo giá theo quy mô trường.",
+      "b1": "Tải EduFlow",
+      "b2": "Liên hệ báo giá"
+    }
+  },
+  "levels": {
+    "k12": {
+      "card": {
+        "title": "Phổ thông",
+        "p1": "Đề kiểm tra theo ma trận bốn mức, nhiều mã đề",
+        "p2": "Giáo án theo CV5512",
+        "p3": "Slide bài giảng có quiz",
+        "link": "Xem cấp Phổ thông"
+      },
+      "meta": {
+        "title": "Cấp Phổ thông: đề kiểm tra, giáo án, slide",
+        "description": "Soạn đề kiểm tra theo ma trận bốn mức với nhiều mã đề, giáo án CV5512 và slide có quiz; 12 cổng chất lượng; duyệt và ký trước khi xuất bản."
+      },
+      "hero": {
+        "eyebrow": "Cấp Phổ thông",
+        "h1": "Đề kiểm tra, giáo án và slide cho từng tiết dạy",
+        "lead": "Chọn khung chương trình, lập ma trận, để AI điền nội dung rồi tự duyệt từng cảnh báo trước khi xuất bản.",
+        "audience": "Cho giáo viên phổ thông, tổ trưởng chuyên môn và Ban giám hiệu.",
+        "note": "Bản xuất mang dấu chìm DÙNG THỬ cho tới khi thầy cô ký."
+      },
+      "outcomes": {
+        "eyebrow": "Làm được gì",
+        "h2": "Từ ma trận tới bộ đề đủ phụ lục",
+        "o1": {
+          "title": "Đề theo ma trận bốn mức",
+          "desc": "Ma trận nhận biết, thông hiểu, vận dụng, vận dụng cao theo chủ đề; số câu từng mức là nguồn sự thật."
+        },
+        "o2": {
+          "title": "Nhiều mã đề, trộn tất định",
+          "desc": "Mỗi mã đề trộn thứ tự câu và phương án theo khoá cố định, kèm bản đặc tả, đáp án và hướng dẫn chấm."
+        },
+        "o3": {
+          "title": "Kiểm lại đáp án độc lập",
+          "desc": "Một lượt AI khác giải lại đề. Câu bị đổi đáp án thành cảnh báo, thầy cô xác nhận từng câu."
+        },
+        "o4": {
+          "title": "Giáo án CV5512",
+          "desc": "Giáo án theo tiết với bảng tổ chức thực hiện, ghi chú giáo viên và header của trường."
+        },
+        "o5": {
+          "title": "Slide có quiz",
+          "desc": "Deck theo bố cục bắt buộc, quiz rải suốt bài, xem trước ngay từ bước đầu."
+        },
+        "o6": {
+          "title": "Sinh cả bộ và thư viện mẫu",
+          "desc": "Một cấu hình cho slide, giáo án và đề của cùng tiết; thư viện mẫu dùng được khi mất mạng."
+        }
+      },
+      "screens": {
+        "eyebrow": "Trên màn hình",
+        "h2": "Thầy cô luôn thấy máy đang làm gì",
+        "s1": {
+          "title": "Soạn đề",
+          "desc": "Ma trận, khung chuẩn và ước tính chi phí trên cùng một màn.",
+          "alt": "Màn soạn đề kiểm tra",
+          "windowTitle": "EduFlow · Soạn đề kiểm tra"
+        },
+        "s2": {
+          "title": "Kết quả và 12 cổng",
+          "desc": "Bảng cổng P1..P12 in số đơn vị đã kiểm; cảnh báo đáp án phải được xác nhận từng câu.",
+          "alt": "Màn kết quả với bảng cổng P1..P12",
+          "windowTitle": "EduFlow · Kết quả và cổng chất lượng"
+        },
+        "s3": {
+          "title": "Soạn slide",
+          "desc": "Xem trước deck, rubric chấm bản nháp và cổng slide trước khi xuất PDF hoặc PPTX.",
+          "alt": "Màn soạn slide",
+          "windowTitle": "EduFlow · Soạn slide"
+        }
+      },
+      "gates": {
+        "title": "12 cổng P1..P12",
+        "body": "Cổng kiểm biên dịch, số câu từng ô ma trận, tỷ lệ câu có hình, đáp án đã xác nhận, cấu trúc giáo án và slide, dấu kho chuẩn.",
+        "rule": "Cổng kiểm 0 đơn vị hiện Lỗi cổng, không bao giờ Đạt."
+      },
+      "cta": {
+        "h2": "Soạn tiết dạy tới cùng EduFlow",
+        "sub": "Tải app và bấm Dùng thử ở màn đầu."
+      }
+    },
+    "university": {
+      "card": {
+        "title": "Học phần đại học",
+        "p1": "CLO, kế hoạch tuần, giáo án buổi 90 hoặc 150 phút",
+        "p2": "Đề cương 10 mục",
+        "p3": "12 cổng G1..G12",
+        "link": "Xem cấp Học phần"
+      },
+      "meta": {
+        "title": "Cấp Học phần: CLO, kế hoạch tuần, đề cương",
+        "description": "Từ bài giảng tới CLO, kế hoạch tuần, giáo án buổi, slide, đánh giá và đề cương 10 mục; 12 cổng G1..G12; trưởng bộ môn ký duyệt qua gói."
+      },
+      "hero": {
+        "eyebrow": "Cấp Học phần đại học",
+        "h1": "Từ bài giảng tới đề cương có chữ ký duyệt",
+        "lead": "Nạp bài giảng, để AI đề xuất CLO, kế hoạch tuần và giáo án buổi, rồi kiểm 12 cổng trước khi gửi trưởng bộ môn.",
+        "audience": "Cho giảng viên và trưởng bộ môn.",
+        "note": "Bài giảng được bóc tách tại máy, không gửi nội dung đi."
+      },
+      "outcomes": {
+        "eyebrow": "Làm được gì",
+        "h2": "Mọi phần tử truy vết về CLO và chuẩn",
+        "o1": {
+          "title": "CLO theo Bloom",
+          "desc": "Bộ CLO đủ các trường của mẫu chuẩn, động từ khớp bậc Bloom; cổng G3 bắt chỗ lệch bậc."
+        },
+        "o2": {
+          "title": "Kế hoạch tuần và LLO",
+          "desc": "Mỗi tuần gắn LLO, bậc Bloom, CLO liên kết và mức AI; các tuần phủ liên tục, không hở."
+        },
+        "o3": {
+          "title": "Giáo án buổi 90 hoặc 150 phút",
+          "desc": "Bảng pha với việc giảng viên, việc sinh viên và kiểm soát; tổng phút khớp thời lượng buổi."
+        },
+        "o4": {
+          "title": "Slide Beamer và PPTX",
+          "desc": "SlideSpec trung lập dựng ra Beamer PDF và PPTX tại máy; dải phút từng slide khớp giáo án."
+        },
+        "o5": {
+          "title": "Đánh giá có mức AI",
+          "desc": "Đề thi theo ma trận CLO và assessment brief ghi rõ mức AI được phép cho từng phần việc."
+        },
+        "o6": {
+          "title": "Đề cương 10 mục",
+          "desc": "Mười mục theo mẫu chuẩn, mỗi đoạn kèm nguồn; mục chỉ chuyển sang đã duyệt khi giảng viên bấm Đạt."
+        }
+      },
+      "screens": {
+        "eyebrow": "Trên màn hình",
+        "h2": "Mỗi vi phạm dẫn thẳng tới chỗ cần sửa",
+        "s1": {
+          "title": "Bàn làm việc",
+          "desc": "CLO, kế hoạch tuần và buổi học trên một màn, mỗi phần kèm cổng liên quan.",
+          "alt": "Bàn làm việc học phần",
+          "windowTitle": "EduFlow · Bàn làm việc học phần"
+        },
+        "s2": {
+          "title": "12 cổng G1..G12",
+          "desc": "Vi phạm xếp theo mức nghiêm trọng, mỗi vi phạm mở đúng chỗ cần sửa và nguồn chuẩn.",
+          "alt": "Màn cổng chất lượng học phần",
+          "windowTitle": "EduFlow · Cổng chất lượng học phần"
+        },
+        "s3": {
+          "title": "Duyệt, ký và xuất",
+          "desc": "Bảng điều kiện ký, công chứng mã băm và gói gửi trưởng bộ môn duyệt.",
+          "alt": "Màn duyệt, ký và xuất",
+          "windowTitle": "EduFlow · Duyệt, ký và xuất"
+        }
+      },
+      "gates": {
+        "title": "12 cổng G1..G12",
+        "body": "Cổng kiểm đầu vào, trường CLO, bậc Bloom, truy vết tuần, trọng số đánh giá, kháng AI, thời lượng, con số có căn cứ và chữ ký duyệt.",
+        "rule": "Cổng kiểm 0 đơn vị hiện Lỗi cổng, không bao giờ Đạt."
+      },
+      "cta": {
+        "h2": "Chuẩn bị học phần kỳ tới cùng EduFlow",
+        "sub": "Tải app và bấm Dùng thử ở màn đầu."
+      }
+    },
+    "program": {
+      "card": {
+        "title": "Chương trình đào tạo",
+        "p1": "Bản sao số của CTĐT",
+        "p2": "Rà hiệu lực pháp lý tại một ngày xét",
+        "p3": "Kịch bản “nếu” trước khi sửa",
+        "link": "Xem cấp Chương trình"
+      },
+      "meta": {
+        "title": "Cấp Chương trình: bản sao số, rà soát ba tầng",
+        "description": "Dựng bản sao số của chương trình đào tạo, rà hiệu lực pháp lý tại ngày xét, bảy phép kiểm curriculum map, lớp phủ tiêu chí và kịch bản nếu."
+      },
+      "hero": {
+        "eyebrow": "Cấp Chương trình đào tạo",
+        "h1": "Bản sao số của chương trình đào tạo, rà soát tại một ngày xét",
+        "lead": "Nạp hồ sơ CTĐT và gói đề cương, dựng đồ thị có xuất xứ từng cạnh, rồi rà ba tầng: tất định, đối sánh, đề xuất.",
+        "audience": "Cho Phòng Đảm bảo chất lượng, Hội đồng CTĐT và Ban giám hiệu.",
+        "note": "Đây là tài liệu làm việc nội bộ, không phải báo cáo tự đánh giá."
+      },
+      "outcomes": {
+        "eyebrow": "Làm được gì",
+        "h2": "Kết luận có căn cứ, không đoán",
+        "o1": {
+          "title": "Bản sao số có xuất xứ",
+          "desc": "Mỗi đỉnh và cạnh của đồ thị ghi tệp, trang, dòng; mã lạ phải được người xác nhận trước khi dựng."
+        },
+        "o2": {
+          "title": "Hiệu lực pháp lý tại ngày xét",
+          "desc": "Căn cứ chết, nền sắp sập và chưa tới hiệu lực là ba con số riêng, không cộng thành một."
+        },
+        "o3": {
+          "title": "Bảy phép kiểm curriculum map",
+          "desc": "Bao phủ PLO, bao phủ PI, progression, 5T, overload, gap, duplication; mỗi phép in số đơn vị đã kiểm."
+        },
+        "o4": {
+          "title": "Lớp phủ tiêu chí",
+          "desc": "Mỗi tiêu chí theo TT 04/2025 có đúng một trạng thái: có minh chứng, minh chứng hết hạn hoặc chưa thấy."
+        },
+        "o5": {
+          "title": "Đề xuất cần người duyệt",
+          "desc": "Tầng 3 đưa đề xuất viền đứt; chỉ đề xuất đã duyệt mới vào báo cáo."
+        },
+        "o6": {
+          "title": "Kịch bản “nếu”",
+          "desc": "Thử bỏ một học phần hay đổi một PLO trên bản sao đồ thị, thấy đường lan tới tiêu chí trước khi sửa thật."
+        }
+      },
+      "screens": {
+        "eyebrow": "Trên màn hình",
+        "h2": "Từ đồ thị tới báo cáo ký",
+        "s1": {
+          "title": "Bản sao số",
+          "desc": "Đồ thị theo lớp, xuất xứ của từng cạnh và cầu nối do người đặt.",
+          "alt": "Màn bản sao số của chương trình đào tạo",
+          "windowTitle": "EduFlow · Bản sao số"
+        },
+        "s2": {
+          "title": "Rà soát ba tầng",
+          "desc": "Thanh ngày xét, khối tầng 1, tầng 2 và tầng 3; mọi con số bấm được ra danh sách.",
+          "alt": "Màn rà soát ba tầng",
+          "windowTitle": "EduFlow · Rà soát ba tầng"
+        },
+        "s3": {
+          "title": "Kịch bản nếu",
+          "desc": "Bảng trước và sau cùng đường lan vẽ trên đồ thị, chạy tại máy, 0 đồng.",
+          "alt": "Màn kịch bản nếu",
+          "windowTitle": "EduFlow · Kịch bản nếu"
+        }
+      },
+      "gates": {
+        "title": "12 cổng K1..K12",
+        "body": "Cổng kiểm xuất xứ cạnh, mã lạ, ngày xét trên mọi kết quả, đủ bảy phép kiểm và tiêu chí điều kiện trước khi ký báo cáo.",
+        "rule": "Cổng kiểm 0 đơn vị hiện Lỗi cổng, không bao giờ Đạt."
+      },
+      "cta": {
+        "h2": "Rà soát chương trình với căn cứ rõ ràng",
+        "sub": "Tải app và bấm Dùng thử ở màn đầu."
+      }
+    }
+  },
+  "assistant": {
+    "meta": {
+      "title": "Trợ lý AI của EduFlow",
+      "description": "Trợ lý AI luôn có mặt trong EduFlow: hiểu màn đang mở, trả lời theo ba tầng kết luận, đưa thẻ hành động, đề xuất sửa vào bản nháp và không ký thay người."
+    },
+    "hero": {
+      "eyebrow": "Trợ lý AI",
+      "h1": "Trò chuyện với AI trong suốt lúc làm, người vẫn là người quyết",
+      "lead": "Trang chủ là ô trò chuyện. Mọi màn làm việc có panel trợ lý bên phải, mở rộng toàn màn khi cần.",
+      "windowTitle": "EduFlow · Trang chủ",
+      "imageAlt": "Trợ lý mở rộng toàn màn với kế hoạch soạn đề và bản xem trước ma trận"
+    },
+    "where": {
+      "eyebrow": "Ở đâu",
+      "h2": "Luôn ở cạnh việc thầy cô đang làm",
+      "w1": {
+        "title": "Trang chủ là ô trò chuyện",
+        "desc": "Gõ một câu như “Soạn đề 45 phút Toán 10, 4 mã đề”, trợ lý dựng sẵn thiết lập để thầy cô soát lại."
+      },
+      "w2": {
+        "title": "Panel trên mọi màn",
+        "desc": "Panel bên phải mọi màn làm việc, thu gọn được và mở bằng phím tắt ⌘J hoặc Ctrl J."
+      },
+      "w3": {
+        "title": "Mở rộng toàn màn",
+        "desc": "Trò chuyện toàn màn với khung xem trước bên cạnh, rồi thu về panel mà không mất tin nào."
+      }
+    },
+    "how": {
+      "eyebrow": "Cách trợ lý làm việc",
+      "h2": "Rõ ràng trợ lý biết gì và được làm gì",
+      "c1": {
+        "title": "Biết thầy cô đang xem gì",
+        "desc": "Chip “Đang xem” liệt kê từng mục ngữ cảnh. Chỉ bản tóm tắt có cấu trúc được gửi đi; bỏ chip là mục đó không được gửi."
+      },
+      "c2": {
+        "title": "Trả lời theo ba tầng",
+        "desc": "Khối tầng 1 chỉ dẫn kết quả tất định của app, bằng câu chữ của app. Tầng 2 nói “chưa thấy”. Tầng 3 là đề xuất cần người duyệt."
+      },
+      "c3": {
+        "title": "Thẻ hành động",
+        "desc": "Việc tại máy như mở màn, chạy cổng, biên dịch lại, chạy kịch bản nếu: 0 đồng, chạy khi thầy cô bấm. Tác vụ AI mở hộp ước tính chi phí trước."
+      },
+      "c4": {
+        "title": "Đề xuất sửa vào bản nháp",
+        "desc": "Thay đổi hiện dạng trước và sau. Áp vào tạo phiên bản nháp mới và chạy lại cổng bị ảnh hưởng."
+      },
+      "windowTitle": "EduFlow · Kết quả và cổng chất lượng",
+      "imageAlt": "Panel trợ lý giải thích vi phạm P5 và đề xuất sửa một phương án"
+    },
+    "never": {
+      "eyebrow": "Giới hạn",
+      "h2": "Những việc trợ lý không bao giờ làm",
+      "lead": "Các thao tác này chỉ có ở màn chính, do thầy cô tự bấm.",
+      "n1": "Duyệt hiện vật",
+      "n2": "Ký phiên bản",
+      "n3": "Xác nhận cảnh báo đáp án hay cảnh báo cổng",
+      "n4": "Xuất bản chính thức",
+      "n5": "Gửi hoặc nhập gói"
+    },
+    "cost": {
+      "title": "Chi phí từng tin",
+      "body": "Ô soạn hiện khoảng chi phí mỗi tin. Mỗi câu trả lời hiện chi phí thật và số token. Bấm Dừng vẫn tính phần đã trả lời."
+    },
+    "states": {
+      "eyebrow": "Khi không trả lời được",
+      "h2": "Trợ lý nói rõ lý do, việc tại máy vẫn chạy",
+      "lead": "Tin nhắn không bị xếp hàng ngầm; thầy cô biết ngay việc gì còn làm được.",
+      "windowTitle": "EduFlow · Trạng thái trợ lý",
+      "imageAlt": "Bốn trạng thái của panel trợ lý: mất mạng, Tắt AI, key bị khoá, vượt ngân sách",
+      "s1": {
+        "title": "Mất mạng",
+        "desc": "Ô soạn khoá; lệnh tại máy gõ bằng dấu / vẫn chạy."
+      },
+      "s2": {
+        "title": "Dự án bật Tắt AI",
+        "desc": "Không có gì được gửi ra khỏi máy cho dự án đó."
+      },
+      "s3": {
+        "title": "Key bị khoá",
+        "desc": "Trợ lý dừng, các chức năng không dùng AI vẫn hoạt động; có nút xin cấp lại key."
+      },
+      "s4": {
+        "title": "Vượt ngân sách",
+        "desc": "Ở chế độ chặn, trợ lý dừng tới tháng sau hoặc khi ngân sách được nâng; có nút xin nâng ngân sách."
+      }
+    },
+    "privacy": {
+      "title": "Lịch sử trò chuyện nằm ở máy",
+      "body": "Cuộc trò chuyện lưu theo dự án trên máy và xoá được bất kỳ lúc nào. Máy chủ không lưu nội dung trò chuyện; gói gửi đồng nghiệp không mang theo lịch sử."
+    },
+    "cta": {
+      "h2": "Thử trợ lý trên chính tiết dạy, học phần hay chương trình của thầy cô",
+      "sub": "Tải app và bấm Dùng thử ở màn đầu."
+    }
+  },
+  "pricing": {
+    "meta": {
+      "title": "Cách tính phí EduFlow",
+      "description": "EduFlow tính theo token AI đã dùng, ngân sách tháng theo key, chi phí hiện trước khi chạy; phần chạy tại máy không tốn tiền. Liên hệ Agentra để nhận báo giá."
+    },
+    "hero": {
+      "eyebrow": "Cách tính phí",
+      "h1": "Trả cho phần AI đã dùng, biết trước khi chạy",
+      "lead": "EduFlow không bán theo gói tính năng. Cả ba cấp mở cho mọi người; chi phí đến từ các lời gọi AI và luôn hiện trước khi chạy."
+    },
+    "steps": {
+      "eyebrow": "Từng bước",
+      "h2": "Một khoản phí hình thành thế nào",
+      "s1": {
+        "title": "Key theo đơn vị",
+        "body": "Mỗi trường, khoa hoặc cá nhân nhận một key dùng trên số máy đã thoả thuận."
+      },
+      "s2": {
+        "title": "Dùng thử trong app",
+        "body": "Bấm Dùng thử ở màn đầu. Key dùng thử chạy trên 1 máy, có ngân sách dùng thử và ngày hết hạn."
+      },
+      "s3": {
+        "title": "Đo theo token",
+        "body": "Mỗi lời gọi AI đo bốn lớp token: đầu vào, đầu ra, ghi cache, đọc cache. Mỗi lớp có một đơn giá theo mô hình."
+      },
+      "s4": {
+        "title": "Chốt khi ghi sổ",
+        "body": "Số tiền của mỗi lời gọi được chốt lúc ghi sổ theo bảng giá hiện hành; bảng giá mới chỉ áp cho lời gọi sau đó."
+      },
+      "s5": {
+        "title": "Biết trước khi chạy",
+        "body": "Mỗi tác vụ AI hiện khoảng ước tính trước khi chạy và chi phí thật sau khi chạy. Tin nhắn trợ lý hiện chi phí dưới mỗi câu trả lời."
+      },
+      "s6": {
+        "title": "Ngân sách tháng theo key",
+        "body": "Đơn vị chọn chế độ cảnh báo hoặc chặn. App báo khi dùng tới 80% và 100% ngân sách."
+      },
+      "s7": {
+        "title": "Đối soát hằng tháng",
+        "body": "Agentra gửi bảng kê tháng theo đơn vị dạng CSV và PDF. Bảng kê dùng để đối soát, không phải hoá đơn."
+      }
+    },
+    "formula": {
+      "title": "Công thức của một bước AI",
+      "expr": "Chi phí = tổng các lớp (số token của lớp × đơn giá lớp) ÷ 1.000.000",
+      "note": "Đơn giá tính bằng VND trên một triệu token, theo mô hình và lớp token. Trang này không công bố đơn giá; trường nhận báo giá từ Agentra."
+    },
+    "budget": {
+      "eyebrow": "Ngân sách",
+      "h2": "Ba trạng thái của ngân sách tháng",
+      "normal": {
+        "title": "Bình thường",
+        "desc": "Dưới 80% ngân sách tháng."
+      },
+      "near": {
+        "title": "Gần ngưỡng",
+        "desc": "Từ 80% ngân sách, app báo một lần trên Trang chủ và trong hộp ước tính."
+      },
+      "over": {
+        "title": "Vượt ngân sách",
+        "desc": "Chế độ cảnh báo: tác vụ vẫn chạy. Chế độ chặn: tác vụ AI dừng tới ngày 1 tháng sau hoặc khi ngân sách được nâng."
+      },
+      "essential": "Khi chặn, OCR trang ảnh quét và sửa lỗi biên dịch LaTeX vẫn chạy để thầy cô không bị kẹt bản xuất."
+    },
+    "free": {
+      "eyebrow": "0 đồng",
+      "h2": "Những phần chạy tại máy, không tốn tiền",
+      "i1": "Cổng chất lượng P, G, K",
+      "i2": "Trộn mã đề và dựng ma trận",
+      "i3": "Biên dịch lại và xuất PDF, DOCX, PPTX",
+      "i4": "Tầng 1 và tầng 2 của rà soát chương trình",
+      "i5": "Kịch bản “nếu”",
+      "i6": "Ký và xác minh gói",
+      "i7": "Thẻ hành động tại máy của trợ lý",
+      "i8": "Xem chi phí và usage của đơn vị"
+    },
+    "windowTitle": "EduFlow · Sử dụng và chi phí",
+    "imageAlt": "Màn sử dụng và chi phí với tổng tháng, bốn lớp token và phân rã theo skill",
+    "cta": {
+      "h2": "Nhận báo giá cho trường",
+      "sub": "Gửi tên đơn vị, số máy dự kiến và cấp dùng chính; Agentra liên hệ lại với báo giá.",
+      "sales": "Liên hệ báo giá",
+      "download": "Tải EduFlow để dùng thử"
+    }
+  },
+  "transparency": {
+    "meta": {
+      "title": "Minh bạch AI và dữ liệu",
+      "description": "EduFlow dùng AI ở đâu, gửi dữ liệu gì, dữ liệu nào không rời máy, và các nguyên tắc máy đề xuất, người quyết định."
+    },
+    "eyebrow": "Minh bạch AI",
+    "h1": "Minh bạch AI và dữ liệu",
+    "lead": "Trang này khớp với trang Minh bạch AI trong app: skill nào dùng AI, gửi dữ liệu gì và dữ liệu nào không rời máy.",
+    "updated": "Cập nhật {date}",
+    "p1": {
+      "title": "AI được dùng ở đâu",
+      "body": "AI điền nội dung có cấu trúc cho đề kiểm tra, kiểm lại đáp án, giáo án, slide, CLO, kế hoạch tuần, giáo án buổi, đề cương, assessment brief, đề xuất tầng 3 của rà soát chương trình và trợ lý trò chuyện. Mọi phần còn lại chạy tại máy."
+    },
+    "p2": {
+      "title": "Tầng mô hình",
+      "body": "Mỗi skill chạy ở tầng nhanh, chuẩn hoặc mạnh. Agentra ánh xạ tầng sang mô hình cụ thể; trang Minh bạch AI trong app liệt kê tầng của từng skill."
+    },
+    "p3": {
+      "title": "Dữ liệu gửi đi",
+      "body": "Mỗi lời gọi chỉ gửi phần nội dung skill cần, theo hợp đồng dữ liệu chặt. Trợ lý gửi bản tóm tắt có cấu trúc của màn đang mở cùng các tin gần nhất của cuộc trò chuyện, không gửi tệp gốc."
+    },
+    "p4": {
+      "title": "Dữ liệu ở lại máy",
+      "body": "Kho dự án, lịch sử trò chuyện, chữ ký và bí mật kích hoạt nằm ở máy. Tệp nạp vào được bóc tách tại máy; chỉ khi thầy cô chạy OCR cho trang ảnh quét thì ảnh trang đó mới được gửi để nhận dạng chữ."
+    },
+    "p5": {
+      "title": "Máy chủ không lưu nội dung",
+      "body": "Máy chủ chuyển nội dung cho mô hình và ghi số token, số tiền, mã băm. Nội dung không được lưu và không được ghi vào log."
+    },
+    "p6": {
+      "title": "Máy đề xuất, người quyết định",
+      "body": "Nội dung AI mang nhãn Đề xuất cho tới khi thầy cô duyệt. Không có nút bỏ qua cổng chất lượng; trợ lý không duyệt, không ký."
+    },
+    "p7": {
+      "title": "Ba tầng kết luận",
+      "body": "Tầng tất định khẳng định kèm căn cứ và ngày xét. Tầng đối sánh nói “chưa thấy” kèm số đơn vị đã kiểm. Tầng đề xuất mở đầu bằng “Đề xuất, cần người duyệt”."
+    },
+    "p8": {
+      "title": "Tắt AI theo dự án",
+      "body": "Bật Tắt AI trong chi tiết dự án thì app không gửi lời gọi AI nào cho dự án đó, kể cả trợ lý."
+    }
+  },
+  "download": {
+    "meta": {
+      "title": "Tải EduFlow cho macOS và Windows",
+      "description": "Tải bộ cài EduFlow cho macOS (Apple Silicon, Intel) và Windows, kèm SHA-512, yêu cầu hệ thống và hướng dẫn cài đặt."
+    },
+    "eyebrow": "Tải về",
+    "h1": "Tải EduFlow cho máy tính của thầy cô",
+    "lead": "Phiên bản {version}, phát hành {date}. Bộ cài đã ký số.",
+    "detected": {
+      "windows": "Máy thầy cô đang dùng Windows",
+      "macos": "Máy thầy cô đang dùng macOS"
+    },
+    "badge": "Máy đang dùng",
+    "guideWindows": "Hướng dẫn cài trên Windows",
+    "guideMac": "Hướng dẫn cài trên macOS",
+    "chipNote": "Không chắc máy Mac dùng chip gì? Mở Apple menu, chọn Giới thiệu về máy Mac này: dòng Chip ghi Apple M thì chọn Apple Silicon, ghi Intel thì chọn Intel.",
+    "missing": {
+      "windows": "Bản cho Windows sắp có. Các bản đang có được liệt kê dưới đây.",
+      "macos": "Bản cho macOS sắp có. Các bản đang có được liệt kê dưới đây."
+    },
+    "desktopOnly": "EduFlow là app cho máy tính. Thầy cô mở trang này trên máy macOS hoặc Windows để tải.",
+    "req": {
+      "eyebrow": "Yêu cầu hệ thống",
+      "h2": "Máy cần gì để chạy EduFlow",
+      "windows": {
+        "os": "Windows 10 22H2 trở lên, 64-bit",
+        "disk": "Dung lượng trống: công bố cùng bản phát hành đầu tiên",
+        "net": "Internet để kích hoạt và cho các bước AI"
+      },
+      "macos": {
+        "os": "macOS 12 trở lên",
+        "chip": "Apple Silicon hoặc Intel",
+        "disk": "Dung lượng trống: công bố cùng bản phát hành đầu tiên",
+        "net": "Internet để kích hoạt và cho các bước AI"
+      }
+    },
+    "signed": {
+      "title": "Bộ cài đã ký số",
+      "body": "Bản macOS ký Developer ID và được Apple notarize; bản Windows ký mã của Agentra JSC. Windows SmartScreen có thể vẫn hỏi lại với bản vừa phát hành; hướng dẫn cài có cách xử lý."
+    },
+    "update": {
+      "title": "Đã cài rồi?",
+      "body": "App tự báo khi có bản mới: bấm Tải về, rồi Khởi động lại để cài. Dự án và dữ liệu giữ nguyên."
+    },
+    "help": "Không tải được? Gửi email tới <email></email>.",
+    "prelaunch": {
+      "title": "EduFlow sắp phát hành",
+      "body": "Bản cài cho macOS và Windows sẽ có ở trang này ngay khi phát hành. Trường muốn dùng sớm có thể liên hệ Agentra.",
+      "cta": "Liên hệ để dùng sớm"
+    }
+  },
+  "install": {
+    "eyebrow": "Hướng dẫn cài đặt",
+    "breadcrumbDownload": "Tải về",
+    "breadcrumbInstall": "Hướng dẫn cài đặt",
+    "tocTitle": "Trên trang này",
+    "tabs": {
+      "macos": "macOS",
+      "windows": "Windows"
+    },
+    "updated": "Cập nhật {date}",
+    "minutes": "{n} phút đọc",
+    "bottom": {
+      "title": "Sẵn sàng cài đặt?",
+      "body": "Tải bộ cài đúng máy rồi làm theo các bước ở trên.",
+      "downloadMac": "Chọn bộ cài macOS",
+      "downloadWindows": "Tải bộ cài Windows",
+      "other": {
+        "macos": "Xem hướng dẫn cho macOS",
+        "windows": "Xem hướng dẫn cho Windows"
+      }
+    },
+    "meta": {
+      "macos": {
+        "title": "Cài đặt EduFlow trên macOS",
+        "description": "Chọn đúng bộ cài theo chip, cài vào Applications, kích hoạt bằng key hoặc dùng thử, chọn hồ sơ làm việc và cập nhật bản mới."
+      },
+      "windows": {
+        "title": "Cài đặt EduFlow trên Windows",
+        "description": "Tải bộ cài đã ký, chạy trình cài, xử lý SmartScreen nếu có, kích hoạt bằng key hoặc dùng thử và cập nhật bản mới."
+      }
+    }
+  },
+  "contact": {
+    "meta": {
+      "title": "Liên hệ Agentra về EduFlow",
+      "description": "Liên hệ Agentra để nhận báo giá, key cho trường, dùng thử hoặc báo lỗi EduFlow."
+    },
+    "eyebrow": "Liên hệ",
+    "h1": "Liên hệ Agentra",
+    "lead": "Báo giá cho trường, key kích hoạt, dùng thử hay báo lỗi: chọn cách thuận tiện nhất.",
+    "email": {
+      "label": "Email",
+      "sub": "Kênh chính cho báo giá, key và hỗ trợ.",
+      "copy": "Sao chép email",
+      "copied": "Đã sao chép"
+    },
+    "phone": {
+      "label": "Điện thoại",
+      "sub": "Gọi hoặc nhắn Zalo cho Agentra.",
+      "zalo": "Nhắn Zalo"
+    },
+    "address": {
+      "label": "Địa chỉ",
+      "maps": "Mở Google Maps"
+    },
+    "key": {
+      "eyebrow": "Key kích hoạt",
+      "h2": "Nhận key cho trường",
+      "step": "Bước {n}",
+      "s1": {
+        "title": "Tải và cài EduFlow",
+        "desc": "Chọn đúng bộ cài cho máy ở trang Tải về."
+      },
+      "s2": {
+        "title": "Gửi yêu cầu",
+        "desc": "Ở màn đầu của app, gửi yêu cầu key kèm tên đơn vị và người liên hệ; hoặc email Agentra kèm tên đơn vị và số máy."
+      },
+      "s3": {
+        "title": "Nhận key",
+        "desc": "Agentra xét yêu cầu và gửi key cho đơn vị. Thầy cô nhập key ở màn Kích hoạt."
+      },
+      "note": "Muốn dùng thử trước? Bấm Dùng thử ở màn đầu của app; key dùng thử chạy trên 1 máy."
+    },
+    "support": {
+      "eyebrow": "Hỗ trợ",
+      "h2": "Báo lỗi và góp ý",
+      "lead": "Cách nhanh nhất là mục Phản hồi trong app: app gửi kèm chẩn đoán đã làm sạch, không gửi nội dung dự án.",
+      "i1": "Ảnh chụp màn hình lúc gặp lỗi",
+      "i2": "Các bước thầy cô đang làm",
+      "i3": "Nội dung thông báo lỗi, nếu có",
+      "i4": "Phiên bản app và hệ điều hành",
+      "boxTitle": "Gửi email cho Agentra",
+      "boxBody": "Kèm tên đơn vị và các thông tin ở trên để Agentra xử lý nhanh hơn.",
+      "btn": "Gửi email",
+      "subject": "Hỗ trợ EduFlow"
+    }
+  }
+}
