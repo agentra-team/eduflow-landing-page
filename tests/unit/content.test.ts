@@ -6,8 +6,8 @@ import en from '@/messages/en.json'
 import vi from '@/messages/vi.json'
 
 // Ai thêm hoặc xoá tệp MDX thì sửa hai số này (tổng, và riêng tiếng Anh): nhờ đó chắc chắn bộ quét thấy tệp.
-const MDX_TOTAL = 0
-const MDX_ENGLISH = 0
+const MDX_TOTAL = 4
+const MDX_ENGLISH = 2
 
 // Gốc repo tính từ vị trí tệp test này, không phụ thuộc thư mục đang chạy lệnh.
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../..')
@@ -55,9 +55,19 @@ test('copy rules: no em-dash, no promised accreditation, no "AI replaces teacher
 
 test('English copy carries no untranslated Vietnamese', () => {
   const VIETNAMESE = /[ăâđêôơưàáảãạằắẳẵặầấẩẫậèéẻẽẹềếểễệìíỉĩịòóỏõọồốổỗộờớởỡợùúủũụừứửữựỳýỷỹỵ]/i
-  const ALLOWED = ['DÙNG THỬ']
-  // NFC trước khi so: chữ Việt dạng tổ hợp (chữ cái + dấu rời) cũng bị bắt.
-  const clean = (s: string) => ALLOWED.reduce((acc, a) => acc.split(a).join(''), s.normalize('NFC'))
+  // Dấu chìm DÙNG THỬ, rồi sáu nhãn nút thật của app (giao diện tiếng Việt, AD-16) mà hướng dẫn cài bản tiếng Anh gọi đúng tên.
+  const ALLOWED = [
+    'DÙNG THỬ',
+    'Kích hoạt',
+    'Dùng thử',
+    'Tải về',
+    'Khởi động lại để cài',
+    'Cài đặt',
+    'Lưu trữ và sao lưu',
+  ]
+  // NFC trước khi so, cả văn bản lẫn nhãn cho phép: chữ Việt dạng tổ hợp (chữ cái + dấu rời) cũng bị bắt và khớp.
+  const clean = (s: string) =>
+    ALLOWED.reduce((acc, a) => acc.split(a.normalize('NFC')).join(''), s.normalize('NFC'))
   const mdx = mdxFiles().filter(isEnglish)
   expect.soft(mdx.length).toBe(MDX_ENGLISH)
   const texts: Array<[string, string]> = [

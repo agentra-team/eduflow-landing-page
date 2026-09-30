@@ -1,0 +1,72 @@
+export const meta = {
+  title: 'Install EduFlow on Windows',
+  description: 'Download the signed installer, run it, handle SmartScreen if it appears, activate with a license key or start a trial and get new versions in the app.',
+  updated: '2026-09-30',
+  minutes: 3,
+  toc: [
+    { id: 'tai-tep', label: 'Download the installer' },
+    { id: 'trinh-cai', label: 'Run the installer' },
+    { id: 'smartscreen', label: 'If SmartScreen asks again' },
+    { id: 'kich-hoat', label: 'Activate or start a trial' },
+    { id: 'ho-so', label: 'Choose a work profile' },
+    { id: 'cap-nhat', label: 'Get new versions' },
+    { id: 'go-cai', label: 'Uninstall' },
+  ],
+}
+
+<Steps>
+
+<Step n={1} id="tai-tep" title="Download the installer">
+
+Download the file `EduFlow Setup <version>.exe` from the Download page. The file runs on Windows 10 22H2 or later (64-bit).
+
+</Step>
+
+<Step n={2} id="trinh-cai" title="Run the installer">
+
+Double-click the **.exe** file. The installer shows **Agentra JSC** as the publisher. Keep the default install folder or choose another one, click **Install**, then open EduFlow from the Start menu.
+
+</Step>
+
+<Step n={3} id="smartscreen" title="If SmartScreen asks again">
+
+For a newly released version, Windows Defender SmartScreen may show the dialog **"Windows protected your PC"** even though the installer is signed.
+
+1. Click **More info**.
+2. Check that the publisher line reads **Agentra JSC**.
+3. Click **Run anyway**.
+
+If the publisher is not Agentra JSC, do not run that file and download it again from the Download page.
+
+</Step>
+
+<Step n={4} id="kich-hoat" title="Activate or start a trial">
+
+On the Welcome screen:
+
+1. If you have a license key from your school: enter the key, which starts with `EDU-` followed by groups of 4 characters, and click **Kích hoạt** (Activate).
+2. If you do not have a license key yet: click **Dùng thử** (Trial), then fill in your full name, email, phone number and organization. When Agentra has trial auto-approval turned on, the computer receives a trial key right away; otherwise the request waits for approval and the app activates itself once the request is approved.
+
+A trial key works on 1 computer, with a trial budget and an expiry date.
+
+</Step>
+
+<Step n={5} id="ho-so" title="Choose a work profile">
+
+Choose the role you use most: K-12 teacher, lecturer, head of department, Quality Assurance Office, Program Council or school leadership. A profile only arranges the interface, locks no feature, and can be changed in **Cài đặt** (Settings).
+
+</Step>
+
+<Step n={6} id="cap-nhat" title="Get new versions">
+
+When a new version is available, the app shows a notification. Click **Tải về** (Download), keep working while it downloads, then click **Khởi động lại để cài** (Restart to install). Your projects and data stay as they are.
+
+</Step>
+
+<Step n={7} id="go-cai" title="Uninstall">
+
+Open Windows **Settings > Apps**, find **EduFlow** and click **Uninstall**. Project data lives in the app's data folder; if you need to keep it, create a backup in EduFlow's **Cài đặt** (Settings), under **Lưu trữ và sao lưu** (Storage and backup), before uninstalling.
+
+</Step>
+
+</Steps>

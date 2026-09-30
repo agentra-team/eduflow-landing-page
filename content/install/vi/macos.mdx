@@ -1,0 +1,73 @@
+export const meta = {
+  title: 'Cài EduFlow trên máy Mac',
+  description: 'Chọn đúng bộ cài theo chip, kéo vào Applications, kích hoạt bằng key hoặc dùng thử, chọn hồ sơ làm việc và nhận bản mới trong app.',
+  updated: '2026-09-30',
+  minutes: 4,
+  toc: [
+    { id: 'chon-tep', label: 'Chọn đúng tệp theo chip' },
+    { id: 'cai-dat', label: 'Cài vào Applications' },
+    { id: 'mo-lan-dau', label: 'Mở lần đầu' },
+    { id: 'kich-hoat', label: 'Kích hoạt hoặc dùng thử' },
+    { id: 'ho-so', label: 'Chọn hồ sơ làm việc' },
+    { id: 'cap-nhat', label: 'Nhận bản mới' },
+    { id: 'go-cai', label: 'Gỡ cài đặt' },
+  ],
+}
+
+<Steps>
+
+<Step n={1} id="chon-tep" title="Chọn đúng tệp theo chip">
+
+Mở Apple menu, chọn **Giới thiệu về máy Mac này** và đọc dòng **Chip**.
+
+| Dòng Chip ghi | Tải tệp |
+|---|---|
+| Apple M1, M2, M3 hoặc mới hơn | `EduFlow-<phiên bản>-arm64.dmg` (Apple Silicon) |
+| Intel | `EduFlow-<phiên bản>.dmg` (Intel) |
+
+EduFlow chạy trên macOS 12 trở lên.
+
+</Step>
+
+<Step n={2} id="cai-dat" title="Cài vào Applications">
+
+Bấm đúp tệp **.dmg** vừa tải, rồi kéo biểu tượng **EduFlow** vào thư mục **Applications**. Sau đó có thể đẩy đĩa cài ra.
+
+</Step>
+
+<Step n={3} id="mo-lan-dau" title="Mở lần đầu">
+
+Mở EduFlow từ **Applications** hoặc Launchpad. Bộ cài đã được ký Developer ID và Apple notarize, nên macOS chỉ hỏi xác nhận một lần vì app được tải từ Internet. Bấm **Mở**.
+
+</Step>
+
+<Step n={4} id="kich-hoat" title="Kích hoạt hoặc dùng thử">
+
+Ở màn Chào mừng:
+
+1. Có key của trường: nhập key bắt đầu bằng `EDU-` và các nhóm 4 ký tự, bấm **Kích hoạt**.
+2. Chưa có key: bấm **Dùng thử**, điền họ tên, email, số điện thoại và đơn vị. Khi Agentra bật tự duyệt dùng thử, máy nhận key dùng thử ngay; nếu không, đơn chờ duyệt và app tự kích hoạt khi đơn được duyệt.
+
+Key dùng thử chạy trên 1 máy, có ngân sách dùng thử và ngày hết hạn.
+
+</Step>
+
+<Step n={5} id="ho-so" title="Chọn hồ sơ làm việc">
+
+Chọn vai thầy cô dùng nhiều nhất: giáo viên phổ thông, giảng viên, trưởng bộ môn, Phòng Đảm bảo chất lượng, Hội đồng CTĐT hoặc Ban giám hiệu. Hồ sơ chỉ sắp xếp giao diện, không khoá chức năng nào, và đổi được trong Cài đặt.
+
+</Step>
+
+<Step n={6} id="cap-nhat" title="Nhận bản mới">
+
+Khi có bản mới, app hiện thông báo. Bấm **Tải về**, làm việc tiếp trong lúc tải, rồi bấm **Khởi động lại để cài**. Dự án và dữ liệu giữ nguyên.
+
+</Step>
+
+<Step n={7} id="go-cai" title="Gỡ cài đặt">
+
+Thoát EduFlow, kéo **EduFlow** từ **Applications** vào Thùng rác. Dữ liệu dự án nằm trong thư mục dữ liệu của app; nếu cần giữ lại, tạo bản sao lưu ở **Cài đặt**, mục **Lưu trữ và sao lưu**, trước khi gỡ.
+
+</Step>
+
+</Steps>
