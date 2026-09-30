@@ -1338,10 +1338,10 @@ Run: `pnpm test tests/unit/images.test.ts` → FAIL (files missing).
 
 - [ ] **Step 2: Write the capture script**
 
-`scripts/capture-product-images.mjs` (the DOCOPS script with three changes: `sc-if` is evaluated instead of always kept, so only the macOS window chrome is drawn; the `Component` class is built from the artboard's `<script type="text/x-dc">`, which a browser does not run by itself; and the script waits for the web fonts and stops with an error when a `{{…}}` hole or an `sc-*` tag is left):
+`scripts/capture-product-images.mjs` (the DOCOPS script with three changes: `sc-if` is evaluated instead of always kept, and `isMac` and `isWin` are forced to false, so the app's own title bar is left out and the page's `WindowFrame` draws the only one, as on the landing canvas (Ruling 31); the `Component` class is built from the artboard's `<script type="text/x-dc">`, which a browser does not run by itself; and the script waits for the web fonts and stops with an error when a `{{…}}` hole or an `sc-*` tag is left):
 
 ```js
-// Chụp artboard app EduFlow (../eduflow-application/docs/thiet-ke/canvas/project/*.dc.html) thành WebP cho site.
+// Chụp artboard app EduFlow (../eduflow-application/docs/thiet-ke/canvas/project/*.dc.html) thành WebP cho site, không kèm thanh tiêu đề của app (WindowFrame vẽ khung).
 // Dùng: node scripts/capture-product-images.mjs [<thư mục artboard>] [--os macOS|Windows]
 import { mkdtemp } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
@@ -1389,6 +1389,9 @@ for (const shot of SHOTS) {
     const source = document.querySelector('script[data-dc-script]')?.textContent ?? ''
     const Comp = source ? new Function('DCLogic', `${source}\nreturn Component`)(window.DCLogic) : null
     const vals = Comp ? (new Comp({ os: osName }).renderVals?.() ?? {}) : {}
+    // Khung cửa sổ do WindowFrame của trang vẽ, nên bỏ thanh tiêu đề macOS và Windows của chính artboard.
+    vals.isMac = false
+    vals.isWin = false
     const lookup = (scope, path) => path.split('.').reduce((o, k) => (o == null ? undefined : o[k]), scope)
     const fill = (html, scope) =>
       html.replace(/\{\{\s*([\w$.]+)\s*\}\}/g, (m, p) => { const v = lookup(scope, p); return v === undefined ? m : String(v) })
@@ -1454,7 +1457,7 @@ pnpm exec playwright install chromium
 node scripts/capture-product-images.mjs
 ```
 
-Expected: 13 lines, each between 95 and 150 KB (the 13 artboards are 1440×900, so every image is 1600×1000 except `assistant-home` at 2000×1250). If a file is over 200 KB, lower its `quality` by 4 and run again. Open three of the images and check that only the macOS title bar (three coloured dots) is drawn, that the tables and lists carry rows, and that no `{{…}}` text is visible.
+Expected: 13 lines, each between 95 and 150 KB (the 13 artboards are 1440×900, so every image is 1600×1000 except `assistant-home` at 2000×1250). If a file is over 200 KB, lower its `quality` by 4 and run again. Open three of the images and check that no title bar is drawn (the app's left rail and content start at the top edge; the page's `WindowFrame` adds the bar), that the tables and lists carry rows, and that no `{{…}}` text is visible.
 
 - [ ] **Step 4: Run the test**
 
