@@ -74,7 +74,7 @@ scripts/sync-releases.mjs  scripts/capture-product-images.mjs  scripts/serve-fix
 public/images/product/*.webp  assets/fonts/{BeVietnamPro-Bold.ttf,BeVietnamPro-Regular.ttf,OFL.txt}
 docs/thiet-ke/  (landing design canvas source, Task 1)
 tests/unit/**  tests/e2e/**  tests/fixtures/{latest.yml,latest-mac.yml}
-vitest.config.ts  playwright.config.ts  lighthouserc.json  .github/workflows/ci.yml  .env.example
+vitest.config.mts  playwright.config.ts  lighthouserc.json  .github/workflows/ci.yml  .env.example
 ```
 
 ---
@@ -591,6 +591,8 @@ git commit -m "chore: khởi tạo từ docops-landing-page, thư viện feed c�
 
 ### Task 3: i18n routing, locale layout, SEO helpers, content-rule tests
 
+> **Amended after the task review (Ruling 17).** The `tests/unit/content.test.ts` block in Step 2 below is the committed version, not the one first planned: the file walk no longer swallows fs errors and starts from the test file's location; the English guard also reads English MDX (a directory segment `en`, or the file name `en.mdx`); the constants `MDX_TOTAL` and `MDX_ENGLISH` pin how many MDX files the scan must see (Tasks 11 and 12 raise them); and a third test, `no U+2014 em-dash in any source file`, scans every text file in the repository. Also in this task: `vitest.config.ts` was renamed to `vitest.config.mts` (Ruling 11).
+
 **Files:**
 - Copy verbatim from DOCOPS: `i18n/navigation.ts`, `i18n/request.ts`, `proxy.ts`, `global.d.ts`, `lib/seo/urls.ts`, `lib/seo/metadata.ts`, `lib/seo/jsonld.ts`, `components/seo/JsonLd.tsx`, `app/[locale]/[...rest]/page.tsx`, `app/[locale]/not-found.tsx`, `app/[locale]/error.tsx`, `tests/unit/jsonld.test.ts`
 - Create: `app/[locale]/layout.tsx`, `app/[locale]/page.tsx` (temporary, replaced in Task 6), `tests/unit/i18n.test.ts`, `tests/unit/seo.test.ts`, `tests/unit/content.test.ts`
@@ -696,50 +698,87 @@ test('buildMetadata emits canonical + hreflang with x-default = vi', async () =>
 `tests/unit/content.test.ts`:
 
 ```ts
-import { readdirSync, readFileSync, statSync } from 'node:fs'
-import { join } from 'node:path'
+import { readdirSync, readFileSync } from 'node:fs'
+import { basename, dirname, extname, join, relative, resolve, sep } from 'node:path'
+import { fileURLToPath } from 'node:url'
 import { expect, test } from 'vitest'
 import en from '@/messages/en.json'
 import vi from '@/messages/vi.json'
+
+// Ai thêm hoặc xoá tệp MDX thì sửa hai số này (tổng, và riêng tiếng Anh): nhờ đó chắc chắn bộ quét thấy tệp.
+const MDX_TOTAL = 0
+const MDX_ENGLISH = 0
+
+// Gốc repo tính từ vị trí tệp test này, không phụ thuộc thư mục đang chạy lệnh.
+const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../..')
+const rel = (f: string) => relative(ROOT, f).split(sep).join('/')
 
 const values = (o: unknown, p = ''): Array<[string, string]> =>
   typeof o === 'object' && o !== null
     ? Object.entries(o).flatMap(([k, v]) => values(v, p ? `${p}.${k}` : k))
     : [[p, String(o)]]
 
-const mdxFiles = (dir: string): string[] => {
-  try {
-    return readdirSync(dir).flatMap((f) => {
-      const p = join(dir, f)
-      if (statSync(p).isDirectory()) return mdxFiles(p)
-      return p.endsWith('.mdx') ? [p] : []
-    })
-  } catch {
-    return []
-  }
+// Một bộ duyệt cho cả ba test. Không bắt lỗi: thư mục thiếu hoặc không đọc được thì test phải đỏ.
+const walk = (dir: string, skipDir: (name: string) => boolean = () => false): string[] =>
+  readdirSync(dir, { withFileTypes: true }).flatMap((e) => {
+    const p = join(dir, e.name)
+    if (e.isDirectory()) return skipDir(e.name) ? [] : walk(p, skipDir)
+    return e.isFile() ? [p] : []
+  })
+
+const mdxFiles = () => walk(join(ROOT, 'content')).filter((f) => f.endsWith('.mdx'))
+
+// Trang tiếng Anh: có thư mục tên đúng "en", hoặc tên tệp đúng "en.mdx".
+const isEnglish = (f: string) => {
+  const parts = rel(f).split('/')
+  return parts.slice(0, -1).includes('en') || parts.at(-1) === 'en.mdx'
 }
 
 // Luật nội dung của spec §15.
 const FORBIDDEN = [/\u2014/, /đạt kiểm định/i, /thay (thế )?giáo viên/i, /replaces? teachers/i]
 
 test('copy rules: no em-dash, no promised accreditation, no "AI replaces teachers"', () => {
+  const mdx = mdxFiles()
+  // soft: một lần chạy báo được cả số tệp sai lẫn nội dung vi phạm.
+  expect.soft(mdx.length).toBe(MDX_TOTAL)
   const texts: Array<[string, string]> = [
     ...values(vi).map(([k, v]) => [`vi:${k}`, v] as [string, string]),
     ...values(en).map(([k, v]) => [`en:${k}`, v] as [string, string]),
-    ...mdxFiles('content').map((f) => [f, readFileSync(f, 'utf8')] as [string, string]),
+    ...mdx.map((f) => [rel(f), readFileSync(f, 'utf8')] as [string, string]),
   ]
-  const hits = texts.flatMap(([where, text]) => FORBIDDEN.filter((r) => r.test(text)).map((r) => `${where} ${r}`))
+  // NFC trước khi so: cụm từ cấm viết dạng tổ hợp (chữ cái + dấu rời) cũng bị bắt.
+  const hits = texts.flatMap(([where, text]) =>
+    FORBIDDEN.filter((r) => r.test(text.normalize('NFC'))).map((r) => `${where} ${r}`),
+  )
   expect(hits).toEqual([])
 })
 
 test('English copy carries no untranslated Vietnamese', () => {
   const VIETNAMESE = /[ăâđêôơưàáảãạằắẳẵặầấẩẫậèéẻẽẹềếểễệìíỉĩịòóỏõọồốổỗộờớởỡợùúủũụừứửữựỳýỷỹỵ]/i
   const ALLOWED = ['DÙNG THỬ']
-  const offenders = values(en)
-    .map(([k, v]) => [k, ALLOWED.reduce((s, a) => s.split(a).join(''), v)] as const)
-    .filter(([, v]) => VIETNAMESE.test(v))
-    .map(([k]) => k)
+  // NFC trước khi so: chữ Việt dạng tổ hợp (chữ cái + dấu rời) cũng bị bắt.
+  const clean = (s: string) => ALLOWED.reduce((acc, a) => acc.split(a).join(''), s.normalize('NFC'))
+  const mdx = mdxFiles().filter(isEnglish)
+  expect.soft(mdx.length).toBe(MDX_ENGLISH)
+  const texts: Array<[string, string]> = [
+    ...values(en),
+    ...mdx.map((f) => [rel(f), readFileSync(f, 'utf8')] as [string, string]),
+  ]
+  const offenders = texts.filter(([, text]) => VIETNAMESE.test(clean(text))).map(([where]) => where)
   expect(offenders).toEqual([])
+})
+
+// Cả mã nguồn, cấu hình và tài liệu, không chỉ chữ trên trang.
+const SKIP_DIRS = new Set(['node_modules', 'out', 'coverage', 'test-results', 'playwright-report'])
+const TEXT_EXTS = new Set('.ts .tsx .mts .mjs .js .json .md .mdx .css .yml .yaml .txt .svg .html'.split(' '))
+
+test('no U+2014 em-dash in any source file', () => {
+  const EM_DASH = /\u2014/
+  const skipDir = (name: string) => (name.startsWith('.') && name !== '.github') || SKIP_DIRS.has(name)
+  const isText = (f: string) => TEXT_EXTS.has(extname(f)) && basename(f) !== 'pnpm-lock.yaml'
+  const files = walk(ROOT, skipDir).filter(isText)
+  expect(files.length).toBeGreaterThan(40)
+  expect(files.filter((f) => EM_DASH.test(readFileSync(f, 'utf8'))).map(rel)).toEqual([])
 })
 ```
 
@@ -958,9 +997,17 @@ html {
 body {
   text-rendering: optimizeLegibility;
 }
+
+/* Mọi H1, H2 dùng Fraunces (Global Constraints), kể cả tiêu đề trong MDX và trong trang chép từ docops-landing-page. */
+@layer base {
+  h1,
+  h2 {
+    @apply font-display;
+  }
+}
 ```
 
-In `components/ui/icons.ts`, add these names to `ICON_NAMES` (before `"apple"`) and these entries to `ICONS`:
+In `components/ui/icons.ts`, replace the first line (a comment that carries an em-dash and points at a generator script this repo does not have) with `// Bộ icon SVG nét 1.6px trên lưới 24. Không dùng emoji.`, then add these names to `ICON_NAMES` (before `"apple"`) and these entries to `ICONS`:
 
 ```ts
 'eye': "<path d=\"M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z\"></path><circle cx=\"12\" cy=\"12\" r=\"3\"></circle>",
@@ -1114,22 +1161,25 @@ import { NavLinks } from './NavLinks'
 export function Header() {
   const t = useTranslations('common')
   return (
-    <header className="sticky top-0 z-30 h-16 border-b border-line bg-card/95 backdrop-blur md:h-[72px]">
+    <header className="sticky top-0 z-30 h-16 border-b border-line md:h-[72px]">
+      {/* Nền mờ nằm ở lớp riêng. Đặt backdrop-filter lên chính header sẽ biến header thành khung chứa của panel menu `fixed`, làm panel chỉ còn cao 49 px trên Chrome. */}
+      <div className="absolute inset-0 -z-10 bg-card/95 backdrop-blur" aria-hidden="true" />
       <Container className="flex h-full items-center gap-8">
-        <Link href="/" className="flex items-center gap-2.5">
+        <Link href="/" className="flex min-h-11 items-center gap-2.5">
           <LogoMark size={30} />
           <Wordmark />
         </Link>
-        <nav aria-label={t('mainNav')} className="ml-auto hidden items-center gap-6 lg:flex">
-          <NavLinks />
+        {/* Menu ngang hiện từ 1100 px. Ở 1024 px bản tiếng Anh cần 999 px cho một hàng, trong khi chỉ có 960 px. */}
+        <nav aria-label={t('mainNav')} className="ml-auto hidden items-center gap-6 min-[1100px]:flex">
+          <NavLinks className="whitespace-nowrap" />
         </nav>
-        <div className="hidden items-center gap-3.5 lg:flex">
+        <div className="hidden items-center gap-3.5 min-[1100px]:flex">
           <LocaleSwitcher />
           <ButtonLink href="/download" size="sm" icon="download">
             {t('download')}
           </ButtonLink>
         </div>
-        <div className="ml-auto lg:hidden">
+        <div className="ml-auto min-[1100px]:hidden">
           <MobileNav />
         </div>
       </Container>
@@ -1138,9 +1188,11 @@ export function Header() {
 }
 ```
 
-In `components/site/MobileNav.tsx`, change the panel class `fixed inset-x-0 top-16 bottom-0` to `fixed inset-x-0 top-16 bottom-0 md:top-[72px]` (the header is 72 px tall from `md`, and the mobile menu now shows up to `lg`).
+In `components/site/MobileNav.tsx`, change the panel class `fixed inset-x-0 top-16 bottom-0` to `fixed inset-x-0 top-16 bottom-0 md:top-[72px]` (the header is 72 px tall from `md`, and the mobile menu now shows up to 1100 px).
 
 In `components/site/LocaleSwitcher.tsx`, change the link class `inline-flex h-[30px] items-center rounded-full px-2.5` to `inline-flex h-11 items-center rounded-full px-3.5 md:h-[30px] md:px-2.5`, so the VI/EN pills are 44 px tall on phones (spec §8.3).
+
+In `components/site/CopyButton.tsx`, change the button class `inline-flex items-center gap-1.5 text-[14.5px] font-semibold text-accent-strong hover:text-accent` to `inline-flex min-h-11 min-w-11 items-center justify-center gap-1.5 text-[14.5px] font-semibold text-accent-strong hover:text-accent md:min-h-0 md:min-w-0`, for the same reason. The rule for every later task: a link, button or `<summary>` that stands on its own (anything that is not a link inside a line of text) is at least 44 px tall below `md`; Task 14 checks it on every page.
 
 `components/site/Footer.tsx`:
 
@@ -1165,7 +1217,7 @@ export function Footer() {
       <Container>
         <div className="grid gap-10 md:grid-cols-[1.4fr_repeat(4,minmax(0,1fr))] md:gap-10">
           <div className="flex max-w-[340px] flex-col gap-4">
-            <Link href="/" className="flex items-center gap-2.5">
+            <Link href="/" className="flex min-h-11 items-center gap-2.5 md:min-h-0">
               <LogoMark size={30} />
               <Wordmark />
             </Link>
@@ -1239,7 +1291,9 @@ import { SkipLink } from '@/components/site/SkipLink'
 - [ ] **Step 5: Run everything**
 
 Run: `pnpm verify && pnpm build`
-Expected: PASS. Then `pnpm dev`, open `/` and `/en`: header shows the logo, 5 nav links from 1024 px, the menu button below it; footer has 4 columns; the consent bar appears; switching VI/EN keeps the page.
+Expected: PASS. Then `pnpm dev`, open `/` and `/en`: header shows the logo, 5 nav links from 1100 px, the menu button below it; footer has 4 columns; the consent bar appears; switching VI/EN keeps the page.
+
+Then measure the mobile menu in a real browser (headless Chromium, viewport 390×844, against `pnpm start`): open `/`, press the button named "Mở menu" and read the bounding box of `#mobile-nav`. Expected: top 64 px, height 780 px. A height near 49 px means the header itself carries `backdrop-filter` again, which turns the header into the containing block of the `fixed` panel. Also check at 1100 px wide (viewport 1100×800), in both languages, that the header nav sits on one line (every `header nav a` has the same height) and that the page has no horizontal overflow; at 1099 px the menu button shows instead of the nav.
 
 - [ ] **Step 6: Commit**
 
@@ -1282,7 +1336,7 @@ Run: `pnpm test tests/unit/images.test.ts` → FAIL (files missing).
 
 - [ ] **Step 2: Write the capture script**
 
-`scripts/capture-product-images.mjs` (the DOCOPS script, with `sc-if` evaluated instead of always kept, so only the macOS window chrome is drawn):
+`scripts/capture-product-images.mjs` (the DOCOPS script with three changes: `sc-if` is evaluated instead of always kept, so only the macOS window chrome is drawn; the `Component` class is built from the artboard's `<script type="text/x-dc">`, which a browser does not run by itself; and the script waits for the web fonts and stops with an error when a `{{…}}` hole or an `sc-*` tag is left):
 
 ```js
 // Chụp artboard app EduFlow (../eduflow-application/docs/thiet-ke/canvas/project/*.dc.html) thành WebP cho site.
@@ -1328,7 +1382,11 @@ await page.addInitScript(() => {
 for (const shot of SHOTS) {
   await page.goto(`file://${join(srcDir, `${shot.artboard}.dc.html`)}`, { waitUntil: 'load' })
   await page.evaluate((osName) => {
-    const vals = typeof Component === 'function' ? (new Component({ os: osName }).renderVals?.() ?? {}) : {}
+    // Artboard EduFlow khai báo logic trong <script type="text/x-dc">, trình duyệt không tự chạy thẻ này,
+    // nên dựng lớp Component từ mã nguồn của nó.
+    const source = document.querySelector('script[data-dc-script]')?.textContent ?? ''
+    const Comp = source ? new Function('DCLogic', `${source}\nreturn Component`)(window.DCLogic) : null
+    const vals = Comp ? (new Comp({ os: osName }).renderVals?.() ?? {}) : {}
     const lookup = (scope, path) => path.split('.').reduce((o, k) => (o == null ? undefined : o[k]), scope)
     const fill = (html, scope) =>
       html.replace(/\{\{\s*([\w$.]+)\s*\}\}/g, (m, p) => { const v = lookup(scope, p); return v === undefined ? m : String(v) })
@@ -1358,7 +1416,25 @@ for (const shot of SHOTS) {
       n.outerHTML = truthy(n.getAttribute('value')) ? n.innerHTML : ''
     }
   }, os)
-  await page.waitForTimeout(500)
+  // Chờ stylesheet và font web nạp xong sau khi dựng lại DOM, rồi kiểm không còn lỗ {{…}} hay thẻ sc-* nào sót.
+  const state = await page.evaluate(async () => {
+    await Promise.all(
+      Array.from(document.querySelectorAll('link[rel="stylesheet"]')).map((l) =>
+        l.sheet ? null : new Promise((done) => { l.addEventListener('load', done); l.addEventListener('error', done) })),
+    )
+    await Promise.all(Array.from(document.fonts).map((f) => f.load().catch(() => null)))
+    await document.fonts.ready
+    const root = document.querySelector('x-dc') ?? document.body
+    const loaded = new Set(Array.from(document.fonts).filter((f) => f.status === 'loaded').map((f) => f.family.replace(/["']/g, '')))
+    return {
+      holes: (root.innerText.match(/\{\{[^}]*\}\}/g) ?? []).length,
+      tags: root.querySelectorAll('sc-for, sc-if').length,
+      fonts: ['Be Vietnam Pro', 'Fraunces', 'JetBrains Mono'].every((name) => loaded.has(name)),
+    }
+  })
+  if (state.holes > 0 || state.tags > 0) throw new Error(`${shot.artboard}: còn ${state.holes} lỗ chưa điền, ${state.tags} thẻ sc-* chưa dựng`)
+  if (!state.fonts) throw new Error(`${shot.artboard}: font web chưa nạp, cần mạng để tải Google Fonts`)
+  await page.waitForTimeout(300)
   const png = join(tmp, `${shot.out}.png`)
   await page.screenshot({ path: png, type: 'png' })
   const out = join(outDir, `${shot.out}.webp`)
@@ -1376,7 +1452,7 @@ pnpm exec playwright install chromium
 node scripts/capture-product-images.mjs
 ```
 
-Expected: 13 lines, each under 200 KB. If a file is over 200 KB, lower its `quality` by 4 and run again. Open three of the images and check that only the macOS title bar (three coloured dots) is drawn and that no `{{…}}` text is visible.
+Expected: 13 lines, each between 95 and 150 KB (the 13 artboards are 1440×900, so every image is 1600×1000 except `assistant-home` at 2000×1250). If a file is over 200 KB, lower its `quality` by 4 and run again. Open three of the images and check that only the macOS title bar (three coloured dots) is drawn, that the tables and lists carry rows, and that no `{{…}}` text is visible.
 
 - [ ] **Step 4: Run the test**
 
@@ -1394,8 +1470,8 @@ git commit -m "feat(images): chụp 13 ảnh sản phẩm WebP từ canvas app E
 Start after the PO approved the copy in Task 1.
 
 **Files:**
-- Copy verbatim from DOCOPS: `components/home/Faq.tsx`, `components/download/{DownloadLink,ChecksumField}.tsx`
-- Copy then modify: `components/home/SectionHead.tsx`, `components/home/TrustGrid.tsx`, `components/home/FaqSection.tsx`, `components/download/PlatformCard.tsx`
+- Copy verbatim from DOCOPS: `components/home/Faq.tsx`, `components/download/DownloadLink.tsx`
+- Copy then modify: `components/home/SectionHead.tsx`, `components/home/TrustGrid.tsx`, `components/home/FaqSection.tsx`, `components/download/PlatformCard.tsx`, `components/download/ChecksumField.tsx`
 - Create: `components/home/{Hero,HeroCta,LevelCards,AssistantShowcase,PipelineStrip,CostTeaser,DownloadBlock,FinalCta}.tsx`, `components/download/PrelaunchNotice.tsx`, `app/[locale]/page.tsx` (replace)
 
 **Interfaces:**
@@ -1429,6 +1505,8 @@ const ITEMS: Array<{ key: 't1' | 't2' | 't3' | 't4' | 't5' | 't6'; icon: IconNam
 ```
 
 In `components/download/PlatformCard.tsx`: delete the `codename` import; replace `{versionLabel(asset.version)}` with `v{asset.version}`; replace `shadow-[0_0_0_3px_#eff5e3]` with `shadow-[0_0_0_3px_#E8F3E7]`; replace `<Heading className="text-lg leading-snug font-semibold">` with `<Heading className={cn('text-lg leading-snug font-semibold', headingLevel === 'h2' && 'font-display')}>` (H1 and H2 use Fraunces).
+
+Tap targets (spec §8.3, 44 px on phones): add `min-h-11 md:min-h-0` to the class of three elements that are `inline-flex items-center` already: the text link under the grid in `components/home/TrustGrid.tsx`, the guide link at the bottom of `components/download/PlatformCard.tsx`, and the `<summary>` in `components/download/ChecksumField.tsx`.
 
 - [ ] **Step 2: Create the new home components**
 
@@ -1615,7 +1693,7 @@ export function LevelCards() {
                   </li>
                 ))}
               </ul>
-              <Link href={href} className="mt-auto inline-flex items-center gap-1.5 text-[15px] font-semibold text-accent-strong hover:text-accent">
+              <Link href={href} className="mt-auto inline-flex min-h-11 items-center gap-1.5 text-[15px] font-semibold text-accent-strong hover:text-accent md:min-h-0">
                 {tl(`${key}.card.link`)}
                 <Icon name="arrow-right" size={16} />
               </Link>
@@ -1668,7 +1746,7 @@ export function AssistantShowcase() {
               </li>
             ))}
           </ul>
-          <Link href="/assistant" className="inline-flex items-center gap-2 text-[15.5px] font-semibold text-accent-strong hover:text-accent">
+          <Link href="/assistant" className="inline-flex min-h-11 items-center gap-2 text-[15.5px] font-semibold text-accent-strong hover:text-accent md:min-h-0">
             {t('link')}
             <Icon name="arrow-right" size={18} />
           </Link>
@@ -2422,8 +2500,16 @@ export default async function PricingPage() {
 
 - [ ] **Step 4: Check the no-price rule**
 
-Run: `pnpm build && pnpm start -p 3200 & sleep 5; curl -s localhost:3200/cach-tinh-phi | grep -o -E "[0-9]{1,3}(\.[0-9]{3})+ ?(₫|đ|VND)" ; kill %1`
-Expected: no output (no price figures on the page).
+```bash
+pnpm build
+pnpm start -p 3200 >/dev/null 2>&1 &
+for i in $(seq 1 30); do curl -sf localhost:3200/cach-tinh-phi -o pricing.tmp.html && break; sleep 1; done
+grep -c "<h1" pricing.tmp.html
+grep -o -E "[0-9][0-9.,]* ?(₫|VNĐ|VND)" pricing.tmp.html
+kill %1; rm -f pricing.tmp.html
+```
+
+Expected: the first `grep` prints `1` (the page really loaded: one H1), the second prints nothing (no price figure on the page). Run the same two checks for `localhost:3200/en/pricing` before stopping the server.
 
 - [ ] **Step 5: Run and commit**
 
@@ -2592,11 +2678,13 @@ git commit -m "feat(download): trang Tải về từ feed, báo bản còn thi�
 ### Task 11: Install guides (MDX)
 
 **Files:**
-- Copy verbatim from DOCOPS: `mdx-components.tsx`, `types/mdx.d.ts`, `content/install/index.ts`, `components/guide/{Step,Toc,OsTabs,CodeBlock}.tsx`, `app/[locale]/install/[os]/page.tsx`
+- Copy verbatim from DOCOPS: `mdx-components.tsx`, `types/mdx.d.ts`, `content/install/index.ts`, `components/guide/{Step,CodeBlock}.tsx`
+- Copy then modify: `components/guide/{Toc,OsTabs}.tsx` (tap targets), `app/[locale]/install/[os]/page.tsx` (gradient colour, breadcrumb tap target, bottom button label)
 - Create: `content/install/vi/macos.mdx`, `content/install/vi/windows.mdx`, `content/install/en/macos.mdx`, `content/install/en/windows.mdx`, `tests/unit/guides.test.ts`
-- Modify: `app/[locale]/install/[os]/page.tsx` (gradient colour)
+- Modify: `tests/unit/content.test.ts` (MDX count pins, allowed Vietnamese labels)
 
 **Interfaces:**
+- Consumes: `hasAssetFor` (Task 2).
 - Produces: MDX modules exporting `meta = { title, description, updated, minutes, toc: [{ id, label }] }`; `GUIDES`, `GUIDE_OS`, `isGuideOs`.
 
 - [ ] **Step 1: Copy the guide machinery**
@@ -2612,6 +2700,26 @@ cp "$D/app/[locale]/install/[os]/page.tsx" "app/[locale]/install/[os]/"
 ```
 
 In `app/[locale]/install/[os]/page.tsx`, replace `#eff5e3_0%,rgba(239,245,227,0)_70%` with `#E8F3E7_0%,rgba(232,243,231,0)_70%`, and add `font-display` to the `<h1>` class.
+
+Still in that page, the button at the bottom must not read "Chọn bộ cài macOS" when no macOS installer exists, nor on the Windows guide when the Windows installer is missing (the pre-launch state is how the site goes live). Import `hasAssetFor` from `@/lib/releases/state` and replace
+
+```tsx
+<ButtonLink href="/download" icon="download">{t('bottom.downloadMac')}</ButtonLink>
+```
+
+with
+
+```tsx
+<ButtonLink href="/download" icon="download">
+  {os === 'macos' && hasAssetFor(assets, 'macos') ? t('bottom.downloadMac') : tc('download')}
+</ButtonLink>
+```
+
+Tap targets (spec §8.3, 44 px on phones), three class changes:
+
+- `app/[locale]/install/[os]/page.tsx`, the breadcrumb link: `className="hover:text-ink"` becomes `className="inline-flex min-h-11 items-center hover:text-ink md:min-h-0"`.
+- `components/guide/OsTabs.tsx`: `inline-flex h-10 items-center gap-2 rounded-[7px] px-4 text-[14.5px] font-semibold` becomes `inline-flex h-11 items-center gap-2 rounded-[7px] px-4 text-[14.5px] font-semibold md:h-10`.
+- `components/guide/Toc.tsx`: in the link class, `py-1.5` becomes `py-3.5 md:py-1.5`.
 
 - [ ] **Step 2: Write the failing test**
 
@@ -2813,7 +2921,11 @@ Mở **Cài đặt** của Windows, chọn **Ứng dụng**, tìm **EduFlow** v�
 
 Translate both files into `content/install/en/macos.mdx` and `content/install/en/windows.mdx` with the same `toc` ids, the same component structure and the glossary of Task 1. Keep the exact strings the test requires: `Applications`, `Apple Silicon`, `SmartScreen`, `Agentra JSC`, `Run anyway`, `EDU-`. Use `Official` Windows labels in English (`Windows protected your PC`, `More info`, `Run anyway`, `Settings > Apps`) and macOS labels (`About This Mac`, `Chip`, `Open`).
 
+The EduFlow app itself has a Vietnamese interface (app spec AD-16), so the English guides name each EduFlow button by its real on-screen label in bold, followed by the English meaning in parentheses, for example `**Kích hoạt** (Activate)`, `**Dùng thử** (Trial)`, `**Tải về** (Download)`, `**Khởi động lại để cài** (Restart to install)`, `**Cài đặt** (Settings)`, `**Lưu trữ và sao lưu** (Storage and backup)`. The test 'English copy carries no untranslated Vietnamese' reads English MDX too: add exactly these quoted labels to its `ALLOWED` list and nothing else, so any other Vietnamese text in an English file still fails. In the same test change `acc.split(a)` to `acc.split(a.normalize('NFC'))`, so a label typed in decomposed form still matches.
+
 - [ ] **Step 5: Run and commit**
+
+In `tests/unit/content.test.ts` set `MDX_TOTAL = 4` and `MDX_ENGLISH = 2` (four guides, two of them English). The test fails until the numbers match the files, which proves the copy-rule scan reads the new MDX.
 
 Run: `pnpm verify && pnpm build`
 Expected: PASS; four static guide pages.
@@ -2847,7 +2959,7 @@ In all three pages replace `#eff5e3_0%,rgba(239,245,227,0)_70%` with `#E8F3E7_0%
 
 In `app/[locale]/ai-transparency/page.tsx`: set `const UPDATED = '2026-09-30'`; set `const ITEMS = ['p1', 'p2', 'p3', 'p4', 'p5', 'p6', 'p7', 'p8'] as const`; replace the ternary that renders `p10` with rich text by plain `{t(`${key}.body`)}` (EduFlow's copy has no `p10` and no email tag in the list), then delete the now unused `import { site } from '@/lib/site'` so lint stays green.
 
-In `app/[locale]/contact/page.tsx`: no code change is needed; the EduFlow `contact.*` keys follow DocOps's shape (`email`, `phone`, `address`, `key.s1..s3`, `key.note`, `support.i1..i4`, `support.boxTitle`, `support.boxBody`, `support.btn`, `support.subject`). Build and check that every key resolves (next-intl logs a missing-message error in `pnpm build` otherwise).
+In `app/[locale]/contact/page.tsx`: one class change, add `min-h-11 md:min-h-0` to the `linkClass` constant (44 px tap target on phones, spec §8.3). Nothing else changes; the EduFlow `contact.*` keys follow DocOps's shape (`email`, `phone`, `address`, `key.s1..s3`, `key.note`, `support.i1..i4`, `support.boxTitle`, `support.boxBody`, `support.btn`, `support.subject`). Build and check that every key resolves (next-intl logs a missing-message error in `pnpm build` otherwise).
 
 - [ ] **Step 2: Write the privacy policy**
 
@@ -2895,6 +3007,8 @@ Agentra JSC, Đà Nẵng, Việt Nam. Email: [info@agentra.io.vn](mailto:info@ag
 `content/privacy/en.mdx`: the same seven sections in English, with a `meta.description` of 140 to 160 characters (glossary of Task 1; "you" for "thầy cô"; Decree 13/2023/ND-CP on personal data protection). Do not add any statement about model training (OQ-L07).
 
 - [ ] **Step 3: Run and commit**
+
+In `tests/unit/content.test.ts` set `MDX_TOTAL = 6` and `MDX_ENGLISH = 3` (the two privacy files join the four guides).
 
 Run: `pnpm verify && pnpm build`
 Expected: PASS; `content.test.ts` now also scans the privacy and guide MDX files.
@@ -3086,12 +3200,18 @@ assertProductionEnv(process.env)
 
 - [ ] **Step 2b: Meta descriptions of 140 to 160 characters (spec §9)**
 
-Append to `tests/unit/content.test.ts`:
+Append to `tests/unit/content.test.ts` (the file was reworked in the Task 3 review; it already has the helpers `ROOT`, `values`, `walk` and `mdxFiles` this test uses):
 
 ```ts
 test('every meta description is 140 to 160 characters (spec §9)', () => {
+  // Trang Chính sách bảo mật lấy mô tả từ meta.description của tệp MDX, các trang khác lấy từ messages.
+  const privacy = ['vi', 'en'].map((lang) => {
+    const src = readFileSync(join(ROOT, 'content', 'privacy', `${lang}.mdx`), 'utf8')
+    return [`content/privacy/${lang}.mdx`, /description:\s*(['"])(.+)\1/.exec(src)?.[2] ?? ''] as const
+  })
   const bad = [...values(vi).map(([k, v]) => [`vi:${k}`, v] as const), ...values(en).map(([k, v]) => [`en:${k}`, v] as const)]
     .filter(([k]) => k.endsWith('.description'))
+    .concat(privacy)
     .filter(([, v]) => v.length < 140 || v.length > 160)
     .map(([k, v]) => `${k} (${v.length})`)
   expect(bad).toEqual([])
@@ -3177,7 +3297,8 @@ const MODE_IGNORE = MODE === 'prelaunch' ? /download\.spec\.ts/ : /prelaunch\.sp
 
 projects: [
   { name: 'desktop', use: { ...devices['Desktop Chrome'], viewport: { width: 1280, height: 800 } }, testIgnore: [/mobile\.spec\.ts/, MODE_IGNORE] },
-  { name: 'mobile', use: { ...devices['Pixel 7'] }, testMatch: /mobile\.spec\.ts/ },
+  // Spec §13 yêu cầu kiểm menu mobile ở 390 px, cũng là bề rộng artboard điện thoại trên canvas.
+  { name: 'mobile', use: { ...devices['Pixel 7'], viewport: { width: 390, height: 844 } }, testMatch: /mobile\.spec\.ts/ },
 ],
 ```
 
@@ -3226,6 +3347,8 @@ for (const [path, lang] of PAGES) {
     await expect(page.locator('meta[property="og:image"]')).toHaveCount(1)
     for (const s of await page.locator('script[type="application/ld+json"]').allTextContents()) JSON.parse(s)
     await expect(page.locator('main#main')).toHaveCount(1)
+    // Spec §13: không trang nào chứa ký tự gạch ngang dài (U+2014). Dựng ký tự bằng mã để tệp test không chứa nó.
+    expect(await page.content()).not.toContain(String.fromCharCode(0x2014))
     expect(errors).toEqual([])
   })
 }
@@ -3245,11 +3368,15 @@ test('unknown paths give a localized 404', async ({ page }) => {
   await expect(page.locator('h1')).toHaveText('Page not found')
 })
 
-test('the pricing page shows no price figure', async ({ page }) => {
-  await page.goto('/cach-tinh-phi')
-  const text = await page.locator('main').innerText()
-  expect(text).not.toMatch(/\d{1,3}(\.\d{3})+\s?(₫|đ|VND)/)
-})
+for (const path of ['/cach-tinh-phi', '/en/pricing']) {
+  test(`${path} shows no price figure`, async ({ page }) => {
+    await page.goto(path)
+    const text = await page.locator('main').innerText()
+    expect(text.length).toBeGreaterThan(500)
+    // Một con số đi liền đơn vị tiền. "đ" theo sau bởi chữ cái (đề, điểm, đến) không tính.
+    expect(text).not.toMatch(/\d[\d.,]*\s?(₫|VNĐ|VND|đ(?!\p{L}))/u)
+  })
+}
 ```
 
 `tests/e2e/download.spec.ts` (feed mode):
@@ -3312,6 +3439,13 @@ test('mobile menu opens with the five nav links and a download button', async ({
   const nav = page.locator('#mobile-nav')
   await expect(nav.locator('nav').getByRole('link')).toHaveCount(5)
   await expect(nav.getByRole('link', { name: 'Tải EduFlow' })).toBeVisible()
+  // Panel phải phủ hết màn hình dưới header. toBeVisible vẫn qua khi panel co còn 49 px, nên đo hộp thật.
+  const box = await nav.boundingBox()
+  const viewport = page.viewportSize()
+  expect(box).not.toBeNull()
+  expect(viewport).not.toBeNull()
+  expect(box!.y).toBeLessThanOrEqual(72)
+  expect(box!.height).toBeGreaterThanOrEqual(viewport!.height - 73)
 })
 
 test('on a phone the hero button never starts an installer download', async ({ page }) => {
@@ -3326,6 +3460,21 @@ for (const path of VI_PAGES) {
     await page.goto(path)
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth)
     expect(overflow).toBeLessThanOrEqual(0)
+  })
+
+  // Spec §8.3: vùng chạm tối thiểu 44 px trên điện thoại. Link nằm trong dòng chữ (display inline) được miễn.
+  test(`tap targets are at least 44 px tall on ${path}`, async ({ page }) => {
+    await page.goto(path)
+    const small = await page.evaluate(() =>
+      [...document.querySelectorAll('a, button, summary')]
+        .filter((el) => {
+          const box = el.getBoundingClientRect()
+          return box.width > 1 && box.height > 1 && getComputedStyle(el).display !== 'inline'
+        })
+        .map((el) => ({ tag: el.tagName.toLowerCase(), text: (el.textContent ?? '').trim().slice(0, 40), height: Math.round(el.getBoundingClientRect().height) }))
+        .filter((target) => target.height < 44),
+    )
+    expect(small).toEqual([])
   })
 }
 ```
@@ -3366,6 +3515,8 @@ Keep DOCOPS's `upload-artifact` step on failure.
 - [ ] **Step 5: Run locally**
 
 ```bash
+# consent.spec.ts cần một ID GA giả lúc build, đúng như env của ci.yml; thiếu nó thì GA không bao giờ nạp và test đỏ.
+export NEXT_PUBLIC_GA_MEASUREMENT_ID=G-TEST
 node scripts/serve-fixtures.mjs &
 DOWNLOAD_FEED_URL=http://localhost:3300/ pnpm build && E2E_MODE=feed DOWNLOAD_FEED_URL=http://localhost:3300/ pnpm e2e
 DOWNLOAD_FEED_URL= pnpm build && E2E_MODE=prelaunch pnpm e2e
@@ -3400,6 +3551,7 @@ Write `docs/van-hanh.md` in Vietnamese: (1) releasing a new app version: upload 
 
 ```bash
 pnpm verify
+export NEXT_PUBLIC_GA_MEASUREMENT_ID=G-TEST
 node scripts/serve-fixtures.mjs &
 DOWNLOAD_FEED_URL=http://localhost:3300/ pnpm build && E2E_MODE=feed DOWNLOAD_FEED_URL=http://localhost:3300/ pnpm e2e
 DOWNLOAD_FEED_URL= pnpm build && E2E_MODE=prelaunch pnpm e2e
