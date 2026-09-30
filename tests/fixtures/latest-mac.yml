@@ -1,0 +1,17 @@
+version: 1.0.0
+files:
+  - url: EduFlow-1.0.0-arm64-mac.zip
+    sha512: Zm9yLWZpeHR1cmUtb25seS1lZHVmbG93LW1hYy1hcm02NC16aXAtc2hhNTEyLXZhbHVlLTAwMDAwMDAwMDAwMA==
+    size: 298765432
+  - url: EduFlow-1.0.0-arm64.dmg
+    sha512: Zm9yLWZpeHR1cmUtb25seS1lZHVmbG93LW1hYy1hcm02NC1kbWctc2hhNTEyLXZhbHVlLTAwMDAwMDAwMDAwMA==
+    size: 301234567
+  - url: EduFlow-1.0.0-mac.zip
+    sha512: Zm9yLWZpeHR1cmUtb25seS1lZHVmbG93LW1hYy14NjQtemlwLXNoYTUxMi12YWx1ZS0wMDAwMDAwMDAwMDAwMA==
+    size: 305432109
+  - url: EduFlow-1.0.0.dmg
+    sha512: Zm9yLWZpeHR1cmUtb25seS1lZHVmbG93LW1hYy14NjQtZG1nLXNoYTUxMi12YWx1ZS0wMDAwMDAwMDAwMDAwMA==
+    size: 309876543
+path: EduFlow-1.0.0-arm64-mac.zip
+sha512: Zm9yLWZpeHR1cmUtb25seS1lZHVmbG93LW1hYy1hcm02NC16aXAtc2hhNTEyLXZhbHVlLTAwMDAwMDAwMDAwMA==
+releaseDate: '2026-10-01T02:00:00.000Z'
