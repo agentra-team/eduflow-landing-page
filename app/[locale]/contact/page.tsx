@@ -60,7 +60,7 @@ export default async function ContactPage() {
           <ContactCard
             icon="mail"
             label={t('email.label')}
-            value={<TrackedAnchor channel="email" href={`mailto:${site.email}`}>{site.email}</TrackedAnchor>}
+            value={<TrackedAnchor channel="email" href={`mailto:${site.email}`} className="inline-flex min-h-11 items-center md:min-h-0">{site.email}</TrackedAnchor>}
             sub={t('email.sub')}
             action={<CopyButton value={site.email} label={t('email.copy')} doneLabel={t('email.copied')} />}
           />
@@ -68,7 +68,7 @@ export default async function ContactPage() {
             <ContactCard
               icon="phone"
               label={t('phone.label')}
-              value={<TrackedAnchor channel="phone" href={`tel:${site.phone.replace(/\s+/g, '')}`}>{site.phone}</TrackedAnchor>}
+              value={<TrackedAnchor channel="phone" href={`tel:${site.phone.replace(/\s+/g, '')}`} className="inline-flex min-h-11 items-center md:min-h-0">{site.phone}</TrackedAnchor>}
               sub={t('phone.sub')}
               action={site.zalo ? <TrackedAnchor channel="zalo" href={site.zalo} className={linkClass} rel="noopener"><Icon name="external" size={16} />{t('phone.zalo')}</TrackedAnchor> : null}
             />
