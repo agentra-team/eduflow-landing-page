@@ -1,0 +1,57 @@
+// Bộ icon SVG nét 1.6px trên lưới 24. Không dùng emoji.
+export const ICON_NAMES = ["archive", "arrow-left", "arrow-right", "book", "bug", "camera", "check", "chevron-down", "chevron-right", "chevron-up", "chip", "clock", "close", "copy", "download", "external", "file", "graph", "hdd", "info", "key", "laptop", "lock", "mail", "menu", "message", "monitor", "pen", "phone", "pin", "refresh", "search", "shield", "tag", "user-check", "warning", "wifi", "eye", "graduation", "layers", "receipt", "shuffle", "spark", "wallet", "wifi-off", "apple", "windows"] as const
+
+export type IconName = (typeof ICON_NAMES)[number]
+
+/** Đường vẽ (inner SVG). `apple` và `windows` là hình tô đặc (fill), còn lại là nét (stroke). */
+export const ICONS: Record<IconName, string> = {
+  'archive': "<rect x=\"3\" y=\"4\" width=\"18\" height=\"5\" rx=\"1\"></rect><path d=\"M5 9v9a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V9\"></path><path d=\"M10 13h4\"></path>",
+  'arrow-left': "<path d=\"M19 12H5\"></path><path d=\"m11 6-6 6 6 6\"></path>",
+  'arrow-right': "<path d=\"M5 12h14\"></path><path d=\"m13 6 6 6-6 6\"></path>",
+  'book': "<path d=\"M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z\"></path><path d=\"M4 19a2 2 0 0 1 2-2h13\"></path><path d=\"M9 7h6\"></path>",
+  'bug': "<circle cx=\"12\" cy=\"13\" r=\"5\"></circle><path d=\"M12 8V5M9 4l1.5 1.5M15 4l-1.5 1.5M4 13h3M17 13h3M6 19l2.5-2M18 19l-2.5-2M6 8l2.3 1.5M18 8l-2.3 1.5\"></path>",
+  'camera': "<rect x=\"3\" y=\"7\" width=\"18\" height=\"13\" rx=\"2\"></rect><path d=\"M8 7l1.5-3h5L16 7\"></path><circle cx=\"12\" cy=\"13.5\" r=\"3.5\"></circle>",
+  'check': "<path d=\"m5 12.5 4.5 4.5L19 7\"></path>",
+  'chevron-down': "<path d=\"m6 9 6 6 6-6\"></path>",
+  'chevron-right': "<path d=\"m9 6 6 6-6 6\"></path>",
+  'chevron-up': "<path d=\"m6 15 6-6 6 6\"></path>",
+  'chip': "<rect x=\"6\" y=\"6\" width=\"12\" height=\"12\" rx=\"2\"></rect><rect x=\"9.5\" y=\"9.5\" width=\"5\" height=\"5\"></rect><path d=\"M9 3v3M15 3v3M9 18v3M15 18v3M3 9h3M3 15h3M18 9h3M18 15h3\"></path>",
+  'clock': "<circle cx=\"12\" cy=\"12\" r=\"8.5\"></circle><path d=\"M12 7.5V12l3 2\"></path>",
+  'close': "<path d=\"M6 6l12 12M18 6 6 18\"></path>",
+  'copy': "<rect x=\"9\" y=\"9\" width=\"11\" height=\"11\" rx=\"2\"></rect><path d=\"M5 15V5a2 2 0 0 1 2-2h10\"></path>",
+  'download': "<path d=\"M12 4v11\"></path><path d=\"m7 10 5 5 5-5\"></path><path d=\"M5 20h14\"></path>",
+  'external': "<path d=\"M14 4h6v6\"></path><path d=\"M20 4 10 14\"></path><path d=\"M18 13v6H5V6h6\"></path>",
+  'file': "<path d=\"M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z\"></path><path d=\"M14 3v5h5\"></path><path d=\"M9 13h6M9 17h6\"></path>",
+  'graph': "<circle cx=\"6\" cy=\"6\" r=\"2.5\"></circle><circle cx=\"18\" cy=\"8\" r=\"2.5\"></circle><circle cx=\"12\" cy=\"18\" r=\"2.5\"></circle><path d=\"m8.4 6.6 7.2 1M7.2 8.2l3.7 7.6M16.9 10.3l-3.6 5.6\"></path>",
+  'hdd': "<rect x=\"3\" y=\"5\" width=\"18\" height=\"14\" rx=\"2\"></rect><path d=\"M3 13h18\"></path><circle cx=\"17\" cy=\"16\" r=\"1\"></circle>",
+  'info': "<circle cx=\"12\" cy=\"12\" r=\"8.5\"></circle><path d=\"M12 11v5M12 8h.01\"></path>",
+  'key': "<circle cx=\"8\" cy=\"15\" r=\"4\"></circle><path d=\"m11 12 9-9M17 6l2 2M14 9l2 2\"></path>",
+  'laptop': "<rect x=\"4\" y=\"5\" width=\"16\" height=\"11\" rx=\"1.5\"></rect><path d=\"M2 19h20\"></path>",
+  'lock': "<rect x=\"5\" y=\"11\" width=\"14\" height=\"10\" rx=\"2\"></rect><path d=\"M8 11V8a4 4 0 0 1 8 0v3\"></path>",
+  'mail': "<rect x=\"3\" y=\"5\" width=\"18\" height=\"14\" rx=\"2\"></rect><path d=\"m3 7 9 6 9-6\"></path>",
+  'menu': "<path d=\"M4 7h16M4 12h16M4 17h16\"></path>",
+  'message': "<path d=\"M4 5h16v11H9l-5 4z\"></path><path d=\"M8 9h8M8 12.5h5\"></path>",
+  'monitor': "<rect x=\"3\" y=\"4\" width=\"18\" height=\"12\" rx=\"2\"></rect><path d=\"M8 20h8M12 16v4\"></path>",
+  'pen': "<path d=\"M4 20h4L18.5 9.5a2.1 2.1 0 0 0-3-3L5 17z\"></path><path d=\"m13.5 6.5 3 3\"></path>",
+  'phone': "<path d=\"M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z\"></path>",
+  'pin': "<path d=\"M12 21s-6-5.5-6-11a6 6 0 0 1 12 0c0 5.5-6 11-6 11z\"></path><circle cx=\"12\" cy=\"10\" r=\"2.2\"></circle>",
+  'refresh': "<path d=\"M20 12a8 8 0 1 1-2.3-5.7\"></path><path d=\"M20 4v5h-5\"></path>",
+  'search': "<circle cx=\"11\" cy=\"11\" r=\"6.5\"></circle><path d=\"m20 20-4.3-4.3\"></path>",
+  'shield': "<path d=\"M12 3 5 6v5c0 4.5 3 8 7 9.5 4-1.5 7-5 7-9.5V6z\"></path><path d=\"m9.5 12 2 2 3.5-4\"></path>",
+  'tag': "<path d=\"M20.5 12.5 12.5 20.5 3.5 11.5V3.5h8z\"></path><circle cx=\"7.5\" cy=\"7.5\" r=\"1.5\"></circle>",
+  'user-check': "<circle cx=\"10\" cy=\"8\" r=\"3.5\"></circle><path d=\"M3.5 20a6.5 6.5 0 0 1 13 0\"></path><path d=\"m16 13 2 2 4-4\"></path>",
+  'warning': "<path d=\"M12 4 3 20h18z\"></path><path d=\"M12 10v4M12 17h.01\"></path>",
+  'wifi': "<path d=\"M2.5 9a14 14 0 0 1 19 0M5.5 12.5a9.5 9.5 0 0 1 13 0M8.5 16a5 5 0 0 1 7 0\"></path><circle cx=\"12\" cy=\"19.5\" r=\"1\"></circle>",
+  'eye': "<path d=\"M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z\"></path><circle cx=\"12\" cy=\"12\" r=\"3\"></circle>",
+  'graduation': "<path d=\"M2 9l10-5 10 5-10 5z\"></path><path d=\"M6 11v5c3 2 9 2 12 0v-5\"></path>",
+  'layers': "<path d=\"M12 3 2 8l10 5 10-5z\"></path><path d=\"m2 13 10 5 10-5\"></path>",
+  'receipt': "<path d=\"M6 3h12v18l-3-2-3 2-3-2-3 2z\"></path><path d=\"M9 8h6M9 12h6\"></path>",
+  'shuffle': "<path d=\"M16 3h5v5\"></path><path d=\"M4 20 21 3\"></path><path d=\"M21 16v5h-5\"></path><path d=\"m15 15 6 6\"></path><path d=\"m4 4 5 5\"></path>",
+  'spark': "<path d=\"M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z\"></path><path d=\"M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z\"></path>",
+  'wallet': "<rect x=\"3\" y=\"6\" width=\"18\" height=\"13\" rx=\"2\"></rect><path d=\"M16 12h3\"></path><path d=\"M3 9h14a2 2 0 0 0 2-2V6\"></path>",
+  'wifi-off': "<path d=\"M3 3l18 18\"></path><path d=\"M8.5 16a5 5 0 0 1 7 0\"></path><path d=\"M5.5 12.5a9.5 9.5 0 0 1 3.4-2.2M13 9.1a9.5 9.5 0 0 1 5.5 3.4\"></path><circle cx=\"12\" cy=\"19.5\" r=\"1\"></circle>",
+  apple: "<path d=\"M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701\"></path>",
+  windows: "<path d=\"M3 5.6 10.6 4.5v7.1H3zM11.6 4.4 21 3v8.6h-9.4zM3 12.6h7.6v7.1L3 18.6zM11.6 12.6H21V21l-9.4-1.3z\"></path>",
+}
+
+export const FILLED_ICONS: ReadonlySet<IconName> = new Set(['apple', 'windows'])
