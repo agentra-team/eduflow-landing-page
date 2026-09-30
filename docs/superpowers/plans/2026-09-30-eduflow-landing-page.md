@@ -1140,6 +1140,8 @@ export function Header() {
 
 In `components/site/MobileNav.tsx`, change the panel class `fixed inset-x-0 top-16 bottom-0` to `fixed inset-x-0 top-16 bottom-0 md:top-[72px]` (the header is 72 px tall from `md`, and the mobile menu now shows up to `lg`).
 
+In `components/site/LocaleSwitcher.tsx`, change the link class `inline-flex h-[30px] items-center rounded-full px-2.5` to `inline-flex h-11 items-center rounded-full px-3.5 md:h-[30px] md:px-2.5`, so the VI/EN pills are 44 px tall on phones (spec §8.3).
+
 `components/site/Footer.tsx`:
 
 ```tsx
@@ -1151,7 +1153,8 @@ import type { Locale } from '@/i18n/routing'
 import { site } from '@/lib/site'
 import { LocaleSwitcher } from './LocaleSwitcher'
 
-const linkClass = 'text-[15px] text-ink2 transition-colors hover:text-ink'
+// Trên điện thoại mỗi link cao tối thiểu 44 px (spec §8.3).
+const linkClass = 'inline-flex min-h-11 items-center text-[15px] text-ink2 transition-colors hover:text-ink md:min-h-0'
 
 export function Footer() {
   const t = useTranslations('footer')
@@ -1204,7 +1207,7 @@ export function Footer() {
 
 function FooterColumn({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <div className="flex flex-col gap-3">
+    <div className="flex flex-col gap-1 md:gap-3">
       <span className="text-[13px] font-bold tracking-[0.5px] text-muted uppercase">{title}</span>
       {children}
     </div>
@@ -1425,7 +1428,7 @@ const ITEMS: Array<{ key: 't1' | 't2' | 't3' | 't4' | 't5' | 't6'; icon: IconNam
 ]
 ```
 
-In `components/download/PlatformCard.tsx`: delete the `codename` import; replace `{versionLabel(asset.version)}` with `v{asset.version}`; replace `shadow-[0_0_0_3px_#eff5e3]` with `shadow-[0_0_0_3px_#E8F3E7]`.
+In `components/download/PlatformCard.tsx`: delete the `codename` import; replace `{versionLabel(asset.version)}` with `v{asset.version}`; replace `shadow-[0_0_0_3px_#eff5e3]` with `shadow-[0_0_0_3px_#E8F3E7]`; replace `<Heading className="text-lg leading-snug font-semibold">` with `<Heading className={cn('text-lg leading-snug font-semibold', headingLevel === 'h2' && 'font-display')}>` (H1 and H2 use Fraunces).
 
 - [ ] **Step 2: Create the new home components**
 
@@ -1964,7 +1967,14 @@ export async function LevelPage({ level }: { level: LevelKey }) {
         <Container className="flex flex-col gap-14 md:gap-20">
           <SectionHead align="left" eyebrow={t('screens.eyebrow')} title={t('screens.h2')} />
           {SCREENS.map((s, i) => (
-            <div key={s} className={cn('grid items-center gap-8 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-14', i % 2 === 1 && 'lg:[&>*:first-child]:order-2')}>
+            <div
+              key={s}
+              className={cn(
+                'grid items-center gap-8 lg:gap-14',
+                // Hàng lẻ: chữ sang phải, ảnh vẫn ở cột rộng 1.2fr.
+                i % 2 === 1 ? 'lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)] lg:[&>*:first-child]:order-2' : 'lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)]',
+              )}
+            >
               <div className="flex flex-col gap-3">
                 <span className="font-mono text-[13px] font-semibold text-accent-strong">{String(i + 1).padStart(2, '0')}</span>
                 <h3 className="font-display text-[24px] leading-tight font-bold">{t(`screens.${s}.title`)}</h3>
@@ -2171,12 +2181,12 @@ export default async function AssistantPage() {
           </div>
           <div className="flex flex-col gap-3 rounded-card border border-line bg-page p-6">
             <Icon name="wallet" size={22} className="text-accent-strong" />
-            <h2 className="text-[18px] font-semibold">{t('cost.title')}</h2>
+            <h3 className="text-[18px] font-semibold">{t('cost.title')}</h3>
             <p className="text-[15px] leading-relaxed text-ink2">{t('cost.body')}</p>
           </div>
           <div className="flex flex-col gap-3 rounded-card border border-line bg-page p-6">
             <Icon name="lock" size={22} className="text-accent-strong" />
-            <h2 className="text-[18px] font-semibold">{t('privacy.title')}</h2>
+            <h3 className="text-[18px] font-semibold">{t('privacy.title')}</h3>
             <p className="text-[15px] leading-relaxed text-ink2">{t('privacy.body')}</p>
           </div>
         </Container>
@@ -2846,7 +2856,7 @@ In `app/[locale]/contact/page.tsx`: no code change is needed; the EduFlow `conta
 ```mdx
 export const meta = {
   title: 'Chính sách bảo mật',
-  description: 'Trang web EduFlow thu thập gì, dùng cookie ra sao, cách rút lại đồng ý và quyền của thầy cô theo Nghị định 13/2023/NĐ-CP.',
+  description: 'Trang web EduFlow thu thập gì, dùng cookie phân tích ra sao, cách rút lại đồng ý, liên kết ngoài và quyền của thầy cô theo Nghị định 13/2023/NĐ-CP.',
   updated: '2026-09-30',
 }
 
@@ -2882,7 +2892,7 @@ Theo Nghị định 13/2023/NĐ-CP về bảo vệ dữ liệu cá nhân, thầy
 Agentra JSC, Đà Nẵng, Việt Nam. Email: [info@agentra.io.vn](mailto:info@agentra.io.vn).
 ```
 
-`content/privacy/en.mdx`: the same seven sections in English (glossary of Task 1; "you" for "thầy cô"; Decree 13/2023/ND-CP on personal data protection). Do not add any statement about model training (OQ-L07).
+`content/privacy/en.mdx`: the same seven sections in English, with a `meta.description` of 140 to 160 characters (glossary of Task 1; "you" for "thầy cô"; Decree 13/2023/ND-CP on personal data protection). Do not add any statement about model training (OQ-L07).
 
 - [ ] **Step 3: Run and commit**
 
@@ -2899,7 +2909,7 @@ git commit -m "feat(pages): Minh bạch AI, Liên hệ, Chính sách bảo mật
 **Files:**
 - Copy then modify from DOCOPS: `app/sitemap.ts`, `app/robots.ts` (verbatim), `app/manifest.ts`, `lib/seo/og.tsx`, `app/[locale]/opengraph-image.tsx`, `app/[locale]/download/opengraph-image.tsx`, `assets/fonts/{BeVietnamPro-Bold.ttf,BeVietnamPro-Regular.ttf,OFL.txt}` (verbatim)
 - Create: `app/icon.svg`, `app/icon.png`, `app/apple-icon.png`, `lib/env.ts`, `tests/unit/env.test.ts`
-- Modify: `next.config.ts`, `tests/unit/seo.test.ts`
+- Modify: `next.config.ts`, `tests/unit/seo.test.ts`, `tests/unit/content.test.ts`, `messages/vi.json`, `messages/en.json`, `docs/superpowers/plans/2026-09-30-eduflow-landing-page.messages.vi.json` (meta descriptions)
 
 **Interfaces:**
 - Produces: `assertProductionEnv(env: Record<string, string | undefined>): void` (throws when `VERCEL_ENV === 'production'` and `NEXT_PUBLIC_SITE_URL` is empty).
@@ -3074,6 +3084,42 @@ import { assertProductionEnv } from './lib/env'
 assertProductionEnv(process.env)
 ```
 
+- [ ] **Step 2b: Meta descriptions of 140 to 160 characters (spec §9)**
+
+Append to `tests/unit/content.test.ts`:
+
+```ts
+test('every meta description is 140 to 160 characters (spec §9)', () => {
+  const bad = [...values(vi).map(([k, v]) => [`vi:${k}`, v] as const), ...values(en).map(([k, v]) => [`en:${k}`, v] as const)]
+    .filter(([k]) => k.endsWith('.description'))
+    .filter(([, v]) => v.length < 140 || v.length > 160)
+    .map(([k, v]) => `${k} (${v.length})`)
+  expect(bad).toEqual([])
+})
+```
+
+Run: `pnpm test tests/unit/content.test.ts` → FAIL listing 8 Vietnamese and 2 English keys. Then set these values in `messages/vi.json` (and the same eight in `docs/superpowers/plans/2026-09-30-eduflow-landing-page.messages.vi.json`, so the two stay identical):
+
+| Key | New value |
+|---|---|
+| `levels.k12.meta.description` | Soạn đề kiểm tra theo ma trận bốn mức với nhiều mã đề, giáo án CV5512 và slide có quiz; 12 cổng chất lượng; thầy cô duyệt và ký trước khi xuất bản. |
+| `levels.university.meta.description` | Từ bài giảng tới CLO, kế hoạch tuần, giáo án buổi, slide, đánh giá và đề cương 10 mục; kiểm 12 cổng G1..G12; trưởng bộ môn ký duyệt qua gói đã ký. |
+| `levels.program.meta.description` | Dựng bản sao số của chương trình đào tạo, rà hiệu lực pháp lý tại ngày xét, bảy phép kiểm curriculum map, lớp phủ tiêu chí và kịch bản “nếu” trước khi sửa. |
+| `transparency.meta.description` | EduFlow dùng AI ở đâu, gửi dữ liệu gì, dữ liệu nào ở lại máy thầy cô, máy chủ ghi gì, cùng các nguyên tắc máy đề xuất, người quyết định và ba tầng kết luận. |
+| `download.meta.description` | Tải bộ cài EduFlow đã ký số cho macOS (Apple Silicon, Intel) và Windows, kèm mã SHA-512, yêu cầu hệ thống, hướng dẫn cài đặt và cách nhận bản cập nhật. |
+| `install.meta.macos.description` | Chọn đúng bộ cài EduFlow theo chip của máy Mac, cài vào Applications, kích hoạt bằng key hoặc dùng thử, chọn hồ sơ làm việc và nhận bản cập nhật mới. |
+| `install.meta.windows.description` | Tải bộ cài EduFlow đã ký cho Windows, chạy trình cài, xử lý SmartScreen nếu có, kích hoạt bằng key hoặc dùng thử, chọn hồ sơ làm việc và nhận bản mới. |
+| `contact.meta.description` | Liên hệ Agentra để nhận báo giá EduFlow cho trường, xin key kích hoạt, hỏi về dùng thử hoặc báo lỗi; trang có email, địa chỉ và các bước nhận key. |
+
+and these two in `messages/en.json`:
+
+| Key | New value |
+|---|---|
+| `install.meta.windows.description` | Download the signed EduFlow installer for Windows, run it, handle SmartScreen if it appears, activate with a license key or a trial, and get new versions. |
+| `contact.meta.description` | Contact Agentra for an EduFlow quote for your school, a license key, a trial or a bug report; the page lists the email, the address and how to get a key. |
+
+In the same pass fix three English wording points in `messages/en.json`: write "90- or 150-minute" and "45-minute" with hyphens wherever they modify a noun, and replace "Turn on the AI off switch" with "Switch AI off". Run: `pnpm test tests/unit/content.test.ts tests/unit/i18n.test.ts` → PASS.
+
 - [ ] **Step 3: Run**
 
 Run: `pnpm verify && pnpm build && pnpm start -p 3200`
@@ -3139,7 +3185,7 @@ and the web server to start the fixture feed in feed mode:
 
 ```ts
 webServer: [
-  ...(MODE === 'feed' ? [{ command: 'node scripts/serve-fixtures.mjs', url: 'http://localhost:3300/latest.yml', reuseExistingServer: !process.env.CI }] : []),
+  ...(MODE === 'feed' ? [{ command: 'node scripts/serve-fixtures.mjs', url: 'http://localhost:3300/latest.yml', reuseExistingServer: true }] : []),
   { command: `pnpm start -p ${PORT}`, url: BASE_URL, reuseExistingServer: !process.env.CI, timeout: 60_000 },
 ],
 ```
