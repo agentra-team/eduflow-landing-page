@@ -2529,7 +2529,8 @@ git commit -m "feat(pricing): trang Cách tính phí không công bố đơn gi�
 
 **Files:**
 - Copy then modify: `components/download/PlatformGrid.tsx`, `components/download/SystemRequirements.tsx` (verbatim)
-- Create: `app/[locale]/download/page.tsx`
+- Create: `app/[locale]/download/page.tsx`, `tests/unit/sync-releases.test.ts`
+- Modify (Ruling 32, releases that ship one OS first, and iPads): `components/home/HeroCta.tsx`, `components/home/DownloadBlock.tsx`, `lib/platform.ts`, `lib/usePlatform.ts`, `tests/unit/platform.test.ts`, `scripts/sync-releases.mjs`
 
 **Interfaces:**
 - Consumes: `getReleases`, `latestRelease`, `downloadState`, `hasAssetFor` (Task 2); `PrelaunchNotice`, `PlatformCard` (Task 6).
@@ -2556,6 +2557,130 @@ import { hasAssetFor } from '@/lib/releases/state'
 ) : null}
 ```
 
+- [ ] **Step 1b: One-OS releases outside the Download page, and iPads (Ruling 32)**
+
+The feed can publish Windows before macOS or the reverse (Review Focus 2). Four places must say so instead of hiding it.
+
+`lib/platform.ts`: iPadOS 13 and later sends a "Macintosh" user agent and no Client Hints. A Mac has no touch screen, so more than one touch point means an iPad. Change the signature and the Mac line, and extend the doc comment:
+
+```ts
+/** Nhận hệ điều hành desktop từ user agent (ưu tiên Client Hints). iOS/iPadOS/Linux → null.
+ *  iPadOS 13+ tự xưng "Macintosh"; máy Mac không có màn cảm ứng, nên maxTouchPoints > 1 là iPad. */
+export function detectPlatform(userAgent: string, uaDataPlatform?: string, maxTouchPoints = 0): DetectedOs | null {
+```
+
+```ts
+  if (/Macintosh|Mac OS X/i.test(userAgent)) return maxTouchPoints > 1 ? null : 'macos'
+```
+
+`lib/usePlatform.ts`: pass the touch points: `cached = detectPlatform(nav.userAgent, nav.userAgentData?.platform, nav.maxTouchPoints)`.
+
+Append to `tests/unit/platform.test.ts` (write it first and watch it fail):
+
+```ts
+test('an iPad that presents itself as a Mac is not a desktop (iPadOS 13+)', () => {
+  const ua = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Safari/605.1.15'
+  expect(detectPlatform(ua, undefined, 5)).toBe(null)
+  expect(detectPlatform(ua, undefined, 0)).toBe('macos')
+  expect(detectPlatform(ua)).toBe('macos')
+})
+```
+
+`components/home/HeroCta.tsx`: invite "Tải về cho macOS" only when a macOS build exists. Change the import to `import { downloadState, hasAssetFor } from '@/lib/releases/state'`, add after the `windows` line:
+
+```tsx
+  // Chỉ mời "Tải về cho macOS" khi đã có bản macOS (feed có thể phát hành lệch hai nền tảng).
+  const macReady = os === 'macos' && hasAssetFor(assets, 'macos')
+```
+
+and in the last branch use `macReady` instead of `os === 'macos'`, both for the analytics id (`macReady ? 'hero_download_mac' : 'hero_download'`) and for the label (`{macReady ? labels.mac : labels.default}`).
+
+`components/home/DownloadBlock.tsx`: change the import to `import { downloadState, hasAssetFor } from '@/lib/releases/state'`, add `const td = useTranslations('download')` under `t`, and replace the whole non-prelaunch branch (`<>` … `</>`) with:
+
+```tsx
+          <>
+            <div className="mt-8 flex flex-col gap-4 md:mt-12 md:gap-6">
+              {/* Feed có thể phát hành lệch hai nền tảng: nói rõ bản nào sắp có, không để thẻ biến mất lặng lẽ. */}
+              {(['windows', 'macos'] as const)
+                .filter((os) => !hasAssetFor(assets, os))
+                .map((os) => (
+                  <Callout key={os} kind="info">
+                    {td(`missing.${os}`)}
+                  </Callout>
+                ))}
+              <div className="grid gap-4 md:grid-cols-3 md:gap-6">
+                {assets.map((asset) => (
+                  <PlatformCard key={asset.platform} asset={asset} locale={locale} location="home_block" />
+                ))}
+              </div>
+            </div>
+            {hasAssetFor(assets, 'macos') ? (
+              <div className="mx-auto mt-6 max-w-[860px] md:mt-7">
+                <Callout kind="info">{t('note')}</Callout>
+              </div>
+            ) : null}
+          </>
+```
+
+`scripts/sync-releases.mjs`: a release may carry only one of the two `.yml` files. Replace the two lines from `const [windows, mac] = await Promise.all(` to `const out = …` with:
+
+```js
+// Một nền tảng có thể phát hành trước: tệp thiếu (không có trong thư mục hoặc HTTP 404) ghi null, trang hiện "sắp có".
+async function readOptional(name) {
+  try {
+    return parse(await readSource(name))
+  } catch (err) {
+    if (err?.code === 'ENOENT' || /HTTP 404/.test(String(err?.message))) return null
+    throw err
+  }
+}
+const [windows, mac] = await Promise.all([readOptional('latest.yml'), readOptional('latest-mac.yml')])
+if (!windows && !mac) {
+  console.error(`Không thấy latest.yml lẫn latest-mac.yml ở ${from}`)
+  process.exit(1)
+}
+const out = { baseUrl, windows, mac }
+```
+
+and make the last log line print `chưa có` for a missing side: `(Windows ${out.windows?.version ?? 'chưa có'}, macOS ${out.mac?.version ?? 'chưa có'})`.
+
+`tests/unit/sync-releases.test.ts` (write it first and watch it fail; it runs the script in a temporary working directory, so the repo's `content/releases.json` is never touched):
+
+```ts
+import { spawnSync } from 'node:child_process'
+import { copyFileSync, mkdirSync, mkdtempSync, readFileSync } from 'node:fs'
+import { tmpdir } from 'node:os'
+import { join, resolve } from 'node:path'
+import { expect, test } from 'vitest'
+
+const SCRIPT = resolve('scripts/sync-releases.mjs')
+
+function run(files: string[]) {
+  const work = mkdtempSync(join(tmpdir(), 'sync-releases-'))
+  const feed = join(work, 'feed')
+  mkdirSync(join(work, 'content'))
+  mkdirSync(feed)
+  for (const f of files) copyFileSync(resolve('tests/fixtures', f), join(feed, f))
+  const res = spawnSync(process.execPath, [SCRIPT, '--from', feed, '--base', 'https://feed.example.test/desktop/'], { cwd: work, encoding: 'utf8' })
+  return { res, read: () => JSON.parse(readFileSync(join(work, 'content', 'releases.json'), 'utf8')) }
+}
+
+test('sync-releases keeps a Windows-only release and writes null for macOS', () => {
+  const { res, read } = run(['latest.yml'])
+  expect(res.status).toBe(0)
+  const out = read()
+  expect(out.baseUrl).toBe('https://feed.example.test/desktop/')
+  expect(out.windows.version).toBeTruthy()
+  expect(out.mac).toBeNull()
+})
+
+test('sync-releases stops when neither file exists', () => {
+  const { res } = run([])
+  expect(res.status).toBe(1)
+  expect(res.stderr).toContain('latest.yml')
+})
+```
+
 - [ ] **Step 2: Write the page**
 
 `app/[locale]/download/page.tsx`:
@@ -2575,7 +2700,7 @@ import { Link } from '@/i18n/navigation'
 import type { Locale } from '@/i18n/routing'
 import { formatDate } from '@/lib/format'
 import { getReleases, latestRelease } from '@/lib/releases'
-import { downloadState } from '@/lib/releases/state'
+import { downloadState, hasAssetFor } from '@/lib/releases/state'
 import { breadcrumb, softwareApplication } from '@/lib/seo/jsonld'
 import { buildMetadata } from '@/lib/seo/metadata'
 import { absoluteUrl } from '@/lib/seo/urls'
@@ -2617,7 +2742,8 @@ export default async function DownloadPage() {
             <>
               <PlatformGrid assets={assets} locale={locale} />
               <div className="mt-6">
-                <Callout kind="info">{t('chipNote')}</Callout>
+                {/* Ghi chú chọn chip chỉ có nghĩa khi đã có bản macOS. */}
+                {hasAssetFor(assets, 'macos') ? <Callout kind="info">{t('chipNote')}</Callout> : null}
               </div>
             </>
           )}
@@ -2671,7 +2797,9 @@ pnpm sync-releases --from tests/fixtures --base https://feed.example.test/deskto
 pnpm build && pnpm start -p 3200
 ```
 
-Open `/tai-ve`: three cards, SHA-512 behind "Kiểm tra toàn vẹn tệp". Stop the server and restore the snapshot: `git checkout content/releases.json`.
+Open `/tai-ve`: three cards, SHA-512 behind "Kiểm tra toàn vẹn tệp". Stop the server.
+
+Then the one-OS release (Ruling 32): set `"mac": null` in `content/releases.json` (a node one-liner), build and start again. On `/tai-ve` with a macOS user agent: the Windows card shows, the "Bản cho macOS sắp có" notice shows, the chip note does not. On `/` with a macOS user agent: the hero button reads "Tải EduFlow" (not "Tải về cho macOS") and leads to `/tai-ve`; the download block shows the macOS notice above the Windows card and no chip note. With an iPad user agent ("Macintosh" plus `hasTouch`, more than one touch point): the hero button reads "Tải EduFlow" and has no `download` attribute. Stop the server and restore the snapshot: `git checkout content/releases.json`.
 
 - [ ] **Step 4: Commit**
 
