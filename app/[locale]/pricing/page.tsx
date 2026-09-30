@@ -2,9 +2,10 @@ import type { Metadata } from 'next'
 import { getLocale, getTranslations } from 'next-intl/server'
 import { SectionHead } from '@/components/home/SectionHead'
 import { JsonLd } from '@/components/seo/JsonLd'
-import { ButtonLink, buttonClasses } from '@/components/ui/Button'
+import { ButtonAnchor, ButtonLink } from '@/components/ui/Button'
 import { Callout } from '@/components/ui/Callout'
 import { Container } from '@/components/ui/Container'
+import { CtaBand } from '@/components/ui/CtaBand'
 import { Icon } from '@/components/ui/Icon'
 import { Section } from '@/components/ui/Section'
 import { WindowFrame } from '@/components/ui/WindowFrame'
@@ -38,10 +39,7 @@ export default async function PricingPage() {
         <Container className="flex flex-col gap-5">
           <SectionHead as="h1" align="left" eyebrow={t('hero.eyebrow')} title={t('hero.h1')} lead={t('hero.lead')} />
           <div className="flex flex-col gap-3 sm:flex-row">
-            <a href={sales} className={buttonClasses('primary', 'lg')}>
-              <Icon name="mail" size={20} />
-              <span>{t('cta.sales')}</span>
-            </a>
+            <ButtonAnchor href={sales} size="lg" icon="mail">{t('cta.sales')}</ButtonAnchor>
             <ButtonLink href="/download" variant="secondary" size="lg" icon="download">{t('cta.download')}</ButtonLink>
           </div>
         </Container>
@@ -112,19 +110,7 @@ export default async function PricingPage() {
         </Container>
       </Section>
 
-      <section className="bg-brand-deep py-14 md:py-20">
-        <Container className="flex flex-col items-center gap-4 text-center">
-          <h2 className="font-display text-[28px] font-bold text-white md:text-[38px]">{t('cta.h2')}</h2>
-          <p className="max-w-[640px] text-[16px] leading-relaxed text-white/80">{t('cta.sub')}</p>
-          <div className="mt-2 flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
-            <a href={sales} className={buttonClasses('white', 'lg', false, 'w-full sm:w-auto')}>
-              <Icon name="mail" size={20} />
-              <span>{t('cta.sales')}</span>
-            </a>
-            <ButtonLink href="/download" variant="ghost-white" size="lg" className="w-full sm:w-auto">{t('cta.download')}</ButtonLink>
-          </div>
-        </Container>
-      </section>
+      <CtaBand title={t('cta.h2')} sub={t('cta.sub')} primary={{ externalHref: sales, label: t('cta.sales'), icon: 'mail' }} secondary={{ href: '/download', label: t('cta.download') }} />
       <JsonLd data={breadcrumb([{ name: tc('siteName'), url: absoluteUrl(locale, '/') }, { name: t('hero.eyebrow'), url: absoluteUrl(locale, '/pricing') }])} />
     </main>
   )
