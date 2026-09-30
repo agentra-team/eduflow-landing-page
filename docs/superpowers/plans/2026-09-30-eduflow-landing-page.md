@@ -3373,6 +3373,33 @@ and these two in `messages/en.json`:
 
 In the same pass fix three English wording points in `messages/en.json`: write "90- or 150-minute" and "45-minute" with hyphens wherever they modify a noun, and replace "Turn on the AI off switch" with "Switch AI off". Run: `pnpm test tests/unit/content.test.ts tests/unit/i18n.test.ts` → PASS.
 
+- [ ] **Step 2c: Page titles do not repeat the brand (Ruling 34)**
+
+The layout's title template appends " · EduFlow" to every page title except the home page (which passes `absoluteTitle`). Six titles already contain "EduFlow", so the browser tab reads, for example, "Tải EduFlow cho macOS và Windows · EduFlow". Append to `tests/unit/content.test.ts`:
+
+```ts
+test('page titles do not repeat the brand the title template adds', () => {
+  const bad = [...values(vi).map(([k, v]) => [`vi:${k}`, v] as const), ...values(en).map(([k, v]) => [`en:${k}`, v] as const)]
+    .filter(([k]) => k.endsWith('meta.title') && !k.endsWith(':home.meta.title'))
+    .filter(([, v]) => v.includes('EduFlow'))
+    .map(([k]) => k)
+  expect(bad).toEqual([])
+})
+```
+
+Run: `pnpm test tests/unit/content.test.ts` → FAIL listing six keys per language. Then set these values in `messages/vi.json` (and the same six in `docs/superpowers/plans/2026-09-30-eduflow-landing-page.messages.vi.json`, so the two stay identical) and in `messages/en.json`:
+
+| Key | vi | en |
+|---|---|---|
+| `assistant.meta.title` | Trợ lý AI trong ứng dụng | The in-app AI assistant |
+| `pricing.meta.title` | Cách tính phí | How pricing works |
+| `download.meta.title` | Tải về cho macOS và Windows | Download for macOS and Windows |
+| `install.meta.macos.title` | Cài đặt trên macOS | Install on macOS |
+| `install.meta.windows.title` | Cài đặt trên Windows | Install on Windows |
+| `contact.meta.title` | Liên hệ Agentra | Contact Agentra |
+
+Run: `pnpm test tests/unit/content.test.ts tests/unit/i18n.test.ts` → PASS.
+
 - [ ] **Step 3: Run**
 
 Run: `pnpm verify && pnpm build && pnpm start -p 3200`
