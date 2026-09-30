@@ -55,9 +55,10 @@ test('copy rules: no em-dash, no promised accreditation, no "AI replaces teacher
 
 test('English copy carries no untranslated Vietnamese', () => {
   const VIETNAMESE = /[ăâđêôơưàáảãạằắẳẵặầấẩẫậèéẻẽẹềếểễệìíỉĩịòóỏõọồốổỗộờớởỡợùúủũụừứửữựỳýỷỹỵ]/i
-  // Dấu chìm DÙNG THỬ, rồi sáu nhãn nút thật của app (giao diện tiếng Việt, AD-16) mà hướng dẫn cài bản tiếng Anh gọi đúng tên.
-  const ALLOWED = [
-    'DÙNG THỬ',
+  // Dấu chìm DÙNG THỬ được phép trong mọi chữ tiếng Anh, cả bộ chữ lẫn MDX.
+  const WATERMARK = ['DÙNG THỬ']
+  // Sáu nhãn nút thật của app (giao diện tiếng Việt, AD-16): chỉ hướng dẫn cài bản tiếng Anh (MDX) được gọi đúng tên, bộ chữ thì không.
+  const BUTTON_LABELS = [
     'Kích hoạt',
     'Dùng thử',
     'Tải về',
@@ -66,15 +67,15 @@ test('English copy carries no untranslated Vietnamese', () => {
     'Lưu trữ và sao lưu',
   ]
   // NFC trước khi so, cả văn bản lẫn nhãn cho phép: chữ Việt dạng tổ hợp (chữ cái + dấu rời) cũng bị bắt và khớp.
-  const clean = (s: string) =>
-    ALLOWED.reduce((acc, a) => acc.split(a.normalize('NFC')).join(''), s.normalize('NFC'))
+  const clean = (s: string, allowed: string[]) =>
+    allowed.reduce((acc, a) => acc.split(a.normalize('NFC')).join(''), s.normalize('NFC'))
   const mdx = mdxFiles().filter(isEnglish)
   expect.soft(mdx.length).toBe(MDX_ENGLISH)
-  const texts: Array<[string, string]> = [
-    ...values(en),
-    ...mdx.map((f) => [rel(f), readFileSync(f, 'utf8')] as [string, string]),
-  ]
-  const offenders = texts.filter(([, text]) => VIETNAMESE.test(clean(text))).map(([where]) => where)
+  const guides: Array<[string, string]> = mdx.map((f) => [rel(f), readFileSync(f, 'utf8')])
+  const offenders = [
+    ...values(en).filter(([, text]) => VIETNAMESE.test(clean(text, WATERMARK))),
+    ...guides.filter(([, text]) => VIETNAMESE.test(clean(text, [...WATERMARK, ...BUTTON_LABELS]))),
+  ].map(([where]) => where)
   expect(offenders).toEqual([])
 })
 

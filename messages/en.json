@@ -167,7 +167,7 @@
       "eyebrow": "Download",
       "h2": "Download EduFlow for your computer",
       "lead": "Version {version}, released {date}.",
-      "note": "Not sure which chip your Mac has? Open the Apple menu, choose About This Mac and read the Chip line.",
+      "note": "Not sure which chip your Mac has? Open the Apple menu, choose About This Mac and read the Chip line (Apple silicon) or the Processor line (Intel).",
       "btn": "Download",
       "guide": "Installation guide",
       "checksum": "Verify file integrity (SHA-512)",
@@ -711,7 +711,7 @@
     "badge": "This computer",
     "guideWindows": "How to install on Windows",
     "guideMac": "How to install on macOS",
-    "chipNote": "Not sure which chip your Mac has? Open the Apple menu and choose About This Mac: if the Chip line says Apple M, choose Apple Silicon; if it says Intel, choose Intel.",
+    "chipNote": "Not sure which chip your Mac has? Open the Apple menu and choose About This Mac: if the Chip line says Apple M, choose Apple Silicon; an Intel Mac shows a Processor line that says Intel, so choose Intel.",
     "missing": {
       "windows": "The Windows version is coming soon. The versions available now are listed below.",
       "macos": "The macOS version is coming soon. The versions available now are listed below."

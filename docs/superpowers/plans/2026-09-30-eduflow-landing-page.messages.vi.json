@@ -167,7 +167,7 @@
       "eyebrow": "Tải về",
       "h2": "Tải EduFlow cho máy tính của thầy cô",
       "lead": "Phiên bản {version}, phát hành {date}.",
-      "note": "Không chắc máy Mac dùng chip gì? Mở Apple menu, chọn Giới thiệu về máy Mac này và đọc dòng Chip.",
+      "note": "Không chắc máy Mac dùng chip gì? Mở Apple menu, chọn Giới thiệu về máy Mac này và đọc dòng Chip (máy Apple Silicon) hoặc Bộ xử lý (máy Intel).",
       "btn": "Tải về",
       "guide": "Hướng dẫn cài đặt",
       "checksum": "Kiểm tra toàn vẹn tệp (SHA-512)",
@@ -711,7 +711,7 @@
     "badge": "Máy đang dùng",
     "guideWindows": "Hướng dẫn cài trên Windows",
     "guideMac": "Hướng dẫn cài trên macOS",
-    "chipNote": "Không chắc máy Mac dùng chip gì? Mở Apple menu, chọn Giới thiệu về máy Mac này: dòng Chip ghi Apple M thì chọn Apple Silicon, ghi Intel thì chọn Intel.",
+    "chipNote": "Không chắc máy Mac dùng chip gì? Mở Apple menu, chọn Giới thiệu về máy Mac này: dòng Chip ghi Apple M thì chọn Apple Silicon; máy Intel có dòng Bộ xử lý ghi Intel, chọn Intel.",
     "missing": {
       "windows": "Bản cho Windows sắp có. Các bản đang có được liệt kê dưới đây.",
       "macos": "Bản cho macOS sắp có. Các bản đang có được liệt kê dưới đây."
