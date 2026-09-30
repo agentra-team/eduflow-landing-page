@@ -46,7 +46,10 @@ test('copy rules: no em-dash, no promised accreditation, no "AI replaces teacher
     ...values(en).map(([k, v]) => [`en:${k}`, v] as [string, string]),
     ...mdx.map((f) => [rel(f), readFileSync(f, 'utf8')] as [string, string]),
   ]
-  const hits = texts.flatMap(([where, text]) => FORBIDDEN.filter((r) => r.test(text)).map((r) => `${where} ${r}`))
+  // NFC trước khi so: cụm từ cấm viết dạng tổ hợp (chữ cái + dấu rời) cũng bị bắt.
+  const hits = texts.flatMap(([where, text]) =>
+    FORBIDDEN.filter((r) => r.test(text.normalize('NFC'))).map((r) => `${where} ${r}`),
+  )
   expect(hits).toEqual([])
 })
 
