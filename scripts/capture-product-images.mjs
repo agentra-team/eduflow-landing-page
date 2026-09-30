@@ -1,4 +1,4 @@
-// Chụp artboard app EduFlow (../eduflow-application/docs/thiet-ke/canvas/project/*.dc.html) thành WebP cho site.
+// Chụp artboard app EduFlow (../eduflow-application/docs/thiet-ke/canvas/project/*.dc.html) thành WebP cho site, không kèm thanh tiêu đề của app (WindowFrame vẽ khung).
 // Dùng: node scripts/capture-product-images.mjs [<thư mục artboard>] [--os macOS|Windows]
 import { mkdtemp } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
@@ -46,6 +46,9 @@ for (const shot of SHOTS) {
     const source = document.querySelector('script[data-dc-script]')?.textContent ?? ''
     const Comp = source ? new Function('DCLogic', `${source}\nreturn Component`)(window.DCLogic) : null
     const vals = Comp ? (new Comp({ os: osName }).renderVals?.() ?? {}) : {}
+    // Khung cửa sổ do WindowFrame của trang vẽ, nên bỏ thanh tiêu đề macOS và Windows của chính artboard.
+    vals.isMac = false
+    vals.isWin = false
     const lookup = (scope, path) => path.split('.').reduce((o, k) => (o == null ? undefined : o[k]), scope)
     const fill = (html, scope) =>
       html.replace(/\{\{\s*([\w$.]+)\s*\}\}/g, (m, p) => { const v = lookup(scope, p); return v === undefined ? m : String(v) })
