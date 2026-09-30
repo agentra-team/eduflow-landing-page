@@ -3401,6 +3401,18 @@ Run: `pnpm test tests/unit/content.test.ts` → FAIL listing six keys per langua
 
 Run: `pnpm test tests/unit/content.test.ts tests/unit/i18n.test.ts` → PASS.
 
+In the same pass (Ruling 36, spec §6.5 "trích dẫn mở được nguồn"), append one sentence to `assistant.how.c2.desc`: in `messages/vi.json` (and the companion copy deck) add ` Trích dẫn nào cũng mở được nguồn.` at the end; in `messages/en.json` add ` Every citation opens its source.` at the end.
+
+- [ ] **Step 2d: `Organization` JSON-LD on every page (Ruling 35, spec §9)**
+
+Spec §9 wants `Organization` on every page; today only the home page (and, from Task 12, the contact page) emit it. Render it once in the layout and remove the page-level copies, so each page carries exactly one:
+
+- `app/[locale]/layout.tsx`: import `JsonLd` from `@/components/seo/JsonLd` and `organization` from `@/lib/seo/jsonld`, and render `<JsonLd data={organization()} />` as the last child inside `<NextIntlClientProvider>`, after `<AnalyticsGate … />`.
+- `app/[locale]/page.tsx`: delete `<JsonLd data={organization()} />` and drop `organization` from its `@/lib/seo/jsonld` import.
+- `app/[locale]/contact/page.tsx`: delete `<JsonLd data={organization()} />` and drop `organization` from its import.
+
+Task 14's `pages.spec.ts` checks that every page has exactly one `Organization` block.
+
 - [ ] **Step 3: Run**
 
 Run: `pnpm verify && pnpm build && pnpm start -p 3200`
@@ -3506,7 +3518,9 @@ for (const [path, lang] of PAGES) {
     await expect(page.locator('link[rel="canonical"]')).toHaveCount(1)
     expect(await page.locator('link[rel="alternate"][hreflang]').count()).toBeGreaterThanOrEqual(3)
     await expect(page.locator('meta[property="og:image"]')).toHaveCount(1)
-    for (const s of await page.locator('script[type="application/ld+json"]').allTextContents()) JSON.parse(s)
+    const ld = (await page.locator('script[type="application/ld+json"]').allTextContents()).map((s) => JSON.parse(s))
+    // Spec §9: Organization trên mọi trang, đúng một khối (Ruling 35).
+    expect(ld.filter((d) => d['@type'] === 'Organization')).toHaveLength(1)
     await expect(page.locator('main#main')).toHaveCount(1)
     // Spec §13: không trang nào chứa ký tự gạch ngang dài (U+2014). Dựng ký tự bằng mã để tệp test không chứa nó.
     expect(await page.content()).not.toContain(String.fromCharCode(0x2014))
