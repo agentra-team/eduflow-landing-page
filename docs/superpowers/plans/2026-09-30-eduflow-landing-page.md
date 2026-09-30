@@ -3380,7 +3380,8 @@ The layout's title template appends " · EduFlow" to every page title except the
 ```ts
 test('page titles do not repeat the brand the title template adds', () => {
   const bad = [...values(vi).map(([k, v]) => [`vi:${k}`, v] as const), ...values(en).map(([k, v]) => [`en:${k}`, v] as const)]
-    .filter(([k]) => k.endsWith('meta.title') && !k.endsWith(':home.meta.title'))
+    // Khoá kiểu `…meta.title` và `install.meta.macos.title`; trang chủ dùng tiêu đề tuyệt đối nên được mang tên.
+    .filter(([k]) => /\bmeta\.(?:\w+\.)?title$/.test(k) && !k.endsWith(':home.meta.title'))
     .filter(([, v]) => v.includes('EduFlow'))
     .map(([k]) => k)
   expect(bad).toEqual([])
