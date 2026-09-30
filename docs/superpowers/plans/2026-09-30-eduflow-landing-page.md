@@ -6,7 +6,7 @@
 
 **Architecture:** Bootstrap from the finished `docops-landing-page` codebase (same stack, same patterns, already Lighthouse-clean), then replace brand, routes, copy and page content. Next.js 16 App Router with next-intl (`/` = vi, `/en/...` = en, localized slugs). Every page is a Server Component rendered statically per locale. Download data comes from `latest.yml` / `latest-mac.yml` (ISR 10 min) with a committed snapshot that starts empty, which puts the site in a pre-launch state until the first release. Pure logic in `lib/` is unit-tested with Vitest; pages are verified with Playwright in two modes (feed and pre-launch) and with Lighthouse CI.
 
-**Tech Stack:** Next.js 16.3.5, React 19.2.8, TypeScript ^5.9 (strict), pnpm 9.15.0, Tailwind CSS ^4.3.3, next-intl ^4.14.5, @next/mdx 16.3.5 + remark-gfm, yaml, @vercel/analytics ^2, @vercel/speed-insights ^2, @next/third-parties 16.3.5, Vitest ^5.0.1, @playwright/test ^1.63.0, @lhci/cli ^0.15.1, sharp.
+**Tech Stack:** Next.js 16.3.7 (16.3.5 at the start, raised for a security fix, Ruling 28), React 19.2.8, TypeScript ^5.9 (strict), pnpm 9.15.0, Tailwind CSS ^4.3.3, next-intl ^4.14.5, @next/mdx 16.3.7 + remark-gfm, yaml, @vercel/analytics ^2, @vercel/speed-insights ^2, @next/third-parties 16.3.7, Vitest ^5.0.1, @playwright/test ^1.63.0, @lhci/cli ^0.15.1, sharp.
 
 **Spec:** `docs/superpowers/specs/2026-09-30-eduflow-landing-page-design.md` (approved by the PO on 30/09/2026). Read it with this plan.
 
@@ -16,7 +16,8 @@
 
 ## Global Constraints
 
-- Node ≥ 22.18, pnpm 9.15.0, TypeScript `strict: true`, `typescript` pinned to `^5.9`. Versions of every dependency copied from DOCOPS `package.json` at the start of Task 2.
+- Node ≥ 22.18, pnpm 9.15.0, TypeScript `strict: true`, `typescript` pinned to `^5.9`. Versions of every dependency copied from DOCOPS `package.json` at the start of Task 2, except `next`, `@next/mdx`, `@next/third-parties` and `eslint-config-next`, pinned at `16.3.7` for the next/og security fix of 16.3.6 (Ruling 28).
+- `next.config.ts` sets `experimental: { optimisticRouting: false }` (Ruling 27). Next 16.3 predicts the route of the proxy-rewritten English slugs wrongly and re-requests them without end (vercel/next.js#96893). Keep the flag until that bug is fixed upstream, and remove it only when the Task 14 prefetch guard passes without it.
 - Locales `vi` (default, no prefix) and `en` (`/en` prefix); `localeDetection: false`; hreflang `x-default` = vi.
 - Localized slugs exactly as spec §5: `/pho-thong`↔`/en/k12`, `/hoc-phan`↔`/en/university-courses`, `/chuong-trinh`↔`/en/program-review`, `/tro-ly-ai`↔`/en/ai-assistant`, `/cach-tinh-phi`↔`/en/pricing`, `/minh-bach-ai`↔`/en/ai-transparency`, `/tai-ve`↔`/en/download`, `/huong-dan-cai-dat/[os]`↔`/en/install/[os]`, `/lien-he`↔`/en/contact`, `/chinh-sach-bao-mat`↔`/en/privacy`.
 - Feed: `DOWNLOAD_FEED_URL` (stable channel of the app, value pending OQ-L02), fetch timeout 5000 ms, ISR `revalidate: 600`, snapshot `content/releases.json` starts as `{ "baseUrl": null, "windows": null, "mac": null }`. No feed and no snapshot means the pre-launch state (spec §6.8, §7.3).
@@ -3377,6 +3378,20 @@ for (const path of ['/cach-tinh-phi', '/en/pricing']) {
     expect(text).not.toMatch(/\d[\d.,]*\s?(₫|VNĐ|VND|đ(?!\p{L}))/u)
   })
 }
+
+// Ruling 27: với optimisticRouting bật, trang 404 tiếng Anh gửi hàng trăm yêu cầu _rsc mỗi giây không dừng.
+// Trang bình thường dừng ở khoảng 13 tới 27 yêu cầu; `next dev` không tái hiện được lỗi này, nên test chạy trên bản build.
+for (const path of ['/', '/en', '/en/no-such-page']) {
+  test(`no runaway prefetch on ${path}`, async ({ page }) => {
+    let rsc = 0
+    page.on('request', (r) => {
+      if (new URL(r.url()).searchParams.has('_rsc')) rsc++
+    })
+    await page.goto(path)
+    await page.waitForTimeout(2000)
+    expect(rsc).toBeLessThan(60)
+  })
+}
 ```
 
 `tests/e2e/download.spec.ts` (feed mode):
@@ -3545,7 +3560,7 @@ Write `README.md` in Vietnamese with these sections: what the site is (one parag
 
 - [ ] **Step 2: Ops runbook**
 
-Write `docs/van-hanh.md` in Vietnamese: (1) releasing a new app version: upload installers and the `latest*.yml` files to the distribution server (the `.yml` files last), the site refreshes within 10 minutes, then run `pnpm sync-releases` and commit so the snapshot keeps up; (2) going live on a domain: set `NEXT_PUBLIC_SITE_URL` in Vercel production, add the domain to the project, point DNS to Vercel, check HTTPS, `sitemap.xml`, `robots.txt`, submit the sitemap in Search Console; (3) refreshing product images after an app redesign: `node scripts/capture-product-images.mjs`, check sizes, commit; (4) what to change when OQ-L04 (contact), OQ-L05 (disk space), OQ-L07 (provider and training statement) and OQ-L08 (product name) are answered, with the exact files (`lib/site.ts`, `messages/*.json` keys `download.req.*.disk`, a new transparency section, `common.siteName`).
+Write `docs/van-hanh.md` in Vietnamese: (1) releasing a new app version: upload installers and the `latest*.yml` files to the distribution server (the `.yml` files last), the site refreshes within 10 minutes, then run `pnpm sync-releases` and commit so the snapshot keeps up; (2) going live on a domain: set `NEXT_PUBLIC_SITE_URL` in Vercel production, add the domain to the project, point DNS to Vercel, check HTTPS, `sitemap.xml`, `robots.txt`, submit the sitemap in Search Console; (3) refreshing product images after an app redesign: `node scripts/capture-product-images.mjs`, check sizes, commit; (4) what to change when OQ-L04 (contact), OQ-L05 (disk space), OQ-L07 (provider and training statement) and OQ-L08 (product name) are answered, with the exact files (`lib/site.ts`, `messages/*.json` keys `download.req.*.disk`, a new transparency section, `common.siteName`); (5) upgrading Next: bump `next`, `@next/mdx`, `@next/third-parties` and `eslint-config-next` together, run both e2e modes, and keep `experimental.optimisticRouting: false` until vercel/next.js#96893 is fixed; remove it only when the "no runaway prefetch" tests pass without it.
 
 - [ ] **Step 3: Final run**
 
