@@ -43,7 +43,7 @@ export default async function LocaleLayout({ children, params }: { children: Rea
   const { locale } = await params
   if (!hasLocale(routing.locales, locale)) notFound()
   return (
-    <html lang={locale} className={`${sans.variable} ${display.variable} ${mono.variable}`}>
+    <html lang={locale} data-scroll-behavior="smooth" className={`${sans.variable} ${display.variable} ${mono.variable}`}>
       <body className="flex min-h-dvh flex-col bg-page font-sans text-ink antialiased">
         <NextIntlClientProvider>
           <SkipLink />

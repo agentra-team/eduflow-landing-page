@@ -16,8 +16,8 @@ export function Footer() {
   return (
     <footer className="border-t border-line bg-sidebar pt-14 pb-8 md:pt-16">
       <Container>
-        <div className="grid gap-10 md:grid-cols-[1.4fr_repeat(4,minmax(0,1fr))] md:gap-10">
-          <div className="flex max-w-[340px] flex-col gap-4">
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.4fr_repeat(4,minmax(0,1fr))]">
+          <div className="flex max-w-[340px] flex-col gap-4 sm:col-span-2 lg:col-span-1">
             <Link href="/" className="flex min-h-11 items-center gap-2.5 md:min-h-0">
               <LogoMark size={30} />
               <Wordmark />
