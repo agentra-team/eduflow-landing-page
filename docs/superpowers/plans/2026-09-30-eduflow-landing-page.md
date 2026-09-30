@@ -3429,10 +3429,83 @@ git commit -m "feat(seo): sitemap 24 URL, robots, manifest, icon EduFlow, ảnh 
 
 **Files:**
 - Copy then modify from DOCOPS: `playwright.config.ts`, `lighthouserc.json`, `.github/workflows/ci.yml`, `tests/e2e/consent.spec.ts`
-- Create: `scripts/serve-fixtures.mjs`, `tests/e2e/pages.spec.ts`, `tests/e2e/download.spec.ts`, `tests/e2e/prelaunch.spec.ts`, `tests/e2e/mobile.spec.ts`
+- Create: `scripts/serve-fixtures.mjs`, `tests/e2e/pages.spec.ts`, `tests/e2e/download.spec.ts`, `tests/e2e/prelaunch.spec.ts`, `tests/e2e/oneos.spec.ts`, `tests/e2e/mobile.spec.ts`
+- Modify (Ruling 39): `lib/releases/feed.ts`, `scripts/sync-releases.mjs`, `tests/unit/releases.test.ts`, `tests/unit/sync-releases.test.ts`
 
 **Interfaces:**
-- Produces: `E2E_MODE=feed|prelaunch` selects the specs; the feed mode builds against a local fixture feed on port 3300.
+- Produces: `E2E_MODE=feed|prelaunch|oneos` selects the specs; the feed mode builds against a local fixture feed on port 3300; the one-OS mode (Ruling 38) builds against a second fixture feed on port 3301 that answers 404 for `latest-mac.yml`.
+
+- [ ] **Step 0: A feed body that is not a feed never counts as a release (Ruling 39)**
+
+A 200 answer that is not a feed (an HTML error page from a CDN, an empty file) must not replace the snapshot: at runtime `resolveReleases` takes any non-null feed value over the snapshot, and `parseFeeds` then drops it, so a released OS would show "sắp có". The same body must stop `sync-releases`, not be written as `null`.
+
+In `tests/unit/releases.test.ts`, inside `describe('fetchFeed', …)`, add (write first, watch it fail):
+
+```ts
+  test('a 200 answer that is not a feed is treated as unavailable', async () => {
+    const url = 'https://feed.example.test/desktop/latest.yml'
+    expect(await fetchFeed(url, vi.fn().mockResolvedValue(new Response('<!doctype html><title>Oops</title>', { status: 200 })))).toBeNull()
+    expect(await fetchFeed(url, vi.fn().mockResolvedValue(new Response('', { status: 200 })))).toBeNull()
+    expect(await fetchFeed(url, vi.fn().mockResolvedValue(new Response('version: 1.0.0', { status: 200 })))).toBeNull()
+  })
+```
+
+In `lib/releases/feed.ts` replace `return parse(await res.text()) ?? null` with:
+
+```ts
+    const body: unknown = parse(await res.text())
+    // Trang lỗi HTML hay tệp rỗng trả 200 không phải feed: coi như không có, để snapshot còn thay được.
+    if (!body || typeof body !== 'object' || !Array.isArray((body as { files?: unknown }).files)) {
+      console.error('release_feed_unavailable', url, 'not a feed')
+      return null
+    }
+    return body
+```
+
+In `scripts/sync-releases.mjs`: give the HTTP error its status and test the status instead of the message, and reject a body that is not a feed. In `readSource` replace `if (!res.ok) throw new Error(`${baseUrl}${name}: HTTP ${res.status}`)` with:
+
+```js
+  if (!res.ok) throw Object.assign(new Error(`${baseUrl}${name}: HTTP ${res.status}`), { status: res.status })
+```
+
+and replace the body of `readOptional` with:
+
+```js
+  let text
+  try {
+    text = await readSource(name)
+  } catch (err) {
+    if (err?.code === 'ENOENT' || err?.status === 404) return null
+    throw err
+  }
+  const feed = parse(text)
+  // Tệp có mà không phải feed (rỗng, trang lỗi HTML): dừng, không ghi đè snapshot.
+  if (!feed || typeof feed !== 'object' || !Array.isArray(feed.files)) throw new Error(`${name} không phải feed của electron-updater`)
+  return feed
+```
+
+In `tests/unit/sync-releases.test.ts`: in the test 'sync-releases stops when neither file exists' add `expect(res.stderr).toContain('Không thấy')` and `expect(existsSync(join(work, 'content', 'releases.json'))).toBe(false)` (return `work` from `run` and import `existsSync`), and add these tests (write them first; the corrupt and empty cases fail on the Task 10 script):
+
+```ts
+test('sync-releases keeps a macOS-only release and writes null for Windows', () => {
+  const { res, read } = run(['latest-mac.yml'])
+  expect(res.status).toBe(0)
+  expect(read().windows).toBeNull()
+  expect(read().mac.version).toBeTruthy()
+})
+
+test('sync-releases stops on a file that is not a feed and writes nothing', () => {
+  for (const body of ['{', '', '<!doctype html><title>Oops</title>']) {
+    const { res, work } = run(['latest.yml'], { 'latest-mac.yml': body })
+    expect(res.status).not.toBe(0)
+    expect(existsSync(join(work, 'content', 'releases.json'))).toBe(false)
+  }
+})
+```
+
+(`run(files, extra = {})` copies the named fixtures, then writes each `extra` entry as a file with that content.)
+
+Run: `pnpm test tests/unit/releases.test.ts tests/unit/sync-releases.test.ts` → PASS after the changes.
 
 - [ ] **Step 1: Fixture feed server**
 
@@ -3440,14 +3513,16 @@ git commit -m "feat(seo): sitemap 24 URL, robots, manifest, icon EduFlow, ảnh 
 
 ```js
 // Máy chủ feed giả cho e2e: phục vụ tests/fixtures/*.yml tại http://localhost:3300/.
+// FIXTURE_MISSING=latest-mac.yml trả 404 cho tệp đó, để giả một bản phát hành chỉ có một hệ điều hành (Ruling 38).
 import { createServer } from 'node:http'
 import { readFile } from 'node:fs/promises'
 import { join } from 'node:path'
 
 const PORT = Number(process.env.FIXTURE_PORT ?? 3300)
+const MISSING = new Set((process.env.FIXTURE_MISSING ?? '').split(',').filter(Boolean))
 createServer(async (req, res) => {
   const name = decodeURIComponent((req.url ?? '/').split('?')[0].replace(/^\/+/, ''))
-  if (!/^latest(-mac)?\.yml$/.test(name)) {
+  if (!/^latest(-mac)?\.yml$/.test(name) || MISSING.has(name)) {
     res.writeHead(404).end('not found')
     return
   }
@@ -3465,11 +3540,13 @@ createServer(async (req, res) => {
 Copy DOCOPS `playwright.config.ts`, then set the projects to:
 
 ```ts
-const MODE = process.env.E2E_MODE === 'prelaunch' ? 'prelaunch' : 'feed'
-const MODE_IGNORE = MODE === 'prelaunch' ? /download\.spec\.ts/ : /prelaunch\.spec\.ts/
+const MODE = process.env.E2E_MODE === 'prelaunch' ? 'prelaunch' : process.env.E2E_MODE === 'oneos' ? 'oneos' : 'feed'
+// Mỗi chế độ chạy đúng spec của nó: feed → download, sắp phát hành → prelaunch, một hệ điều hành → oneos.
+const MODE_SPECS = { feed: /download\.spec\.ts/, prelaunch: /prelaunch\.spec\.ts/, oneos: /oneos\.spec\.ts/ }
+const MODE_IGNORE = Object.entries(MODE_SPECS).filter(([m]) => m !== MODE).map(([, re]) => re)
 
 projects: [
-  { name: 'desktop', use: { ...devices['Desktop Chrome'], viewport: { width: 1280, height: 800 } }, testIgnore: [/mobile\.spec\.ts/, MODE_IGNORE] },
+  { name: 'desktop', use: { ...devices['Desktop Chrome'], viewport: { width: 1280, height: 800 } }, testIgnore: [/mobile\.spec\.ts/, ...MODE_IGNORE] },
   // Spec §13 yêu cầu kiểm menu mobile ở 390 px, cũng là bề rộng artboard điện thoại trên canvas.
   { name: 'mobile', use: { ...devices['Pixel 7'], viewport: { width: 390, height: 844 } }, testMatch: /mobile\.spec\.ts/ },
 ],
@@ -3480,6 +3557,9 @@ and the web server to start the fixture feed in feed mode:
 ```ts
 webServer: [
   ...(MODE === 'feed' ? [{ command: 'node scripts/serve-fixtures.mjs', url: 'http://localhost:3300/latest.yml', reuseExistingServer: true }] : []),
+  ...(MODE === 'oneos'
+    ? [{ command: 'node scripts/serve-fixtures.mjs', url: 'http://localhost:3301/latest.yml', env: { FIXTURE_PORT: '3301', FIXTURE_MISSING: 'latest-mac.yml' }, reuseExistingServer: true }]
+    : []),
   { command: `pnpm start -p ${PORT}`, url: BASE_URL, reuseExistingServer: !process.env.CI, timeout: 60_000 },
 ],
 ```
@@ -3604,6 +3684,30 @@ test('home page download block links the same three installers', async ({ page }
 })
 ```
 
+`tests/e2e/oneos.spec.ts` (one-OS mode, Review Focus 2, Ruling 38; the build reads a feed where only Windows is published):
+
+```ts
+import { expect, test } from '@playwright/test'
+
+test.use({ userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36' })
+
+test('a Mac visitor on the Download page sees the Windows card and "macOS sắp có"', async ({ page }) => {
+  await page.goto('/tai-ve')
+  await expect(page.locator('main a[download]')).toHaveCount(1)
+  await expect(page.locator('main a[download]')).toHaveAttribute('href', /\.exe$/)
+  await expect(page.getByText('Bản cho macOS sắp có.')).toBeVisible()
+})
+
+test('the home page does not promise a macOS build and names the missing one', async ({ page }) => {
+  await page.goto('/')
+  const hero = page.locator('main section').first()
+  await expect(hero.locator('a[download]')).toHaveCount(0)
+  await expect(hero.getByRole('link', { name: 'Tải về cho macOS' })).toHaveCount(0)
+  await expect(page.locator('#tai-ve').getByText('Bản cho macOS sắp có.')).toBeVisible()
+  await expect(page.locator('#tai-ve a[download]')).toHaveCount(1)
+})
+```
+
 `tests/e2e/prelaunch.spec.ts` (pre-launch mode, Review Focus 1):
 
 ```ts
@@ -3700,6 +3804,12 @@ for (const path of VI_PAGES) {
         env: { DOWNLOAD_FEED_URL: 'http://localhost:3300/' }
       - run: pnpm e2e
         env: { CI: true, E2E_MODE: feed, DOWNLOAD_FEED_URL: 'http://localhost:3300/' }
+      # Chế độ một hệ điều hành: feed giả thứ hai trên cổng 3301 trả 404 cho latest-mac.yml (Ruling 38)
+      - run: FIXTURE_PORT=3301 FIXTURE_MISSING=latest-mac.yml node scripts/serve-fixtures.mjs &
+      - run: pnpm build
+        env: { DOWNLOAD_FEED_URL: 'http://localhost:3301/' }
+      - run: pnpm e2e
+        env: { CI: true, E2E_MODE: oneos, DOWNLOAD_FEED_URL: 'http://localhost:3301/' }
       # Chế độ sắp phát hành: không có feed, snapshot rỗng
       - run: pnpm build
         env: { DOWNLOAD_FEED_URL: '' }
@@ -3719,13 +3829,15 @@ Keep DOCOPS's `upload-artifact` step on failure.
 # consent.spec.ts cần một ID GA giả lúc build, đúng như env của ci.yml; thiếu nó thì GA không bao giờ nạp và test đỏ.
 export NEXT_PUBLIC_GA_MEASUREMENT_ID=G-TEST
 node scripts/serve-fixtures.mjs &
+FIXTURE_PORT=3301 FIXTURE_MISSING=latest-mac.yml node scripts/serve-fixtures.mjs &
 DOWNLOAD_FEED_URL=http://localhost:3300/ pnpm build && E2E_MODE=feed DOWNLOAD_FEED_URL=http://localhost:3300/ pnpm e2e
+DOWNLOAD_FEED_URL=http://localhost:3301/ pnpm build && E2E_MODE=oneos DOWNLOAD_FEED_URL=http://localhost:3301/ pnpm e2e
 DOWNLOAD_FEED_URL= pnpm build && E2E_MODE=prelaunch pnpm e2e
 NEXT_PUBLIC_SITE_URL=http://localhost:3200 DOWNLOAD_FEED_URL=http://localhost:3300/ pnpm build && pnpm lhci
-kill %1
+kill %1 %2
 ```
 
-Expected: every spec passes in both modes; Lighthouse mobile scores meet the thresholds (Performance ≥ 0.9, SEO 1, Accessibility ≥ 0.95, Best Practices ≥ 0.95). Fix each failure at its cause (typical: an image without `sizes`, low contrast on a muted line, a heading order skip).
+Expected: every spec passes in all three modes; Lighthouse mobile scores meet the thresholds (Performance ≥ 0.9, SEO 1, Accessibility ≥ 0.95, Best Practices ≥ 0.95). Fix each failure at its cause (typical: an image without `sizes`, low contrast on a muted line, a heading order skip).
 
 - [ ] **Step 6: Commit**
 
@@ -3754,9 +3866,11 @@ Write `docs/van-hanh.md` in Vietnamese: (1) releasing a new app version: upload 
 pnpm verify
 export NEXT_PUBLIC_GA_MEASUREMENT_ID=G-TEST
 node scripts/serve-fixtures.mjs &
+FIXTURE_PORT=3301 FIXTURE_MISSING=latest-mac.yml node scripts/serve-fixtures.mjs &
 DOWNLOAD_FEED_URL=http://localhost:3300/ pnpm build && E2E_MODE=feed DOWNLOAD_FEED_URL=http://localhost:3300/ pnpm e2e
+DOWNLOAD_FEED_URL=http://localhost:3301/ pnpm build && E2E_MODE=oneos DOWNLOAD_FEED_URL=http://localhost:3301/ pnpm e2e
 DOWNLOAD_FEED_URL= pnpm build && E2E_MODE=prelaunch pnpm e2e
-kill %1
+kill %1 %2
 git status
 ```
 
