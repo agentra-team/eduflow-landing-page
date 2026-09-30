@@ -11,7 +11,7 @@ const getServerSnapshot = () => null
 function getSnapshot(): DetectedOs | null {
   if (cached === undefined) {
     const nav = navigator as Navigator & { userAgentData?: { platform?: string } }
-    cached = detectPlatform(nav.userAgent, nav.userAgentData?.platform)
+    cached = detectPlatform(nav.userAgent, nav.userAgentData?.platform, nav.maxTouchPoints)
   }
   return cached
 }

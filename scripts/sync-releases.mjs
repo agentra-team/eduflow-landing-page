@@ -28,7 +28,20 @@ async function readSource(name) {
   return res.text()
 }
 
-const [windows, mac] = await Promise.all([readSource('latest.yml'), readSource('latest-mac.yml')])
-const out = { baseUrl, windows: parse(windows), mac: parse(mac) }
+// Một nền tảng có thể phát hành trước: tệp thiếu (không có trong thư mục hoặc HTTP 404) ghi null, trang hiện "sắp có".
+async function readOptional(name) {
+  try {
+    return parse(await readSource(name))
+  } catch (err) {
+    if (err?.code === 'ENOENT' || /HTTP 404/.test(String(err?.message))) return null
+    throw err
+  }
+}
+const [windows, mac] = await Promise.all([readOptional('latest.yml'), readOptional('latest-mac.yml')])
+if (!windows && !mac) {
+  console.error(`Không thấy latest.yml lẫn latest-mac.yml ở ${from}`)
+  process.exit(1)
+}
+const out = { baseUrl, windows, mac }
 await writeFile('content/releases.json', `${JSON.stringify(out, null, 2)}\n`)
-console.log(`content/releases.json ← ${from} (Windows ${out.windows?.version}, macOS ${out.mac?.version})`)
+console.log(`content/releases.json ← ${from} (Windows ${out.windows?.version ?? 'chưa có'}, macOS ${out.mac?.version ?? 'chưa có'})`)

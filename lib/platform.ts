@@ -8,8 +8,9 @@ export const PLATFORM_FOR_OS: Record<DetectedOs, Platform[]> = {
   macos: ['macos-arm64', 'macos-x64'],
 }
 
-/** Nhận hệ điều hành desktop từ user agent (ưu tiên Client Hints). iOS/iPadOS/Linux → null. */
-export function detectPlatform(userAgent: string, uaDataPlatform?: string): DetectedOs | null {
+/** Nhận hệ điều hành desktop từ user agent (ưu tiên Client Hints). iOS/iPadOS/Linux → null.
+ *  iPadOS 13+ tự xưng "Macintosh"; máy Mac không có màn cảm ứng, nên maxTouchPoints > 1 là iPad. */
+export function detectPlatform(userAgent: string, uaDataPlatform?: string, maxTouchPoints = 0): DetectedOs | null {
   if (uaDataPlatform) {
     if (uaDataPlatform === 'Windows') return 'windows'
     if (uaDataPlatform === 'macOS') return 'macos'
@@ -17,6 +18,6 @@ export function detectPlatform(userAgent: string, uaDataPlatform?: string): Dete
   }
   if (/iPhone|iPad|iPod/i.test(userAgent)) return null
   if (/Windows NT/i.test(userAgent)) return 'windows'
-  if (/Macintosh|Mac OS X/i.test(userAgent)) return 'macos'
+  if (/Macintosh|Mac OS X/i.test(userAgent)) return maxTouchPoints > 1 ? null : 'macos'
   return null
 }

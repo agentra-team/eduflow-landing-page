@@ -4,7 +4,7 @@ import { DownloadLink } from '@/components/download/DownloadLink'
 import { ButtonLink, buttonClasses } from '@/components/ui/Button'
 import { Icon } from '@/components/ui/Icon'
 import { track } from '@/lib/analytics'
-import { downloadState } from '@/lib/releases/state'
+import { downloadState, hasAssetFor } from '@/lib/releases/state'
 import type { ReleaseAsset } from '@/lib/releases/types'
 import { usePlatform } from '@/lib/usePlatform'
 
@@ -21,6 +21,8 @@ export function HeroCta({
 }) {
   const os = usePlatform()
   const windows = assets.find((a) => a.platform === 'windows-x64')
+  // Chỉ mời "Tải về cho macOS" khi đã có bản macOS (feed có thể phát hành lệch hai nền tảng).
+  const macReady = os === 'macos' && hasAssetFor(assets, 'macos')
   let primary: React.ReactNode
   if (downloadState(assets) === 'prelaunch') {
     primary = (
@@ -41,9 +43,9 @@ export function HeroCta({
         size="lg"
         icon="download"
         className="w-full sm:w-auto"
-        onClick={() => track({ name: 'cta_click', id: os === 'macos' ? 'hero_download_mac' : 'hero_download', location: 'hero' })}
+        onClick={() => track({ name: 'cta_click', id: macReady ? 'hero_download_mac' : 'hero_download', location: 'hero' })}
       >
-        {os === 'macos' ? labels.mac : labels.default}
+        {macReady ? labels.mac : labels.default}
       </ButtonLink>
     )
   }

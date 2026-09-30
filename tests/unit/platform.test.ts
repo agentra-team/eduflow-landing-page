@@ -20,3 +20,10 @@ test('maps OS to the platforms to show first', () => {
   expect(PLATFORM_FOR_OS.windows).toEqual(['windows-x64'])
   expect(PLATFORM_FOR_OS.macos).toEqual(['macos-arm64', 'macos-x64'])
 })
+
+test('an iPad that presents itself as a Mac is not a desktop (iPadOS 13+)', () => {
+  const ua = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Safari/605.1.15'
+  expect(detectPlatform(ua, undefined, 5)).toBe(null)
+  expect(detectPlatform(ua, undefined, 0)).toBe('macos')
+  expect(detectPlatform(ua)).toBe('macos')
+})
