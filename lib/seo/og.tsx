@@ -59,8 +59,8 @@ export async function ogImage({ title, subtitle, badge }: { title: string; subti
           ) : null}
         </div>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 22 }}>
-          <div style={{ fontSize: 66, fontWeight: 700, lineHeight: 1.12, letterSpacing: -1, maxWidth: 1000 }}>{title}</div>
-          <div style={{ fontSize: 30, fontWeight: 400, lineHeight: 1.4, color: 'rgba(255,255,255,0.8)', maxWidth: 960 }}>{subtitle}</div>
+          <div style={{ fontSize: title.length > 80 ? 56 : 66, fontWeight: 700, lineHeight: 1.12, letterSpacing: -1, maxWidth: 1000 }}>{title}</div>
+          <div style={{ fontSize: 30, fontWeight: 400, lineHeight: 1.4, color: 'rgba(255,255,255,0.8)', maxWidth: 1056 }}>{subtitle}</div>
         </div>
         <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 24, color: 'rgba(255,255,255,0.65)' }}>
           <span>{new URL(site.siteUrl()).host}</span>

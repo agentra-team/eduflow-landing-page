@@ -16,3 +16,10 @@ test('siteUrl strips trailing slashes and defaults to localhost', () => {
   vi.stubEnv('NEXT_PUBLIC_SITE_URL', '')
   expect(site.siteUrl()).toBe('http://localhost:3000')
 })
+
+test('siteUrl trims whitespace and treats a blank value as unset', () => {
+  vi.stubEnv('NEXT_PUBLIC_SITE_URL', '  https://eduflow.test/ \n')
+  expect(site.siteUrl()).toBe('https://eduflow.test')
+  vi.stubEnv('NEXT_PUBLIC_SITE_URL', '   ')
+  expect(site.siteUrl()).toBe('http://localhost:3000')
+})

@@ -14,7 +14,7 @@ export const site = {
   address: '',
   mapsUrl: 'https://www.google.com/maps/search/?api=1&query=Agentra+JSC+%C4%90%C3%A0+N%E1%BA%B5ng',
   siteUrl(): string {
-    return (process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000').replace(/\/+$/, '')
+    return ((process.env.NEXT_PUBLIC_SITE_URL ?? '').trim() || 'http://localhost:3000').replace(/\/+$/, '')
   },
   /** Feed kênh ổn định của app (OQ-L02). Chưa đặt → null → dùng snapshot; snapshot rỗng → trạng thái sắp phát hành. */
   feedUrl(): string | null {
