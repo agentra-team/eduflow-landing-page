@@ -25,7 +25,7 @@ pnpm dev                                # đọc lưu ý về AGENTS.md và CLAU
 | `pnpm start -p 3200` | Chạy bản đã dựng. Cổng 3200 là cổng của e2e và Lighthouse. |
 | `pnpm verify` | `next typegen` và `tsc --noEmit`, rồi `eslint .`, rồi `vitest run`. Phải xanh trước mỗi commit. Không gồm e2e và Lighthouse. |
 | `pnpm e2e` | Playwright trên bản đã dựng, ba chế độ chọn bằng `E2E_MODE` (mục sau). |
-| `pnpm lhci` | Lighthouse CI mobile cho 5 URL: `/`, `/pho-thong`, `/cach-tinh-phi`, `/tai-ve`, `/en`. |
+| `pnpm lhci` | Lighthouse CI mobile cho 5 URL: `/`, `/pho-thong`, `/cach-tinh-phi`, `/tai-ve`, `/en`. Cần Chrome cài sẵn trên máy. |
 | `pnpm sync-releases` | Ghi `content/releases.json` từ feed hoặc từ thư mục release. |
 | `pnpm capture-images` | Chụp lại ảnh sản phẩm từ canvas của app vào `public/images/product/`. |
 
@@ -99,20 +99,20 @@ git status --short content/releases.json   # không in gì nghĩa là đã khôi
 
 ### Lighthouse
 
-Lighthouse CI mobile đo 5 URL ở cổng 3200. Để canonical trùng địa chỉ đang đo, dựng lại với `NEXT_PUBLIC_SITE_URL=http://localhost:3200` trước khi đo (CI cũng làm vậy). Feed giả cổng 3300 phải đang chạy lúc dựng, cổng 3200 phải trống (`lhci` tự bật `pnpm start -p 3200`).
+Lighthouse CI mobile đo 5 URL ở cổng 3200 và cần Chrome cài sẵn trên máy (`lhci` tự tìm Chrome). Để canonical trùng địa chỉ đang đo, dựng lại với `NEXT_PUBLIC_SITE_URL=http://localhost:3200` trước khi đo (CI cũng làm vậy). Feed giả cổng 3300 phải đang chạy lúc dựng, cổng 3200 phải trống (`lhci` tự bật `pnpm start -p 3200`).
 
 ```bash
 NEXT_PUBLIC_SITE_URL=http://localhost:3200 DOWNLOAD_FEED_URL=http://localhost:3300/ pnpm build && pnpm lhci
 ```
 
-Ngưỡng ở `lighthouserc.json`: Accessibility ≥ 0,95, Best Practices ≥ 0,95 và SEO = 1 là **lỗi** (lệnh thoát khác 0, CI đỏ); Performance ≥ 0,9 chỉ là **cảnh báo**. Lý do: `next start` phục vụ HTTP/1.1 với 6 kết nối, nên Lighthouse mô phỏng chậm hơn thực tế. Đo qua `next start`, điểm Performance mobile là 0,84 tới 0,91; ước lượng Lantern ngoại tuyến với HTTP/2 (Vercel phục vụ HTTP/2) cho 0,94 tới 0,98. Vì vậy mục tiêu của spec (Performance từ 90 trở lên) được đo trên bản preview hoặc production của Vercel trước khi lên chính thức: `docs/van-hanh.md`, mục 6.
+Ngưỡng ở `lighthouserc.json`: Accessibility ≥ 0,95, Best Practices ≥ 0,95 và SEO = 1 là **lỗi** (lệnh thoát khác 0, CI đỏ); Performance ≥ 0,9 chỉ là **cảnh báo**. Lý do: `next start` phục vụ HTTP/1.1 với 6 kết nối, nên Lighthouse mô phỏng chậm hơn thực tế. Đo qua `next start`, điểm Performance mobile là 0,84 tới 0,91 qua các lần đo ở máy dev (lần gần nhất 0,86 tới 0,89); ước lượng Lantern ngoại tuyến với HTTP/2 (Vercel phục vụ HTTP/2) cho 0,94 tới 0,98. Vì vậy mục tiêu của spec (Performance từ 90 trở lên) được đo trên bản preview của Vercel trước khi lên chính thức, và ở preview **chỉ đọc Performance** (cùng Accessibility và Best Practices nếu muốn). **SEO 100 chỉ đọc trên URL production**: Vercel gửi `X-Robots-Tag: noindex` cho bản preview, và kiểm tra "Page isn't blocked from indexing" của Lighthouse đỏ vì header đó. Danh sách đầy đủ: `docs/van-hanh.md`, mục 6.
 
 ## CI
 
 `.github/workflows/ci.yml` chạy trên mỗi pull request và mỗi lần push `main`, một job tối đa 20 phút: `pnpm install --frozen-lockfile`, `pnpm verify`, cài Chromium, ghi snapshot rỗng vào `content/releases.json`, dựng và chạy e2e ba chế độ (hai feed giả chạy nền ở cổng 3300 và 3301), dựng lại với `NEXT_PUBLIC_SITE_URL=http://localhost:3200`, rồi `pnpm lhci`.
 
 - Báo cáo không đăng công khai. `lighthouserc.json` ghi báo cáo vào `.lighthouseci` trên đĩa (không dùng kho lưu trữ công cộng của Lighthouse). Bước cuối của workflow đăng artifact `ci-reports`, gồm thư mục `.lighthouseci` và `test-results` (vết Playwright của test hỏng), kể cả khi CI đỏ. Tải ở trang của lần chạy trên GitHub, mục Artifacts.
-- CI chưa chạy lần nào lúc viết tài liệu này. Danh sách kiểm cho lần chạy đầu tiên: `docs/van-hanh.md`, mục 7.
+- CI chưa chạy lần nào lúc viết tài liệu này. Danh sách kiểm cho lần chạy đầu tiên: `docs/van-hanh.md`, mục 7. Khi lần chạy đầu tiên xanh, xoá dòng này và mục 7 (cách xoá ở cuối mục 7).
 
 ## Cấu trúc thư mục
 
@@ -170,7 +170,7 @@ vitest.config.mts  playwright.config.ts  lighthouserc.json  .github/workflows/ci
 | Chính sách bảo mật | `content/privacy/vi.mdx` rồi `content/privacy/en.mdx` | Sửa cả `meta.updated`. PO và pháp chế rà soát trước khi công bố. |
 | Tên công ty, email, điện thoại, Zalo, địa chỉ, URL công ty | `lib/site.ts` | Điện thoại để trống thì thẻ Điện thoại và Zalo ẩn. Vài chỗ chép tay, xem `docs/van-hanh.md`, mục 4. |
 | Năm ở dòng bản quyền của footer | `components/site/Footer.tsx` (`year`) | Đang ghi cứng 2026, đổi tay mỗi năm. |
-| Slug trang | `i18n/routing.ts` (`pathnames`) | Cập nhật `tests/unit/i18n.test.ts` và danh sách URL ở `tests/e2e/pages.spec.ts`. |
+| Slug trang | `i18n/routing.ts` (`pathnames`) | Cập nhật mọi chỗ ghi cứng đường dẫn: `tests/unit/i18n.test.ts`; danh sách trang ở `tests/e2e/pages.spec.ts` và `tests/e2e/mobile.spec.ts`; đích của các link ở `tests/e2e/prelaunch.spec.ts`; 5 URL đo ở `lighthouserc.json`. Tìm chỗ còn lại bằng `grep -rn "<slug cũ>" tests lighthouserc.json`. |
 | Ảnh sản phẩm | `pnpm capture-images` | `docs/van-hanh.md`, mục 3. |
 
 Luật nội dung (spec mục 15): không hứa kết quả kiểm định hay xếp loại, cấp Chương trình là công cụ làm việc nội bộ chứ không phải báo cáo tự đánh giá; không nói AI thay giáo viên, luôn nói máy đề xuất, người duyệt và ký; chỉ dùng con số có trong đặc tả app; trang Cách tính phí không ghi giá; chưa nêu tên nhà cung cấp mô hình và chưa cam kết huấn luyện trên dữ liệu của trường (chờ OQ-L07); không dùng ký tự gạch ngang dài U+2014 ở bất cứ tệp nào; văn bản tiếng Việt gọi người đọc là "thầy cô". `tests/unit/content.test.ts` và test "không có giá" ở e2e kiểm một phần các luật này; riêng tên nhà cung cấp và cam kết huấn luyện chưa có test chặn, nên rà tay khi sửa chữ.
@@ -181,19 +181,19 @@ Luật nội dung (spec mục 15): không hứa kết quả kiểm định hay x
 
 | Biến | Bắt buộc | Ý nghĩa | Câu hỏi mở |
 |---|---|---|---|
-| `NEXT_PUBLIC_SITE_URL` | Có, ở production | Domain chính thức: `metadataBase`, canonical, hreflang, sitemap, robots, JSON-LD. Phải là URL `http://` hay `https://` đầy đủ, ví dụ `https://tên-miền`. Khoảng trắng hai đầu và dấu `/` ở cuối được bỏ khi đọc. Để trống ở máy dev thì là `http://localhost:3000`. **Build production (`VERCEL_ENV=production`) dừng** nếu giá trị trống, không phải URL `http(s)://` đầy đủ, hoặc trỏ về `localhost`, `127.0.0.1`, `[::1]`, `0.0.0.0` hay `*.localhost`. Build preview không bị chặn. | OQ-L01 |
+| `NEXT_PUBLIC_SITE_URL` | Production: bắt buộc. Preview: nên đặt | Domain chính thức: `metadataBase`, canonical, hreflang, sitemap, robots, JSON-LD. Phải là URL `http://` hay `https://` đầy đủ, ví dụ `https://tên-miền`. Khoảng trắng hai đầu và dấu `/` ở cuối được bỏ khi đọc. Để trống ở máy dev thì là `http://localhost:3000`. **Build production (`VERCEL_ENV=production`) dừng** nếu giá trị trống, không phải URL `http(s)://` đầy đủ, hoặc trỏ về `localhost`, `127.0.0.1`, `[::1]`, `0.0.0.0` hay `*.localhost`. Build preview không bị chặn khi để trống, nhưng canonical và sitemap của preview khi đó trỏ về `http://localhost:3000`; đặt cùng giá trị cho Preview để canonical của preview trỏ về domain chính thức. | OQ-L01 |
 | `DOWNLOAD_FEED_URL` | Có, từ khi có bản phát hành đầu tiên | Feed kênh ổn định mà electron-updater của app đọc: thư mục chứa `latest.yml` và `latest-mac.yml`; code tự thêm `/` ở cuối. Để trống thì dùng snapshot; snapshot rỗng thì là trạng thái sắp phát hành. | OQ-L02 |
 | `NEXT_PUBLIC_GA_MEASUREMENT_ID` | Không | Mã GA4 dạng `G-XXXX`. Thiếu thì không có GA4. GA4 chỉ nạp sau khi khách bấm "Đồng ý" ở thanh cookie. | OQ-L03 |
 | `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` | Không | Mã xác minh Google Search Console (chỉ giá trị `content` của thẻ meta). | |
 | `NEXT_PUBLIC_CONSENT_BANNER` | Không | `off` tắt thanh cookie (GA4 nạp ngay). Mọi giá trị khác, kể cả không đặt, là bật. Ở production giữ bật: chính sách bảo mật nói GA4 chỉ nạp sau "Đồng ý". | OQ-L03 |
 
-Các biến `NEXT_PUBLIC_*` được nhúng lúc dựng, và biến đặt trên Vercel chỉ áp cho bản deploy tạo sau đó: đổi giá trị xong phải deploy lại. Vercel tự đặt `VERCEL_ENV` và `NEXT_PUBLIC_VERCEL_ENV`; chỉ khi có biến thứ hai site mới nhúng script Vercel Analytics và Speed Insights (ở máy dev và CI không nhúng, để khỏi 404), nên giữ bật "Automatically expose System Environment Variables" của project.
+Các biến `NEXT_PUBLIC_*` được nhúng lúc dựng, và biến đặt trên Vercel chỉ áp cho bản deploy tạo sau đó: đổi giá trị xong phải deploy lại. Vercel tự đặt `VERCEL_ENV` và `NEXT_PUBLIC_VERCEL_ENV` khi công tắc "Enable access to System Environment Variables" (Settings, Environment Variables; trước đây ghi là "Automatically expose System Environment Variables") đang bật. Công tắc này cũng quyết định `VERCEL_ENV` có mặt lúc dựng hay không, mà chốt chặn production cần biến đó: tắt công tắc thì chốt chặn không chạy và build production vẫn qua với URL sai. Còn `NEXT_PUBLIC_VERCEL_ENV` quyết định site có nhúng script Vercel Analytics và Speed Insights (ở máy dev và CI không nhúng, để khỏi 404). Giữ công tắc bật.
 
 ## Cài đặt trên Vercel
 
-1. Import repo vào Vercel. Framework: Next.js. Node.js Version: 24.x (Settings, General). Lệnh dựng mặc định `next build`; pnpm được nhận từ `pnpm-lock.yaml`.
-2. Settings, Functions, Function Region: Singapore (`sin1`), để ISR tái tạo trang gần người dùng.
-3. Đặt các biến môi trường ở trên cho Production và Preview. Production bắt buộc có `NEXT_PUBLIC_SITE_URL`.
+1. Import repo vào Vercel. Framework: Next.js. Lệnh dựng mặc định `next build`; pnpm được nhận từ `pnpm-lock.yaml`. Node.js Version: 24.x ở Settings, Build and Deployment; nhưng `engines.node` trong `package.json` (hiện `>=22.18`) thắng ô cài đặt đó, nên kiểm bằng `node -v` trong log build, phải ra 24.x (log không in sẵn thì đặt tạm Build Command thành `node -v && pnpm build`, xem log rồi bỏ).
+2. Settings, Functions, Function Regions: Singapore (`sin1`), để ISR tái tạo trang gần người dùng.
+3. Đặt các biến môi trường ở trên cho Production và Preview. `NEXT_PUBLIC_SITE_URL` bắt buộc ở Production, và nên đặt cả ở Preview (cùng domain chính thức) để canonical của preview không trỏ về localhost. Giữ bật "Enable access to System Environment Variables" (Settings, Environment Variables).
 4. Push `main` thì ra production, mỗi pull request có một URL preview. Bật Web Analytics và Speed Insights trong dashboard của project.
 5. Gắn domain, phát hành bản app và danh sách kiểm trước production: `docs/van-hanh.md`.
 
@@ -209,7 +209,7 @@ Trạng thái này kết thúc như sau:
 1. Upload bản phát hành đầu tiên lên máy chủ phân phối, **hai tệp `latest.yml` và `latest-mac.yml` sau cùng**.
 2. Đặt `DOWNLOAD_FEED_URL` (OQ-L02) ở Vercel cho Production và Preview, rồi deploy lại.
 3. Trong tối đa 10 phút, trang Tải về và trang chủ chuyển sang trạng thái có bản phát hành.
-4. Chạy `pnpm sync-releases` rồi commit `content/releases.json`, để snapshot dự phòng có bản đầu tiên.
+4. Chạy `pnpm sync-releases`, rồi `pnpm verify`, rồi commit `content/releases.json`, để snapshot dự phòng có bản đầu tiên.
 
 Từ lúc snapshot chứa bản thật, chạy e2e `oneos` và `prelaunch` ở máy cần snapshot rỗng (xem "Kiểm thử e2e ba chế độ"). Site ra mắt cùng mốc GA của app (OQ-001 của app); trước GA, site có thể chạy ở trạng thái sắp phát hành. Quy trình phát hành các bản sau: `docs/van-hanh.md`, mục 1.
 

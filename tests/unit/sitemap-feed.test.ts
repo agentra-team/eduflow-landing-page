@@ -6,6 +6,9 @@ const feeds = vi.hoisted(() => ({ windows: null as unknown, mac: null as unknown
 vi.mock('@/lib/releases/feed', () => ({
   fetchFeed: async (url: string) => (url.endsWith('latest-mac.yml') ? feeds.mac : feeds.windows),
 }))
+// Snapshot rỗng cố định, không đọc content/releases.json thật: sau lần `pnpm sync-releases` đầu tiên snapshot có bản phát hành,
+// và ca "feed hỏng" sẽ lấy ngày từ snapshot nên đỏ dù code đúng.
+vi.mock('@/lib/releases/snapshot', () => ({ releaseSnapshot: { baseUrl: null, windows: null, mac: null } }))
 
 const DOWNLOAD_URLS = ['https://eduflow.test/tai-ve', 'https://eduflow.test/en/download']
 const RELEASE_DATE = '2026-10-01T02:00:00.000Z'

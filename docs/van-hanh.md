@@ -1,6 +1,6 @@
 # Vận hành landing page EduFlow
 
-Sổ tay cho đội dev và đội vận hành. Lệnh chạy từ gốc repo `eduflow-landing-page`. Cách chạy ở máy, cấu trúc thư mục, biến môi trường và e2e ba chế độ: `README.md`. Quyết định thiết kế: `docs/superpowers/specs/2026-09-30-eduflow-landing-page-design.md`. Số "Ruling" trong ngoặc là quyết định ghi trong sổ theo dõi của kế hoạch triển khai.
+Sổ tay cho đội dev và đội vận hành. Lệnh chạy từ gốc repo `eduflow-landing-page`. Cách chạy ở máy, cấu trúc thư mục, biến môi trường và e2e ba chế độ: `README.md`. Quyết định thiết kế: `docs/superpowers/specs/2026-09-30-eduflow-landing-page-design.md`. Số "Ruling" trong ngoặc là quyết định khi thực thi kế hoạch; lý do đầy đủ ở phụ lục "Các quyết định khi thực thi (Ruling)" cuối `docs/superpowers/plans/2026-09-30-eduflow-landing-page.md`.
 
 | Mục | Dùng khi |
 |---|---|
@@ -18,12 +18,14 @@ Trang Tải về, khối tải ở trang chủ, hai trang hướng dẫn cài, J
 
 1. Build và ký bộ cài theo quy trình phát hành của repo `eduflow-application`.
 2. Upload lên máy chủ phân phối: bộ cài (`.exe`, `.dmg`, `.zip`, `.blockmap`) trước, **hai tệp `latest.yml` và `latest-mac.yml` sau cùng**. Đúng thứ tự này thì feed không bao giờ trỏ tới tệp chưa có. Không sửa tay hai tệp `.yml`: để electron-builder ghi.
-3. Trong tối đa 10 phút, trang Tải về và khối tải ở trang chủ hiện phiên bản, dung lượng, ngày phát hành và SHA-512 mới. Site hiện đúng bản ghi trong hai tệp `.yml` của kênh ổn định, bất kể tỷ lệ rollout của app: rollout chỉ áp cho bản tự cập nhật trên máy đã cài, còn người tải mới luôn nhận bản ghi trong tệp mô tả (AS-L03).
-4. Chạy `pnpm verify`, rồi `pnpm sync-releases` và commit `content/releases.json` để snapshot (bản dự phòng khi feed lỗi) theo kịp:
+3. Trong tối đa 10 phút, trang Tải về và khối tải ở trang chủ hiện tên tệp, phiên bản, dung lượng và ngày phát hành mới. SHA-512 chỉ hiện ở trang Tải về (dòng gập "Kiểm tra toàn vẹn tệp (SHA-512)"), khối tải ở trang chủ không có. Site hiện đúng bản ghi trong hai tệp `.yml` của kênh ổn định, bất kể tỷ lệ rollout của app: rollout chỉ áp cho bản tự cập nhật trên máy đã cài, còn người tải mới luôn nhận bản ghi trong tệp mô tả (AS-L03).
+4. Chạy `pnpm sync-releases`, rồi `pnpm verify`, rồi commit `content/releases.json` để snapshot (bản dự phòng khi feed lỗi) theo kịp. `pnpm verify` phải chạy **sau** khi snapshot đã ghi, vì CI chạy đúng lệnh đó trên commit đã có snapshot thật:
 
 ```bash
+# Một trong hai cách đọc nguồn:
 DOWNLOAD_FEED_URL=<URL feed> pnpm sync-releases     # hoặc: pnpm sync-releases --from <URL feed>
 pnpm sync-releases --from <thư mục release> --base <URL gốc của feed>   # đọc từ thư mục thì cần --base
+pnpm verify                                         # sau khi snapshot đã ghi, trước khi commit
 git diff content/releases.json                      # kiểm phiên bản, tên tệp, releaseDate
 git add content/releases.json
 git commit -m "chore(releases): cập nhật snapshot lên bản <phiên bản>"
@@ -36,7 +38,7 @@ Lệnh in một dòng dạng `content/releases.json ← <nguồn> (Windows 1.0.0
 | `Thiếu nguồn` | Chưa đặt `DOWNLOAD_FEED_URL` và chưa truyền `--from`. |
 | `Không thấy latest.yml lẫn latest-mac.yml` | Cả hai tệp đều vắng (HTTP 404 hay không có trong thư mục). Không ghi gì. |
 | `<tên tệp> không phải feed của electron-updater` | Tệp có nhưng không hợp lệ (mục sau). Không ghi gì. |
-| `<tên tệp> không đọc được` | YAML hỏng. Không ghi gì. |
+| `<tên tệp> không đọc được` | YAML hỏng, kể cả trang lỗi HTML mà `yaml` không đọc nổi (mục sau). Không ghi gì. |
 | `HTTP 403` hay mã khác 404 | Chỉ 404 được coi là "chưa phát hành". Một số kho lưu trữ trả 403 cho tệp không tồn tại; lệnh dừng (an toàn). Đổi máy chủ để trả 404, hoặc đọc từ thư mục bằng `--from <thư mục release> --base <URL>`. |
 
 ### Tên tệp và phát hành lệch hệ điều hành
@@ -48,7 +50,9 @@ Lệnh in một dòng dạng `content/releases.json ← <nguồn> (Windows 1.0.0
 
 Một tệp `.yml` không phải feed hợp lệ thì **không bao giờ được coi là một bản phát hành**. Không hợp lệ gồm: trang lỗi HTML do CDN trả mã 200, tệp rỗng, YAML hỏng, thiếu chuỗi `version`, `files` rỗng, hoặc có mục `files` thiếu `url`, `sha512` (chuỗi) hay `size` (số).
 
-- Trên site: phần của hệ điều hành đó rơi về snapshot (còn bản cũ trong snapshot thì hiện bản cũ, snapshot rỗng thì hiện "sắp có") và Vercel ghi log `release_feed_unavailable <URL> not a feed`. Không lỗi build.
+- Trên site: phần của hệ điều hành đó rơi về snapshot (còn bản cũ trong snapshot thì hiện bản cũ, snapshot rỗng thì hiện "sắp có") và Vercel ghi một dòng `release_feed_unavailable <URL> <đuôi>`. Không lỗi build. Đuôi tuỳ nội dung tệp:
+  - `not a feed`: YAML đọc được nhưng không phải feed (tệp rỗng, thiếu `files`, trang HTML đơn giản như một dòng, hay nhiều dòng không có `: `).
+  - Thông báo lỗi YAML, ví dụ `Implicit keys need to be on a single line at line 1, column 1:` (nhiều dòng, trích dòng đầu tệp): `yaml` ném lỗi, thường vì trang lỗi HTML có `: ` ở một dòng sau dòng đầu (CSS, hay tiêu đề kiểu `Error: 404`).
 - Với `pnpm sync-releases`: lệnh dừng với mã 1 và **không ghi gì** vào `content/releases.json`.
 
 **Sau khi sửa tệp hỏng:** cache dữ liệu build của Next (`.next/cache/fetch-cache`, `revalidate` 600 giây, Vercel khôi phục giữa các lần deploy) có thể trả cho một lần build phản hồi cũ của feed trong khoảng 10 phút sau đó, nên một deploy ngay sau khi sửa vẫn có thể dựng từ tệp hỏng. Chờ 10 phút rồi mới deploy, hoặc redeploy không dùng build cache: Vercel, Deployments, menu của bản deploy mới nhất, Redeploy, bỏ chọn "Use existing Build Cache". Từ CLI thì `vercel deploy --prod --force` (lệnh này deploy từ thư mục cục bộ, nên chạy trên nhánh `main` đã cập nhật). Trang đã sinh tự hết hạn sau 10 phút, không cần làm gì thêm.
@@ -56,16 +60,16 @@ Một tệp `.yml` không phải feed hợp lệ thì **không bao giờ đượ
 ### Khi trang chưa đổi sau 10 phút
 
 1. Xem tệp thật: `curl -fsS <URL feed>latest.yml | head -20` (`<URL feed>` là giá trị của `DOWNLOAD_FEED_URL`, kết thúc bằng `/`). Phải có `version` và `files`, mỗi mục có `url`, `sha512`, `size`; `releaseDate` là chuỗi ISO 8601.
-2. Vercel, project, Logs: tìm `release_feed_unavailable`. Đuôi dòng là mã HTTP (404 cho hệ điều hành chưa phát hành là bình thường), `not a feed` (tệp có nhưng không hợp lệ) hoặc thông báo lỗi mạng và hết giờ.
+2. Vercel, project, Logs: tìm `release_feed_unavailable`. Đuôi dòng là mã HTTP (404 cho hệ điều hành chưa phát hành là bình thường), `not a feed` (tệp có nhưng không hợp lệ), thông báo lỗi YAML (ví dụ `Implicit keys need to be on a single line`, thường từ một trang lỗi HTML) hoặc thông báo lỗi mạng và hết giờ.
 3. Tên tệp trong feed phải khớp tệp thật trên máy chủ phân phối. Thiếu tệp thì khách gặp 404 ở máy chủ đó; site không biết điều này, và trang Tải về chỉ có dòng "Không tải được? Gửi email".
 
 ## 2. Lên domain
 
 Thay `<tên-miền>` bằng domain chính thức (OQ-L01).
 
-1. Kiểm bản preview trước: `/` và `/en`, trang Tải về tải được tệp thật, `/sitemap.xml`, `/robots.txt`. Build preview không bị chặn khi thiếu `NEXT_PUBLIC_SITE_URL`: canonical và sitemap của preview khi đó trỏ về `http://localhost:3000`, chấp nhận được cho preview.
-2. Vercel, Settings, Environment Variables, Production: `NEXT_PUBLIC_SITE_URL=https://<tên-miền>`.
-   - **Chốt chặn (Ruling 49).** Build production (`VERCEL_ENV=production`) dừng nếu giá trị trống, không phải URL `http://` hay `https://` đầy đủ, hoặc trỏ về `localhost`, `127.0.0.1`, `[::1]`, `0.0.0.0` hay `*.localhost`. Thông báo lỗi nêu OQ-L01. Dán nhầm `http://localhost:3000` hay chỉ `eduflow.vn` (thiếu `https://`) đều bị chặn.
+1. Kiểm bản preview trước: `/` và `/en`, trang Tải về tải được tệp thật, `/sitemap.xml`, `/robots.txt`. Build preview không bị chặn khi thiếu `NEXT_PUBLIC_SITE_URL`, nhưng khi đó canonical và sitemap của preview trỏ về `http://localhost:3000`; vì vậy nên đặt biến này cho cả Preview (bước 2).
+2. Vercel, Settings, Environment Variables: `NEXT_PUBLIC_SITE_URL=https://<tên-miền>` cho **Production** (bắt buộc) và cho **Preview** (nên đặt, để canonical của preview trỏ về domain chính thức).
+   - **Chốt chặn (Ruling 49).** Build production (`VERCEL_ENV=production`) dừng nếu giá trị trống, không phải URL `http://` hay `https://` đầy đủ, hoặc trỏ về `localhost`, `127.0.0.1`, `[::1]`, `0.0.0.0` hay `*.localhost`. Thông báo lỗi nêu OQ-L01. Dán nhầm `http://localhost:3000` hay chỉ `eduflow.vn` (thiếu `https://`) đều bị chặn. Chốt chặn dựa vào `VERCEL_ENV`, nên cần công tắc "Enable access to System Environment Variables" của Vercel bật (mục 6).
    - Khoảng trắng hai đầu và dấu `/` ở cuối được bỏ khi đọc (`site.siteUrl()`).
    - `NEXT_PUBLIC_*` được nhúng lúc dựng: đặt xong phải deploy lại.
 3. Settings, Domains: thêm `<tên-miền>` vào project. Vercel hiện bản ghi DNS cần đặt.
@@ -165,16 +169,7 @@ Sau đó dựng và chạy **cả ba chế độ e2e** (`feed`, `oneos`, `prelau
 
 - Cổng 3200 phải trống trước mỗi chế độ (ở máy cục bộ Playwright dùng lại máy chủ đang chạy). Kiểm: `lsof -nP -iTCP:3200 -sTCP:LISTEN`; có thì dừng đúng tiến trình đó theo PID.
 - `export NEXT_PUBLIC_GA_MEASUREMENT_ID=G-TEST` trước khi dựng, nếu không `consent.spec.ts` đỏ.
-- Sau khi `content/releases.json` có bản thật, `oneos` và `prelaunch` phải dựng từ snapshot rỗng; ghi trước, khôi phục sau:
-
-```bash
-SNAPSHOT_BACKUP=$(mktemp)
-cp content/releases.json "$SNAPSHOT_BACKUP"
-echo '{ "baseUrl": null, "windows": null, "mac": null }' > content/releases.json
-#   ... dựng và chạy e2e chế độ oneos, rồi prelaunch ...
-cp "$SNAPSHOT_BACKUP" content/releases.json && rm "$SNAPSHOT_BACKUP"
-git status --short content/releases.json   # không in gì nghĩa là đã khôi phục
-```
+- Sau khi `content/releases.json` có bản thật, `oneos` và `prelaunch` phải dựng từ snapshot rỗng: ghi snapshot rỗng trước lúc dựng, khôi phục sau khi chạy xong, bằng đúng đoạn lệnh ở `README.md`, mục "Kiểm thử e2e ba chế độ" (đoạn bắt đầu "Khi `content/releases.json` đã chứa bản thật"). Đó là bản duy nhất của đoạn lệnh; kiểm lại bằng `git status --short content/releases.json` sau cùng.
 
 **Cờ `experimental.optimisticRouting: false` ở `next.config.ts` (Ruling 27).** Next 16.3 đoán sai tuyến của các slug tiếng Anh do proxy viết lại (ví dụ `/en/k12` ứng với `/pho-thong`) và gửi lại yêu cầu `_rsc` không dứt; trang 404 tiếng Anh gửi hàng trăm yêu cầu mỗi giây (vercel/next.js#96893). `next dev` không tái hiện được, nên chỉ test trên bản dựng mới thấy. Giữ cờ cho tới khi lỗi này được sửa ở Next. Gỡ cờ chỉ khi ba test "no runaway prefetch" ở `tests/e2e/pages.spec.ts` (`/`, `/en`, `/en/no-such-page`, mỗi trang dưới 60 yêu cầu `_rsc` trong 2 giây) qua mà **không có** cờ: thử gỡ ở một nhánh riêng, dựng, chạy cả ba chế độ. Qua thì gỡ cờ cùng dòng chú thích; đỏ thì giữ cờ.
 
@@ -182,11 +177,14 @@ git status --short content/releases.json   # không in gì nghĩa là đã khôi
 
 Cấu hình:
 
-- [ ] `NEXT_PUBLIC_SITE_URL` ở Production là URL `https://` đầy đủ của domain chính thức (OQ-L01). Build production dừng nếu trống, thiếu `http(s)://`, hoặc trỏ về `localhost`, `127.0.0.1`, `[::1]`, `0.0.0.0`, `*.localhost` (Ruling 49). Sau khi deploy, canonical của trang chủ và `/pho-thong` phải mang domain đó.
+- [ ] `NEXT_PUBLIC_SITE_URL` là URL `https://` đầy đủ của domain chính thức (OQ-L01), đặt ở **Production** (bắt buộc) và ở **Preview** (nên đặt, để canonical của preview trỏ về domain chính thức). Build production dừng nếu trống, thiếu `http(s)://`, hoặc trỏ về `localhost`, `127.0.0.1`, `[::1]`, `0.0.0.0`, `*.localhost` (Ruling 49). Sau khi deploy, canonical của trang chủ và `/pho-thong` phải mang domain đó.
 - [ ] `DOWNLOAD_FEED_URL` (OQ-L02) đã đặt nếu đã có bản phát hành, và `content/releases.json` đã có snapshot thật (mục 1). Cố ý ra mắt ở trạng thái sắp phát hành thì để trống cả hai.
 - [ ] `NEXT_PUBLIC_CONSENT_BANNER` **giữ bật** ở production (không đặt, hoặc `on`). Chính sách bảo mật nói Google Analytics chỉ nạp sau khi khách bấm "Đồng ý"; tắt thanh cookie (`off`) thì GA4 nạp ngay, nên phải viết lại chính sách (`content/privacy/*.mdx`, mục 2 và 3) và được PO cùng pháp chế duyệt **trước** khi tắt.
 - [ ] `NEXT_PUBLIC_GA_MEASUREMENT_ID` (OQ-L03) đã đặt, hoặc cố ý để trống (không có GA4).
-- [ ] Web Analytics và Speed Insights đã bật ở dashboard Vercel; Function Region là `sin1`; Node.js Version là 24.x.
+- [ ] Web Analytics và Speed Insights đã bật ở dashboard Vercel.
+- [ ] Settings, Functions, **Function Regions** là Singapore (`sin1`).
+- [ ] Node.js: log build của lần deploy gần nhất có `node -v` ra 24.x. Ô Node.js Version nằm ở Settings, Build and Deployment, nhưng `engines.node` trong `package.json` (hiện `>=22.18`) **thắng** ô đó, nên chỉ tin log build. Log không in sẵn thì đặt tạm Build Command thành `node -v && pnpm build`, deploy, đọc log, rồi bỏ. Không ra 24.x thì chỉnh `engines.node`.
+- [ ] Settings, Environment Variables: **"Enable access to System Environment Variables"** đang bật (trước đây ghi là "Automatically expose System Environment Variables"). Công tắc này cấp `VERCEL_ENV` lúc dựng: không có biến đó thì chốt chặn production ở trên không chạy và build vẫn qua với URL sai. Nó cũng cấp `NEXT_PUBLIC_VERCEL_ENV`: không có biến đó thì site không nhúng Vercel Analytics và Speed Insights.
 
 Điều kiện mà chữ trên site đang dựa vào:
 
@@ -196,24 +194,27 @@ Cấu hình:
 
 Đo trên Vercel (Ruling 50):
 
-- [ ] **Lighthouse mobile trên URL preview hoặc production của Vercel, cho 5 URL: `/`, `/pho-thong`, `/cach-tinh-phi`, `/tai-ve`, `/en`. Yêu cầu Performance từ 90 trở lên** (mục tiêu của spec). CI chỉ *cảnh báo* Performance vì `next start` phục vụ HTTP/1.1 với 6 kết nối (đo ở đó 0,84 tới 0,91), còn ước lượng ngoại tuyến với HTTP/2 của Vercel cho 0,94 tới 0,98; con số thật chỉ có ở bước này. Cách đo: PageSpeed Insights (tab Mobile) hoặc Lighthouse trong Chrome DevTools (chế độ Mobile, hạng mục Performance); mỗi URL đo 3 lần, lấy lần giữa vì điểm dao động vài điểm. PageSpeed Insights chỉ đo được URL công khai; preview có Deployment Protection thì dùng DevTools khi đã đăng nhập Vercel. Accessibility ≥ 95, Best Practices ≥ 95 và SEO 100 đọc luôn từ lần đo này.
+- [ ] **Lighthouse mobile trên URL preview của Vercel, cho 5 URL: `/`, `/pho-thong`, `/cach-tinh-phi`, `/tai-ve`, `/en`. Trên preview đọc Performance, yêu cầu từ 90 trở lên** (mục tiêu của spec); đọc thêm Accessibility ≥ 95 và Best Practices ≥ 95 nếu muốn. **Không đọc SEO ở preview** (Ruling 55): Vercel gửi header `X-Robots-Tag: noindex` cho bản preview, và kiểm tra "Page isn't blocked from indexing" (`is-crawlable`) của Lighthouse đỏ vì header đó. SEO 100 chỉ đọc trên URL production (mục "Kiểm trên domain thật" bên dưới). CI chỉ *cảnh báo* Performance vì `next start` phục vụ HTTP/1.1 với 6 kết nối (đo ở đó 0,84 tới 0,91 qua các lần đo ở máy dev, lần gần nhất 0,86 tới 0,89), còn ước lượng ngoại tuyến với HTTP/2 của Vercel cho 0,94 tới 0,98; con số thật chỉ có ở bước này. Cách đo: PageSpeed Insights (tab Mobile) hoặc Lighthouse trong Chrome DevTools (chế độ Mobile, hạng mục Performance); mỗi URL đo 3 lần, lấy lần giữa vì điểm dao động vài điểm. PageSpeed Insights chỉ đo được URL công khai; preview có Deployment Protection thì dùng DevTools khi đã đăng nhập Vercel.
 - [ ] Trang nào dưới 90: phương án dự phòng là bớt trọng lượng font ở `app/[locale]/layout.tsx`: Fraunces chỉ còn `700`, và/hoặc gộp Be Vietnam Pro `600` vào `700` (đổi các class `font-semibold` thành `font-bold`). Việc này **đổi kiểu chữ so với canvas đã duyệt nên cần chủ thiết kế (PO) đồng ý trước**; đo lại sau khi đổi.
 
 Kiểm trên domain thật:
 
 - [ ] Các lệnh kiểm ở mục 2 (HTTPS, header bảo mật, `robots.txt`, `sitemap.xml` đủ 24 URL, canonical) đều đạt; Search Console đã xác minh và đã gửi sitemap.
+- [ ] **Lighthouse mobile trên URL production, cho cùng 5 URL: SEO phải là 100** (Ruling 55: chỉ đọc được ở đây, vì preview gửi `noindex`). Đọc luôn Performance ≥ 90, Accessibility ≥ 95 và Best Practices ≥ 95 để xác nhận lần cuối. Cách đo như ở mục "Đo trên Vercel" ở trên; PageSpeed Insights dùng được vì URL production công khai.
 - [ ] Duyệt tay cả hai ngôn ngữ: trang chủ, ba trang cấp, Trợ lý AI, Cách tính phí, Minh bạch AI, Liên hệ, hai trang cài đặt, Chính sách bảo mật. Trang Tải về đúng trạng thái (có bản phát hành, hoặc sắp phát hành); mỗi link tải mở được (HTTP 200).
 - [ ] Chính sách bảo mật và trang Minh bạch AI đã được PO và pháp chế rà soát (spec mục 6.11).
 - [ ] CI xanh trên `main` (mục 7).
 
 ## 7. Lần chạy CI đầu tiên
 
-Lúc viết tài liệu này (01/10/2026), `.github/workflows/ci.yml` chưa chạy lần nào. Ba chế độ e2e và `pnpm lhci` đã chạy ở máy dev, nhưng hai điều chỉ một lần chạy thật trên GitHub Actions (Ubuntu) mới chứng minh được: các bước chạy nền (`node scripts/serve-fixtures.mjs &`) còn sống ở các bước sau, và Lighthouse chạy được trên máy chủ đó. Sau lần chạy đầu của workflow `CI` (push `main` hoặc mở pull request), mở log của job `verify` và kiểm:
+Lúc viết tài liệu này (01/10/2026), `.github/workflows/ci.yml` chưa chạy lần nào; xoá mục 7 này sau khi lần chạy CI đầu tiên xanh (cách xoá ở cuối mục). Ba chế độ e2e và `pnpm lhci` đã chạy ở máy dev, nhưng hai điều chỉ một lần chạy thật trên GitHub Actions (Ubuntu) mới chứng minh được: các bước chạy nền (`node scripts/serve-fixtures.mjs &`) còn sống ở các bước sau, và Lighthouse chạy được trên máy chủ đó. Sau lần chạy đầu của workflow `CI` (push `main` hoặc mở pull request), mở log của job `verify` và kiểm:
 
-1. **Feed giả đã lên.** Log có dòng `fixture feed on http://localhost:3300/`, và bước `curl --retry 10 ...` ngay sau bước khởi động (chờ feed giả) xanh. Cổng 3301 cũng vậy: `fixture feed on http://localhost:3301/`. Vì feed giả chạy nền, dòng này có thể nằm cuối log của bước khởi động hoặc xen vào bước sau.
+1. **Feed giả đã sẵn sàng.** Cổng kiểm là bước `curl --retry 10 --retry-connrefused ...` ngay sau mỗi bước khởi động feed giả (cổng 3300, rồi cổng 3301): bước đó xanh nghĩa là feed giả đã trả `latest.yml`. Dòng `fixture feed on http://localhost:3300/` (và `.../3301/`) chỉ là bằng chứng phụ: feed giả chạy nền nên dòng này có thể nằm ở log của một bước khác, hoặc không hiện. Bước `curl` xanh mà thiếu dòng này thì không phải lỗi.
 2. **Chế độ feed không in dòng `release_feed_unavailable` nào**, ở cả bước `pnpm build` lẫn bước `pnpm e2e` (ở bước e2e, lỗi của máy chủ `pnpm start` hiện với tiền tố `[WebServer]`). Có dòng này nghĩa là build hay máy chủ không đọc được feed giả.
 3. **Chế độ một hệ điều hành chỉ in đúng một loại dòng:** `release_feed_unavailable http://localhost:3301/latest-mac.yml 404`. Dòng nào nhắc `latest.yml` là sai.
-4. **Bước `pnpm lhci` thoát với mã 0**, chỉ có cảnh báo (warning) `categories.performance warning for minScore assertion` ở một số URL (điểm khoảng 0,86 tới 0,89 ở máy dev). Lỗi ở `accessibility`, `best-practices` hay `seo` làm bước đỏ, và phải sửa ở nguyên nhân chứ không hạ ngưỡng. Cảnh báo Performance là bình thường: lý do ở mục 6 (Ruling 50). Dòng `GitHub token not set` trong phần healthcheck của lhci cũng bình thường: workflow không dùng token GitHub cho lhci.
+4. **Bước `pnpm lhci` thoát với mã 0**, chỉ có cảnh báo (warning) `categories.performance warning for minScore assertion` ở một số URL (0,84 tới 0,91 qua các lần đo ở máy dev, lần gần nhất 0,86 tới 0,89). Lỗi ở `accessibility`, `best-practices` hay `seo` làm bước đỏ, và phải sửa ở nguyên nhân chứ không hạ ngưỡng. Cảnh báo Performance là bình thường: lý do ở mục 6 (Ruling 50). Dòng `GitHub token not set` trong phần healthcheck của lhci cũng bình thường: workflow không dùng token GitHub cho lhci.
 5. **Báo cáo.** CI không đăng báo cáo lên kho công cộng (Ruling 53): `lighthouserc.json` ghi vào `.lighthouseci` trên đĩa. Cuối trang của lần chạy, mục Artifacts có `ci-reports`, chứa `.lighthouseci` (báo cáo Lighthouse của 5 URL, kể cả lần chỉ cảnh báo) và `test-results` (vết Playwright khi có test hỏng). Bước đăng artifact chạy cả khi CI đỏ.
 
 Có mục nào sai thì sửa `.github/workflows/ci.yml` hoặc `scripts/serve-fixtures.mjs` thay vì bỏ bước kiểm. Ghi kết quả lần chạy đầu vào pull request.
+
+**Khi lần chạy CI đầu tiên xanh và cả năm mục trên đều đạt, xoá mục 7 này.** Xoá cùng lúc: hàng 7 của bảng đầu tài liệu; chữ "(mục 7)" ở ô "CI xanh trên `main`" của mục 6; và các chỗ nhắc mục này ở `README.md` (dòng "CI chưa chạy lần nào" cuối mục "CI", cụm "lần chạy CI đầu tiên" ở danh sách liên kết đầu trang).
