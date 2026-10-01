@@ -1,4 +1,5 @@
 import type { Locale } from '@/i18n/routing'
+import { latestRelease } from '@/lib/releases'
 import type { ReleaseAsset } from '@/lib/releases/types'
 import { site } from '@/lib/site'
 
@@ -19,7 +20,7 @@ export function organization(locale: Locale): JsonLd {
 }
 
 export function softwareApplication(assets: ReleaseAsset[], locale: Locale, downloadPageUrl: string): JsonLd {
-  const newest = [...assets].sort((a, b) => b.releaseDate.localeCompare(a.releaseDate))[0]
+  const latest = latestRelease(assets)
   // Không khai `offers`: EduFlow không công bố giá (spec §9).
   return {
     '@context': CONTEXT,
@@ -30,7 +31,8 @@ export function softwareApplication(assets: ReleaseAsset[], locale: Locale, down
     inLanguage: locale,
     downloadUrl: downloadPageUrl,
     publisher: { '@type': 'Organization', name: site.company, url: site.companyUrl },
-    ...(newest ? { softwareVersion: newest.version, datePublished: newest.releaseDate.slice(0, 10) } : {}),
+    // Không rõ ngày phát hành ('') thì bỏ datePublished thay vì khai chuỗi rỗng.
+    ...(latest ? { softwareVersion: latest.version, ...(latest.releaseDate ? { datePublished: latest.releaseDate.slice(0, 10) } : {}) } : {}),
   }
 }
 

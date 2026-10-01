@@ -36,9 +36,18 @@ export function findAsset(assets: ReleaseAsset[], platform: Platform): ReleaseAs
   return assets.find((a) => a.platform === platform)
 }
 
-/** Phiên bản và ngày mới nhất trong các tệp (Windows và macOS có thể phát hành lệch nhau). */
+/** Thời điểm phát hành của một tệp; '' (không rõ ngày) xếp sau mọi ngày thật. */
+const releasedAt = (asset: ReleaseAsset) => {
+  const time = Date.parse(asset.releaseDate)
+  return Number.isNaN(time) ? -Infinity : time
+}
+
+/**
+ * Phiên bản và ngày mới nhất trong các tệp (Windows và macOS có thể phát hành lệch nhau). So theo thời điểm chứ không theo chữ, vì ngày hợp lệ
+ * là mọi chuỗi Date.parse hiểu (parse.ts), không chỉ dạng ISO UTC. Hoà, hoặc không tệp nào có ngày, thì lấy tệp đứng trước.
+ */
 export function latestRelease(assets: ReleaseAsset[]): { version: string; releaseDate: string } | null {
   if (assets.length === 0) return null
-  const newest = [...assets].sort((a, b) => b.releaseDate.localeCompare(a.releaseDate))[0]
+  const newest = assets.reduce((best, asset) => (releasedAt(asset) > releasedAt(best) ? asset : best))
   return { version: newest.version, releaseDate: newest.releaseDate }
 }

@@ -5,6 +5,11 @@ export const routing = defineRouting({
   defaultLocale: 'vi',
   localePrefix: 'as-needed',
   localeDetection: false,
+  // next-intl 4 mặc định đặt cookie NEXT_LOCALE (khi Accept-Language lệch với trang) và header Link hreflang. Chính sách bảo mật nói chỉ Google
+  // Analytics đặt cookie, và chỉ sau khi đồng ý; cookie ngôn ngữ lại không bao giờ được đọc vì localeDetection tắt. Header Link lấy host của yêu cầu
+  // nên lệch với thẻ head (theo NEXT_PUBLIC_SITE_URL) trên các bí danh *.vercel.app. hreflang đã có ở thẻ head và sitemap.
+  localeCookie: false,
+  alternateLinks: false,
   pathnames: {
     '/': '/',
     '/k12': { vi: '/pho-thong', en: '/k12' },

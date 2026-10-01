@@ -25,7 +25,7 @@ pnpm dev                                # đọc lưu ý về AGENTS.md và CLAU
 | `pnpm start -p 3200` | Chạy bản đã dựng. Cổng 3200 là cổng của e2e và Lighthouse. |
 | `pnpm verify` | `next typegen` và `tsc --noEmit`, rồi `eslint .`, rồi `vitest run`. Phải xanh trước mỗi commit. Không gồm e2e và Lighthouse. |
 | `pnpm e2e` | Playwright trên bản đã dựng, ba chế độ chọn bằng `E2E_MODE` (mục sau). |
-| `pnpm lhci` | Lighthouse CI mobile cho 5 URL: `/`, `/pho-thong`, `/cach-tinh-phi`, `/tai-ve`, `/en`. Cần Chrome cài sẵn trên máy. |
+| `pnpm lhci` | Lighthouse CI mobile cho 8 URL, trang chủ, một trang cấp, Cách tính phí và Tải về ở cả hai ngôn ngữ: `/`, `/pho-thong`, `/cach-tinh-phi`, `/tai-ve`, `/en`, `/en/k12`, `/en/pricing`, `/en/download`. Cần Chrome cài sẵn trên máy. |
 | `pnpm sync-releases` | Ghi `content/releases.json` từ feed hoặc từ thư mục release. |
 | `pnpm capture-images` | Chụp lại ảnh sản phẩm từ canvas của app vào `public/images/product/`. |
 
@@ -99,13 +99,13 @@ git status --short content/releases.json   # không in gì nghĩa là đã khôi
 
 ### Lighthouse
 
-Lighthouse CI mobile đo 5 URL ở cổng 3200 và cần Chrome cài sẵn trên máy (`lhci` tự tìm Chrome). Để canonical trùng địa chỉ đang đo, dựng lại với `NEXT_PUBLIC_SITE_URL=http://localhost:3200` trước khi đo (CI cũng làm vậy). Feed giả cổng 3300 phải đang chạy lúc dựng, cổng 3200 phải trống (`lhci` tự bật `pnpm start -p 3200`).
+Lighthouse CI mobile đo 8 URL ở cổng 3200 (bốn trang tiếng Việt và bốn trang tiếng Anh tương ứng, spec mục 13) và cần Chrome cài sẵn trên máy (`lhci` tự tìm Chrome). Để canonical trùng địa chỉ đang đo, dựng lại với `NEXT_PUBLIC_SITE_URL=http://localhost:3200` trước khi đo (CI cũng làm vậy). Feed giả cổng 3300 phải đang chạy lúc dựng, cổng 3200 phải trống (`lhci` tự bật `pnpm start -p 3200`).
 
 ```bash
 NEXT_PUBLIC_SITE_URL=http://localhost:3200 DOWNLOAD_FEED_URL=http://localhost:3300/ pnpm build && pnpm lhci
 ```
 
-Ngưỡng ở `lighthouserc.json`: Accessibility ≥ 0,95, Best Practices ≥ 0,95 và SEO = 1 là **lỗi** (lệnh thoát khác 0, CI đỏ); Performance ≥ 0,9 chỉ là **cảnh báo**. Lý do: `next start` phục vụ HTTP/1.1 với 6 kết nối, nên Lighthouse mô phỏng chậm hơn thực tế. Đo qua `next start`, điểm Performance mobile là 0,84 tới 0,91 qua các lần đo ở máy dev (lần gần nhất 0,86 tới 0,89); ước lượng Lantern ngoại tuyến với HTTP/2 (Vercel phục vụ HTTP/2) cho 0,94 tới 0,98. Vì vậy mục tiêu của spec (Performance từ 90 trở lên) được đo trên bản preview của Vercel trước khi lên chính thức, và ở preview **chỉ đọc Performance** (cùng Accessibility và Best Practices nếu muốn). **SEO 100 chỉ đọc trên URL production**: Vercel gửi `X-Robots-Tag: noindex` cho bản preview, và kiểm tra "Page isn't blocked from indexing" của Lighthouse đỏ vì header đó. Danh sách đầy đủ: `docs/van-hanh.md`, mục 6.
+Ngưỡng ở `lighthouserc.json`: Accessibility ≥ 0,95, Best Practices ≥ 0,95 và SEO = 1 là **lỗi** (lệnh thoát khác 0, CI đỏ); Performance ≥ 0,9 chỉ là **cảnh báo**. Lý do: `next start` phục vụ HTTP/1.1 với 6 kết nối, nên Lighthouse mô phỏng chậm hơn thực tế. Đo qua `next start`, điểm Performance mobile là 0,84 tới 0,99 qua các lần đo ở máy dev (lần gần nhất, ở 8 URL: 0,86 tới 0,99); ước lượng Lantern ngoại tuyến với HTTP/2 (Vercel phục vụ HTTP/2) cho 0,94 tới 0,98. Vì vậy mục tiêu của spec (Performance từ 90 trở lên) được đo trên bản preview của Vercel trước khi lên chính thức, và ở preview **chỉ đọc Performance** (cùng Accessibility và Best Practices nếu muốn). **SEO 100 chỉ đọc trên URL production**: Vercel gửi `X-Robots-Tag: noindex` cho bản preview, và kiểm tra "Page isn't blocked from indexing" của Lighthouse đỏ vì header đó. Danh sách đầy đủ: `docs/van-hanh.md`, mục 6.
 
 ## CI
 
@@ -170,10 +170,10 @@ vitest.config.mts  playwright.config.ts  lighthouserc.json  .github/workflows/ci
 | Chính sách bảo mật | `content/privacy/vi.mdx` rồi `content/privacy/en.mdx` | Sửa cả `meta.updated`. PO và pháp chế rà soát trước khi công bố. |
 | Tên công ty, email, điện thoại, Zalo, địa chỉ, URL công ty | `lib/site.ts` | Điện thoại để trống thì thẻ Điện thoại và Zalo ẩn. Vài chỗ chép tay, xem `docs/van-hanh.md`, mục 4. |
 | Năm ở dòng bản quyền của footer | `components/site/Footer.tsx` (`year`) | Đang ghi cứng 2026, đổi tay mỗi năm. |
-| Slug trang | `i18n/routing.ts` (`pathnames`) | Cập nhật mọi chỗ ghi cứng đường dẫn: `tests/unit/i18n.test.ts`; danh sách trang ở `tests/e2e/pages.spec.ts` và `tests/e2e/mobile.spec.ts`; đích của các link ở `tests/e2e/prelaunch.spec.ts`; 5 URL đo ở `lighthouserc.json`. Tìm chỗ còn lại bằng `grep -rn "<slug cũ>" tests lighthouserc.json`. |
+| Slug trang | `i18n/routing.ts` (`pathnames`) | Cập nhật mọi chỗ ghi cứng đường dẫn: `tests/unit/i18n.test.ts`; danh sách trang ở `tests/e2e/pages.spec.ts` và `tests/e2e/mobile.spec.ts`; đích của các link ở `tests/e2e/prelaunch.spec.ts`; 8 URL đo ở `lighthouserc.json` (slug tiếng Việt và tiếng Anh của bốn trang được đo). Tìm chỗ còn lại bằng `grep -rn "<slug cũ>" tests lighthouserc.json`. |
 | Ảnh sản phẩm | `pnpm capture-images` | `docs/van-hanh.md`, mục 3. |
 
-Luật nội dung (spec mục 15): không hứa kết quả kiểm định hay xếp loại, cấp Chương trình là công cụ làm việc nội bộ chứ không phải báo cáo tự đánh giá; không nói AI thay giáo viên, luôn nói máy đề xuất, người duyệt và ký; chỉ dùng con số có trong đặc tả app; trang Cách tính phí không ghi giá; chưa nêu tên nhà cung cấp mô hình và chưa cam kết huấn luyện trên dữ liệu của trường (chờ OQ-L07); không dùng ký tự gạch ngang dài U+2014 ở bất cứ tệp nào; văn bản tiếng Việt gọi người đọc là "thầy cô". `tests/unit/content.test.ts` và test "không có giá" ở e2e kiểm một phần các luật này; riêng tên nhà cung cấp và cam kết huấn luyện chưa có test chặn, nên rà tay khi sửa chữ.
+Luật nội dung (spec mục 15): không hứa kết quả kiểm định hay xếp loại, cấp Chương trình là công cụ làm việc nội bộ chứ không phải báo cáo tự đánh giá; không nói AI thay giáo viên, luôn nói máy đề xuất, người duyệt và ký; chỉ dùng con số có trong đặc tả app; trang Cách tính phí không ghi giá; chưa nêu tên nhà cung cấp mô hình và chưa cam kết huấn luyện trên dữ liệu của trường (chờ OQ-L07); không dùng ký tự gạch ngang dài U+2014 ở bất cứ tệp nào; văn bản tiếng Việt gọi người đọc là "thầy cô". `tests/unit/content.test.ts` chặn gạch ngang dài, "đạt kiểm định", các cách nói AI thay giáo viên, giảng viên hay thầy cô, tên nhà cung cấp mô hình và cam kết về huấn luyện mô hình, và ghim lời "tài liệu làm việc nội bộ, không phải báo cáo tự đánh giá" của cấp Chương trình; test "không có giá" ở e2e kiểm trang Cách tính phí. Hai luật còn lại (con số chỉ lấy từ đặc tả app, gọi người đọc là "thầy cô") chưa có test, nên rà tay khi sửa chữ.
 
 ## Biến môi trường
 

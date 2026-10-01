@@ -30,6 +30,13 @@ describe('i18n', () => {
     expect(routing.localePrefix).toBe('as-needed')
     expect(routing.localeDetection).toBe(false)
   })
+  test('the proxy sets no locale cookie and no hreflang Link header', () => {
+    // next-intl 4 bật cả hai theo mặc định. Chính sách bảo mật nói chỉ GA đặt cookie và chỉ sau khi đồng ý, còn cookie ngôn ngữ chẳng bao giờ
+    // được đọc (localeDetection tắt). hreflang đã có ở thẻ head và sitemap theo NEXT_PUBLIC_SITE_URL; header của proxy lấy host của yêu cầu
+    // nên lệch với thẻ head trên các bí danh *.vercel.app.
+    expect(routing.localeCookie).toBe(false)
+    expect(routing.alternateLinks).toBe(false)
+  })
   test('the three level namespaces share one shape', () => {
     const shape = (o: unknown) => flatten(o).sort()
     expect(shape(vi.levels.university)).toEqual(shape(vi.levels.k12))

@@ -32,7 +32,6 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     title: { default: t('siteName'), template: `%s · ${t('siteName')}` },
     description: t('tagline'),
     applicationName: t('siteName'),
-    robots: { index: true, follow: true },
     ...(verification ? { verification: { google: verification } } : {}),
   }
 }

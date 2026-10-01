@@ -35,22 +35,122 @@ const isEnglish = (f: string) => {
 }
 
 // Luật nội dung của spec §15.
-const FORBIDDEN = [/\u2014/, /đạt kiểm định/i, /thay (thế )?giáo viên/i, /replaces? teachers/i]
+const FORBIDDEN = [
+  /\u2014/,
+  /đạt kiểm định/i,
+  /thay (thế )?(giáo viên|giảng viên)/i,
+  /thay thế (thầy cô|thầy giáo|cô giáo|nhà giáo)/i,
+  /\bAI (sẽ |đang |có thể |hoàn toàn )?thay (thế )?(thầy cô|thầy giáo|cô giáo|nhà giáo)/i,
+  /replac(?:e|es|ed|ing) (?:the |all |your )?(?:teachers?|lecturers?|instructors?|educators?|professors?)\b/i,
+]
+// Không bắt "thay" đứng một mình trước "thầy cô": "không ký thay thầy cô" và "AI không thay thầy cô" nói điều ngược lại, mà văn bản tin cậy cần nói.
+// Hai kiểu còn lại thì không nhập nhằng: "thay thế" là thay cho, và "AI" liền trước "thay" là AI làm chủ thể.
+
+// OQ-L07: chưa nêu tên nhà cung cấp mô hình (spec §15). Chỉ các tên nhà cung cấp; Google Analytics và Google Maps vẫn được nêu.
+const PROVIDERS = [/anthropic/i, /claude/i, /openai/i, /gpt/i, /gemini/i, /google ai/i]
+
+// OQ-L07: chưa có cam kết về huấn luyện mô hình, cả dạng khẳng định lẫn phủ định. Chỉ bắt khi "huấn luyện" hay "train" đi với mô hình hoặc dữ liệu,
+// để các nghĩa khác (huấn luyện viên, huấn luyện kỹ năng, teacher training) không bị chặn nhầm.
+const TRAINING_CLAIMS = [
+  /huấn luyện (lại )?(mô hình|model|AI|trí tuệ nhân tạo)/i,
+  /huấn luyện (trên|bằng) (dữ liệu|nội dung)/i,
+  /không (được )?(dùng|sử dụng) (để )?huấn luyện/i,
+  /đào tạo (lại )?(mô hình|model)/i,
+  /\btrain(?:s|ed|ing)? (?:on\b|(?:the |our |a |any |your )?(?:ai |ml )?models?\b)/i,
+  /\bused? to train\b/i,
+  /\bmodel training\b/i,
+  /\btraining data\b/i,
+]
+
+// Mọi chữ người xem đọc được: bộ chữ hai ngôn ngữ và các tệp MDX. Mỗi phần tử là [nơi, nội dung].
+const copyTexts = (): Array<[string, string]> => [
+  ...values(vi).map(([k, v]) => [`vi:${k}`, v] as [string, string]),
+  ...values(en).map(([k, v]) => [`en:${k}`, v] as [string, string]),
+  ...mdxFiles().map((f) => [rel(f), readFileSync(f, 'utf8')] as [string, string]),
+]
+
+// NFC trước khi so: cụm từ cấm viết dạng tổ hợp (chữ cái + dấu rời) cũng bị bắt.
+const scan = (patterns: RegExp[]) =>
+  copyTexts().flatMap(([where, text]) => patterns.filter((r) => r.test(text.normalize('NFC'))).map((r) => `${where} ${r}`))
 
 test('copy rules: no em-dash, no promised accreditation, no "AI replaces teachers"', () => {
-  const mdx = mdxFiles()
   // soft: một lần chạy báo được cả số tệp sai lẫn nội dung vi phạm.
-  expect.soft(mdx.length).toBe(MDX_TOTAL)
-  const texts: Array<[string, string]> = [
-    ...values(vi).map(([k, v]) => [`vi:${k}`, v] as [string, string]),
-    ...values(en).map(([k, v]) => [`en:${k}`, v] as [string, string]),
-    ...mdx.map((f) => [rel(f), readFileSync(f, 'utf8')] as [string, string]),
-  ]
-  // NFC trước khi so: cụm từ cấm viết dạng tổ hợp (chữ cái + dấu rời) cũng bị bắt.
-  const hits = texts.flatMap(([where, text]) =>
-    FORBIDDEN.filter((r) => r.test(text.normalize('NFC'))).map((r) => `${where} ${r}`),
-  )
-  expect(hits).toEqual([])
+  expect.soft(mdxFiles().length).toBe(MDX_TOTAL)
+  expect(scan(FORBIDDEN)).toEqual([])
+})
+
+test('copy names no model provider (OQ-L07, spec §15)', () => {
+  expect(scan(PROVIDERS)).toEqual([])
+})
+
+test('copy makes no claim about training models (OQ-L07, spec §15)', () => {
+  expect(scan(TRAINING_CLAIMS)).toEqual([])
+})
+
+// Một bộ chặn không bao giờ khớp thì vô dụng mà vẫn xanh: ghim cả cụm nó phải bắt lẫn cụm nó phải để yên.
+test('the copy guards catch the phrasings they target and spare neutral wording', () => {
+  const caught = (patterns: RegExp[], text: string) => patterns.some((r) => r.test(text.normalize('NFC')))
+  for (const bad of [
+    'Đạt kiểm định ngay',
+    'AI thay thầy cô soạn đề',
+    'AI sẽ thay thế thầy cô',
+    'Thay thế giáo viên bằng AI',
+    'Máy thay thế thầy giáo',
+    'AI sẽ thay giảng viên',
+    'AI replaces the teacher',
+    'Replace teachers with AI',
+    'AI is replacing teachers',
+  ]) {
+    expect(caught(FORBIDDEN, bad), bad).toBe(true)
+  }
+  for (const bad of ['Powered by Claude', 'Dùng Anthropic', 'OpenAI API', 'ChatGPT', 'GPT-5', 'Google Gemini', 'Google AI Studio']) {
+    expect(caught(PROVIDERS, bad), bad).toBe(true)
+  }
+  for (const bad of [
+    'Dữ liệu của trường không được dùng để huấn luyện',
+    'Không dùng để huấn luyện mô hình',
+    'Chúng tôi huấn luyện mô hình trên dữ liệu của trường',
+    'Đào tạo lại mô hình mỗi quý',
+    'We never train the model on your data',
+    'We train on public data only',
+    'Your files are never used to train models',
+    'Used for model training',
+    'Your training data stays with you',
+  ]) {
+    expect(caught(TRAINING_CLAIMS, bad), bad).toBe(true)
+  }
+  const all = [...FORBIDDEN, ...PROVIDERS, ...TRAINING_CLAIMS]
+  for (const fine of [
+    'Không duyệt, không ký thay người',
+    'Máy đề xuất, thầy cô quyết định',
+    'Trợ lý không ký thay thầy cô',
+    'AI không thay thầy cô',
+    'The assistant does not approve or sign for you',
+    'Chương trình đào tạo của khoa',
+    'Tập huấn và huấn luyện kỹ năng giảng dạy',
+    'Một huấn luyện viên bóng đá',
+    'Teacher training workshops and a training program',
+    'Google Analytics và Google Maps',
+    'Agentra ánh xạ tầng sang mô hình cụ thể',
+    'The server relays content to the model',
+  ]) {
+    expect(caught(all, fine), fine).toBe(false)
+  }
+})
+
+// Spec §6.4 và §15: cấp Chương trình là công cụ làm việc nội bộ, không phải báo cáo tự đánh giá. Ghi chú này nằm ở levels.program.hero.note
+// và LevelPage hiện nó dưới nút ở đầu trang; xoá hay viết lại làm mất lời hứa này mà không test nào khác đỏ.
+test('the program level states that it is an internal working document, not a self-assessment report', () => {
+  const note = (m: { levels: { program: { hero: { note: string } } } }) => m.levels.program.hero.note.normalize('NFC')
+  expect(note(vi)).toMatch(/tài liệu làm việc nội bộ/)
+  expect(note(vi)).toMatch(/không phải báo cáo tự đánh giá/)
+  expect(note(en)).toMatch(/internal working document/)
+  expect(note(en)).toMatch(/not a self-assessment report/)
+})
+
+// Apple viết "Apple silicon" thường, nhưng bảng chọn bộ cài, tên nền tảng và mô tả của site đều viết "Apple Silicon".
+test('Apple Silicon is capitalised the same way everywhere', () => {
+  expect(copyTexts().filter(([, text]) => text.includes('Apple silicon')).map(([where]) => where)).toEqual([])
 })
 
 test('English copy carries no untranslated Vietnamese', () => {

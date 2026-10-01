@@ -4,6 +4,15 @@ on:
     branches: [main]
   pull_request:
 
+# Job chỉ đọc mã nguồn (checkout, cài, kiểm, dựng): token không cần quyền ghi nào.
+permissions:
+  contents: read
+
+# Một lần đẩy mới lên cùng nhánh hoặc cùng pull request huỷ lần chạy cũ đang dở (20 phút mỗi lần).
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
 env:
   NEXT_PUBLIC_SITE_URL: https://eduflow.example.test
   # ID giả để e2e kiểm tra được cổng đồng ý cookie; production lấy ID thật từ Vercel.

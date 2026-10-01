@@ -38,6 +38,28 @@ test('softwareApplication uses the feed version and both OS families', () => {
   expect(softwareApplication([], 'en', 'x')).not.toHaveProperty('softwareVersion')
 })
 
+test('softwareApplication takes the version and date of the newest of two assets, whatever the order', () => {
+  const newer = { ...asset, platform: 'macos-arm64' as const, version: '1.0.1', releaseDate: '2026-10-03T02:00:00.000Z' }
+  for (const assets of [[asset, newer], [newer, asset]]) {
+    expect(softwareApplication(assets, 'vi', 'https://eduflow.test/tai-ve')).toMatchObject({ softwareVersion: '1.0.1', datePublished: '2026-10-03' })
+  }
+})
+
+test('softwareApplication leaves out datePublished when no asset has a valid date', () => {
+  const undated = { ...asset, releaseDate: '' }
+  const app = softwareApplication([undated], 'vi', 'https://eduflow.test/tai-ve')
+  expect(app).toMatchObject({ softwareVersion: '1.0.0' })
+  expect(app).not.toHaveProperty('datePublished')
+})
+
+test('an asset without a date does not hide the date of the other one', () => {
+  const dated = { ...asset, platform: 'macos-arm64' as const, version: '1.0.1' }
+  const undated = { ...asset, releaseDate: '' }
+  for (const assets of [[undated, dated], [dated, undated]]) {
+    expect(softwareApplication(assets, 'en', 'https://eduflow.test/en/download')).toMatchObject({ softwareVersion: '1.0.1', datePublished: '2026-10-01' })
+  }
+})
+
 test('faqPage, breadcrumb, howTo', () => {
   expect(faqPage([{ q: 'A?', a: 'B' }])).toMatchObject({
     '@type': 'FAQPage',

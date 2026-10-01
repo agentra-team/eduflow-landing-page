@@ -1,7 +1,7 @@
 'use client'
 
-import { useCallback, useSyncExternalStore } from 'react'
-import { CONSENT_EVENT, readConsent, writeConsent, type Consent } from './consent'
+import { useSyncExternalStore } from 'react'
+import { CONSENT_EVENT, chooseConsent, currentConsent, type Consent } from './consent'
 
 const subscribe = (cb: () => void) => {
   window.addEventListener(CONSENT_EVENT, cb)
@@ -11,15 +11,13 @@ const subscribe = (cb: () => void) => {
     window.removeEventListener('storage', cb)
   }
 }
-const getSnapshot = () => readConsent(typeof window === 'undefined' ? null : window.localStorage)
 const getServerSnapshot = (): Consent | 'pending' => 'pending'
 
-/** 'pending' khi chưa hydrate (server và lượt render đầu), sau đó là lựa chọn thật. */
+/**
+ * 'pending' khi chưa hydrate (server và lượt render đầu), sau đó là lựa chọn thật. Đọc và ghi đều qua lib/consent.ts: storage bị chặn
+ * thì lựa chọn vẫn sống trong phiên, không làm sập trang (ConsentBar và AnalyticsGate nằm ở layout gốc, không có error boundary ở trên).
+ */
 export function useConsent(): [Consent | 'pending', (value: 'granted' | 'denied') => void] {
-  const consent = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot)
-  const set = useCallback((value: 'granted' | 'denied') => {
-    writeConsent(window.localStorage, value)
-    window.dispatchEvent(new Event(CONSENT_EVENT))
-  }, [])
-  return [consent, set]
+  const consent = useSyncExternalStore(subscribe, currentConsent, getServerSnapshot)
+  return [consent, chooseConsent]
 }

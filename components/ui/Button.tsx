@@ -7,11 +7,13 @@ import type { IconName } from './icons'
 type Variant = 'primary' | 'secondary' | 'white' | 'ghost-white'
 type Size = 'sm' | 'md' | 'lg'
 
+// Màu viền focus đi theo biến thể: xanh accent (#237A31) chỉ đạt tương phản 2,7:1 trên dải CTA tối (#1E2B23), dưới mức 3:1 cho thành phần giao diện,
+// nên hai nút trắng dùng viền trắng. Không đặt màu ở lớp nền chung: cn() chỉ nối chuỗi, hai class cùng thuộc tính sẽ thắng thua theo thứ tự trong CSS.
 const VARIANT: Record<Variant, string> = {
-  primary: 'border-accent bg-accent text-white hover:bg-accent-strong hover:border-accent-strong',
-  secondary: 'border-line bg-card text-ink hover:border-muted',
-  white: 'border-white bg-white text-brand-deep hover:bg-page',
-  'ghost-white': 'border-white/45 bg-transparent text-white hover:bg-white/10',
+  primary: 'border-accent bg-accent text-white hover:bg-accent-strong hover:border-accent-strong focus-visible:outline-accent',
+  secondary: 'border-line bg-card text-ink hover:border-muted focus-visible:outline-accent',
+  white: 'border-white bg-white text-brand-deep hover:bg-page focus-visible:outline-white',
+  'ghost-white': 'border-white/45 bg-transparent text-white hover:bg-white/10 focus-visible:outline-white',
 }
 const SIZE: Record<Size, string> = {
   sm: 'h-10 px-4 text-sm',
@@ -22,7 +24,7 @@ const SIZE: Record<Size, string> = {
 export function buttonClasses(variant: Variant = 'primary', size: Size = 'md', full = false, className?: string) {
   return cn(
     'inline-flex items-center justify-center gap-2 rounded-control border font-semibold leading-none whitespace-nowrap transition-colors',
-    'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent',
+    'focus-visible:outline-2 focus-visible:outline-offset-2',
     VARIANT[variant],
     SIZE[size],
     full && 'w-full',
@@ -41,7 +43,8 @@ type Common = {
 }
 
 function Inner({ icon, iconAfter, children }: Pick<Common, 'icon' | 'iconAfter' | 'children'>) {
-  const ico = icon ? <Icon name={icon} size={20} /> : null
+  // shrink-0: nhãn nút không xuống dòng (whitespace-nowrap), nên ở màn hẹp flex sẽ ép icon về 0 px nếu icon được phép co.
+  const ico = icon ? <Icon name={icon} size={20} className="shrink-0" /> : null
   return (
     <>
       {!iconAfter && ico}

@@ -26,6 +26,8 @@ for (const [path, lang] of PAGES) {
     await expect(page.locator('html')).toHaveAttribute('lang', lang)
     await expect(page.locator('h1')).toHaveCount(1)
     await expect(page.locator('link[rel="canonical"]')).toHaveCount(1)
+    // Trang thường không bị noindex (index, follow là mặc định nên không cần thẻ robots).
+    await expect(page.locator('meta[name="robots"][content*="noindex"]')).toHaveCount(0)
     expect(await page.locator('link[rel="alternate"][hreflang]').count()).toBeGreaterThanOrEqual(3)
     await expect(page.locator('meta[property="og:image"]')).toHaveCount(1)
     const ld = (await page.locator('script[type="application/ld+json"]').allTextContents()).map((s) => JSON.parse(s))
@@ -52,6 +54,16 @@ test('unknown paths give a localized 404', async ({ page }) => {
   expect((await page.goto('/en/no-such-page'))?.status()).toBe(404)
   await expect(page.locator('h1')).toHaveText('Page not found')
 })
+
+// Next tự thêm `noindex` cho trang 404. Metadata của layout từng thêm một thẻ robots "index, follow" nữa, nên trang 404 mang hai thẻ đối nghịch.
+for (const path of ['/khong-co-trang-nay', '/en/no-such-page']) {
+  test(`${path} carries exactly one robots meta, and it is noindex`, async ({ page }) => {
+    expect((await page.goto(path))?.status()).toBe(404)
+    const robots = page.locator('meta[name="robots"]')
+    await expect(robots).toHaveCount(1)
+    await expect(robots).toHaveAttribute('content', /noindex/)
+  })
+}
 
 for (const path of ['/cach-tinh-phi', '/en/pricing']) {
   test(`${path} shows no price figure`, async ({ page }) => {

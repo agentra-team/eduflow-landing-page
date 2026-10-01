@@ -1,4 +1,5 @@
 import type { Locale } from '@/i18n/routing'
+import type { ReleaseAsset } from '@/lib/releases/types'
 
 /** Dung lượng đọc được: MB làm tròn, một chữ số thập phân khi dưới 10 MB; KB dưới 1 MB. */
 export function formatBytes(bytes: number, locale: Locale): string {
@@ -30,4 +31,22 @@ export function formatDate(iso: string, locale: Locale): string {
     return `${day}/${month}/${year}`
   }
   return `${day} ${get('month')} ${year}`
+}
+
+/** Dòng chi tiết của thẻ tải: "150 MB · v1.0.0 · 15/09/2026". Không có ngày hợp lệ thì bỏ cả ngày lẫn dấu phân cách đứng trước nó. */
+export function formatAssetMeta(asset: Pick<ReleaseAsset, 'sizeBytes' | 'version' | 'releaseDate'>, locale: Locale): string {
+  return [formatBytes(asset.sizeBytes, locale), `v${asset.version}`, formatDate(asset.releaseDate, locale)].filter(Boolean).join(' · ')
+}
+
+/**
+ * Câu dẫn của khối tải: có ngày phát hành hợp lệ thì khoá `lead` ("Phiên bản 1.0.0, phát hành 15/09/2026."), không thì khoá `leadNoDate`
+ * (chỉ nêu phiên bản, không để lại "phát hành ."). Trả khoá và giá trị để gọi `t(key, values)` ở nơi có hàm dịch của đúng namespace.
+ */
+export function releaseLead(
+  latest: { version: string; releaseDate: string } | null,
+  locale: Locale,
+): { key: 'lead'; values: { version: string; date: string } } | { key: 'leadNoDate'; values: { version: string } } | null {
+  if (!latest) return null
+  const date = formatDate(latest.releaseDate, locale)
+  return date ? { key: 'lead', values: { version: latest.version, date } } : { key: 'leadNoDate', values: { version: latest.version } }
 }

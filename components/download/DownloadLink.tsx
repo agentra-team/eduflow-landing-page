@@ -32,7 +32,7 @@ export function DownloadLink({
       className={buttonClasses(variant, size, full, className)}
       onClick={() => track({ name: 'download_click', platform: asset.platform, version: asset.version, location })}
     >
-      <Icon name="download" size={20} />
+      <Icon name="download" size={20} className="shrink-0" />
       <span>{children}</span>
     </a>
   )

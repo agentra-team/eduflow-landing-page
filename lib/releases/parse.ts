@@ -7,7 +7,8 @@ interface FeedFile {
 }
 interface Feed {
   version: string
-  releaseDate?: string
+  /** Chưa kiểm: feed có thể ghi số (YAML `releaseDate: 20261001`), chữ rác hay bỏ trống. `toReleaseDate` là chỗ duy nhất đổi nó thành chuỗi hợp lệ. */
+  releaseDate?: unknown
   path?: string
   files: FeedFile[]
 }
@@ -33,6 +34,14 @@ export function joinUrl(baseUrl: string, fileName: string): string {
   return `${baseUrl.endsWith('/') ? baseUrl : `${baseUrl}/`}${encodeURIComponent(fileName)}`
 }
 
+/**
+ * Ranh giới của ngày phát hành: chỉ giữ chuỗi mà Date.parse hiểu, còn lại (số, chữ rác, rỗng, vắng) là ''. Mọi nơi dùng ngày phía sau (so sánh,
+ * định dạng, JSON-LD, sitemap) nhờ đó chỉ phải xử lý một chuỗi, và '' nghĩa là "không rõ ngày".
+ */
+function toReleaseDate(raw: unknown): string {
+  return typeof raw === 'string' && !Number.isNaN(Date.parse(raw)) ? raw : ''
+}
+
 function toAsset(platform: Platform, feed: Feed, file: FeedFile, baseUrl: string): ReleaseAsset {
   return {
     platform,
@@ -41,7 +50,7 @@ function toAsset(platform: Platform, feed: Feed, file: FeedFile, baseUrl: string
     url: joinUrl(baseUrl, file.url),
     sizeBytes: file.size,
     sha512: file.sha512,
-    releaseDate: feed.releaseDate ?? '',
+    releaseDate: toReleaseDate(feed.releaseDate),
   }
 }
 

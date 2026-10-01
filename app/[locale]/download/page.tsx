@@ -10,7 +10,7 @@ import { Container } from '@/components/ui/Container'
 import { Icon } from '@/components/ui/Icon'
 import { Link } from '@/i18n/navigation'
 import type { Locale } from '@/i18n/routing'
-import { formatDate } from '@/lib/format'
+import { releaseLead } from '@/lib/format'
 import { getReleases, latestRelease } from '@/lib/releases'
 import { downloadState, hasAssetFor } from '@/lib/releases/state'
 import { breadcrumb, softwareApplication } from '@/lib/seo/jsonld'
@@ -27,7 +27,7 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function DownloadPage() {
   const locale = (await getLocale()) as Locale
   const [{ assets }, t, tc] = await Promise.all([getReleases(), getTranslations('download'), getTranslations('common')])
-  const latest = latestRelease(assets)
+  const lead = releaseLead(latestRelease(assets), locale)
   const guide = (os: 'macos' | 'windows', label: string) => (
     <Link href={{ pathname: '/install/[os]', params: { os } }} className="font-semibold underline underline-offset-2">
       {label}
@@ -42,7 +42,7 @@ export default async function DownloadPage() {
             align="left"
             eyebrow={t('eyebrow')}
             title={t('h1')}
-            lead={latest ? t('lead', { version: latest.version, date: formatDate(latest.releaseDate, locale) }) : undefined}
+            lead={lead ? t(lead.key, lead.values) : undefined}
           />
         </Container>
       </section>

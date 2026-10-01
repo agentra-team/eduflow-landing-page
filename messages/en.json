@@ -38,6 +38,7 @@
     "copyright": "© {year} Agentra JSC · Da Nang, Vietnam"
   },
   "consent": {
+    "label": "Cookie notice",
     "text": "This site uses analytics cookies (Google Analytics) to understand how visitors use it. Declining does not affect downloading EduFlow.",
     "policy": "Privacy policy",
     "accept": "Accept",
@@ -140,7 +141,7 @@
         "desc": "The deterministic tier states facts with their basis. The comparative tier says “not found yet” with the number checked. The suggestion tier always needs human review."
       },
       "t3": {
-        "title": "Checking 0 units does not mean clean",
+        "title": "Zero units checked is not a clean result",
         "desc": "Every quality gate prints how many units it checked; a gate that checked nothing counts as an error."
       },
       "t4": {
@@ -167,7 +168,8 @@
       "eyebrow": "Download",
       "h2": "Download EduFlow for your computer",
       "lead": "Version {version}, released {date}.",
-      "note": "Not sure which chip your Mac has? Open the Apple menu, choose About This Mac and read the Chip line (Apple silicon) or the Processor line (Intel).",
+      "leadNoDate": "Version {version}.",
+      "note": "Not sure which chip your Mac has? Open the Apple menu, choose About This Mac and read the Chip line (Apple Silicon) or the Processor line (Intel).",
       "btn": "Download",
       "guide": "Installation guide",
       "checksum": "Verify file integrity (SHA-512)",
@@ -704,6 +706,7 @@
     "eyebrow": "Download",
     "h1": "Download EduFlow for your computer",
     "lead": "Version {version}, released {date}. The installers are digitally signed.",
+    "leadNoDate": "Version {version}. The installers are digitally signed.",
     "detected": {
       "windows": "Your computer runs Windows",
       "macos": "Your computer runs macOS"

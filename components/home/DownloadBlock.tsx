@@ -5,7 +5,7 @@ import { Callout } from '@/components/ui/Callout'
 import { Container } from '@/components/ui/Container'
 import { Section } from '@/components/ui/Section'
 import type { Locale } from '@/i18n/routing'
-import { formatDate } from '@/lib/format'
+import { releaseLead } from '@/lib/format'
 import { downloadState, hasAssetFor } from '@/lib/releases/state'
 import type { ReleaseAsset } from '@/lib/releases/types'
 import { SectionHead } from './SectionHead'
@@ -13,13 +13,14 @@ import { SectionHead } from './SectionHead'
 export function DownloadBlock({ assets, locale, latest }: { assets: ReleaseAsset[]; locale: Locale; latest: { version: string; releaseDate: string } | null }) {
   const t = useTranslations('home.download')
   const td = useTranslations('download')
+  const lead = releaseLead(latest, locale)
   return (
     <Section id="tai-ve">
       <Container>
         <SectionHead
           eyebrow={t('eyebrow')}
           title={t('h2')}
-          lead={latest ? t('lead', { version: latest.version, date: formatDate(latest.releaseDate, locale) }) : undefined}
+          lead={lead ? t(lead.key, lead.values) : undefined}
         />
         {downloadState(assets) === 'prelaunch' ? (
           <div className="mt-8 md:mt-12">

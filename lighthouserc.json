@@ -9,7 +9,10 @@
         "http://localhost:3200/pho-thong",
         "http://localhost:3200/cach-tinh-phi",
         "http://localhost:3200/tai-ve",
-        "http://localhost:3200/en"
+        "http://localhost:3200/en",
+        "http://localhost:3200/en/k12",
+        "http://localhost:3200/en/pricing",
+        "http://localhost:3200/en/download"
       ],
       "numberOfRuns": 1
     },

@@ -1,7 +1,7 @@
 import { readFileSync } from 'node:fs'
 import { describe, expect, test, vi } from 'vitest'
 import { parse } from 'yaml'
-import { resolveReleases } from '@/lib/releases'
+import { latestRelease, resolveReleases } from '@/lib/releases'
 import { fetchFeed } from '@/lib/releases/feed'
 import { isFeed, parseFeeds } from '@/lib/releases/parse'
 import { downloadState, hasAssetFor } from '@/lib/releases/state'
@@ -24,6 +24,71 @@ describe('parseFeeds', () => {
   test('missing or malformed feed yields no asset for that platform, no throw', () => {
     expect(parseFeeds({ mac }, BASE).map((a) => a.platform)).toEqual(['macos-arm64', 'macos-x64'])
     expect(parseFeeds({ windows: { nonsense: true }, mac: null }, BASE)).toEqual([])
+  })
+})
+
+describe('releaseDate boundary rule', () => {
+  const dateOf = (releaseDate: unknown) => parseFeeds({ windows: { ...win, releaseDate } }, BASE)[0].releaseDate
+
+  test('is kept only when it is a string that Date.parse accepts, otherwise an empty string', () => {
+    expect(dateOf('2026-10-01T02:00:00.000Z')).toBe('2026-10-01T02:00:00.000Z')
+    // YAML không dấu nháy: `releaseDate: 20261001` là số, không phải ngày.
+    expect(dateOf(20261001)).toBe('')
+    expect(dateOf('not a date')).toBe('')
+    expect(dateOf('')).toBe('')
+    expect(dateOf(null)).toBe('')
+    expect(dateOf(new Date('2026-10-01'))).toBe('')
+    expect(dateOf({ when: '2026-10-01' })).toBe('')
+    expect(parseFeeds({ windows: { version: win.version, files: win.files } }, BASE)[0].releaseDate).toBe('')
+  })
+
+  test('an unquoted YAML date from a real feed text cannot crash the release pipeline', () => {
+    const feed = parse(winYaml.replace(/releaseDate: .*/, 'releaseDate: 20261001'))
+    expect(typeof feed.releaseDate).toBe('number')
+    // Windows (ngày số) đứng trước macOS: so sánh hai tệp từng ném TypeError (số không có localeCompare) và làm hỏng build.
+    const info = resolveReleases({ base: BASE, windows: feed, mac, snapshot: EMPTY })
+    expect(info.assets.map((a) => a.releaseDate)).toEqual(['', expect.stringContaining('2026-10-01'), expect.stringContaining('2026-10-01')])
+    expect(latestRelease(info.assets)).toMatchObject({ releaseDate: expect.stringContaining('2026-10-01') })
+  })
+})
+
+describe('latestRelease', () => {
+  const asset = (platform: 'windows-x64' | 'macos-arm64', version: string, releaseDate: string) => ({
+    platform,
+    version,
+    fileName: 'x',
+    url: 'https://feed.example.test/x',
+    sizeBytes: 1,
+    sha512: 's',
+    releaseDate,
+  })
+
+  test('is null without assets', () => {
+    expect(latestRelease([])).toBeNull()
+  })
+  test('takes the version and date of the newest asset, whatever the order', () => {
+    const older = asset('windows-x64', '1.0.0', '2026-10-01T02:00:00.000Z')
+    const newer = asset('macos-arm64', '1.0.1', '2026-10-03T02:00:00.000Z')
+    const expected = { version: '1.0.1', releaseDate: '2026-10-03T02:00:00.000Z' }
+    expect(latestRelease([older, newer])).toEqual(expected)
+    expect(latestRelease([newer, older])).toEqual(expected)
+  })
+  test('an empty date never beats a real one, in either order', () => {
+    const dated = asset('macos-arm64', '1.0.1', '2026-10-03T02:00:00.000Z')
+    const undated = asset('windows-x64', '1.0.0', '')
+    const expected = { version: '1.0.1', releaseDate: '2026-10-03T02:00:00.000Z' }
+    expect(latestRelease([undated, dated])).toEqual(expected)
+    expect(latestRelease([dated, undated])).toEqual(expected)
+  })
+  test('when no asset has a date, the first asset stands for the release', () => {
+    expect(latestRelease([asset('windows-x64', '1.0.0', ''), asset('macos-arm64', '1.0.1', '')])).toEqual({ version: '1.0.0', releaseDate: '' })
+  })
+  test('orders by the instant, not by the text of the date', () => {
+    // 23:00 ở UTC-5 ngày 1/10 là 04:00 UTC ngày 2/10, muộn hơn 01:00 UTC ngày 2/10, dù chuỗi của nó xếp trước.
+    const lateInTheUS = asset('windows-x64', '1.0.0', '2026-10-01T23:00:00-05:00')
+    const earlyInUTC = asset('macos-arm64', '1.0.1', '2026-10-02T01:00:00.000Z')
+    expect(latestRelease([lateInTheUS, earlyInUTC])?.version).toBe('1.0.0')
+    expect(latestRelease([earlyInUTC, lateInTheUS])?.version).toBe('1.0.0')
   })
 })
 

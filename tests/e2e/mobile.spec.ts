@@ -21,6 +21,51 @@ test('mobile menu opens with the five nav links and a download button', async ({
   expect(box!.height).toBeGreaterThanOrEqual(viewport!.height - 73)
 })
 
+test('tapping the logo closes the open menu and releases the scroll lock', async ({ page }) => {
+  // Bắt đầu ở trang con: đường dẫn phải đổi thì mới là điều hướng (bấm logo ngay trên trang chủ không đi đâu).
+  await page.goto('/pho-thong')
+  const menuButton = page.getByRole('button', { name: 'Mở menu' })
+  // Ruling 51: cú click trước khi hydrate bị mất vì nút chưa có trình xử lý.
+  await waitForHydration(menuButton)
+  await menuButton.click()
+  const nav = page.locator('#mobile-nav')
+  await expect(nav).toBeVisible()
+  await expect(page.locator('body')).toHaveCSS('overflow', 'hidden')
+  // Logo: liên kết duy nhất trong header có tên đúng là "EduFlow" (nút tải và các mục menu đều có thêm chữ).
+  await page.locator('header').getByRole('link', { name: 'EduFlow', exact: true }).click()
+  await expect(page).toHaveURL(/\/$/)
+  await expect(nav).toHaveCount(0)
+  await expect(page.getByRole('button', { name: 'Mở menu' })).toHaveAttribute('aria-expanded', 'false')
+  await expect(page.locator('body')).not.toHaveCSS('overflow', 'hidden')
+})
+
+test('the open menu sits above the cookie bar, so its download button is not covered at 375 x 667', async ({ page }) => {
+  await page.setViewportSize({ width: 375, height: 667 })
+  await page.goto('/')
+  const menuButton = page.getByRole('button', { name: 'Mở menu' })
+  await waitForHydration(menuButton)
+  // Thanh cookie do client dựng sau khi hydrate.
+  await expect(page.getByRole('button', { name: 'Đồng ý' })).toBeVisible()
+  await menuButton.click()
+  const nav = page.locator('#mobile-nav')
+  const download = nav.getByRole('link', { name: 'Tải EduFlow' })
+  await expect(download).toBeVisible()
+  // Phần tử nằm trên cùng tại tâm của nút tải ('download') hoặc của thanh cookie ('bar-center'): true khi nó thuộc nút tải, hoặc thuộc panel menu.
+  const topmostIsInside = (point: 'download' | 'bar-center') =>
+    page.evaluate((which) => {
+      const panel = document.querySelector('#mobile-nav')!
+      const link = [...panel.querySelectorAll('a')].find((a) => a.textContent?.includes('Tải EduFlow'))!
+      const bar = document.querySelector('[role="region"]')!
+      const rect = (which === 'download' ? link : bar).getBoundingClientRect()
+      const hit = document.elementFromPoint(rect.left + rect.width / 2, rect.top + rect.height / 2)
+      return hit !== null && (which === 'download' ? link : panel).contains(hit)
+    }, point)
+  // Nguyên nhân: tâm thanh cookie (nằm trọn trong vùng của panel) phải thuộc panel, tức panel che thanh chứ không ngược lại.
+  expect(await topmostIsInside('bar-center')).toBe(true)
+  // Triệu chứng: nút "Tải EduFlow" nhận được cú chạm.
+  expect(await topmostIsInside('download')).toBe(true)
+})
+
 test('on a phone the hero button never starts an installer download', async ({ page }) => {
   await page.goto('/')
   const hero = page.locator('main section').first()

@@ -38,6 +38,7 @@
     "copyright": "© {year} Agentra JSC · Đà Nẵng, Việt Nam"
   },
   "consent": {
+    "label": "Thông báo cookie",
     "text": "Trang này dùng cookie phân tích (Google Analytics) để hiểu cách khách truy cập dùng trang. Từ chối không ảnh hưởng tới việc tải EduFlow.",
     "policy": "Chính sách bảo mật",
     "accept": "Đồng ý",
@@ -167,6 +168,7 @@
       "eyebrow": "Tải về",
       "h2": "Tải EduFlow cho máy tính của thầy cô",
       "lead": "Phiên bản {version}, phát hành {date}.",
+      "leadNoDate": "Phiên bản {version}.",
       "note": "Không chắc máy Mac dùng chip gì? Mở Apple menu, chọn Giới thiệu về máy Mac này và đọc dòng Chip (máy Apple Silicon) hoặc Bộ xử lý (máy Intel).",
       "btn": "Tải về",
       "guide": "Hướng dẫn cài đặt",
@@ -704,6 +706,7 @@
     "eyebrow": "Tải về",
     "h1": "Tải EduFlow cho máy tính của thầy cô",
     "lead": "Phiên bản {version}, phát hành {date}. Bộ cài đã ký số.",
+    "leadNoDate": "Phiên bản {version}. Bộ cài đã ký số.",
     "detected": {
       "windows": "Máy thầy cô đang dùng Windows",
       "macos": "Máy thầy cô đang dùng macOS"
