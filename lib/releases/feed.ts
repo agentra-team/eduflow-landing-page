@@ -16,7 +16,13 @@ export async function fetchFeed(url: string, fetchImpl: FetchLike = fetch): Prom
       console.error('release_feed_unavailable', url, res.status)
       return null
     }
-    return parse(await res.text()) ?? null
+    const body: unknown = parse(await res.text())
+    // Trang lỗi HTML hay tệp rỗng trả 200 không phải feed: coi như không có, để snapshot còn thay được.
+    if (!body || typeof body !== 'object' || !Array.isArray((body as { files?: unknown }).files)) {
+      console.error('release_feed_unavailable', url, 'not a feed')
+      return null
+    }
+    return body
   } catch (err) {
     console.error('release_feed_unavailable', url, err instanceof Error ? err.message : String(err))
     return null

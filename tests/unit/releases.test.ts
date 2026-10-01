@@ -66,4 +66,12 @@ describe('fetchFeed', () => {
     expect(await fetchFeed(url, vi.fn().mockResolvedValue(new Response('a: [b', { status: 200 })))).toBeNull()
     spy.mockRestore()
   })
+  test('a 200 answer that is not a feed is treated as unavailable', async () => {
+    const spy = vi.spyOn(console, 'error').mockImplementation(() => {})
+    const url = 'https://feed.example.test/desktop/latest.yml'
+    expect(await fetchFeed(url, vi.fn().mockResolvedValue(new Response('<!doctype html><title>Oops</title>', { status: 200 })))).toBeNull()
+    expect(await fetchFeed(url, vi.fn().mockResolvedValue(new Response('', { status: 200 })))).toBeNull()
+    expect(await fetchFeed(url, vi.fn().mockResolvedValue(new Response('version: 1.0.0', { status: 200 })))).toBeNull()
+    spy.mockRestore()
+  })
 })

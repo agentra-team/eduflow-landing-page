@@ -1,0 +1,53 @@
+name: CI
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+env:
+  NEXT_PUBLIC_SITE_URL: https://eduflow.example.test
+  # ID giả để e2e kiểm tra được cổng đồng ý cookie; production lấy ID thật từ Vercel.
+  NEXT_PUBLIC_GA_MEASUREMENT_ID: G-TEST
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with: { version: 9.15.0 }
+      - uses: actions/setup-node@v4
+        with: { node-version: 24, cache: pnpm }
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm verify
+      - run: pnpm exec playwright install --with-deps chromium
+      # Chế độ feed: dựng với feed giả chạy nền trên cổng 3300
+      - run: node scripts/serve-fixtures.mjs &
+      - run: pnpm build
+        env: { DOWNLOAD_FEED_URL: 'http://localhost:3300/' }
+      - run: pnpm e2e
+        env: { CI: true, E2E_MODE: feed, DOWNLOAD_FEED_URL: 'http://localhost:3300/' }
+      # Chế độ một hệ điều hành: feed giả thứ hai trên cổng 3301 trả 404 cho latest-mac.yml (Ruling 38)
+      - run: FIXTURE_PORT=3301 FIXTURE_MISSING=latest-mac.yml node scripts/serve-fixtures.mjs &
+      - run: pnpm build
+        env: { DOWNLOAD_FEED_URL: 'http://localhost:3301/' }
+      - run: pnpm e2e
+        env: { CI: true, E2E_MODE: oneos, DOWNLOAD_FEED_URL: 'http://localhost:3301/' }
+      # Chế độ sắp phát hành: không có feed, snapshot rỗng
+      - run: pnpm build
+        env: { DOWNLOAD_FEED_URL: '' }
+      - run: pnpm e2e
+        env: { CI: true, E2E_MODE: prelaunch }
+      # Lighthouse chấm canonical theo domain đang chạy → build lại với URL localhost trước khi đo
+      - run: pnpm build
+        env: { NEXT_PUBLIC_SITE_URL: 'http://localhost:3200', DOWNLOAD_FEED_URL: 'http://localhost:3300/' }
+      - run: pnpm lhci
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: playwright-report
+          path: |
+            playwright-report
+            test-results
+          if-no-files-found: ignore
