@@ -3,7 +3,7 @@ import { describe, expect, test, vi } from 'vitest'
 import { parse } from 'yaml'
 import { resolveReleases } from '@/lib/releases'
 import { fetchFeed } from '@/lib/releases/feed'
-import { parseFeeds } from '@/lib/releases/parse'
+import { isFeed, parseFeeds } from '@/lib/releases/parse'
 import { downloadState, hasAssetFor } from '@/lib/releases/state'
 
 const BASE = 'https://feed.example.test/desktop/'
@@ -52,6 +52,29 @@ describe('resolveReleases', () => {
   })
 })
 
+describe('isFeed', () => {
+  test('needs a string version and at least one well-formed file', () => {
+    expect(isFeed(win)).toBe(true)
+    expect(isFeed(mac)).toBe(true)
+    expect(isFeed({ version: '1.0.0', files: [] })).toBe(false)
+    expect(isFeed({ version: '1.0.0', files: [{ url: 'x.dmg' }] })).toBe(false)
+    expect(isFeed({ version: 1, files: win.files })).toBe(false)
+    expect(isFeed({ files: win.files })).toBe(false)
+    expect(isFeed(null)).toBe(false)
+    expect(isFeed('<!doctype html><title>Oops</title>')).toBe(false)
+  })
+})
+
+/** `fetchFeed` ghi log lỗi mỗi lần trả null: nín `console.error` trong ca, và luôn khôi phục dù assertion hỏng. */
+async function quietly(fn: () => Promise<void>) {
+  const spy = vi.spyOn(console, 'error').mockImplementation(() => {})
+  try {
+    await fn()
+  } finally {
+    spy.mockRestore()
+  }
+}
+
 describe('fetchFeed', () => {
   const url = `${BASE}latest.yml`
   test('returns parsed YAML on 200 with ISR revalidate 600', async () => {
@@ -59,19 +82,22 @@ describe('fetchFeed', () => {
     expect(((await fetchFeed(url, ok)) as { version: string }).version).toBe('1.0.0')
     expect(ok).toHaveBeenCalledWith(url, expect.objectContaining({ next: { revalidate: 600 } }))
   })
-  test('returns null on 404, network error and invalid YAML', async () => {
-    const spy = vi.spyOn(console, 'error').mockImplementation(() => {})
-    expect(await fetchFeed(url, vi.fn().mockResolvedValue(new Response('nope', { status: 404 })))).toBeNull()
-    expect(await fetchFeed(url, vi.fn().mockRejectedValue(new Error('ECONNRESET')))).toBeNull()
-    expect(await fetchFeed(url, vi.fn().mockResolvedValue(new Response('a: [b', { status: 200 })))).toBeNull()
-    spy.mockRestore()
-  })
-  test('a 200 answer that is not a feed is treated as unavailable', async () => {
-    const spy = vi.spyOn(console, 'error').mockImplementation(() => {})
-    const url = 'https://feed.example.test/desktop/latest.yml'
-    expect(await fetchFeed(url, vi.fn().mockResolvedValue(new Response('<!doctype html><title>Oops</title>', { status: 200 })))).toBeNull()
-    expect(await fetchFeed(url, vi.fn().mockResolvedValue(new Response('', { status: 200 })))).toBeNull()
-    expect(await fetchFeed(url, vi.fn().mockResolvedValue(new Response('version: 1.0.0', { status: 200 })))).toBeNull()
-    spy.mockRestore()
-  })
+  test('returns null on 404, network error and invalid YAML', () =>
+    quietly(async () => {
+      expect(await fetchFeed(url, vi.fn().mockResolvedValue(new Response('nope', { status: 404 })))).toBeNull()
+      expect(await fetchFeed(url, vi.fn().mockRejectedValue(new Error('ECONNRESET')))).toBeNull()
+      expect(await fetchFeed(url, vi.fn().mockResolvedValue(new Response('a: [b', { status: 200 })))).toBeNull()
+    }))
+  test('a 200 answer that is not a feed is treated as unavailable', () =>
+    quietly(async () => {
+      const url = 'https://feed.example.test/desktop/latest.yml'
+      expect(await fetchFeed(url, vi.fn().mockResolvedValue(new Response('<!doctype html><title>Oops</title>', { status: 200 })))).toBeNull()
+      expect(await fetchFeed(url, vi.fn().mockResolvedValue(new Response('', { status: 200 })))).toBeNull()
+      expect(await fetchFeed(url, vi.fn().mockResolvedValue(new Response('version: 1.0.0', { status: 200 })))).toBeNull()
+    }))
+  test('a YAML feed with an empty or malformed files list is treated as unavailable', () =>
+    quietly(async () => {
+      expect(await fetchFeed(url, vi.fn().mockResolvedValue(new Response('version: 1.0.0\nfiles: []', { status: 200 })))).toBeNull()
+      expect(await fetchFeed(url, vi.fn().mockResolvedValue(new Response("version: 1.0.0\nfiles: [{ url: 'x.dmg' }]", { status: 200 })))).toBeNull()
+    }))
 })

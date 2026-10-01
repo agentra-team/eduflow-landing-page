@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test'
+import { priceHits } from './prices'
 
 export const PAGES: Array<[string, 'vi' | 'en']> = [
   ['/', 'vi'], ['/en', 'en'],
@@ -55,10 +56,11 @@ test('unknown paths give a localized 404', async ({ page }) => {
 for (const path of ['/cach-tinh-phi', '/en/pricing']) {
   test(`${path} shows no price figure`, async ({ page }) => {
     await page.goto(path)
-    const text = await page.locator('main').innerText()
+    // NFC để chữ Việt viết dạng tổ hợp (vd. "đồng") vẫn khớp regex.
+    const text = (await page.locator('main').innerText()).normalize('NFC')
     expect(text.length).toBeGreaterThan(500)
-    // Một con số đi liền đơn vị tiền. "đ" theo sau bởi chữ cái (đề, điểm, đến) không tính.
-    expect(text).not.toMatch(/\d[\d.,]*\s?(₫|VNĐ|VND|đ(?!\p{L}))/u)
+    // Spec §15: không công bố đơn giá. Các dạng ghi giá bị bắt, và cụm được phép ("0 đồng", "÷ 1.000.000"), nằm ở tests/e2e/prices.ts.
+    expect(priceHits(text)).toEqual([])
   })
 }
 

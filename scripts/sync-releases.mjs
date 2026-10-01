@@ -28,6 +28,24 @@ async function readSource(name) {
   return res.text()
 }
 
+// Hình dạng feed của electron-updater: chuỗi `version` và ít nhất một tệp đủ `url`, `sha512`, `size`.
+// Nguồn chuẩn là `isFeed` trong lib/releases/parse.ts; script này là .mjs thuần nên chép lại đúng luật đó, sửa một nơi thì sửa nơi kia.
+const isFile = (f) => Boolean(f) && typeof f === 'object' && typeof f.url === 'string' && typeof f.sha512 === 'string' && typeof f.size === 'number'
+const isFeed = (x) => Boolean(x) && typeof x === 'object' && typeof x.version === 'string' && Array.isArray(x.files) && x.files.length > 0 && x.files.every(isFile)
+
+function parseFeed(name, text) {
+  let feed
+  try {
+    feed = parse(text)
+  } catch (err) {
+    // Lỗi cú pháp YAML không nói tệp nào hỏng: gắn tên tệp vào thông báo.
+    throw new Error(`${name} không đọc được: ${String(err?.message ?? err).split('\n')[0]}`)
+  }
+  // Tệp có mà không phải feed (rỗng, trang lỗi HTML, thiếu tệp): dừng, không ghi đè snapshot.
+  if (!isFeed(feed)) throw new Error(`${name} không phải feed của electron-updater`)
+  return feed
+}
+
 // Một nền tảng có thể phát hành trước: tệp thiếu (không có trong thư mục hoặc HTTP 404) ghi null, trang hiện "sắp có".
 async function readOptional(name) {
   let text
@@ -37,10 +55,7 @@ async function readOptional(name) {
     if (err?.code === 'ENOENT' || err?.status === 404) return null
     throw err
   }
-  const feed = parse(text)
-  // Tệp có mà không phải feed (rỗng, trang lỗi HTML): dừng, không ghi đè snapshot.
-  if (!feed || typeof feed !== 'object' || !Array.isArray(feed.files)) throw new Error(`${name} không phải feed của electron-updater`)
-  return feed
+  return parseFeed(name, text)
 }
 const [windows, mac] = await Promise.all([readOptional('latest.yml'), readOptional('latest-mac.yml')])
 if (!windows && !mac) {

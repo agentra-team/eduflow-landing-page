@@ -3,7 +3,13 @@ import { defineConfig, devices } from '@playwright/test'
 const PORT = 3200
 export const BASE_URL = `http://localhost:${PORT}`
 
-const MODE = process.env.E2E_MODE === 'prelaunch' ? 'prelaunch' : process.env.E2E_MODE === 'oneos' ? 'oneos' : 'feed'
+const MODES = ['feed', 'prelaunch', 'oneos'] as const
+// Không đặt hoặc để trống nghĩa là feed. Giá trị lạ phải báo lỗi: nếu lặng lẽ rơi về feed thì CI gõ nhầm tên chế độ vẫn xanh mà chạy sai spec.
+const requested = process.env.E2E_MODE || 'feed'
+if (!(MODES as readonly string[]).includes(requested)) {
+  throw new Error(`E2E_MODE không hợp lệ: "${requested}". Chọn một trong ${MODES.join(', ')}.`)
+}
+const MODE = requested as (typeof MODES)[number]
 // Mỗi chế độ chạy đúng spec của nó: feed → download, sắp phát hành → prelaunch, một hệ điều hành → oneos.
 const MODE_SPECS = { feed: /download\.spec\.ts/, prelaunch: /prelaunch\.spec\.ts/, oneos: /oneos\.spec\.ts/ }
 const MODE_IGNORE = Object.entries(MODE_SPECS).filter(([m]) => m !== MODE).map(([, re]) => re)

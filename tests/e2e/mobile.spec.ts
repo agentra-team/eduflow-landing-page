@@ -1,10 +1,14 @@
 import { expect, test } from '@playwright/test'
+import { waitForHydration } from './hydration'
 
 const VI_PAGES = ['/', '/pho-thong', '/hoc-phan', '/chuong-trinh', '/tro-ly-ai', '/cach-tinh-phi', '/minh-bach-ai', '/tai-ve', '/huong-dan-cai-dat/macos', '/huong-dan-cai-dat/windows', '/lien-he', '/chinh-sach-bao-mat']
 
 test('mobile menu opens with the five nav links and a download button', async ({ page }) => {
   await page.goto('/')
-  await page.getByRole('button', { name: 'Mở menu' }).click()
+  // Ruling 51: cú click trước khi hydrate bị mất vì nút chưa có trình xử lý.
+  const menuButton = page.getByRole('button', { name: 'Mở menu' })
+  await waitForHydration(menuButton)
+  await menuButton.click()
   const nav = page.locator('#mobile-nav')
   await expect(nav.locator('nav').getByRole('link')).toHaveCount(5)
   await expect(nav.getByRole('link', { name: 'Tải EduFlow' })).toBeVisible()
@@ -20,6 +24,8 @@ test('mobile menu opens with the five nav links and a download button', async ({
 test('on a phone the hero button never starts an installer download', async ({ page }) => {
   await page.goto('/')
   const hero = page.locator('main section').first()
+  // Ruling 51: chờ hydrate rồi mới khẳng định không có liên kết tải, vì nút chính của hero do client dựng theo hệ điều hành.
+  await waitForHydration(hero.getByRole('link').first())
   await expect(hero.locator('a[download]')).toHaveCount(0)
   await expect(hero.getByText('EduFlow chạy trên máy tính macOS và Windows.')).toBeVisible()
 })

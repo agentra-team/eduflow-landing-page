@@ -18,10 +18,14 @@ function isFile(x: unknown): x is FeedFile {
   return typeof f.url === 'string' && typeof f.sha512 === 'string' && typeof f.size === 'number'
 }
 
-function isFeed(x: unknown): x is Feed {
+/**
+ * Luật hình dạng feed của electron-updater, một nguồn duy nhất: chuỗi `version` và ít nhất một tệp đủ `url`, `sha512`, `size`.
+ * `fetchFeed` (feed.ts) dùng nó lúc chạy; scripts/sync-releases.mjs là .mjs thuần nên chép lại đúng luật này, sửa ở đây thì sửa ở đó.
+ */
+export function isFeed(x: unknown): x is Feed {
   if (!x || typeof x !== 'object') return false
   const f = x as Record<string, unknown>
-  return typeof f.version === 'string' && Array.isArray(f.files) && f.files.every(isFile)
+  return typeof f.version === 'string' && Array.isArray(f.files) && f.files.length > 0 && f.files.every(isFile)
 }
 
 /** Ghép URL tải: tên tệp Windows có dấu cách nên phải mã hoá. */
