@@ -849,7 +849,7 @@ export const TOPICS_EN: Record<TopicId, TopicCopy> = {
     definition: {
       h2: 'How do ChatGPT and EduFlow differ?',
       term: 'ChatGPT',
-      rest: 'is a general-purpose chat assistant: one open chat window for any topic, where you write a request in plain words, read the result and keep asking. Its strength is flexibility; you decide where the conversation goes and you check the result.',
+      rest: 'is a general-purpose chat assistant: one open chat window for any topic, where you write a request in plain words, read the result and keep asking. The conversation is open-ended: you decide where it goes and you check the result.',
       paras: [
         'EduFlow is the opposite: not an open chat but an app installed on your computer for a specific set of school-teacher jobs: building tests from a blueprint, writing lesson plans in the Official Letter 5512 structure, and making lecture slides. Each job goes through fixed steps: set up, let AI write, the machine checks the gates, you edit and approve, then export.',
         'So the right question is not which tool is better, but whether the job in front of you needs flexibility or a process. The sections below take each case in turn, with sample prompts you can use right away in ChatGPT or any chat tool.',
@@ -902,7 +902,7 @@ export const TOPICS_EN: Record<TopicId, TopicCopy> = {
       {
         h2: 'When ChatGPT is already enough',
         paras: [
-          'Much lesson preparation needs no process, and a general-purpose chat assistant does it well. If your job is one of these, you may not need EduFlow.',
+          'Much lesson preparation needs no process, and a general-purpose chat assistant is usually enough. If your job is one of these, you may not need EduFlow.',
         ],
         items: [
           { title: 'Finding ideas', text: 'Opening scenarios, worked examples, ways to explain a hard concept.' },

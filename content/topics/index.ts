@@ -32,7 +32,7 @@ export const TOPIC_META: Record<TopicId, TopicMeta> = {
   'test-versions': { pillar: 'k12', updatedAt: '2026-10-15' },
   'lesson-plans': { pillar: 'k12', updatedAt: '2026-10-15' },
   'lesson-slides': { pillar: 'k12', updatedAt: '2026-10-15' },
-  'course-syllabus': { pillar: 'university', image: shot('course-workbench'), updatedAt: '2026-10-15' },
+  'course-syllabus': { pillar: 'university', updatedAt: '2026-10-15' },
   'vs-chatgpt': { pillar: null, image: shot('assistant-home'), updatedAt: '2026-10-15', absoluteTitle: true },
 }
 

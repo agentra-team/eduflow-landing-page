@@ -850,7 +850,7 @@ export const TOPICS_VI: Record<TopicId, TopicCopy> = {
     definition: {
       h2: 'ChatGPT và EduFlow khác nhau ở đâu?',
       term: 'ChatGPT',
-      rest: 'là trợ lý trò chuyện đa năng: một khung chat mở cho mọi chủ đề, thầy cô viết yêu cầu bằng lời, đọc kết quả và tiếp tục hỏi. Sức mạnh của nó là sự linh hoạt; thầy cô quyết định cuộc trò chuyện đi đâu và tự kiểm kết quả.',
+      rest: 'là trợ lý trò chuyện đa năng: một khung chat mở cho mọi chủ đề, thầy cô viết yêu cầu bằng lời, đọc kết quả và tiếp tục hỏi. Cuộc trò chuyện để mở: thầy cô quyết định nó đi đâu và tự kiểm kết quả.',
       paras: [
         'EduFlow thì ngược lại: không phải khung chat mở mà là app cài trên máy cho một nhóm việc cụ thể của giáo viên phổ thông, gồm soạn đề kiểm tra theo ma trận, soạn giáo án theo Công văn 5512 và tạo slide bài giảng. Mỗi việc đi qua các bước cố định: thiết lập, để AI viết, máy kiểm cổng, thầy cô sửa và duyệt, xuất tệp.',
         'Vì vậy câu hỏi đúng không phải công cụ nào tốt hơn, mà là việc đang làm cần sự linh hoạt hay cần quy trình.',
@@ -903,7 +903,7 @@ export const TOPICS_VI: Record<TopicId, TopicCopy> = {
       {
         h2: 'Khi nào ChatGPT đã đủ dùng',
         paras: [
-          'Nhiều việc soạn bài không cần quy trình, và một trợ lý trò chuyện đa năng làm tốt. Với các việc sau, chưa cần đến EduFlow.',
+          'Nhiều việc soạn bài không cần quy trình, và một trợ lý trò chuyện đa năng thường là đủ. Với các việc sau, chưa cần đến EduFlow.',
         ],
         items: [
           { title: 'Tìm ý', text: 'Gợi ý tình huống mở đầu, ví dụ minh hoạ, cách giải thích một khái niệm khó.' },
