@@ -57,7 +57,7 @@
   "home": {
     "meta": {
       "title": "EduFlow · Phần mềm AI cho giáo viên soạn đề, giáo án",
-      "description": "EduFlow là phần mềm AI cho giáo viên và giảng viên: soạn đề kiểm tra theo ma trận, giáo án, slide, đề cương học phần, có trợ lý AI và người duyệt."
+      "description": "EduFlow là phần mềm AI cho giáo viên và giảng viên: soạn đề kiểm tra theo ma trận, giáo án và slide, nạp tài liệu, hỏi trợ lý AI, có người duyệt."
     },
     "hero": {
       "eyebrow": "App desktop cho macOS và Windows",
@@ -77,7 +77,7 @@
       "ctaDocs": "Xem hướng dẫn",
       "stats": {
         "versions": "mã đề tối đa mỗi đề",
-        "gates": "cổng chất lượng chạy trên mỗi đề kiểm tra"
+        "gates": "cổng trong bảng cổng của mỗi đề kiểm tra"
       }
     },
     "levels": {
@@ -147,7 +147,7 @@
       },
       "t3": {
         "title": "Kiểm 0 đơn vị không phải là sạch",
-        "desc": "Mọi cổng chất lượng in số đơn vị đã kiểm; cổng không kiểm được gì bị coi là lỗi."
+        "desc": "Các cổng chạy in số đơn vị đã kiểm; cổng không kiểm được gì bị coi là lỗi."
       },
       "t4": {
         "title": "Bản đã duyệt giữ nguyên",
@@ -155,7 +155,7 @@
       },
       "t5": {
         "title": "Làm việc khi mất mạng",
-        "desc": "Thiết lập, sửa, cổng chất lượng và xuất tệp vẫn làm được khi mất mạng. Chỉ phần AI cần kết nối."
+        "desc": "Thiết lập, sửa và xuất tệp vẫn làm được khi mất mạng. Chỉ phần AI cần kết nối."
       },
       "t6": {
         "title": "Chi phí minh bạch",
@@ -211,7 +211,7 @@
       },
       "q3": {
         "q": "Có cần Internet không?",
-        "a": "Cần khi kích hoạt, khi chạy tác vụ AI và khi hỏi trợ lý. Thiết lập, sửa, cổng chất lượng và xuất tệp vẫn làm được khi mất mạng."
+        "a": "Cần khi kích hoạt, khi chạy tác vụ AI và khi hỏi trợ lý. Thiết lập, sửa và xuất tệp vẫn làm được khi mất mạng."
       },
       "q4": {
         "q": "Dữ liệu lưu ở đâu, trợ lý gửi gì đi?",
@@ -235,7 +235,7 @@
       },
       "q9": {
         "q": "EduFlow là gì?",
-        "a": "EduFlow là phần mềm AI cho giáo viên và giảng viên: soạn đề kiểm tra theo ma trận, giáo án, slide, đề cương học phần, có trợ lý AI và người duyệt. EduFlow là ứng dụng desktop của Agentra JSC cho macOS và Windows. Hôm nay app có đủ công cụ soạn cho cấp Phổ thông; ở Học phần và Chương trình app có dự án, tài liệu và trợ lý, còn soạn đề cương và rà soát chương trình thuộc lộ trình."
+        "a": "EduFlow là phần mềm AI cho giáo viên và giảng viên: soạn đề kiểm tra theo ma trận, giáo án và slide, nạp tài liệu, hỏi trợ lý AI, có người duyệt. EduFlow là ứng dụng desktop của Agentra JSC cho macOS và Windows. Hôm nay app có đủ công cụ soạn cho cấp Phổ thông; ở Học phần và Chương trình app có dự án, tài liệu và trợ lý, còn soạn đề cương và rà soát chương trình thuộc lộ trình."
       },
       "q10": {
         "q": "EduFlow khác ChatGPT thế nào?",

@@ -57,7 +57,7 @@
   "home": {
     "meta": {
       "title": "EduFlow · AI software for teachers: tests, lesson plans",
-      "description": "EduFlow is AI software for teachers and lecturers: matrix-based tests, lesson plans, slides and course syllabi, with an AI assistant and human review."
+      "description": "EduFlow is AI software for teachers and lecturers: matrix-based tests, lesson plans and slides, document loading and an AI assistant, with human review."
     },
     "hero": {
       "eyebrow": "Desktop app for macOS and Windows",
@@ -77,7 +77,7 @@
       "ctaDocs": "Read the guides",
       "stats": {
         "versions": "test versions per test, at most",
-        "gates": "quality gates run on every test"
+        "gates": "gates in each test's gate table"
       }
     },
     "levels": {
@@ -147,7 +147,7 @@
       },
       "t3": {
         "title": "Zero units checked is not a clean result",
-        "desc": "Every quality gate prints how many units it checked; a gate that checked nothing counts as an error."
+        "desc": "The gates that run print how many units they checked; a gate that checked nothing counts as an error."
       },
       "t4": {
         "title": "An approved version stays as it is",
@@ -155,7 +155,7 @@
       },
       "t5": {
         "title": "Works offline",
-        "desc": "Setting up, editing, quality gates and exporting files keep working offline. Only the AI parts need a connection."
+        "desc": "Setting up, editing and exporting files keep working offline. Only the AI parts need a connection."
       },
       "t6": {
         "title": "Transparent costs",
@@ -211,7 +211,7 @@
       },
       "q3": {
         "q": "Do I need an Internet connection?",
-        "a": "Yes, to activate, to run AI tasks and to ask the assistant. Setting up, editing, quality gates and exporting files keep working offline."
+        "a": "Yes, to activate, to run AI tasks and to ask the assistant. Setting up, editing and exporting files keep working offline."
       },
       "q4": {
         "q": "Where is my data stored, and what does the assistant send?",
@@ -235,7 +235,7 @@
       },
       "q9": {
         "q": "What is EduFlow?",
-        "a": "EduFlow is AI software for teachers and lecturers: matrix-based tests, lesson plans, slides and course syllabi, with an AI assistant and human review. EduFlow is a desktop app by Agentra JSC for macOS and Windows. Today the app has the full set of writing tools for K-12; for Courses and Programs it has projects, documents and the assistant, while syllabus writing and curriculum review are on the roadmap."
+        "a": "EduFlow is AI software for teachers and lecturers: matrix-based tests, lesson plans and slides, document loading and an AI assistant, with human review. EduFlow is a desktop app by Agentra JSC for macOS and Windows. Today the app has the full set of writing tools for K-12; for Courses and Programs it has projects, documents and the assistant, while syllabus writing and curriculum review are on the roadmap."
       },
       "q10": {
         "q": "How is EduFlow different from ChatGPT?",

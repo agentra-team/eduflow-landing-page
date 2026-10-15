@@ -42,8 +42,8 @@ export const brand = {
     en: 'AI software for teachers and lecturers',
   },
   description: {
-    vi: 'EduFlow là phần mềm AI cho giáo viên và giảng viên: soạn đề kiểm tra theo ma trận, giáo án, slide, đề cương học phần, có trợ lý AI và người duyệt.',
-    en: 'EduFlow is AI software for teachers and lecturers: matrix-based tests, lesson plans, slides and course syllabi, with an AI assistant and human review.',
+    vi: 'EduFlow là phần mềm AI cho giáo viên và giảng viên: soạn đề kiểm tra theo ma trận, giáo án và slide, nạp tài liệu, hỏi trợ lý AI, có người duyệt.',
+    en: 'EduFlow is AI software for teachers and lecturers: matrix-based tests, lesson plans and slides, document loading and an AI assistant, with human review.',
   },
   /** Tên "Eduflow" đã có chủ trên mạng (eduflow.com): thiếu câu này, trợ lý AI và Google dễ nhầm hai sản phẩm (rủi ro K2). */
   disambiguation: {
@@ -66,8 +66,8 @@ export const brand = {
       `Xuất đề tối đa ${appFacts.maxTestVersions} mã đề, xáo trộn câu hỏi và phương án theo khoá cố định, kèm đáp án và hướng dẫn chấm ở tệp riêng`,
       'Giáo án theo Công văn 5512 và slide bài giảng 16:9 có quiz, từ khung chương trình GDPT 2018 có sẵn trong app',
       'Cổng chất lượng chạy tại máy, mỗi cổng in số đơn vị đã kiểm; thầy cô duyệt trước khi xuất',
-      'Trợ lý AI ở trang chủ và cạnh mọi màn làm việc, đề xuất vào bản nháp, không duyệt và không ký thay người',
-      'Đọc tài liệu và nhận dạng chữ (OCR) ngay tại máy, không tốn tiền',
+      'Trợ lý AI ở trang chủ và cạnh mọi màn làm việc, trả lời kèm nhãn tầng kết luận và đề xuất bằng chữ cần người duyệt, không duyệt và không ký thay người',
+      'Đọc lớp chữ của tài liệu PDF, Word, PowerPoint ngay tại máy, không tốn tiền; chọn đoạn gửi trợ lý, công tắc Không gửi cho AI giữ kín từng mục',
       'Chi phí AI hiện trước khi chạy, ngân sách tháng theo key; việc chạy tại máy không tốn tiền',
       'Ứng dụng desktop cho macOS (Apple Silicon, Intel) và Windows 64-bit; dữ liệu dự án nằm ở máy thầy cô',
     ],
@@ -76,8 +76,8 @@ export const brand = {
       `Export up to ${appFacts.maxTestVersions} test versions, with questions and options shuffled by a fixed key, and the answer key and marking guide in separate files`,
       'Official Letter 5512 lesson plans and 16:9 lesson slides with quizzes, from the 2018 general education curriculum built into the app',
       'Quality gates run on your computer and each gate reports how many units it checked; you review and approve before exporting',
-      'An AI assistant on the home screen and beside every work screen, suggesting changes to a draft, never approving or signing for you',
-      'Document reading and text recognition (OCR) on your computer, at no cost',
+      'An AI assistant on the home screen and beside every work screen, answering with labelled tiers of conclusions and text suggestions that need your review, never approving or signing for you',
+      'Reading the text layer of PDF, Word and PowerPoint documents on your computer at no cost; you choose which passages go to the assistant, and a Do not send to AI switch keeps any item private',
       'AI costs shown before anything runs, a monthly budget per key; local work is free',
       'A desktop app for macOS (Apple Silicon, Intel) and 64-bit Windows; project data stays on your computer',
     ],
