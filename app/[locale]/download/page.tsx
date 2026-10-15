@@ -13,10 +13,14 @@ import type { Locale } from '@/i18n/routing'
 import { releaseLead } from '@/lib/format'
 import { getReleases, latestRelease } from '@/lib/releases'
 import { downloadState, hasAssetFor } from '@/lib/releases/state'
+import { appFacts } from '@/lib/seo/app-facts'
 import { breadcrumb, softwareApplication } from '@/lib/seo/jsonld'
 import { buildMetadata } from '@/lib/seo/metadata'
 import { absoluteUrl } from '@/lib/seo/urls'
 import { site } from '@/lib/site'
+
+// Câu về ký số đọc từ cờ của app-facts (spec §7.5): chưa có chứng thư thì nói thật là máy sẽ hỏi lại.
+const SIGNING = appFacts.installerSigned ? 'signed' : 'unsigned'
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale = (await getLocale()) as Locale
@@ -69,8 +73,8 @@ export default async function DownloadPage() {
             <SystemRequirements />
           </div>
           <div className="mt-8 flex flex-col gap-4">
-            <Callout kind="info" title={t('signed.title')}>
-              {t('signed.body')} {guide('windows', t('guideWindows'))} · {guide('macos', t('guideMac'))}
+            <Callout kind={appFacts.installerSigned ? 'info' : 'warning'} title={t(`signing.${SIGNING}.title`)}>
+              {t(`signing.${SIGNING}.body`)} {guide('windows', t('guideWindows'))} · {guide('macos', t('guideMac'))}
             </Callout>
             <div className="flex gap-3.5 rounded-xl border border-line bg-card2 p-5">
               <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-[10px] bg-accent-soft text-accent-strong">

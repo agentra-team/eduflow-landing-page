@@ -1,12 +1,12 @@
 export const meta = {
   title: 'Install EduFlow on Windows',
-  description: 'Download the signed installer, run it, handle SmartScreen if it appears, activate with a license key or start a trial and get new versions in the app.',
+  description: 'Download the installer for 64-bit Windows, run it, get past the SmartScreen warning, activate with a license key or a trial and get new versions in the app.',
   updated: '2026-09-30',
   minutes: 3,
   toc: [
     { id: 'tai-tep', label: 'Download the installer' },
     { id: 'trinh-cai', label: 'Run the installer' },
-    { id: 'smartscreen', label: 'If SmartScreen asks again' },
+    { id: 'smartscreen', label: 'Get past the SmartScreen warning' },
     { id: 'kich-hoat', label: 'Activate or start a trial' },
     { id: 'ho-so', label: 'Choose a work profile' },
     { id: 'cap-nhat', label: 'Get new versions' },
@@ -24,19 +24,21 @@ Download the file `EduFlow Setup <version>.exe` from the Download page. The file
 
 <Step n={2} id="trinh-cai" title="Run the installer">
 
-Double-click the **.exe** file. The installer shows **Agentra JSC** as the publisher. Keep the default install folder or choose another one, click **Install**, then open EduFlow from the Start menu.
+Double-click the **.exe** file. If SmartScreen shows a warning, follow step 3 and come back here. Keep the default install folder or choose another one, click **Install**, then open EduFlow from the Start menu.
 
 </Step>
 
-<Step n={3} id="smartscreen" title="If SmartScreen asks again">
+<Step n={3} id="smartscreen" title="Get past the SmartScreen warning">
 
-For a newly released version, Windows Defender SmartScreen may show the dialog **"Windows protected your PC"** even though the installer is signed.
+The installer is not signed yet with a Microsoft certificate, so Windows Defender SmartScreen shows **"Windows protected your PC"** and the publisher line reads **Unknown publisher**.
 
 1. Click **More info**.
-2. Check that the publisher line reads **Agentra JSC**.
+2. Check that the file name is the file you just downloaded from the EduFlow Download page.
 3. Click **Run anyway**.
 
-If the publisher is not Agentra JSC, do not run that file and download it again from the Download page.
+To make sure the file was not altered, compare the SHA-512 checksum on the Download page with the output of this command (open PowerShell in the folder that holds the file):
+
+<CodeBlock code={'certutil -hashfile "EduFlow Setup <version>.exe" SHA512'} copyLabel="Copy" copiedLabel="Copied" />
 
 </Step>
 

@@ -51,15 +51,15 @@ describe('a release without a valid date', () => {
     expect(lead('en', '')).toContain('>Version 1.0.0.</p>')
   })
 
-  test('the Download page lead keeps its signed-installer sentence and drops only the date', () => {
+  test('the Download page lead states the version and drops only the date', () => {
     const lead = (locale: Locale, releaseDate: string) => {
       const t = createTranslator({ locale, messages: MESSAGES[locale], namespace: 'download', timeZone: 'Asia/Ho_Chi_Minh' })
       const parts = releaseLead({ version: '1.0.0', releaseDate }, locale)
       return parts ? t(parts.key, parts.values) : undefined
     }
-    expect(lead('vi', DATED)).toBe('Phiên bản 1.0.0, phát hành 15/09/2026. Bộ cài đã ký số.')
-    expect(lead('en', DATED)).toBe('Version 1.0.0, released 15 Sep 2026. The installers are digitally signed.')
-    expect(lead('vi', '')).toBe('Phiên bản 1.0.0. Bộ cài đã ký số.')
-    expect(lead('en', '')).toBe('Version 1.0.0. The installers are digitally signed.')
+    expect(lead('vi', DATED)).toBe('Phiên bản 1.0.0, phát hành 15/09/2026.')
+    expect(lead('en', DATED)).toBe('Version 1.0.0, released 15 Sep 2026.')
+    expect(lead('vi', '')).toBe('Phiên bản 1.0.0.')
+    expect(lead('en', '')).toBe('Version 1.0.0.')
   })
 })

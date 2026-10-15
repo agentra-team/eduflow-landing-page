@@ -701,12 +701,12 @@
   "download": {
     "meta": {
       "title": "Tải về cho macOS và Windows",
-      "description": "Tải bộ cài EduFlow đã ký số cho macOS (Apple Silicon, Intel) và Windows, kèm mã SHA-512, yêu cầu hệ thống, hướng dẫn cài đặt và cách nhận bản cập nhật."
+      "description": "Tải EduFlow cho macOS (Apple Silicon, Intel) và Windows 64-bit, kèm mã SHA-512, yêu cầu hệ thống, hướng dẫn cài đặt và cách nhận bản cập nhật trong app."
     },
     "eyebrow": "Tải về",
     "h1": "Tải EduFlow cho máy tính của thầy cô",
-    "lead": "Phiên bản {version}, phát hành {date}. Bộ cài đã ký số.",
-    "leadNoDate": "Phiên bản {version}. Bộ cài đã ký số.",
+    "lead": "Phiên bản {version}, phát hành {date}.",
+    "leadNoDate": "Phiên bản {version}.",
     "detected": {
       "windows": "Máy thầy cô đang dùng Windows",
       "macos": "Máy thầy cô đang dùng macOS"
@@ -735,9 +735,15 @@
         "net": "Internet để kích hoạt và cho các bước AI"
       }
     },
-    "signed": {
-      "title": "Bộ cài đã ký số",
-      "body": "Bản macOS ký Developer ID và được Apple notarize; bản Windows ký mã của Agentra JSC. Windows SmartScreen có thể vẫn hỏi lại với bản vừa phát hành; hướng dẫn cài có cách xử lý."
+    "signing": {
+      "signed": {
+        "title": "Bộ cài đã ký số",
+        "body": "Bản macOS ký Developer ID và được Apple notarize; bản Windows ký mã của Agentra JSC. Windows SmartScreen có thể vẫn hỏi lại với bản vừa phát hành; hướng dẫn cài có cách xử lý."
+      },
+      "unsigned": {
+        "title": "Lần mở đầu, máy sẽ hỏi lại",
+        "body": "Bộ cài hiện chưa ký số bằng chứng thư của Apple và Microsoft, nên lần mở đầu tiên macOS và Windows SmartScreen sẽ chặn và hỏi lại. Hướng dẫn cài chỉ từng bước mở; chỉ dùng tệp tải từ trang này."
+      }
     },
     "update": {
       "title": "Đã cài rồi?",
@@ -778,7 +784,7 @@
       },
       "windows": {
         "title": "Cài đặt trên Windows",
-        "description": "Tải bộ cài EduFlow đã ký cho Windows, chạy trình cài, xử lý SmartScreen nếu có, kích hoạt bằng key hoặc dùng thử, chọn hồ sơ làm việc và nhận bản mới."
+        "description": "Tải bộ cài EduFlow cho Windows 64-bit, chạy trình cài, mở qua cảnh báo SmartScreen, kích hoạt bằng key hoặc dùng thử và nhận bản mới trong app."
       }
     }
   },

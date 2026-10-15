@@ -14,11 +14,16 @@ for (const locale of ['vi', 'en']) {
         expect(src).toContain('Applications')
         expect(src).toContain('Apple Silicon')
         expect(src).not.toContain('xattr')
+        // Bộ cài chưa ký (app-facts.installerSigned): bài phải chỉ đường mở qua Gatekeeper.
+        expect(src).toContain(locale === 'vi' ? 'Quyền riêng tư & Bảo mật' : 'Privacy & Security')
+        expect(src).toContain(locale === 'vi' ? 'Vẫn mở' : 'Open Anyway')
       }
       if (os === 'windows') {
         expect(src).toContain('SmartScreen')
-        expect(src).toContain('Agentra JSC')
+        expect(src).toContain('More info')
         expect(src).toContain('Run anyway')
+        expect(src).toContain('Unknown publisher')
+        expect(src).toContain('certutil -hashfile')
       }
     })
   }

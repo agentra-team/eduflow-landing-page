@@ -701,12 +701,12 @@
   "download": {
     "meta": {
       "title": "Download for macOS and Windows",
-      "description": "Download the EduFlow installer for macOS (Apple Silicon, Intel) and Windows, with SHA-512 checksums, system requirements and installation guides."
+      "description": "Download EduFlow for macOS (Apple Silicon, Intel) and 64-bit Windows, with SHA-512 checksums, system requirements, installation guides and in-app updates."
     },
     "eyebrow": "Download",
     "h1": "Download EduFlow for your computer",
-    "lead": "Version {version}, released {date}. The installers are digitally signed.",
-    "leadNoDate": "Version {version}. The installers are digitally signed.",
+    "lead": "Version {version}, released {date}.",
+    "leadNoDate": "Version {version}.",
     "detected": {
       "windows": "Your computer runs Windows",
       "macos": "Your computer runs macOS"
@@ -735,9 +735,15 @@
         "net": "Internet for activation and AI steps"
       }
     },
-    "signed": {
-      "title": "Digitally signed installers",
-      "body": "The macOS build is signed with a Developer ID and notarized by Apple; the Windows build is code-signed by Agentra JSC. Windows SmartScreen may still ask for confirmation on a newly released version; the installation guide explains what to do."
+    "signing": {
+      "signed": {
+        "title": "Digitally signed installers",
+        "body": "The macOS build is signed with a Developer ID and notarized by Apple; the Windows build is code-signed by Agentra JSC. Windows SmartScreen may still ask for confirmation on a newly released version; the installation guide explains what to do."
+      },
+      "unsigned": {
+        "title": "Your computer asks again the first time",
+        "body": "The installers are not signed yet with Apple and Microsoft certificates, so macOS and Windows SmartScreen block the first launch and ask again. The installation guide shows each step; only use files downloaded from this page."
+      }
     },
     "update": {
       "title": "Already installed?",
@@ -778,7 +784,7 @@
       },
       "windows": {
         "title": "Install on Windows",
-        "description": "Download the signed EduFlow installer for Windows, run it, handle SmartScreen if it appears, activate with a license key or a trial, and get new versions."
+        "description": "Download the EduFlow installer for 64-bit Windows, run it, get past the SmartScreen warning, activate with a key or a trial, and get new versions in the app."
       }
     }
   },

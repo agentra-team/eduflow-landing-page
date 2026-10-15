@@ -1,12 +1,12 @@
 export const meta = {
   title: 'Cài EduFlow trên máy Windows',
-  description: 'Tải bộ cài đã ký, chạy trình cài, xử lý SmartScreen nếu có, kích hoạt bằng key hoặc dùng thử và nhận bản mới trong app.',
+  description: 'Tải bộ cài cho Windows 64-bit, chạy trình cài, mở qua cảnh báo SmartScreen, kích hoạt bằng key hoặc dùng thử và nhận bản mới trong app.',
   updated: '2026-09-30',
   minutes: 3,
   toc: [
     { id: 'tai-tep', label: 'Tải tệp cài' },
     { id: 'trinh-cai', label: 'Chạy trình cài' },
-    { id: 'smartscreen', label: 'Nếu SmartScreen hỏi lại' },
+    { id: 'smartscreen', label: 'Mở qua cảnh báo SmartScreen' },
     { id: 'kich-hoat', label: 'Kích hoạt hoặc dùng thử' },
     { id: 'ho-so', label: 'Chọn hồ sơ làm việc' },
     { id: 'cap-nhat', label: 'Nhận bản mới' },
@@ -24,19 +24,21 @@ Tải tệp `EduFlow Setup <phiên bản>.exe` từ trang Tải về. Tệp ch�
 
 <Step n={2} id="trinh-cai" title="Chạy trình cài">
 
-Bấm đúp tệp **.exe**. Trình cài hiện nhà phát hành **Agentra JSC**. Giữ thư mục cài mặc định hoặc chọn thư mục khác, bấm **Cài đặt**, rồi mở EduFlow từ menu Start.
+Bấm đúp tệp **.exe**. Nếu SmartScreen hiện cảnh báo, làm theo bước 3 rồi quay lại đây. Giữ thư mục cài mặc định hoặc chọn thư mục khác, bấm **Cài đặt**, rồi mở EduFlow từ menu Start.
 
 </Step>
 
-<Step n={3} id="smartscreen" title="Nếu SmartScreen hỏi lại">
+<Step n={3} id="smartscreen" title="Mở qua cảnh báo SmartScreen">
 
-Với bản vừa phát hành, Windows Defender SmartScreen có thể hiện hộp thoại **"Windows đã bảo vệ PC của bạn"** (Windows protected your PC) dù bộ cài đã ký.
+Bộ cài hiện chưa ký số bằng chứng thư Microsoft, nên Windows Defender SmartScreen hiện hộp thoại **"Windows đã bảo vệ PC của bạn"** (Windows protected your PC), và dòng nhà phát hành ghi **Nhà phát hành không xác định** (Unknown publisher).
 
 1. Bấm **Thông tin thêm** (More info).
-2. Kiểm dòng nhà phát hành ghi **Agentra JSC**.
+2. Kiểm tên tệp đúng là tệp vừa tải từ trang Tải về của EduFlow.
 3. Bấm **Vẫn chạy** (Run anyway).
 
-Nếu nhà phát hành không phải Agentra JSC, không chạy tệp đó và tải lại từ trang Tải về.
+Muốn chắc tệp không bị sửa, so mã SHA-512 trên trang Tải về với kết quả của lệnh sau (mở PowerShell trong thư mục chứa tệp):
+
+<CodeBlock code={'certutil -hashfile "EduFlow Setup <phiên bản>.exe" SHA512'} copyLabel="Sao chép" copiedLabel="Đã sao chép" />
 
 </Step>
 

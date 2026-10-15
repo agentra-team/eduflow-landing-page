@@ -46,8 +46,10 @@ const FORBIDDEN = [
 // Không bắt "thay" đứng một mình trước "thầy cô": "không ký thay thầy cô" và "AI không thay thầy cô" nói điều ngược lại, mà văn bản tin cậy cần nói.
 // Hai kiểu còn lại thì không nhập nhằng: "thay thế" là thay cho, và "AI" liền trước "thay" là AI làm chủ thể.
 
-// OQ-L07: chưa nêu tên nhà cung cấp mô hình (spec §15). Chỉ các tên nhà cung cấp; Google Analytics và Google Maps vẫn được nêu.
-const PROVIDERS = [/anthropic/i, /claude/i, /openai/i, /gpt/i, /gemini/i, /google ai/i]
+// OQ-L07: chưa nêu tên nhà cung cấp mô hình mà EduFlow dùng (spec 30/09 §15). "ChatGPT" là tên một sản phẩm được phép nhắc để so sánh
+// (spec §7.2: trang /eduflow-va-chatgpt và cột ChatGPT trong bảng so sánh); tên mô hình dạng GPT-4o, GPT-5 thì vẫn cấm.
+// GLM, Z.ai, Zhipu là nhà cung cấp thật của app. Google Analytics và Google Maps vẫn được nêu.
+const PROVIDERS = [/anthropic/i, /claude/i, /openai/i, /(?<!\p{L})gpt-?\d/iu, /gemini/i, /google ai/i, /\bglm\b/i, /\bz\.ai\b/i, /zhipu/i]
 
 // OQ-L07: chưa có cam kết về huấn luyện mô hình, cả dạng khẳng định lẫn phủ định. Chỉ bắt khi "huấn luyện" hay "train" đi với mô hình hoặc dữ liệu,
 // để các nghĩa khác (huấn luyện viên, huấn luyện kỹ năng, teacher training) không bị chặn nhầm.
@@ -103,7 +105,7 @@ test('the copy guards catch the phrasings they target and spare neutral wording'
   ]) {
     expect(caught(FORBIDDEN, bad), bad).toBe(true)
   }
-  for (const bad of ['Powered by Claude', 'Dùng Anthropic', 'OpenAI API', 'ChatGPT', 'GPT-5', 'Google Gemini', 'Google AI Studio']) {
+  for (const bad of ['Powered by Claude', 'Dùng Anthropic', 'OpenAI API', 'GPT-5', 'GPT4o', 'Google Gemini', 'Google AI Studio', 'GLM-4.6', 'Z.ai', 'Zhipu AI']) {
     expect(caught(PROVIDERS, bad), bad).toBe(true)
   }
   for (const bad of [
@@ -133,6 +135,9 @@ test('the copy guards catch the phrasings they target and spare neutral wording'
     'Google Analytics và Google Maps',
     'Agentra ánh xạ tầng sang mô hình cụ thể',
     'The server relays content to the model',
+    'EduFlow và ChatGPT: soạn đề, giáo án khác gì?',
+    'ChatGPT soạn giáo án',
+    'EduFlow vs ChatGPT',
   ]) {
     expect(caught(all, fine), fine).toBe(false)
   }
