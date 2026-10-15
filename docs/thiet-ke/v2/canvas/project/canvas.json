@@ -10,7 +10,7 @@
  },
  "pages": [],
  "boards": {
-  "Home.dc.html": {
+  "Main.dc.html": {
    "x": 0,
    "y": 0,
    "w": 1440,
@@ -110,7 +110,7 @@
   }
  },
  "order": [
-  "Home.dc.html",
+  "Main.dc.html",
   "Home2.dc.html",
   "HomeMobile.dc.html",
   "HomeMobile2.dc.html",
@@ -137,7 +137,7 @@
    "x": 3980,
    "y": 0,
    "w": 440,
-   "text": "Home và Home2 là một trang chủ desktop 1440 px (14 khối của spec §6), cắt hai vì canvas giới hạn 8000 px mỗi artboard. Trạng thái có bản phát hành, khách dùng macOS nên nút cam ghi Tải về cho macOS. Hỏi đáp mở cả 10 câu để duyệt chữ; trang thật chỉ mở câu đầu. Phiên bản 1.0.0, ngày 01/10/2026, tên tệp và dung lượng là dữ liệu mẫu từ fixture test."
+   "text": "Main và Home2 là một trang chủ desktop 1440 px (Main là artboard vào của canvas) (14 khối của spec §6), cắt hai vì canvas giới hạn 8000 px mỗi artboard. Trạng thái có bản phát hành, khách dùng macOS nên nút cam ghi Tải về cho macOS. Hỏi đáp mở cả 10 câu để duyệt chữ; trang thật chỉ mở câu đầu. Phiên bản 1.0.0, ngày 01/10/2026, tên tệp và dung lượng là dữ liệu mẫu từ fixture test."
   },
   "n12": {
    "x": 3980,

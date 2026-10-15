@@ -10,11 +10,13 @@ Pro, logo `public/brand/eduflow-wordmark.svg`, bo góc, không chế độ tối
 nguyên văn từ repo: `messages/vi.json`, `content/topics/vi.ts`, sổ bài `content/docs/index.ts` và `content/docs/vi/soan-de-kiem-tra.mdx`,
 `content/home.ts` (`HOME_FACTS`, `HOME_LINKS`) và tên trang ở `lib/seo/pages.ts`. Con số lấy từ `lib/seo/app-facts.ts`.
 
+Artboard vào là `Main.dc.html` (phần 1/2 của trang chủ desktop), theo luật của loại canvas "Design" trên claude.ai.
+
 ### Artboard
 
 | Tệp | Kích thước | Nội dung |
 |---|---|---|
-| `v2/canvas/project/Home.dc.html` | 1440 × 5429 | Trang chủ tiếng Việt, desktop, phần 1/2: header, hero (hai thẻ số nổi), dải dữ kiện, ba cấp, bốn khối tính năng xen trái phải, tab vai trò (Giáo viên phổ thông), quy trình 5 bước. Trạng thái có bản phát hành |
+| `v2/canvas/project/Main.dc.html` | 1440 × 5429 | Trang chủ tiếng Việt, desktop, phần 1/2: header, hero (hai thẻ số nổi), dải dữ kiện, ba cấp, bốn khối tính năng xen trái phải, tab vai trò (Giáo viên phổ thông), quy trình 5 bước. Trạng thái có bản phát hành |
 | `v2/canvas/project/Home2.dc.html` | 1440 × 5479 | Trang chủ desktop, phần 2/2: minh bạch và an toàn, chi phí, hướng dẫn nổi bật, tải về, hỏi đáp 10 câu (mở hết để duyệt chữ), dải CTA, footer |
 | `v2/canvas/project/HomeMobile.dc.html` | 390 × 7495 | Trang chủ trên điện thoại, phần 1/2: header, hero, dải dữ kiện, ba cấp, bốn khối tính năng, tab vai trò (Giảng viên), quy trình 5 bước. Trạng thái sắp phát hành |
 | `v2/canvas/project/HomeMobile2.dc.html` | 390 × 6642 | Trang chủ trên điện thoại, phần 2/2: minh bạch và an toàn, chi phí, hướng dẫn nổi bật, khối sắp phát hành, hỏi đáp, dải CTA, footer |
@@ -52,7 +54,7 @@ Chạy từ gốc repo, với repo `eduflow-application` nằm cạnh:
 
 ```bash
 python3 ../eduflow-application/docs/thiet-ke/tools/check_dc.py docs/thiet-ke/v2/canvas/project/*.dc.html
-python3 ../eduflow-application/docs/thiet-ke/tools/preview_dc.py docs/thiet-ke/v2/canvas/project/Home.dc.html macOS /tmp/v2-home.png
+python3 ../eduflow-application/docs/thiet-ke/tools/preview_dc.py docs/thiet-ke/v2/canvas/project/Main.dc.html macOS /tmp/v2-main.png
 ```
 
 Với artboard landing, bốn mục "$preview missing", "os prop missing", "root size/overflow missing" và "os chrome sc-if missing" là
