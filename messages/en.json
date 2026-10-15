@@ -102,8 +102,8 @@
         "desc": "The assistant's suggestions carry the label “Suggestion, needs human review”. They are text to read; to change something, you edit it on the writing screen, and an approved version stays as it is."
       },
       "p4": {
-        "title": "Never approves or signs on your behalf",
-        "desc": "The Approve button lives in the Export step of the main screen. Ask the assistant to approve or sign and it tells you which screen to do it on."
+        "title": "Never approves on your behalf",
+        "desc": "The Approve button lives in the Export step of the main screen. Ask the assistant to approve and it shows you the screen to do it on yourself."
       },
       "windowTitle": "EduFlow · Results and quality gates (design preview)",
       "imageAlt": "Design preview, not a screenshot of the app: the test results screen with the gate table and the assistant panel explaining gate P5",
@@ -271,7 +271,7 @@
       "assistant": {
         "tag": "AI assistant",
         "title": "An assistant that is always there",
-        "body": "Ask on the home screen or right beside the screen you are working on. The assistant knows the open screen, answers in three tiers of conclusions, sets up a test, lesson plan or slides for you, shows the cost of every message, and never approves or signs for anyone."
+        "body": "Ask on the home screen or right beside the screen you are working on. The assistant knows the open screen, answers in three tiers of conclusions, sets up a test, lesson plan or slides for you, shows the cost of every message, and never approves for anyone."
       },
       "syllabus": {
         "tag": "Courses and programs",
@@ -838,7 +838,7 @@
     },
     "p6": {
       "title": "The machine suggests, people decide",
-      "body": "AI content carries the Suggestion label until you approve it. There is no button to skip a quality gate; the assistant does not approve or sign."
+      "body": "AI content carries the Suggestion label until you approve it. There is no button to skip a quality gate; the assistant does not approve for you."
     },
     "p7": {
       "title": "Three tiers of conclusions",

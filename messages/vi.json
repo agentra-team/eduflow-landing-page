@@ -102,8 +102,8 @@
         "desc": "Gợi ý của trợ lý mang nhãn “Đề xuất, cần người duyệt”. Đó là chữ để đọc; muốn sửa, thầy cô sửa ở màn soạn, và phiên bản đã duyệt giữ nguyên."
       },
       "p4": {
-        "title": "Không duyệt, không ký thay người",
-        "desc": "Nút Duyệt nằm ở bước Xuất của màn chính. Nhờ trợ lý duyệt hay ký thì trợ lý nói thầy cô tự làm ở màn nào."
+        "title": "Không duyệt thay người",
+        "desc": "Nút Duyệt nằm ở bước Xuất của màn chính. Nhờ trợ lý duyệt thì trợ lý chỉ thầy cô màn để tự làm."
       },
       "windowTitle": "EduFlow · Kết quả và cổng chất lượng (bản thiết kế)",
       "imageAlt": "Bản thiết kế, chưa phải ảnh chụp app: màn kết quả đề kiểm tra với bảng cổng và panel trợ lý giải thích cổng P5",
@@ -271,7 +271,7 @@
       "assistant": {
         "tag": "Trợ lý AI",
         "title": "Trợ lý luôn có mặt",
-        "body": "Hỏi ở trang chủ hay ngay cạnh màn đang làm. Trợ lý biết màn đang mở, trả lời theo ba tầng kết luận, dựng sẵn thiết lập đề, giáo án hay slide, hiện chi phí mỗi tin, và không duyệt hay ký thay ai."
+        "body": "Hỏi ở trang chủ hay ngay cạnh màn đang làm. Trợ lý biết màn đang mở, trả lời theo ba tầng kết luận, dựng sẵn thiết lập đề, giáo án hay slide, hiện chi phí mỗi tin, và không duyệt thay ai."
       },
       "syllabus": {
         "tag": "Học phần và chương trình",
@@ -838,7 +838,7 @@
     },
     "p6": {
       "title": "Máy đề xuất, người quyết định",
-      "body": "Nội dung AI mang nhãn Đề xuất cho tới khi thầy cô duyệt. Không có nút bỏ qua cổng chất lượng; trợ lý không duyệt, không ký."
+      "body": "Nội dung AI mang nhãn Đề xuất cho tới khi thầy cô duyệt. Không có nút bỏ qua cổng chất lượng; trợ lý không duyệt thay thầy cô."
     },
     "p7": {
       "title": "Ba tầng kết luận",
