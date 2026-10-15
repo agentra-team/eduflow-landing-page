@@ -1,0 +1,218 @@
+{
+ "v": 3,
+ "createdOnFiles": {
+  "v": 1,
+  "at": "2026-10-15T07:37:23Z"
+ },
+ "title": "EduFlow Landing v2 (hướng A)",
+ "launch": {
+  "view": "canvas"
+ },
+ "pages": [],
+ "boards": {
+  "Home.dc.html": {
+   "x": 0,
+   "y": 0,
+   "w": 1440,
+   "h": 5429,
+   "title": "Trang chủ (VI, desktop 1440, có bản phát hành), phần 1/2: header, hero, dải dữ kiện, ba cấp, bốn khối tính năng, tab vai trò, quy trình 5 bước"
+  },
+  "Home2.dc.html": {
+   "x": 1520,
+   "y": 0,
+   "w": 1440,
+   "h": 5479,
+   "title": "Trang chủ (VI, desktop 1440, có bản phát hành), phần 2/2: minh bạch và an toàn, chi phí, hướng dẫn, tải về, hỏi đáp, dải CTA, footer"
+  },
+  "HomeMobile.dc.html": {
+   "x": 3040,
+   "y": 0,
+   "w": 390,
+   "h": 7495,
+   "title": "Trang chủ (VI, điện thoại 390, sắp phát hành), phần 1/2: header, hero, dải dữ kiện, ba cấp, bốn khối tính năng, tab vai trò, quy trình 5 bước"
+  },
+  "HomeMobile2.dc.html": {
+   "x": 3510,
+   "y": 0,
+   "w": 390,
+   "h": 6642,
+   "title": "Trang chủ (VI, điện thoại 390, sắp phát hành), phần 2/2: minh bạch và an toàn, chi phí, hướng dẫn, tải về, hỏi đáp, dải CTA, footer"
+  },
+  "MegaMenu.dc.html": {
+   "x": 0,
+   "y": 7895,
+   "w": 1440,
+   "h": 900,
+   "title": "Mega menu Sản phẩm đang mở (1440 × 900)"
+  },
+  "MegaMenuSolutions.dc.html": {
+   "x": 1520,
+   "y": 7895,
+   "w": 1440,
+   "h": 620,
+   "title": "Mega menu Giải pháp đang mở"
+  },
+  "MegaMenuDocs.dc.html": {
+   "x": 3040,
+   "y": 7895,
+   "w": 1440,
+   "h": 620,
+   "title": "Mega menu Hướng dẫn đang mở"
+  },
+  "MobileMenu.dc.html": {
+   "x": 4560,
+   "y": 7895,
+   "w": 390,
+   "h": 844,
+   "title": "Menu điện thoại đang mở (390 × 844)"
+  },
+  "LevelK12.dc.html": {
+   "x": 0,
+   "y": 9335,
+   "w": 1440,
+   "h": 6784,
+   "title": "AI cho giáo viên (trang cấp Phổ thông)"
+  },
+  "TopicTestGenerator.dc.html": {
+   "x": 1520,
+   "y": 9335,
+   "w": 1440,
+   "h": 7352,
+   "title": "AI tạo đề kiểm tra theo ma trận (trang chủ đề)"
+  },
+  "DocsIndex.dc.html": {
+   "x": 3040,
+   "y": 9335,
+   "w": 1440,
+   "h": 2655,
+   "title": "Hướng dẫn sử dụng EduFlow (mục lục)"
+  },
+  "DocArticle.dc.html": {
+   "x": 4560,
+   "y": 9335,
+   "w": 1440,
+   "h": 6533,
+   "title": "Bài: Soạn đề kiểm tra theo ma trận (desktop 1440)"
+  },
+  "DocArticleMobile.dc.html": {
+   "x": 6080,
+   "y": 9335,
+   "w": 390,
+   "h": 844,
+   "title": "Bài hướng dẫn trên điện thoại, ngăn kéo Mục lục hướng dẫn mở (390 × 844)"
+  },
+  "Download.dc.html": {
+   "x": 6550,
+   "y": 9335,
+   "w": 1440,
+   "h": 3170,
+   "title": "Tải về: có bản phát hành, sắp phát hành"
+  }
+ },
+ "order": [
+  "Home.dc.html",
+  "Home2.dc.html",
+  "HomeMobile.dc.html",
+  "HomeMobile2.dc.html",
+  "MegaMenu.dc.html",
+  "MegaMenuSolutions.dc.html",
+  "MegaMenuDocs.dc.html",
+  "MobileMenu.dc.html",
+  "LevelK12.dc.html",
+  "TopicTestGenerator.dc.html",
+  "DocsIndex.dc.html",
+  "DocArticle.dc.html",
+  "DocArticleMobile.dc.html",
+  "Download.dc.html"
+ ],
+ "notes": {
+  "r1": {
+   "x": 0,
+   "y": -250,
+   "text": "Trang chủ: desktop có bản phát hành (hai phần), điện thoại sắp phát hành (hai phần)",
+   "kind": "title1",
+   "maxW": 6000
+  },
+  "n11": {
+   "x": 3980,
+   "y": 0,
+   "w": 440,
+   "text": "Home và Home2 là một trang chủ desktop 1440 px (14 khối của spec §6), cắt hai vì canvas giới hạn 8000 px mỗi artboard. Trạng thái có bản phát hành, khách dùng macOS nên nút cam ghi Tải về cho macOS. Hỏi đáp mở cả 10 câu để duyệt chữ; trang thật chỉ mở câu đầu. Phiên bản 1.0.0, ngày 01/10/2026, tên tệp và dung lượng là dữ liệu mẫu từ fixture test."
+  },
+  "n12": {
+   "x": 3980,
+   "y": 520,
+   "w": 440,
+   "text": "HomeMobile và HomeMobile2 là trang chủ trên điện thoại 390 px, trạng thái sắp phát hành: nút chính Liên hệ để dùng sớm, khối Tải về hiện thông báo sắp phát hành. Tab vai trò ở điện thoại đang chọn Giảng viên (dải tab cuộn ngang), ở desktop đang chọn Giáo viên phổ thông, để duyệt chữ của hai tab."
+  },
+  "n13": {
+   "x": 3980,
+   "y": 1040,
+   "w": 440,
+   "text": "Ảnh sản phẩm là khung giữ chỗ ghi tên artboard của canvas app (ví dụ Ảnh: AssistantHome) kèm chữ thay thế lấy nguyên văn từ messages hoặc content/topics. Ảnh thật chụp lại ở Kế hoạch 2 (spec §10.5). Ảnh của tab vai trò chưa có chữ thay thế trong repo nên mang ô đánh dấu."
+  },
+  "n14": {
+   "x": 3980,
+   "y": 1560,
+   "w": 440,
+   "text": "Khối viền đứt màu tím là ghi chú của canvas, không phải chữ của trang. Ô ghi Chữ: chưa có trong repo, cần viết ở Kế hoạch 2 đánh dấu chỗ spec cần chữ mà repo chưa có. Mọi chữ khác lấy nguyên văn từ messages/vi.json, content/topics/vi.ts, content/docs (sổ bài và MDX), content/home.ts và lib/seo/pages.ts."
+  },
+  "n15": {
+   "x": 3980,
+   "y": 2080,
+   "w": 440,
+   "text": "Sự thật v1: gạch đầu dòng có dấu kiểm là việc app v1 làm được; gạch đầu dòng có biểu tượng đồng hồ là việc thuộc lộ trình. Học phần và Chương trình hiện chỉ có dự án, tài liệu và trợ lý; mọi ảnh công cụ học phần ghi (dự kiến)."
+  },
+  "n16": {
+   "x": 3980,
+   "y": 2600,
+   "w": 440,
+   "text": "Header: nút viền dùng common.contactSales (Liên hệ báo giá) vì repo chưa có chữ Liên hệ tư vấn của spec §4.4. Ô Không tìm thấy điều cần tìm? bên trái phần Hỏi đáp dùng lại docs.notFound; nếu PO giữ ô này, Kế hoạch 2 nối khoá vào trang chủ và trang con."
+  },
+  "r2": {
+   "x": 0,
+   "y": 7645,
+   "text": "Điều hướng: mega menu Sản phẩm, Giải pháp, Hướng dẫn; menu điện thoại",
+   "kind": "title1",
+   "maxW": 6000
+  },
+  "n21": {
+   "x": 5030,
+   "y": 7895,
+   "w": 440,
+   "text": "MegaMenu (1440 × 900) là artboard bắt buộc: menu Sản phẩm mở, trang phía sau tối đi. Mục menu dùng từ khoá chính của trang làm anchor (pageName); dòng mô tả là chữ có sẵn: hero.audience của ba cấp, home.assistant.h2 và home.trust.h2. MegaMenuSolutions và MegaMenuDocs thêm để duyệt đủ ba menu."
+  },
+  "n22": {
+   "x": 5030,
+   "y": 8415,
+   "w": 440,
+   "text": "MobileMenu (390 × 844): màn phủ toàn bộ, ba nhóm là details (Sản phẩm mở), link Cách tính phí, đổi ngôn ngữ, hai nút ở đáy."
+  },
+  "r3": {
+   "x": 0,
+   "y": 9085,
+   "text": "Trang con: AI cho giáo viên, trang chủ đề ma trận, mục lục và bài hướng dẫn, Tải về",
+   "kind": "title1",
+   "maxW": 6000
+  },
+  "n31": {
+   "x": 8070,
+   "y": 9335,
+   "w": 440,
+   "text": "LevelK12 theo spec §7.1 (9 khối); TopicTestGenerator theo §7.2, mục lục bên phải bám khi cuộn, nhãn của mục lục chưa có trong repo. Hỏi đáp của hai trang mở hết để duyệt chữ."
+  },
+  "n32": {
+   "x": 8070,
+   "y": 9855,
+   "w": 440,
+   "text": "DocArticle: ba cột từ 1024 px (thanh bên, bài, mục lục Trong bài này). MDX chưa có ảnh, Figure ở bước 3 là mẫu thành phần (OQ-R2). DocArticleMobile: ngăn kéo Mục lục hướng dẫn mở trên màn 390 × 844."
+  },
+  "n33": {
+   "x": 8070,
+   "y": 10375,
+   "w": 440,
+   "text": "Download: nửa trên có bản phát hành (dữ liệu mẫu, khách dùng macOS, thẻ đầu mở dòng SHA-512), nửa dưới sắp phát hành; phần dùng chung ở cuối. Câu ký số theo download.signing.unsigned vì appFacts.installerSigned = false."
+  }
+ },
+ "designSystems": []
+}
