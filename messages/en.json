@@ -246,7 +246,7 @@
         "link": "Explore the K-12 level"
       },
       "meta": {
-        "title": "AI for teachers: tests, lesson plans, slides",
+        "title": "AI for teachers: test papers, lesson plans, slides",
         "description": "AI for K-12 teachers: tests built from a blueprint, shuffled test versions, Official Letter 5512 lesson plans and quiz slides, checked by gates, signed by you."
       },
       "hero": {
@@ -404,7 +404,7 @@
         "link": "Explore the Degree program level"
       },
       "meta": {
-        "title": "Curriculum review on a digital twin of a program",
+        "title": "Curriculum review on a digital twin of the program",
         "description": "Curriculum review on a digital twin of your degree program: learning outcome matrix, curriculum map checks, legal validity at a review date and what-if runs."
       },
       "hero": {
