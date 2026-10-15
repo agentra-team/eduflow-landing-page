@@ -10,8 +10,8 @@ test('absoluteUrl localizes slugs and prefixes', async () => {
   const { absoluteUrl } = await import('@/lib/seo/urls')
   expect(absoluteUrl('vi', '/')).toBe('https://eduflow.test')
   expect(absoluteUrl('en', '/')).toBe('https://eduflow.test/en')
-  expect(absoluteUrl('vi', '/k12')).toBe('https://eduflow.test/pho-thong')
-  expect(absoluteUrl('en', '/university')).toBe('https://eduflow.test/en/university-courses')
+  expect(absoluteUrl('vi', '/k12')).toBe('https://eduflow.test/ai-cho-giao-vien')
+  expect(absoluteUrl('en', '/university')).toBe('https://eduflow.test/en/ai-for-lecturers')
   expect(absoluteUrl('vi', '/pricing')).toBe('https://eduflow.test/cach-tinh-phi')
   expect(absoluteUrl('en', '/install/[os]', { os: 'macos' })).toBe('https://eduflow.test/en/install/macos')
   expect(absoluteUrl('vi', '/install/[os]', { os: 'windows' })).toBe('https://eduflow.test/huong-dan-cai-dat/windows')
@@ -35,7 +35,7 @@ test('sitemap lists 24 urls (12 pages × 2 locales) with alternates', async () =
   const entries = await sitemap()
   expect(entries).toHaveLength(24)
   const urls = entries.map((e) => e.url)
-  for (const u of ['https://eduflow.test', 'https://eduflow.test/pho-thong', 'https://eduflow.test/en/program-review', 'https://eduflow.test/cach-tinh-phi', 'https://eduflow.test/en/install/windows']) {
+  for (const u of ['https://eduflow.test', 'https://eduflow.test/ai-cho-giao-vien', 'https://eduflow.test/en/curriculum-review', 'https://eduflow.test/cach-tinh-phi', 'https://eduflow.test/en/install/windows']) {
     expect(urls).toContain(u)
   }
   const dl = entries.find((e) => e.url.endsWith('/tai-ve'))!

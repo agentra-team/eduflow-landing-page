@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test'
 import { waitForHydration } from './hydration'
 
-const VI_PAGES = ['/', '/pho-thong', '/hoc-phan', '/chuong-trinh', '/tro-ly-ai', '/cach-tinh-phi', '/minh-bach-ai', '/tai-ve', '/huong-dan-cai-dat/macos', '/huong-dan-cai-dat/windows', '/lien-he', '/chinh-sach-bao-mat']
+const VI_PAGES = ['/', '/ai-cho-giao-vien', '/ai-cho-giang-vien', '/ra-soat-chuong-trinh-dao-tao', '/tro-ly-ai', '/cach-tinh-phi', '/minh-bach-ai', '/tai-ve', '/huong-dan-cai-dat/macos', '/huong-dan-cai-dat/windows', '/lien-he', '/chinh-sach-bao-mat']
 
 test('mobile menu opens with the five nav links and a download button', async ({ page }) => {
   await page.goto('/')
@@ -23,7 +23,7 @@ test('mobile menu opens with the five nav links and a download button', async ({
 
 test('tapping the logo closes the open menu and releases the scroll lock', async ({ page }) => {
   // Bắt đầu ở trang con: đường dẫn phải đổi thì mới là điều hướng (bấm logo ngay trên trang chủ không đi đâu).
-  await page.goto('/pho-thong')
+  await page.goto('/ai-cho-giao-vien')
   const menuButton = page.getByRole('button', { name: 'Mở menu' })
   // Ruling 51: cú click trước khi hydrate bị mất vì nút chưa có trình xử lý.
   await waitForHydration(menuButton)

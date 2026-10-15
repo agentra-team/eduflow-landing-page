@@ -25,7 +25,7 @@ pnpm dev                                # đọc lưu ý về AGENTS.md và CLAU
 | `pnpm start -p 3200` | Chạy bản đã dựng. Cổng 3200 là cổng của e2e và Lighthouse. |
 | `pnpm verify` | `next typegen` và `tsc --noEmit`, rồi `eslint .`, rồi `vitest run`. Phải xanh trước mỗi commit. Không gồm e2e và Lighthouse. |
 | `pnpm e2e` | Playwright trên bản đã dựng, ba chế độ chọn bằng `E2E_MODE` (mục sau). |
-| `pnpm lhci` | Lighthouse CI mobile cho 8 URL, trang chủ, một trang cấp, Cách tính phí và Tải về ở cả hai ngôn ngữ: `/`, `/pho-thong`, `/cach-tinh-phi`, `/tai-ve`, `/en`, `/en/k12`, `/en/pricing`, `/en/download`. Cần Chrome cài sẵn trên máy. |
+| `pnpm lhci` | Lighthouse CI mobile cho 8 URL, trang chủ, một trang cấp, Cách tính phí và Tải về ở cả hai ngôn ngữ: `/`, `/ai-cho-giao-vien`, `/cach-tinh-phi`, `/tai-ve`, `/en`, `/en/ai-for-teachers`, `/en/pricing`, `/en/download`. Cần Chrome cài sẵn trên máy. |
 | `pnpm sync-releases` | Ghi `content/releases.json` từ feed hoặc từ thư mục release. |
 | `pnpm capture-images` | Chụp lại ảnh sản phẩm từ canvas của app vào `public/images/product/`. |
 
@@ -119,9 +119,9 @@ Ngưỡng ở `lighthouserc.json`: Accessibility ≥ 0,95, Best Practices ≥ 0,
 ```
 app/[locale]/layout.tsx                 # layout gốc: <html lang>, ba font, Header, Footer, ConsentBar, AnalyticsGate
 app/[locale]/page.tsx                   # Trang chủ
-app/[locale]/k12/page.tsx               # /pho-thong
-app/[locale]/university/page.tsx        # /hoc-phan
-app/[locale]/program/page.tsx           # /chuong-trinh
+app/[locale]/k12/page.tsx               # /ai-cho-giao-vien
+app/[locale]/university/page.tsx        # /ai-cho-giang-vien
+app/[locale]/program/page.tsx           # /ra-soat-chuong-trinh-dao-tao
 app/[locale]/assistant/page.tsx         # /tro-ly-ai
 app/[locale]/pricing/page.tsx           # /cach-tinh-phi
 app/[locale]/ai-transparency/page.tsx   # /minh-bach-ai

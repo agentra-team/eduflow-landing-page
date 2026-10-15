@@ -10,11 +10,19 @@ export const routing = defineRouting({
   // nên lệch với thẻ head (theo NEXT_PUBLIC_SITE_URL) trên các bí danh *.vercel.app. hreflang đã có ở thẻ head và sitemap.
   localeCookie: false,
   alternateLinks: false,
+  // Slug là từ khoá chính của trang (bản đồ ở lib/seo/brand.ts). Khoá nội bộ giữ như cũ để ít đổi mã (spec §4.2).
   pathnames: {
     '/': '/',
-    '/k12': { vi: '/pho-thong', en: '/k12' },
-    '/university': { vi: '/hoc-phan', en: '/university-courses' },
-    '/program': { vi: '/chuong-trinh', en: '/program-review' },
+    '/k12': { vi: '/ai-cho-giao-vien', en: '/ai-for-teachers' },
+    '/university': { vi: '/ai-cho-giang-vien', en: '/ai-for-lecturers' },
+    '/program': { vi: '/ra-soat-chuong-trinh-dao-tao', en: '/curriculum-review' },
+    // Trang chủ đề (spoke), dựng ở content/topics
+    '/test-generator': { vi: '/ai-tao-de-kiem-tra-theo-ma-tran', en: '/ai-test-generator' },
+    '/test-versions': { vi: '/tron-de-trac-nghiem', en: '/shuffle-test-versions' },
+    '/lesson-plans': { vi: '/ai-soan-giao-an', en: '/ai-lesson-plan-generator' },
+    '/lesson-slides': { vi: '/tao-slide-bai-giang-bang-ai', en: '/ai-slide-generator' },
+    '/course-syllabus': { vi: '/de-cuong-chi-tiet-hoc-phan', en: '/course-syllabus' },
+    '/vs-chatgpt': { vi: '/eduflow-va-chatgpt', en: '/eduflow-vs-chatgpt' },
     '/assistant': { vi: '/tro-ly-ai', en: '/ai-assistant' },
     '/pricing': { vi: '/cach-tinh-phi', en: '/pricing' },
     '/ai-transparency': { vi: '/minh-bach-ai', en: '/ai-transparency' },

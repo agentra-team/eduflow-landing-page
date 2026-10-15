@@ -16,7 +16,7 @@ test('Lighthouse CI measures the home page, a level page, Pricing and Download i
   const base = 'http://localhost:3200'
   expect(urls).toEqual(
     expect.arrayContaining(
-      ['/', '/pho-thong', '/cach-tinh-phi', '/tai-ve', '/en', '/en/k12', '/en/pricing', '/en/download'].map((path) => `${base}${path}`),
+      ['/', '/ai-cho-giao-vien', '/cach-tinh-phi', '/tai-ve', '/en', '/en/ai-for-teachers', '/en/pricing', '/en/download'].map((path) => `${base}${path}`),
     ),
   )
 })

@@ -7,12 +7,19 @@ const flatten = (o: unknown, p = ''): string[] =>
   typeof o === 'object' && o !== null ? Object.entries(o).flatMap(([k, v]) => flatten(v, p ? `${p}.${k}` : k)) : [p]
 
 describe('i18n', () => {
-  test('pathnames cover every page with the slugs of spec §5', () => {
+  test('pathnames cover every page with the keyword slugs of spec §4.2', () => {
     expect(routing.pathnames).toEqual({
       '/': '/',
-      '/k12': { vi: '/pho-thong', en: '/k12' },
-      '/university': { vi: '/hoc-phan', en: '/university-courses' },
-      '/program': { vi: '/chuong-trinh', en: '/program-review' },
+      '/k12': { vi: '/ai-cho-giao-vien', en: '/ai-for-teachers' },
+      '/university': { vi: '/ai-cho-giang-vien', en: '/ai-for-lecturers' },
+      '/program': { vi: '/ra-soat-chuong-trinh-dao-tao', en: '/curriculum-review' },
+      // Trang chủ đề (spoke), dựng ở content/topics
+      '/test-generator': { vi: '/ai-tao-de-kiem-tra-theo-ma-tran', en: '/ai-test-generator' },
+      '/test-versions': { vi: '/tron-de-trac-nghiem', en: '/shuffle-test-versions' },
+      '/lesson-plans': { vi: '/ai-soan-giao-an', en: '/ai-lesson-plan-generator' },
+      '/lesson-slides': { vi: '/tao-slide-bai-giang-bang-ai', en: '/ai-slide-generator' },
+      '/course-syllabus': { vi: '/de-cuong-chi-tiet-hoc-phan', en: '/course-syllabus' },
+      '/vs-chatgpt': { vi: '/eduflow-va-chatgpt', en: '/eduflow-vs-chatgpt' },
       '/assistant': { vi: '/tro-ly-ai', en: '/ai-assistant' },
       '/pricing': { vi: '/cach-tinh-phi', en: '/pricing' },
       '/ai-transparency': { vi: '/minh-bach-ai', en: '/ai-transparency' },
