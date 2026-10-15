@@ -1,6 +1,6 @@
 ## Tài liệu dùng để làm gì
 
-Mỗi dự án có thẻ **Tài liệu nguồn**: nơi thầy cô nạp sách giáo khoa, giáo trình, đề cương, bài giảng hay văn bản quy định của chính mình. App đọc tài liệu ngay trên máy, tách thành các đoạn có đường dẫn mục và số trang, rồi cho thầy cô tìm trong đó. Ở bản hiện tại, chỗ dùng tài liệu là trợ lý AI: khi thầy cô hỏi trợ lý trong dự án, app chọn tại máy các đoạn khớp câu hỏi, hiện chúng thành chip để thầy cô xem và bỏ bớt, rồi chỉ gửi những đoạn đó cùng câu hỏi. Câu trả lời dựa vào tài liệu có chip **Nguồn** mở đúng đoạn.
+Mỗi dự án có thẻ **Tài liệu nguồn**: nơi thầy cô nạp sách giáo khoa, giáo trình, đề cương, bài giảng hay văn bản quy định của chính mình. App đọc tài liệu ngay trên máy, tách thành các đoạn có đường dẫn mục và số trang, rồi cho thầy cô tìm trong đó. Trợ lý AI dùng tài liệu này: khi thầy cô hỏi trợ lý trong dự án, app chọn tại máy các đoạn khớp câu hỏi, hiện chúng thành chip để thầy cô xem và bỏ bớt, rồi gửi những đoạn ở chip cùng câu hỏi. Câu trả lời dựa vào tài liệu có chip **Nguồn** mở đúng đoạn.
 
 <Steps>
 
@@ -53,8 +53,6 @@ Tệp gốc nằm trên máy của thầy cô. Việc đọc, tách đoạn và 
 
 ## Giới hạn hiện tại
 
-- **Trang quét và ảnh chụp chưa được đọc ra chữ.** App dựng và chuẩn bị ảnh trang tại máy, nhưng chữ trên các trang đó đang chờ OCR. Khi dự án đang bật AI, thông báo nói việc đọc ảnh bằng AI sẽ có ở bản cập nhật sau; theo kế hoạch của app, đó là tác vụ AI có tính tiền. Khi dự án đang Tắt AI, các trang này chờ OCR và không gửi gì ra khỏi máy. Phần chữ đã đọc được từ lớp chữ của tệp vẫn dùng được; tệp không có lớp chữ nào thì app ghi chưa có khối chữ nào đọc được.
-- **Ảnh có chữ trong Word và PowerPoint** cũng thuộc phần OCR chưa có, như trên.
-- **Bản đồ tài liệu** (AI phân tích cấu trúc, từ khoá và câu hỏi của từng mục, đề xuất môn, lớp, chủ đề từ tài liệu) chưa có; đây là hạng mục của kế hoạch sau. Hiện app chỉ tách đoạn và tìm tại máy.
-- **Hiện tài liệu phục vụ trợ lý.** Thầy cô hỏi trợ lý về tài liệu của dự án; đó là chỗ dùng tài liệu ở bản này.
+- **Trang quét và ảnh chụp chưa được đọc ra chữ.** App dựng và chuẩn bị ảnh trang tại máy, nhưng chữ trên các trang đó đang chờ OCR. Khi dự án đang bật AI, thông báo nói việc đọc ảnh bằng AI sẽ có ở bản cập nhật sau. Khi dự án đang Tắt AI, các trang này chờ OCR và không gửi gì ra khỏi máy. Phần chữ đã đọc được từ lớp chữ của tệp vẫn dùng được; tệp không có lớp chữ nào thì app ghi chưa có khối chữ nào đọc được.
+- **Bản đồ tài liệu** (phân tích tài liệu bằng AI) chưa có; nằm trong lộ trình của app. Hiện app tách đoạn và tìm tại máy.
 - Giới hạn mỗi tệp: 12 MB (Phổ thông) hay 80 MB (Học phần, Chương trình), 300 trang hay slide; chỉ PDF, .docx, .pptx, PNG và JPEG.

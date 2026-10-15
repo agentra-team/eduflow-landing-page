@@ -172,12 +172,12 @@ export const DOCS: Record<DocId, DocEntry> = {
     updatedAt: '2026-10-15',
     vi: {
       title: 'Nạp tài liệu cho trợ lý AI',
-      description: 'Nạp PDF, Word, PowerPoint hoặc ảnh vào dự án EduFlow: app đọc lớp chữ ngay tại máy, tách đoạn để thử tìm, và chỉ gửi các đoạn thầy cô giữ lại cho trợ lý.',
+      description: 'Nạp PDF, Word, PowerPoint hoặc ảnh vào dự án EduFlow: app đọc lớp chữ ngay tại máy, tách đoạn để thử tìm, rồi gửi cho trợ lý các đoạn thầy cô giữ lại ở chip.',
       keyword: 'nạp tài liệu vào EduFlow',
     },
     en: {
       title: 'Add documents for the assistant',
-      description: 'Add PDF, Word, PowerPoint or image files to EduFlow: the app reads text on your computer, cuts passages to search, and sends the assistant only those you keep.',
+      description: 'Add PDF, Word, PowerPoint or images to EduFlow: the app reads text on your computer, cuts passages to search, and sends the assistant the passages you keep.',
       keyword: 'add documents to EduFlow',
     },
   },
