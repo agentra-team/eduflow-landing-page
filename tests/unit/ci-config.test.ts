@@ -11,12 +11,15 @@ test('the CI token is read-only and a newer run of the same ref cancels the olde
   expect(ci.concurrency).toEqual({ group: 'ci-${{ github.ref }}', 'cancel-in-progress': true })
 })
 
-test('Lighthouse CI measures the home page, a level page, Pricing and Download in both languages (spec §13)', () => {
+test('Lighthouse CI measures the pages of spec §12.3 in both languages', () => {
   const urls: string[] = JSON.parse(read('lighthouserc.json')).ci.collect.url
-  const base = 'http://localhost:3200'
-  expect(urls).toEqual(
-    expect.arrayContaining(
-      ['/', '/ai-cho-giao-vien', '/cach-tinh-phi', '/tai-ve', '/en', '/en/ai-for-teachers', '/en/pricing', '/en/download'].map((path) => `${base}${path}`),
-    ),
-  )
+  const paths = ['/', '/ai-cho-giao-vien', '/ai-tao-de-kiem-tra-theo-ma-tran', '/huong-dan/soan-de-kiem-tra', '/tai-ve', '/en', '/en/ai-for-teachers', '/en/ai-test-generator', '/en/docs/create-a-test', '/en/download']
+  expect(urls).toEqual(paths.map((p) => `http://localhost:3200${p}`))
+})
+
+test('CI gates a production build with seo-audit on the canonical domain (spec §12.3)', () => {
+  const ci = read('.github/workflows/ci.yml')
+  expect(ci).toContain('node scripts/seo-audit.mjs --base http://localhost:3400 --canonical https://eduflow.agentra.io.vn --next-manifest .next/prerender-manifest.json')
+  expect(ci).toMatch(/VERCEL_ENV: production, NEXT_PUBLIC_SITE_URL: 'https:\/\/eduflow\.agentra\.io\.vn'/)
+  expect(read('scripts/seo-audit.mjs')).toContain('Exit code 1 when any error is found')
 })

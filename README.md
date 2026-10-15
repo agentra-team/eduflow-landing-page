@@ -1,6 +1,6 @@
 # Landing page EduFlow
 
-Trang web marketing hai ngôn ngữ (tiếng Việt mặc định, tiếng Anh dưới `/en`) cho **EduFlow**, app desktop macOS và Windows gộp ba cấp nghiệp vụ giáo dục: Phổ thông (đề kiểm tra, giáo án, slide), Học phần đại học (CLO, kế hoạch tuần, giáo án buổi, slide, đề cương, đánh giá) và Chương trình đào tạo (bản sao số, rà soát ba tầng, kịch bản nếu), với Trợ lý AI luôn có mặt ở Trang chủ và bên phải mọi màn làm việc của app. Trong một lần ghé, khách cần hiểu EduFlow làm gì cho đúng vai của mình (giáo viên phổ thông, giảng viên, Phòng Đảm bảo chất lượng), thấy trợ lý AI làm việc thế nào và vì sao an toàn (máy đề xuất, người duyệt và ký), hiểu cách tính phí theo mức dùng AI, tải đúng bộ cài, rồi liên hệ Agentra để nhận báo giá hoặc key cho trường. Site có 12 trang × 2 ngôn ngữ, sinh tĩnh lúc build và chạy trên Vercel; trang Tải về đọc feed phát hành của app (ISR 10 phút) và hiện trạng thái "sắp phát hành" khi chưa có bản nào; không có form, không có Route Handler, không thanh toán trực tuyến (dùng thử và xin key nằm trong app).
+Trang web marketing hai ngôn ngữ (tiếng Việt mặc định, tiếng Anh dưới `/en`) cho **EduFlow**, app desktop macOS và Windows gộp ba cấp nghiệp vụ giáo dục: Phổ thông (đề kiểm tra, giáo án, slide), Học phần đại học (CLO, kế hoạch tuần, giáo án buổi, slide, đề cương, đánh giá) và Chương trình đào tạo (bản sao số, rà soát ba tầng, kịch bản nếu), với Trợ lý AI luôn có mặt ở Trang chủ và bên phải mọi màn làm việc của app. Trong một lần ghé, khách cần hiểu EduFlow làm gì cho đúng vai của mình (giáo viên phổ thông, giảng viên, Phòng Đảm bảo chất lượng), thấy trợ lý AI làm việc thế nào và vì sao an toàn (máy đề xuất, người duyệt và ký), hiểu cách tính phí theo mức dùng AI, tải đúng bộ cài, rồi liên hệ Agentra để nhận báo giá hoặc key cho trường. Site có 17 trang và 12 bài hướng dẫn, mỗi trang hai ngôn ngữ (58 URL), sinh tĩnh lúc build và chạy trên Vercel; trang Tải về đọc feed phát hành của app (ISR 10 phút) và hiện trạng thái "sắp phát hành" khi chưa có bản nào; có Route Handler cho `llms.txt`, `llms-full.txt` và `/og/docs/[slug]`; không có form, không thanh toán trực tuyến (dùng thử và xin key nằm trong app).
 
 - Spec thiết kế: `docs/superpowers/specs/2026-09-30-eduflow-landing-page-design.md`
 - Kế hoạch triển khai: `docs/superpowers/plans/2026-09-30-eduflow-landing-page.md`
@@ -25,7 +25,8 @@ pnpm dev                                # đọc lưu ý về AGENTS.md và CLAU
 | `pnpm start -p 3200` | Chạy bản đã dựng. Cổng 3200 là cổng của e2e và Lighthouse. |
 | `pnpm verify` | `next typegen` và `tsc --noEmit`, rồi `eslint .`, rồi `vitest run`. Phải xanh trước mỗi commit. Không gồm e2e và Lighthouse. |
 | `pnpm e2e` | Playwright trên bản đã dựng, ba chế độ chọn bằng `E2E_MODE` (mục sau). |
-| `pnpm lhci` | Lighthouse CI mobile cho 8 URL, trang chủ, một trang cấp, Cách tính phí và Tải về ở cả hai ngôn ngữ: `/`, `/ai-cho-giao-vien`, `/cach-tinh-phi`, `/tai-ve`, `/en`, `/en/ai-for-teachers`, `/en/pricing`, `/en/download`. Cần Chrome cài sẵn trên máy. |
+| `pnpm lhci` | Lighthouse CI mobile cho mười URL, trang chủ, một trang cấp, một trang chủ đề, một bài hướng dẫn và Tải về ở hai ngôn ngữ: `/`, `/ai-cho-giao-vien`, `/ai-tao-de-kiem-tra-theo-ma-tran`, `/huong-dan/soan-de-kiem-tra`, `/tai-ve`, `/en`, `/en/ai-for-teachers`, `/en/ai-test-generator`, `/en/docs/create-a-test`, `/en/download`. Cần Chrome cài sẵn trên máy. |
+| `node scripts/seo-audit.mjs --base http://localhost:3400 --canonical https://eduflow.agentra.io.vn --next-manifest .next/prerender-manifest.json` | Cổng SEO: crawl bản production đang chạy (dựng với `VERCEL_ENV=production NEXT_PUBLIC_SITE_URL=https://eduflow.agentra.io.vn DOWNLOAD_FEED_URL=`, chạy bằng `pnpm start -p 3400`), thoát 1 khi có lỗi. Chạy trên CI. Script chép nguyên văn từ skill seo-master, sửa ở nguồn rồi chép lại. |
 | `pnpm sync-releases` | Ghi `content/releases.json` từ feed hoặc từ thư mục release. |
 | `pnpm capture-images` | Chụp lại ảnh sản phẩm từ canvas của app vào `public/images/product/`. |
 
@@ -99,19 +100,19 @@ git status --short content/releases.json   # không in gì nghĩa là đã khôi
 
 ### Lighthouse
 
-Lighthouse CI mobile đo 8 URL ở cổng 3200 (bốn trang tiếng Việt và bốn trang tiếng Anh tương ứng, spec mục 13) và cần Chrome cài sẵn trên máy (`lhci` tự tìm Chrome). Để canonical trùng địa chỉ đang đo, dựng lại với `NEXT_PUBLIC_SITE_URL=http://localhost:3200` trước khi đo (CI cũng làm vậy). Feed giả cổng 3300 phải đang chạy lúc dựng, cổng 3200 phải trống (`lhci` tự bật `pnpm start -p 3200`).
+Lighthouse CI mobile đo mười URL ở cổng 3200 (năm trang tiếng Việt và năm trang tiếng Anh tương ứng, spec §12.3) và cần Chrome cài sẵn trên máy (`lhci` tự tìm Chrome). Để canonical trùng địa chỉ đang đo, dựng lại với `NEXT_PUBLIC_SITE_URL=http://localhost:3200` trước khi đo (CI cũng làm vậy). Feed giả cổng 3300 phải đang chạy lúc dựng, cổng 3200 phải trống (`lhci` tự bật `pnpm start -p 3200`).
 
 ```bash
 NEXT_PUBLIC_SITE_URL=http://localhost:3200 DOWNLOAD_FEED_URL=http://localhost:3300/ pnpm build && pnpm lhci
 ```
 
-Ngưỡng ở `lighthouserc.json`: Accessibility ≥ 0,95, Best Practices ≥ 0,95 và SEO = 1 là **lỗi** (lệnh thoát khác 0, CI đỏ); Performance ≥ 0,9 chỉ là **cảnh báo**. Lý do: `next start` phục vụ HTTP/1.1 với 6 kết nối, nên Lighthouse mô phỏng chậm hơn thực tế. Đo qua `next start`, điểm Performance mobile là 0,84 tới 0,99 qua các lần đo ở máy dev (lần gần nhất, ở 8 URL: 0,86 tới 0,99); ước lượng Lantern ngoại tuyến với HTTP/2 (Vercel phục vụ HTTP/2) cho 0,94 tới 0,98. Vì vậy mục tiêu của spec (Performance từ 90 trở lên) được đo trên bản preview của Vercel trước khi lên chính thức, và ở preview **chỉ đọc Performance** (cùng Accessibility và Best Practices nếu muốn). **SEO 100 chỉ đọc trên URL production**: Vercel gửi `X-Robots-Tag: noindex` cho bản preview, và kiểm tra "Page isn't blocked from indexing" của Lighthouse đỏ vì header đó. Danh sách đầy đủ: `docs/van-hanh.md`, mục 6.
+Ngưỡng ở `lighthouserc.json`: Accessibility ≥ 0,95, Best Practices ≥ 0,95 và SEO = 1 là **lỗi** (lệnh thoát khác 0, CI đỏ); Performance ≥ 0,9 chỉ là **cảnh báo**. Lý do: `next start` phục vụ HTTP/1.1 với 6 kết nối, nên Lighthouse mô phỏng chậm hơn thực tế. Đo qua `next start`, điểm Performance mobile là 0,84 tới 0,99 qua các lần đo ở máy dev (lần gần nhất, ở 8 URL cũ: 0,86 tới 0,99); ước lượng Lantern ngoại tuyến với HTTP/2 (Vercel phục vụ HTTP/2) cho 0,94 tới 0,98. Vì vậy mục tiêu của spec (Performance từ 90 trở lên) được đo trên bản preview của Vercel trước khi lên chính thức, và ở preview **chỉ đọc Performance** (cùng Accessibility và Best Practices nếu muốn). **SEO 100 chỉ đọc trên URL production**: Vercel gửi `X-Robots-Tag: noindex` cho bản preview, và kiểm tra "Page isn't blocked from indexing" của Lighthouse đỏ vì header đó. Danh sách đầy đủ: `docs/van-hanh.md`, mục 6.
 
 ## CI
 
-`.github/workflows/ci.yml` chạy trên mỗi pull request và mỗi lần push `main`, một job tối đa 20 phút: `pnpm install --frozen-lockfile`, `pnpm verify`, cài Chromium, ghi snapshot rỗng vào `content/releases.json`, dựng và chạy e2e ba chế độ (hai feed giả chạy nền ở cổng 3300 và 3301), dựng lại với `NEXT_PUBLIC_SITE_URL=http://localhost:3200`, rồi `pnpm lhci`.
+`.github/workflows/ci.yml` chạy trên mỗi pull request và mỗi lần push `main`, một job tối đa 20 phút: `pnpm install --frozen-lockfile`, `pnpm verify`, cài Chromium, ghi snapshot rỗng vào `content/releases.json`, dựng và chạy e2e ba chế độ (hai feed giả chạy nền ở cổng 3300 và 3301), cổng SEO (dựng như production trên domain thật, không feed, chạy ở cổng 3400, `scripts/seo-audit.mjs` phải thoát 0), dựng lại với `NEXT_PUBLIC_SITE_URL=http://localhost:3200`, rồi `pnpm lhci`.
 
-- Báo cáo không đăng công khai. `lighthouserc.json` ghi báo cáo vào `.lighthouseci` trên đĩa (không dùng kho lưu trữ công cộng của Lighthouse). Bước cuối của workflow đăng artifact `ci-reports`, gồm thư mục `.lighthouseci` và `test-results` (vết Playwright của test hỏng), kể cả khi CI đỏ. Tải ở trang của lần chạy trên GitHub, mục Artifacts.
+- Báo cáo không đăng công khai. `lighthouserc.json` ghi báo cáo vào `.lighthouseci` trên đĩa (không dùng kho lưu trữ công cộng của Lighthouse). Bước cuối của workflow đăng artifact `ci-reports`, gồm thư mục `.lighthouseci`, `test-results` (vết Playwright của test hỏng) và `seo-audit.json` (kết quả cổng SEO), kể cả khi CI đỏ. Tải ở trang của lần chạy trên GitHub, mục Artifacts.
 - CI chưa chạy lần nào lúc viết tài liệu này. Danh sách kiểm cho lần chạy đầu tiên: `docs/van-hanh.md`, mục 7. Khi lần chạy đầu tiên xanh, xoá dòng này và mục 7 (cách xoá ở cuối mục 7).
 
 ## Cấu trúc thư mục
@@ -171,12 +172,12 @@ vitest.config.mts  playwright.config.ts  lighthouserc.json  .github/workflows/ci
 
 | Muốn đổi | Sửa ở | Lưu ý |
 |---|---|---|
-| Chữ trên giao diện | `messages/vi.json` trước (bản gốc), rồi `messages/en.json` | Hai tệp phải cùng tập khoá. Mô tả meta (`*.description`) dài 140 tới 160 ký tự. Tiêu đề meta (`*.meta.title`) không lặp "EduFlow" vì template đã thêm. Bản tiếng Anh không được lẫn chữ Việt. |
+| Chữ trên giao diện | `messages/vi.json` trước (bản gốc), rồi `messages/en.json` | Hai tệp phải cùng tập khoá. Mô tả meta (`*.description`) dài 110 tới 160 ký tự. Tiêu đề meta (`*.meta.title`) không lặp "EduFlow" vì template đã thêm. Bản tiếng Anh không được lẫn chữ Việt. |
 | Bài hướng dẫn | `content/docs/vi/*.mdx` rồi `content/docs/en/*.mdx`; title, mô tả, ngày cập nhật ở `content/docs/index.ts` (`DOCS`) | Mục lục dựng từ tiêu đề `##` và các `<Step id title>` của bài. Đổi nội dung thật thì đổi `updatedAt`. Thêm bài: mục "Thêm một bài hướng dẫn" bên dưới. |
 | Chính sách bảo mật | `content/privacy/vi.mdx` rồi `content/privacy/en.mdx` | Sửa cả `meta.updated`. PO và pháp chế rà soát trước khi công bố. |
 | Tên công ty, email, điện thoại, Zalo, địa chỉ, URL công ty | `lib/site.ts` | Điện thoại để trống thì thẻ Điện thoại và Zalo ẩn. Vài chỗ chép tay, xem `docs/van-hanh.md`, mục 4. |
 | Năm ở dòng bản quyền của footer | `components/site/Footer.tsx` (`year`) | Đang ghi cứng 2026, đổi tay mỗi năm. |
-| Slug trang | `i18n/routing.ts` (`pathnames`) | Cập nhật mọi chỗ ghi cứng đường dẫn: `tests/unit/i18n.test.ts`; danh sách trang ở `tests/e2e/pages.spec.ts` và `tests/e2e/mobile.spec.ts`; đích của các link ở `tests/e2e/prelaunch.spec.ts`; 8 URL đo ở `lighthouserc.json` (slug tiếng Việt và tiếng Anh của bốn trang được đo). Tìm chỗ còn lại bằng `grep -rn "<slug cũ>" tests lighthouserc.json`. |
+| Slug trang | `i18n/routing.ts` (`pathnames`) | Cập nhật mọi chỗ ghi cứng đường dẫn: `tests/unit/i18n.test.ts`; danh sách trang ở `tests/e2e/pages.spec.ts` và `tests/e2e/mobile.spec.ts`; đích của các link ở `tests/e2e/prelaunch.spec.ts`; mười URL đo ở `lighthouserc.json` (slug tiếng Việt và tiếng Anh của năm trang được đo). Tìm chỗ còn lại bằng `grep -rn "<slug cũ>" tests lighthouserc.json`. |
 | Ảnh sản phẩm | `pnpm capture-images` | `docs/van-hanh.md`, mục 3. |
 
 Luật nội dung (spec mục 15): không hứa kết quả kiểm định hay xếp loại, cấp Chương trình là công cụ làm việc nội bộ chứ không phải báo cáo tự đánh giá; không nói AI thay giáo viên, luôn nói máy đề xuất, người duyệt và ký; chỉ dùng con số có trong đặc tả app; trang Cách tính phí không ghi giá; chưa nêu tên nhà cung cấp mô hình và chưa cam kết huấn luyện trên dữ liệu của trường (chờ OQ-L07); không dùng ký tự gạch ngang dài U+2014 ở bất cứ tệp nào; văn bản tiếng Việt gọi người đọc là "thầy cô". `tests/unit/content.test.ts` chặn gạch ngang dài, "đạt kiểm định", các cách nói AI thay giáo viên, giảng viên hay thầy cô, tên nhà cung cấp mô hình và cam kết về huấn luyện mô hình, và ghim lời "tài liệu làm việc nội bộ, không phải báo cáo tự đánh giá" của cấp Chương trình; test "không có giá" ở e2e kiểm trang Cách tính phí. Hai luật còn lại (con số chỉ lấy từ đặc tả app, gọi người đọc là "thầy cô") chưa có test, nên rà tay khi sửa chữ.
@@ -257,3 +258,11 @@ Nguồn: spec mục 16. Cột "Hiện tại" là cách site xử lý khi chưa c
 | OQ-L08 | PO | Tên hiển thị là "EduFlow" hay "Agentra EduFlow"? | "EduFlow". |
 
 Giả định đang dùng (spec mục 16): AS-L01 Vercel Analytics, Speed Insights và GA4 sau đồng ý cookie như DocOps; AS-L02 yêu cầu hệ thống theo NFR của app (macOS 12 trở lên, Windows 10 22H2 trở lên), bản thân NFR đó còn là giả định AS-012 của app; AS-L03 người tải mới nhận bản của kênh ổn định bất kể tỷ lệ rollout; AS-L04 bản tiếng Anh do đội dev dịch, PO rà thuật ngữ.
+
+## Cảnh báo seo-audit còn lại
+
+Đo ngày 15/10/2026 trên bản production dựng không feed (96 URL, 58 trang HTML, 0 lỗi): còn đúng một cảnh báo.
+
+- `sitemap-lastmod-build-time` (36 URL cùng `lastmod` 2026-10-15 giờ Việt Nam): giữ vì đây là ngày thật. Các trang chủ đề và bài hướng dẫn cùng được viết và ghi `updatedAt` vào ngày đó, không phải giờ dựng. Cảnh báo tự hết khi các trang được sửa vào những ngày khác nhau.
+
+Ghi chú: log của `pnpm start` có dòng `Internal: NoFallbackError` mỗi khi gặp slug hướng dẫn không có thật (ví dụ `/huong-dan/x`); phản hồi vẫn là 404 đúng, nên bỏ qua.

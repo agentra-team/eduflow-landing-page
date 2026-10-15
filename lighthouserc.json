@@ -7,11 +7,13 @@
       "url": [
         "http://localhost:3200/",
         "http://localhost:3200/ai-cho-giao-vien",
-        "http://localhost:3200/cach-tinh-phi",
+        "http://localhost:3200/ai-tao-de-kiem-tra-theo-ma-tran",
+        "http://localhost:3200/huong-dan/soan-de-kiem-tra",
         "http://localhost:3200/tai-ve",
         "http://localhost:3200/en",
         "http://localhost:3200/en/ai-for-teachers",
-        "http://localhost:3200/en/pricing",
+        "http://localhost:3200/en/ai-test-generator",
+        "http://localhost:3200/en/docs/create-a-test",
         "http://localhost:3200/en/download"
       ],
       "numberOfRuns": 1

@@ -53,6 +53,15 @@ jobs:
         env: { DOWNLOAD_FEED_URL: '' }
       - run: pnpm e2e
         env: { CI: true, E2E_MODE: prelaunch }
+      # Cổng SEO (spec §12.3): dựng như production trên domain thật, rồi seo-audit phải thoát 0. Không feed: URL tải của feed giả
+      # là localhost, mà seo-audit coi localhost trong HTML là lỗi host không phải production.
+      - run: pnpm build
+        env: { VERCEL_ENV: production, NEXT_PUBLIC_SITE_URL: 'https://eduflow.agentra.io.vn', DOWNLOAD_FEED_URL: '' }
+      - run: |
+          pnpm start -p 3400 & echo $! > "$RUNNER_TEMP/seo-server.pid"
+          curl --retry 20 --retry-connrefused --retry-delay 1 -fsS http://localhost:3400/ > /dev/null
+          node scripts/seo-audit.mjs --base http://localhost:3400 --canonical https://eduflow.agentra.io.vn --next-manifest .next/prerender-manifest.json --json "$RUNNER_TEMP/seo-audit.json"
+          kill "$(cat "$RUNNER_TEMP/seo-server.pid")"
       # Lighthouse chấm canonical theo domain đang chạy → build lại với URL localhost trước khi đo
       - run: pnpm build
         env: { NEXT_PUBLIC_SITE_URL: 'http://localhost:3200', DOWNLOAD_FEED_URL: 'http://localhost:3300/' }
@@ -65,5 +74,6 @@ jobs:
           path: |
             .lighthouseci
             test-results
+            ${{ runner.temp }}/seo-audit.json
           include-hidden-files: true
           if-no-files-found: ignore

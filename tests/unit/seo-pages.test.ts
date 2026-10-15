@@ -58,3 +58,10 @@ test('the home page uses the canonical description word for word', () => {
   expect(home.seo.vi.description).toBe(brand.description.vi)
   expect(home.seo.en.description).toBe(brand.description.en)
 })
+
+// Spec §1, §4.2: 17 trang và 12 bài, mỗi trang hai ngôn ngữ, là 58 URL.
+test('the site has exactly 29 indexable pages, 58 URLs', () => {
+  expect(indexablePages()).toHaveLength(29)
+  expect(indexablePages().filter((p) => p.id.startsWith('topic:'))).toHaveLength(6)
+  expect(indexablePages().filter((p) => p.id.startsWith('doc:'))).toHaveLength(12)
+})

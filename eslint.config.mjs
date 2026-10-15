@@ -17,6 +17,8 @@ const eslintConfig = defineConfig([
     ".lighthouseci/**",
     "playwright-report/**",
     "test-results/**",
+    // Chép nguyên văn từ skill seo-master, không sửa tại đây
+    "scripts/seo-audit.mjs",
   ]),
 ]);
 
