@@ -187,7 +187,7 @@ Cấu hình:
 - [ ] Settings, Functions, **Function Regions** là Singapore (`sin1`).
 - [ ] Node.js: ô Node.js Version (Settings, Build and Deployment) là 24.x. Bản production dựng trên GitHub Actions bằng Node 24 (`actions/setup-node` trong `release.yml`); bản preview dựng trên Vercel theo ô này và `engines.node` trong `package.json` (hiện `>=22.18`, **thắng** ô cài đặt). Muốn chắc, đặt tạm Build Command thành `node -v && pnpm build`, đọc `node -v` trong log của một bản preview (phải 24.x), rồi bỏ.
 - [ ] Settings, Environment Variables: **"Enable access to System Environment Variables"** đang bật (trước đây ghi là "Automatically expose System Environment Variables"). Bản preview cần công tắc này để có `VERCEL_ENV=preview` và `NEXT_PUBLIC_VERCEL_ENV` (script Vercel Analytics, Speed Insights); tắt công tắc thì mọi bản dựng trên Vercel đỏ ở chốt chặn. Bản production không phụ thuộc công tắc lúc dựng: workflow Release tự đặt các biến đó. Không đặt `RELEASE_TAG`, `VERCEL_ENV`, `NEXT_PUBLIC_VERCEL_ENV`, `VERCEL_GIT_COMMIT_SHA` trong Environment Variables, và không đánh dấu Sensitive cho `DOWNLOAD_FEED_URL` hay biến `NEXT_PUBLIC_*`.
-- [ ] Phát hành (mục 8.1): nhánh production của project là `production-from-tags-only`; Deployment Protection là Standard Protection (domain production công khai); environment `production` trên GitHub có ba secret và chỉ nhận `main` cùng tag `v*`; ruleset cho tag `v*` chặn tạo (chỉ admin hoặc maintainer), cập nhật và xoá. `https://<tên-miền>/version.json` trả đúng phiên bản vừa phát hành, `"environment": "production"`.
+- [ ] Phát hành (mục 8.1): nhánh production của project là `production-from-tags-only`; Deployment Protection là Standard Protection (domain production công khai); environment `production` trên GitHub có ba secret và chỉ nhận tag `v*` (không nhận `main`); ruleset cho tag `v*` chặn tạo (chỉ admin hoặc maintainer), cập nhật và xoá. `https://<tên-miền>/version.json` trả đúng phiên bản vừa phát hành, `"environment": "production"`.
 
 Điều kiện mà chữ trên site đang dựa vào:
 
@@ -246,7 +246,7 @@ Làm đúng thứ tự; mỗi bước có cách kiểm.
 
 1. **Đẩy `main` lên GitHub.** Kiểm `origin/main` bằng `git ls-remote origin main` (lúc viết là một commit "Initial commit" chỉ có README); `main` ở máy đi trước và chứa toàn bộ landing cùng workflow này. `git push origin main`. CI chạy lần đầu: kiểm theo mục 7. Kiểm: trang Actions có lần chạy `CI` cho commit đầu của `main`.
 2. **Tạo project Vercel trong team đang chứa landing DocOps** (không phải tài khoản cá nhân; tài khoản `lephus` đăng nhập CLI trên máy dev không thuộc team này). Dashboard Vercel, chọn đúng team ở bộ chọn góc trên trái, Add New, Project, Import `agentra-code/eduflow-landing-page` (cài GitHub app của Vercel cho repo nếu được hỏi). Framework Preset: Next.js; Root Directory: `./`; lệnh dựng và cài để mặc định; giữ tên project mặc định `eduflow-landing-page` (các lệnh quay lại ở mục 8.4 dùng tên này). **Không thêm biến môi trường ở màn import.** Vercel luôn dựng bản đầu tiên của project mới thành production; bản này đỏ với thông báo `Bản production chỉ được dựng bởi workflow Release`: đúng như mong đợi, không sửa gì.
-3. **Nhánh production giả.** Project, Settings, Environments, Production, Branch Tracking: nhập `production-from-tags-only`, Save. Không tạo nhánh này trên GitHub. Nếu dashboard không nhận tên nhánh chưa có: tạo nhánh ở commit đầu của `origin/main` (lấy sha bằng `git ls-remote origin main`, rồi `git push origin <sha>:refs/heads/production-from-tags-only`; commit này chỉ có README nên không dựng được), rồi chặn cập nhật và xoá nhánh đó bằng ruleset (bước 9). Kiểm: lần push tiếp theo lên `main` tạo bản Preview (Deployments, cột Environment). Trước khi có bản production đầu tiên, Vercel có thể vẫn coi lần dựng kế tiếp là production; lần đó cũng đỏ ở chốt chặn, vô hại.
+3. **Nhánh production giả.** Project, Settings, Environments, Production, Branch Tracking: nhập `production-from-tags-only`, Save. Không tạo nhánh này trên GitHub. Nếu dashboard không nhận tên nhánh chưa có: tạo nhánh ở commit đầu của `origin/main` (sau bước 1, `git ls-remote origin main` đã trả commit đầu của landing, không còn là "Initial commit"; lấy sha commit gốc bằng `git rev-list --max-parents=0 origin/main`, rồi `git push origin <sha>:refs/heads/production-from-tags-only`; commit gốc này chỉ có README nên không dựng được), rồi chặn cập nhật và xoá nhánh đó bằng ruleset (bước 9). Kiểm: lần push tiếp theo lên `main` tạo bản Preview (Deployments, cột Environment). Trước khi có bản production đầu tiên, Vercel có thể vẫn coi lần dựng kế tiếp là production; lần đó cũng đỏ ở chốt chặn, vô hại.
 4. **Cài đặt project.**
    - Build and Deployment, Node.js Version: 24.x.
    - Functions, Function Regions: Singapore (`sin1`).
@@ -260,7 +260,7 @@ Làm đúng thứ tự; mỗi bước có cách kiểm.
 6. **Token Vercel.** https://vercel.com/account/tokens (ở tài khoản cá nhân, không phải trang team): Name `github-release-eduflow-landing`; Scope: chọn team; nếu dashboard cho chọn tiếp project thì chọn `eduflow-landing-page` (token chỉ dùng được cho project này), không thì để phạm vi team; Expiration: 1 năm; Create; chép token ngay (chỉ hiện một lần). Đặt nhắc lịch gia hạn trước ngày hết hạn. Nếu workflow báo HTTP 403 ở `vercel pull`, `vercel deploy` hay `vercel promote` với token theo project, hoặc ở token đã chọn phạm vi hẹp hơn, tạo lại token với Scope là team (All Projects).
 7. **Hai ID.** Team ID: team Settings, General. Project ID: project Settings, General.
 8. **Environment `production` trên GitHub.** Repo Settings, Environments, New environment, tên `production`:
-   - Deployment branches and tags: Selected branches and tags; Add deployment branch or tag rule: Ref type Branch, `main`; thêm rule thứ hai: Ref type Tag, `v*`.
+   - Deployment branches and tags: Selected branches and tags; Add deployment branch or tag rule: chỉ một rule, Ref type Tag, `v*`. **Không thêm rule cho nhánh `main`**: `workflow_dispatch` chạy `release.yml` từ ref được chọn, nên nếu environment nhận `main` thì ai đẩy được lên `main` có thể sửa job `deploy` ở đó, chạy tay và đọc token. Environment chỉ nhận tag `v*` thì ranh giới của secret là quyền tạo tag `v*` (bước 9).
    - Environment secrets: `VERCEL_TOKEN` (bước 6), `VERCEL_ORG_ID` (Team ID), `VERCEL_PROJECT_ID`.
    - Tuỳ chọn: Required reviewers, nếu muốn một người bấm duyệt trước mỗi lần lên production.
 9. **Ruleset cho tag (bắt buộc).** Repo Settings, Rules, Rulesets, New tag ruleset: Enforcement status Active; Target tags: Include by pattern `v*`; bật **Restrict creations**, Restrict updates và Restrict deletions; thêm Repository admin (hoặc Maintain) vào Bypass list, để chỉ người phát hành gắn được tag. Restrict creations là ranh giới bảo mật: đẩy một tag chạy `release.yml` của chính commit được gắn tag, và workflow đó nhận token Vercel, nên ai tạo được tag `v*` thì lấy được token. Restrict updates và deletions giữ cho tag đã phát hành không dời được sang commit khác, nên chạy lại workflow với một tag cũ luôn dựng đúng mã cũ. Nếu bước 3 phải tạo nhánh giả: thêm branch ruleset cho `production-from-tags-only` với Restrict updates và Restrict deletions.
@@ -268,9 +268,9 @@ Làm đúng thứ tự; mỗi bước có cách kiểm.
 11. **Fork.** Settings, Actions, General, mục phê duyệt workflow của pull request từ fork: giữ "Require approval for first-time contributors" hoặc chặt hơn. Workflow Release không có trigger cho pull request nên secret không bao giờ tới mã của fork.
 12. **Đẩy tag đầu tiên `v1.0.0`.** Chỉ làm sau bước 9 (ruleset cho tag, gồm Restrict creations) và bước 8 (environment `production`); đẩy tag trước khi có ruleset thì lần phát hành đầu bỏ qua chốt kiểm soát. Kiểm `git fetch origin && git show origin/main:package.json | grep '"version"'` ra `1.0.0`, và CI của commit đầu `origin/main` xanh. Rồi:
 
-```bash
-git fetch origin && git tag -a v1.0.0 -m "EduFlow landing 1.0.0" origin/main && git push origin v1.0.0
-```
+   ```bash
+   git fetch origin && git tag -a v1.0.0 -m "EduFlow landing 1.0.0" origin/main && git push origin v1.0.0
+   ```
 
    Theo dõi bốn job `gate`, `deploy`, `verify`, `github-release` ở Actions, `Release`. Xanh cả bốn thì làm kiểm ở mục 8.3, rồi phần sau phát hành đầu: mục 2, bước 5 tới 8, và danh sách mục 6.
 
@@ -287,8 +287,10 @@ pnpm verify
 git add package.json
 git commit -m "chore(phat-hanh): EduFlow landing 1.0.1"
 git tag -a v1.0.1 -m "EduFlow landing 1.0.1"
-git push origin main v1.0.1                  # commit và tag cùng lúc; workflow chờ CI của commit này
+git push --atomic origin main v1.0.1         # commit và tag cùng lúc; workflow chờ CI của commit này
 ```
+
+`--atomic` làm cho cả hai ref cùng được nhận hoặc cùng bị từ chối: nếu `main` bị từ chối (có người đẩy trước, hay ruleset chặn) thì tag không lên một mình, tránh tag trỏ vào commit chưa nằm trên `main`.
 
 Khi ruleset bắt buộc pull request trên `main`: làm commit phát hành ở một nhánh, mở pull request, hoà vào `main`, và **chỉ đẩy tag sau khi commit đã nằm trên `main`**. Gắn tag lên `origin/main` sau `git fetch origin`, không bao giờ lên `main` cũ ở máy:
 
@@ -317,9 +319,10 @@ Khi workflow đỏ:
 | `gate`: `Hết 45 phút` | CI quá chậm hoặc kẹt hàng chờ. Khi CI xanh, Re-run workflow Release. |
 | `deploy`: `Bản production chỉ được dựng bởi workflow Release` | `RELEASE_TAG` không tới bước dựng: `release.yml` bị sửa sai. |
 | `deploy`: `NEXT_PUBLIC_SITE_URL phải ...` | Biến Production trên Vercel trống hoặc sai (mục 2). Sửa rồi Re-run. |
+| `deploy` chờ mãi hoặc đỏ với thông báo bảo vệ của environment (kiểu `Branch "main" is not allowed to deploy to production due to environment protection rules`) | Chạy tay với "Use workflow from" là `main` hay một nhánh: environment `production` chỉ nhận tag `v*`. Chạy lại, chọn đúng tag ở thẻ Tags và nhập cùng tag vào ô `tag` (8.4, cách 2). |
 | `deploy`: HTTP 401 hay 403 ở `vercel pull`, `deploy`, `promote` | Token hết hạn hoặc thiếu quyền (8.1 bước 6), hoặc secret của environment `production` sai. |
 | `deploy`: `vercel deploy không in URL của bản dựng (stdout của lệnh ở trên): không promote.` | Thường do team dùng hậu tố URL preview tuỳ chỉnh (custom preview URL suffix) nên URL không có dạng `.vercel.app`; workflow đỏ rõ ràng chứ không promote nhầm. Sửa biểu thức nhận URL trong `release.yml` cho hậu tố đó, rồi Re-run. |
-| `verify`: `chưa đúng sau 20 lần thử` | Domain chưa trỏ Vercel hay chưa có chứng chỉ (8.1 bước 5), hoặc promote chưa xong. Xem log `deploy`, rồi Re-run riêng job `verify` (Re-run failed jobs). |
+| `verify`: `chưa đúng sau 20 lần thử` | Domain chưa trỏ Vercel hay chưa có chứng chỉ (8.1 bước 5), hoặc promote chưa xong. Xem log `deploy`, rồi Re-run riêng job `verify` (Re-run failed jobs). Lưu ý: khi `verify` đỏ thì bản mới đã được promote. Nếu trang đang chạy thật sự hỏng (trang chủ 5xx, sai phiên bản), quay lại ngay bằng 8.4 cách 1 (Instant Rollback) thay vì chỉ chạy lại. |
 
 ### 8.3 Kiểm sau mỗi lần phát hành
 
@@ -328,6 +331,8 @@ curl -s https://eduflow.agentra.io.vn/version.json                              
 git rev-parse 'v1.0.1^{commit}'                                                  # phải bằng "commit" ở trên
 curl -sI https://eduflow.agentra.io.vn/version.json | grep -i x-robots-tag     # x-robots-tag: noindex
 curl -sI https://eduflow.agentra.io.vn/ | grep -i x-robots-tag                 # không in gì: trang chủ cho index
+curl -sI https://eduflow.agentra.io.vn/khong-co-trang-nay | head -1            # phải là 404, không phải 500 (chạm hàm máy chủ)
+curl -sI https://eduflow.agentra.io.vn/tai-ve | head -1                        # 200
 ```
 
 Lần phát hành đầu (`1.0.0`): làm thêm mục 2, bước 5 tới 8, và danh sách mục 6.
@@ -351,14 +356,14 @@ curl -s https://eduflow.agentra.io.vn/version.json                              
 
 Sau rollback, Vercel tắt tự gán domain production cho bản mới. Workflow Release không bị ảnh hưởng vì nó luôn dựng ở trạng thái chờ rồi `vercel promote` (lệnh này cũng bật lại tự gán).
 
-**Cách 2: dựng lại một tag.** GitHub, Actions, Release, Run workflow, Use workflow from: `main`, ô `tag`: ví dụ `v1.0.0`, Run. Workflow kiểm lại tag và CI, dựng mã của tag đó với biến môi trường hiện tại trên Vercel, promote và kiểm `/version.json`. Không tạo GitHub Release mới. Dùng khi bản cũ không còn trên Vercel, khi cần dựng lại với biến môi trường đã đổi, hoặc để dựng lại chính phiên bản đang chạy (ví dụ sau khi đổi một biến `NEXT_PUBLIC_*`).
+**Cách 2: dựng lại một tag.** GitHub, Actions, Release, Run workflow, Use workflow from: chuyển sang thẻ **Tags** và chọn chính tag cần dựng lại (ví dụ `v1.0.0`, không chọn `main`: environment `production` chỉ nhận tag `v*`), ô `tag`: cùng tag đó (`v1.0.0`), Run. Workflow kiểm lại tag và CI, dựng mã của tag đó với biến môi trường hiện tại trên Vercel, promote và kiểm `/version.json`. Không tạo GitHub Release mới. Dùng khi bản cũ không còn trên Vercel, khi cần dựng lại với biến môi trường đã đổi, hoặc để dựng lại chính phiên bản đang chạy (ví dụ sau khi đổi một biến `NEXT_PUBLIC_*`).
 
 Sau khi quay lại, sửa tiến bằng một số PATCH mới (mục 8.2); không xoá hay dời tag đã phát hành.
 
 ### 8.5 Việc định kỳ
 
 - Token Vercel: tạo token mới trước ngày hết hạn (8.1 bước 6), cập nhật secret `VERCEL_TOKEN` của environment `production`, rồi xoá token cũ.
-- Vercel CLI ghim ở `VERCEL_CLI` trong `release.yml`, các action ghim theo sha kèm chú thích phiên bản: khi nâng, chọn bản đã ra ít nhất hai tuần, sửa số, sha và chú thích cùng lúc, chạy `pnpm verify` (test `release-workflow`), rồi phát hành một bản PATCH để chạy thử.
+- Vercel CLI ghim ở `VERCEL_CLI` trong `release.yml`, các action ghim theo sha kèm chú thích phiên bản: khi nâng, chọn bản đã ra ít nhất hai tuần, sửa số, sha và chú thích cùng lúc, chạy `pnpm verify` (test `release-workflow`), rồi phát hành một bản PATCH để chạy thử. Khi nâng CLI, kiểm thêm rằng `vercel deploy` vẫn in URL trần ra stdout: ở 61.1.0 lệnh này in JSON khi nhận ra chế độ không tương tác hay agent (ví dụ `--non-interactive`, hay biến môi trường của agent AI cùng stdin không phải TTY); runner do GitHub cấp không đặt các biến đó, và bước deploy đóng an toàn (đỏ, không promote) nếu không có URL.
 - `npx vercel@<bản ghim>` ghim phiên bản của chính CLI nhưng các phụ thuộc gián tiếp của nó được giải ở lúc chạy. Đây là rủi ro đã chấp nhận (quyết định Q8 của kế hoạch phát hành).
-- **Rủi ro còn lại: token Vercel trong job `deploy`.** `VERCEL_TOKEN` chỉ được đặt vào env của bước `vercel pull` và bước deploy rồi promote, nhưng trong một job đó không phải ranh giới: mã chạy trước trong cùng job (script vòng đời của phụ thuộc lúc `pnpm install`, mã của repo lúc `vercel build`) có thể ghi `$GITHUB_PATH`, đặt `BASH_ENV` qua `$GITHUB_ENV` hay thay CLI đã tải trong `~/.npm/_npx`, rồi đọc token ở bước sau. Chấp nhận cho tới khi tách job, vì token chỉ nằm trong environment `production` (chỉ nhận `main` và tag `v*`, 8.1 bước 8), chỉ người phát hành tạo được tag `v*` (8.1 bước 9), phụ thuộc khoá theo `pnpm-lock.yaml` (`--frozen-lockfile`), và mã được dựng là commit trên `main` có CI xanh. Việc làm tiếp để siết: tách thành job `build` không có token, và job `deploy` dưới `environment: production` chỉ tải artifact `.vercel/output` (retention 1 ngày) rồi `vercel deploy --prebuilt` và `promote`, không chạy mã nào của repo hay của phụ thuộc. Khi tách cần giải hai điểm: job `build` phải có cài đặt và biến Production mà không có token (`vercel pull` cần token), và artifact chỉ chứa `.vercel/output`, không bao giờ `.vercel/.env.*` (artifact của repo công khai thì ai đăng nhập GitHub cũng tải được).
+- **Rủi ro còn lại: token Vercel trong job `deploy`.** `VERCEL_TOKEN` chỉ được đặt vào env của bước `vercel pull` và bước deploy rồi promote, nhưng trong một job đó không phải ranh giới: mã chạy trước trong cùng job (script vòng đời của phụ thuộc lúc `pnpm install`, mã của repo lúc `vercel build`) có thể ghi `$GITHUB_PATH`, đặt `BASH_ENV` qua `$GITHUB_ENV` hay thay CLI đã tải trong `~/.npm/_npx`, rồi đọc token ở bước sau. Chấp nhận cho tới khi tách job, vì token chỉ nằm trong environment `production` (chỉ nhận tag `v*`, không nhận `main`, nên chạy tay từ `main` cũng không lấy được token; 8.1 bước 8), chỉ người phát hành tạo được tag `v*` (8.1 bước 9; đây là ranh giới thật của token: ai tạo được tag `v*` thì chạy được `release.yml` của chính commit được gắn tag), phụ thuộc khoá theo `pnpm-lock.yaml` (`--frozen-lockfile`), và mã được dựng là commit trên `main` có CI xanh. Việc làm tiếp để siết: tách thành job `build` không có token, và job `deploy` dưới `environment: production` chỉ tải artifact `.vercel/output` (retention 1 ngày) rồi `vercel deploy --prebuilt` và `promote`, không chạy mã nào của repo hay của phụ thuộc. Khi tách cần giải hai điểm: job `build` phải có cài đặt và biến Production mà không có token (`vercel pull` cần token), và artifact chỉ chứa `.vercel/output`, không bao giờ `.vercel/.env.*` (artifact của repo công khai thì ai đăng nhập GitHub cũng tải được).
 - Các action trong `ci.yml` chưa ghim theo sha (`release.yml` đã ghim): ghim là việc làm sau.
