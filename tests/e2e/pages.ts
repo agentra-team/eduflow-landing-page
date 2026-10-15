@@ -8,6 +8,8 @@ export const PAGES: Array<[string, 'vi' | 'en']> = [
   ['/tron-de-trac-nghiem', 'vi'], ['/en/shuffle-test-versions', 'en'],
   ['/ai-soan-giao-an', 'vi'], ['/en/ai-lesson-plan-generator', 'en'],
   ['/tao-slide-bai-giang-bang-ai', 'vi'], ['/en/ai-slide-generator', 'en'],
+  ['/de-cuong-chi-tiet-hoc-phan', 'vi'], ['/en/course-syllabus', 'en'],
+  ['/eduflow-va-chatgpt', 'vi'], ['/en/eduflow-vs-chatgpt', 'en'],
   ['/tro-ly-ai', 'vi'], ['/en/ai-assistant', 'en'],
   ['/cach-tinh-phi', 'vi'], ['/en/pricing', 'en'],
   ['/minh-bach-ai', 'vi'], ['/en/ai-transparency', 'en'],

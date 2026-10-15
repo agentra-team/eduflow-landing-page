@@ -671,4 +671,332 @@ export const TOPICS_VI: Record<TopicId, TopicCopy> = {
     imageAlt: 'Màn Soạn slide của EduFlow: lưới xem trước các slide 16:9, cấu hình bộ slide, bảng cổng slide và nút xuất PDF, PPTX',
     share: { title: 'Tạo slide bài giảng bằng AI', subtitle: 'Slide 16:9 có quiz, thầy cô duyệt trước khi dùng' },
   },
+  'course-syllabus': {
+    name: 'Đề cương chi tiết học phần',
+    metaTitle: 'Đề cương chi tiết học phần: cấu trúc và cách viết',
+    description: 'Đề cương chi tiết học phần gồm những mục nào, cách viết chuẩn đầu ra (CLO) và kế hoạch tuần. Công cụ cho học phần của EduFlow đang nằm trong lộ trình.',
+    keywords: ['đề cương chi tiết học phần', 'mẫu đề cương chi tiết học phần', 'cấu trúc đề cương học phần'],
+    eyebrow: 'Mẫu và cấu trúc đề cương',
+    h1: 'Đề cương chi tiết học phần: cấu trúc, cách viết CLO và hướng đi của EduFlow',
+    lead: 'Trang này giải thích đề cương chi tiết học phần gồm những mục nào và cách viết chuẩn đầu ra học phần (CLO) cùng kế hoạch tuần, để giảng viên dùng được dù soạn bằng công cụ nào. Xin nói trước: bản EduFlow đầu tiên tập trung vào cấp Phổ thông; công cụ soạn CLO, kế hoạch tuần và đề cương cho học phần thuộc lộ trình, chưa có.',
+    card: 'Đề cương học phần gồm những mục nào, cách viết CLO và kế hoạch tuần; công cụ học phần của EduFlow đang ở lộ trình.',
+    inShort:
+      'Đề cương chi tiết học phần là văn bản mô tả một học phần: thông tin chung, mô tả, chuẩn đầu ra (CLO), kế hoạch giảng dạy theo tuần, cách đánh giá và tài liệu. Trong EduFlow, công cụ soạn đề cương cho học phần thuộc lộ trình, chưa có trong bản phát hành đầu; hiện app mới nhận dự án Học phần, nạp bài giảng và cho hỏi trợ lý trên tài liệu.',
+    definition: {
+      h2: 'Đề cương chi tiết học phần là gì?',
+      term: 'Đề cương chi tiết học phần',
+      rest: 'là văn bản mô tả một học phần: học phần dạy gì, sinh viên đạt được gì sau học phần, dạy theo tiến trình nào, đánh giá ra sao và dùng tài liệu gì.',
+      paras: [
+        'Các mục thường có là thông tin học phần (mã, số tín chỉ, giờ lên lớp, học phần tiên quyết), mô tả tóm tắt, chuẩn đầu ra học phần (CLO), kế hoạch giảng dạy theo tuần, phương pháp dạy và học, đánh giá và trọng số, tài liệu học tập, quy định của học phần. Mẫu cụ thể, tên mục và thứ tự do từng trường quy định, nên thầy cô nên bám mẫu của đơn vị mình.',
+        'Chất lượng đề cương nằm ở sự khớp giữa ba lớp: CLO nói sinh viên làm được gì, kế hoạch tuần nói dạy gì để đạt CLO nào, phần đánh giá nói đo CLO nào. CLO nào không có tuần dạy hoặc bài đánh giá thì đề cương hở.',
+      ],
+    },
+    table: {
+      h2: 'Soạn tay trên Word, dùng ChatGPT và dùng EduFlow',
+      caption: 'So sánh ba cách soạn đề cương chi tiết học phần: soạn tay trên Word, dùng ChatGPT hay công cụ chat chung, và dùng EduFlow (phần học phần thuộc lộ trình)',
+      checkedAt: '2026-10-15',
+      head: ['Tiêu chí', 'Soạn tay trên Word', 'ChatGPT hay công cụ chung', 'EduFlow'],
+      rows: [
+        [
+          'Khung đề cương',
+          'Thầy cô bám mẫu của trường và điền từng mục.',
+          'Thầy cô dán mẫu của trường vào lời nhắc và kiểm xem kết quả có đủ mục không.',
+          'Chưa có: màn đề cương học phần thuộc lộ trình. Hiện app chưa dựng khung đề cương.',
+        ],
+        [
+          'Viết CLO',
+          'Thầy cô tự chọn động từ đo được và tự soát bậc.',
+          'Thầy cô nhờ gợi ý CLO và tự soát động từ, bậc Bloom.',
+          'Chưa có: cổng kiểm CLO theo bậc Bloom thuộc lộ trình. Hiện thầy cô tự soát.',
+        ],
+        [
+          'Kế hoạch tuần gắn CLO',
+          'Thầy cô tự lập bảng và tự đối chiếu CLO với từng tuần.',
+          'Thầy cô nhờ lập bảng và tự đối chiếu các tuần với CLO.',
+          'Chưa có: kế hoạch tuần và truy vết CLO thuộc lộ trình.',
+        ],
+        [
+          'Dùng lại bài giảng đã có',
+          'Thầy cô chép ý từ bài giảng sang đề cương.',
+          'Thầy cô dán đoạn bài giảng vào cuộc trò chuyện.',
+          `Có, ở mức nạp tài liệu: nạp tệp PDF, Word, PowerPoint vào dự án Học phần (tới ${appFacts.documentMaxMb.course} MB, ${appFacts.documentMaxPages} trang mỗi tệp), app đọc ngay trên máy và cho tìm đoạn. Chưa tự dựng CLO hay đề cương từ bài giảng.`,
+        ],
+        [
+          'Hỏi đáp trên tài liệu của học phần',
+          'Thầy cô tự tìm trong tệp.',
+          'Thầy cô dán đoạn liên quan rồi hỏi.',
+          'Có, trong dự án Học phần: trợ lý chọn tại máy các đoạn khớp câu hỏi, hiện thành chip để thầy cô bỏ bớt rồi mới gửi, câu trả lời có chip Nguồn mở đúng đoạn.',
+        ],
+        [
+          'Duyệt và ký',
+          'Theo quy trình của khoa và trường.',
+          'Thầy cô tự ghi nhận việc duyệt ngoài công cụ.',
+          'Chưa có: duyệt qua gói đã ký thuộc lộ trình. Ở cấp Phổ thông, Duyệt là bước cuối.',
+        ],
+      ],
+    },
+    blocks: [
+      {
+        h2: 'Viết CLO theo bậc Bloom',
+        paras: [
+          'CLO tốt bắt đầu bằng một động từ đo được, đứng ở đúng bậc nhận thức mà học phần nhắm tới. Thang Bloom (bản sửa đổi) xếp các bậc nhận thức từ thấp lên cao; mỗi bậc có những động từ điển hình.',
+        ],
+        items: [
+          { title: 'Nhớ và hiểu', text: 'nêu, liệt kê, mô tả, giải thích. Hợp với kiến thức nền tảng của học phần.' },
+          { title: 'Vận dụng và phân tích', text: 'áp dụng, tính, so sánh, phân tích. Hợp với kỹ năng giải bài, xử lý tình huống.' },
+          { title: 'Đánh giá và sáng tạo', text: 'đánh giá, thiết kế, xây dựng, đề xuất. Hợp với sản phẩm, đồ án, bài tập lớn.' },
+          { title: 'Động từ nên tránh', text: 'biết, nắm vững, hiểu rõ: không đo được trực tiếp.' },
+        ],
+      },
+      {
+        h2: 'Kế hoạch tuần và ma trận CLO với đánh giá',
+        paras: [
+          'Mỗi tuần nên ghi chuẩn đầu ra của tuần, nội dung, hoạt động dạy và học, và CLO mà tuần đó góp phần đạt. Các tuần phủ liên tục và tổng giờ khớp thời lượng học phần.',
+        ],
+        items: [
+          { title: 'Ma trận CLO và đánh giá', text: 'Một bảng có hàng là CLO, cột là các thành phần đánh giá (chuyên cần, giữa kỳ, đồ án, cuối kỳ), ô ghi thành phần nào đo CLO nào. Mỗi CLO phải có ít nhất một ô được đánh dấu.' },
+          { title: 'Truy vết hai chiều', text: 'Từ CLO tìm được tuần dạy và bài đánh giá; từ bài đánh giá tìm lại được CLO. Nhờ vậy người duyệt thấy ngay đề cương có hở không.' },
+        ],
+      },
+      {
+        h2: 'EduFlow đang ở đâu với cấp Học phần',
+        paras: [
+          'EduFlow có ba cấp là Phổ thông, Học phần và Chương trình, nhưng bản phát hành đầu chỉ có công cụ soạn cho cấp Phổ thông (đề kiểm tra, giáo án, slide). Ở cấp Học phần, app hiện cho tạo dự án Học phần, nạp tài liệu và hỏi trợ lý; một dự án Học phần chưa có màn soạn nào, và phần giới thiệu ban đầu của app ghi rõ các chức năng cấp Học phần và Chương trình đang được phát triển.',
+        ],
+        items: [
+          { title: 'Hướng đi', text: 'Theo lộ trình, công cụ học phần sẽ gồm CLO có cổng kiểm theo bậc Bloom, kế hoạch tuần gắn CLO, giáo án buổi học, đánh giá, đề cương mười mục có nguồn cho từng đoạn, và duyệt qua gói đã ký. Đây là hướng phát triển, chưa phải tính năng đã có, chưa có ngày phát hành.' },
+          { title: 'Dùng được hôm nay', text: 'Phần nạp tài liệu và trợ lý ở dự án Học phần đã chạy; mời xem bài hướng dẫn nạp tài liệu.', link: { doc: 'adding-documents' } },
+        ],
+      },
+    ],
+    howTo: {
+      h2: 'Soạn đề cương cùng EduFlow: phần có hôm nay và phần thuộc lộ trình',
+      lead: 'Hai bước đầu chạy được trong app hiện tại. Bốn bước sau thuộc lộ trình, ghi ở đây để thầy cô biết hướng đi và không có bài hướng dẫn kèm theo.',
+      steps: [
+        {
+          title: 'Có hôm nay: tạo dự án Học phần và nạp bài giảng',
+          text: 'Tạo dự án ở cấp Học phần, mở Chi tiết dự án, bấm Nạp tài liệu và chọn giáo trình, đề cương cũ hay bài giảng. App đọc tại máy, không gửi tệp gốc đi.',
+          doc: 'adding-documents',
+        },
+        {
+          title: 'Có hôm nay: hỏi trợ lý trên tài liệu của học phần',
+          text: 'Hỏi trợ lý trong dự án Học phần, ví dụ một tuần của giáo trình dạy gì. Trợ lý chỉ gợi ý, không soạn đề cương và không duyệt giúp thầy cô.',
+          doc: 'using-the-assistant',
+        },
+        {
+          title: 'Lộ trình, chưa có: để AI đề xuất CLO và kiểm theo bậc Bloom',
+          text: 'Dự kiến AI đề xuất bộ CLO từ tài liệu, cổng G3 bắt chỗ động từ lệch bậc Bloom. Chưa có.',
+        },
+        {
+          title: 'Lộ trình, chưa có: kế hoạch tuần gắn CLO',
+          text: 'Dự kiến mỗi tuần gắn chuẩn đầu ra, bậc Bloom và CLO liên kết, các tuần phủ liên tục. Chưa có.',
+        },
+        {
+          title: 'Lộ trình, chưa có: đề cương mười mục có nguồn',
+          text: 'Dự kiến dựng đề cương mười mục theo mẫu chuẩn, mỗi đoạn kèm nguồn, mục chỉ chuyển sang đã duyệt khi giảng viên bấm Đạt. Chưa có.',
+        },
+        {
+          title: 'Lộ trình, chưa có: kiểm cổng và duyệt qua gói đã ký',
+          text: 'Dự kiến mười hai cổng G1 tới G12 và gói gửi trưởng bộ môn duyệt. Chưa có trong app.',
+        },
+      ],
+    },
+    limits: {
+      h2: 'EduFlow chưa làm gì',
+      items: [
+        'Toàn bộ công cụ soạn cho học phần: CLO, kế hoạch tuần, giáo án buổi 90 hoặc 150 phút, đánh giá, đề cương mười mục. Chưa có, thuộc lộ trình, chưa có ngày phát hành. Bản phát hành đầu tập trung vào cấp Phổ thông.',
+        `Mười hai cổng chất lượng G1 tới G12 của học phần và việc duyệt qua gói đã ký: chưa có. Cổng đang chạy thật chỉ ở cấp Phổ thông.`,
+        'Tự dựng CLO hay đề cương từ bài giảng đã nạp: chưa có. Dự án Học phần hiện chỉ nạp tài liệu, tìm đoạn và hỏi trợ lý.',
+        'Đọc chữ trong trang quét hay ảnh chụp: chưa đọc được; tệp có lớp chữ thì đọc được.',
+        'Tự quyết nội dung đề cương: EduFlow không làm việc này. Mọi nội dung AI viết, khi có, chỉ là bản đề xuất để giảng viên sửa và duyệt.',
+      ],
+    },
+    faq: [
+      {
+        q: 'Đề cương chi tiết học phần gồm những mục nào?',
+        a: 'Thường gồm thông tin học phần, mô tả tóm tắt, chuẩn đầu ra học phần (CLO), kế hoạch giảng dạy theo tuần, phương pháp dạy và học, đánh giá và trọng số, tài liệu học tập và quy định của học phần. Tên mục và thứ tự do từng trường quy định, nên thầy cô bám mẫu của đơn vị mình.',
+      },
+      {
+        q: 'Viết chuẩn đầu ra học phần (CLO) thế nào cho đúng?',
+        a: 'Mỗi CLO bắt đầu bằng một động từ đo được ở đúng bậc Bloom học phần nhắm tới, như giải thích, áp dụng, phân tích, thiết kế; tránh động từ như biết hay nắm vững. Mỗi CLO phải có tuần dạy và bài đánh giá tương ứng để truy vết được.',
+      },
+      {
+        q: 'EduFlow có soạn được đề cương chi tiết học phần không?',
+        a: 'Chưa. Bản phát hành đầu của EduFlow tập trung vào cấp Phổ thông. Công cụ cho học phần (CLO, kế hoạch tuần, giáo án buổi, đánh giá, đề cương, duyệt qua gói) thuộc lộ trình và chưa có ngày phát hành. Hiện app mới tạo được dự án Học phần, nạp tài liệu và hỏi trợ lý.',
+      },
+      {
+        q: 'Dự án Học phần của EduFlow hiện làm được gì?',
+        a: `Nạp tài liệu PDF, Word, PowerPoint hay ảnh (tới ${appFacts.documentMaxMb.course} MB và ${appFacts.documentMaxPages} trang mỗi tệp), để app đọc tại máy và cho tìm đoạn, rồi hỏi trợ lý trên tài liệu đó. Dự án Học phần chưa có màn soạn nào.`,
+      },
+      {
+        q: 'Có dùng ChatGPT để viết đề cương được không?',
+        a: 'Được, như công cụ gợi ý nháp: thầy cô dán mẫu của trường rồi tự soát từng mục, động từ CLO và sự khớp giữa CLO, tuần dạy và đánh giá. Kiểm và duyệt vẫn là việc của giảng viên.',
+      },
+    ],
+    imageAlt: 'Bản thiết kế màn Bàn làm việc học phần của EduFlow, thuộc lộ trình và chưa có trong bản phát hành đầu: CLO, kế hoạch tuần và buổi học trên một màn',
+    share: { title: 'Đề cương chi tiết học phần', subtitle: 'Cấu trúc, cách viết CLO; công cụ học phần của EduFlow ở lộ trình' },
+  },
+  'vs-chatgpt': {
+    name: 'EduFlow và ChatGPT',
+    metaTitle: 'EduFlow và ChatGPT: soạn đề, giáo án khác gì?',
+    description: 'EduFlow và ChatGPT khác gì khi soạn đề kiểm tra và giáo án: khi nào ChatGPT đủ dùng, khi nào cần ma trận, cổng kiểm, nhiều mã đề và người duyệt của EduFlow.',
+    keywords: ['ChatGPT soạn giáo án', 'EduFlow và ChatGPT', 'câu lệnh ChatGPT soạn giáo án'],
+    eyebrow: 'So sánh trung thực',
+    h1: 'ChatGPT soạn giáo án, soạn đề được tới đâu, và khi nào cần EduFlow',
+    lead: 'ChatGPT là trợ lý trò chuyện đa năng: thầy cô gõ yêu cầu, đọc câu trả lời và tự chỉnh. Với ý tưởng, câu hỏi lẻ và bản nháp nhanh, thế là đủ. EduFlow là app trên máy cho một việc hẹp hơn là soạn đề, giáo án và slide cấp Phổ thông, với ma trận, cổng kiểm và người duyệt.',
+    card: 'Khi nào ChatGPT đủ dùng để soạn đề và giáo án, khi nào cần ma trận, cổng kiểm, nhiều mã đề và người duyệt.',
+    inShort:
+      'ChatGPT soạn giáo án và đề đủ dùng cho ý tưởng, câu hỏi lẻ và bản nháp nhanh. EduFlow dành cho khi thầy cô cần quy trình: bám số câu từng ô của ma trận, bản đặc tả, kiểm lại đáp án, nhiều mã đề, cổng kiểm, người duyệt, dữ liệu nguồn ở máy và chi phí hiện trước khi chạy. Hai công cụ không loại trừ nhau.',
+    definition: {
+      h2: 'ChatGPT và EduFlow khác nhau ở đâu?',
+      term: 'ChatGPT',
+      rest: 'là trợ lý trò chuyện đa năng: một khung chat mở cho mọi chủ đề, thầy cô viết yêu cầu bằng lời, đọc kết quả và tiếp tục hỏi. Sức mạnh của nó là sự linh hoạt; thầy cô quyết định cuộc trò chuyện đi đâu và tự kiểm kết quả.',
+      paras: [
+        'EduFlow thì ngược lại: không phải khung chat mở mà là app cài trên máy cho một nhóm việc cụ thể của giáo viên phổ thông, gồm soạn đề kiểm tra theo ma trận, soạn giáo án theo Công văn 5512 và tạo slide bài giảng. Mỗi việc đi qua các bước cố định: thiết lập, để AI viết, máy kiểm cổng, thầy cô sửa và duyệt, xuất tệp.',
+        'Vì vậy câu hỏi đúng không phải công cụ nào tốt hơn, mà là việc đang làm cần sự linh hoạt hay cần quy trình.',
+      ],
+    },
+    table: {
+      h2: 'ChatGPT và EduFlow, từng tiêu chí',
+      caption: 'So sánh cách soạn đề kiểm tra và giáo án bằng ChatGPT (trợ lý trò chuyện đa năng) và bằng EduFlow, theo cách thầy cô làm việc ở mỗi bên',
+      checkedAt: '2026-10-15',
+      head: ['Tiêu chí', 'ChatGPT', 'EduFlow'],
+      rows: [
+        [
+          'Bám số câu từng ô của ma trận',
+          'Thầy cô nêu số câu từng ô trong lời nhắc và tự đếm lại kết quả.',
+          'AI viết câu theo số câu từng ô của ma trận bốn mức. Cổng P3 kiểm số câu từng ô; nếu lệch, app tự sinh lại tối đa 2 lần.',
+        ],
+        [
+          'Bản đặc tả đề',
+          'Thầy cô nhờ lập bảng và tự chỉnh khuôn trình bày.',
+          'Có tài liệu Ma trận và bản đặc tả, liệt kê từng câu theo mức, chủ đề và yêu cầu cần đạt.',
+        ],
+        [
+          'Kiểm lại đáp án',
+          'Thầy cô nhờ giải lại trong cuộc trò chuyện và đối chiếu.',
+          'Khi ma trận có câu Vận dụng hoặc Vận dụng cao, một lượt AI độc lập giải lại; cảnh báo đáp án cần thầy cô xác nhận từng câu.',
+        ],
+        [
+          'Nhiều mã đề',
+          'Thầy cô nhờ đảo thứ tự và tự kiểm đáp án của từng mã.',
+          `Tối đa ${appFacts.maxTestVersions} mã (101 tới 124), xáo câu và đáp án tất định, app kiểm đáp án khớp từng mã trước khi lưu.`,
+        ],
+        [
+          'Khung giáo án 5512',
+          'Thầy cô dán cấu trúc vào lời nhắc và kiểm xem kết quả có đủ mục không.',
+          `Cấu trúc cố định với bốn hoạt động trong tiết ${appFacts.lessonMinutes} phút; cổng P6 kiểm đủ mục, cổng P7 kiểm tổng số phút.`,
+        ],
+        [
+          'Người duyệt',
+          'Thầy cô soát nội dung và tự ghi nhận việc duyệt.',
+          'Đề, giáo án và slide ở trạng thái Đề xuất tới khi thầy cô bấm Duyệt. Chưa duyệt vẫn xuất được nhưng bản xuất mang dấu chìm DÙNG THỬ.',
+        ],
+        [
+          'Dữ liệu nguồn và chi phí',
+          'Thầy cô tự quyết định dán gì vào cuộc trò chuyện và xem điều khoản, mức phí của công cụ.',
+          'Tài liệu nguồn đọc tại máy; chỉ các đoạn khớp, đã hiện thành chip cho thầy cô bỏ bớt, mới gửi kèm câu hỏi. Hộp Ước tính chi phí hiện trước mỗi tác vụ AI; bấm Huỷ thì không tốn gì. Bật Tắt AI thì không gì của dự án rời máy.',
+        ],
+      ],
+    },
+    blocks: [
+      {
+        h2: 'Khi nào ChatGPT đã đủ dùng',
+        paras: [
+          'Nhiều việc soạn bài không cần quy trình, và một trợ lý trò chuyện đa năng làm tốt. Với các việc sau, chưa cần đến EduFlow.',
+        ],
+        items: [
+          { title: 'Tìm ý', text: 'Gợi ý tình huống mở đầu, ví dụ minh hoạ, cách giải thích một khái niệm khó.' },
+          { title: 'Câu hỏi lẻ', text: 'Vài câu hỏi để kiểm tra nhanh cuối tiết, không cần đúng một ma trận.' },
+          { title: 'Nháp nhanh', text: 'Một bản nháp để thầy cô sửa tiếp trong trình soạn văn bản của mình, không cần khung cố định.' },
+        ],
+      },
+      {
+        h2: 'Khi nào cần EduFlow',
+        paras: [
+          'EduFlow đáng dùng khi thầy cô phải giao nộp một sản phẩm đủ chuẩn và có người soát: đề có ma trận, giáo án đúng cấu trúc, nhiều mã đề, hoặc slide có quiz.',
+        ],
+        items: [
+          { title: 'Đề phải bám ma trận', text: 'Số câu từng ô, bản đặc tả và việc kiểm đáp án nằm trong quy trình, không phải việc thầy cô đếm tay.', link: { topic: 'test-generator' } },
+          { title: 'Nhiều mã đề', text: 'Trộn câu và phương án thành tối đa 24 mã, mỗi mã có đáp án riêng và in lại đúng mã đã in.', link: { topic: 'test-versions' } },
+          { title: 'Giáo án theo khung', text: 'Bốn hoạt động, số phút, yêu cầu cần đạt từ khung GDPT 2018 có sẵn trong app.', link: { topic: 'lesson-plans' } },
+          { title: 'Có người duyệt và dấu vết', text: 'Cảnh báo cần xác nhận từng dòng, bấm Duyệt mới là bản chính thức, và việc duyệt được lưu vào phiên bản.' },
+        ],
+      },
+      {
+        h2: 'Câu lệnh ChatGPT soạn giáo án và đề: bốn mẫu dùng được ngay',
+        paras: [
+          'Các câu lệnh dưới đây dùng được với ChatGPT hay công cụ chat nào khác. Thay phần trong ngoặc vuông bằng nội dung của thầy cô, đừng dán tên học sinh hay thông tin cá nhân, và luôn đọc, sửa kết quả.',
+        ],
+        items: [
+          { title: 'Giáo án', text: 'Soạn kế hoạch bài dạy môn [môn], lớp [lớp], bài [tên bài], thời lượng 45 phút, theo cấu trúc Công văn 5512 với bốn hoạt động: Mở đầu, Hình thành kiến thức mới, Luyện tập, Vận dụng. Mỗi hoạt động nêu số phút, mục tiêu, nội dung, sản phẩm và cách tổ chức thực hiện.' },
+          { title: 'Tình huống mở đầu', text: 'Gợi ý 5 tình huống mở đầu cho bài [tên bài] lớp [lớp], mỗi tình huống không quá ba câu, gắn với đời sống của học sinh và nêu câu hỏi dẫn vào bài.' },
+          { title: 'Câu trắc nghiệm', text: 'Viết 8 câu trắc nghiệm bốn phương án về [chủ đề], gồm 3 câu nhận biết, 3 câu thông hiểu, 2 câu vận dụng. Mỗi câu có đúng một đáp án và lời giải ngắn; các phương án sai phải hợp lý, không lặp ý.' },
+          { title: 'Nhận xét giáo án', text: 'Dưới đây là giáo án của tôi: [dán giáo án]. Chỉ ra những chỗ chưa có sản phẩm học tập cụ thể hoặc cách tổ chức còn mơ hồ và gợi ý cách sửa, đừng viết lại cả bài.' },
+        ],
+      },
+    ],
+    howTo: {
+      h2: 'Dùng cả hai: ChatGPT để tìm ý, EduFlow để làm ra bản đủ chuẩn',
+      lead: 'Hai công cụ bổ sung cho nhau: tìm ý ở nơi thầy cô quen, rồi đưa việc cần quy trình vào EduFlow.',
+      steps: [
+        {
+          title: 'Tìm ý và nháp ở công cụ chat quen dùng',
+          text: 'Dùng câu lệnh mẫu ở trên để lấy ý mở đầu, ví dụ, câu hỏi nháp. Không dán tên học sinh hay thông tin cá nhân.',
+        },
+        {
+          title: 'Soạn đề có ma trận trong EduFlow',
+          text: 'Lập ma trận bốn mức, để AI viết câu theo từng ô, đọc Bảng cổng và duyệt. Cần nhiều mã đề thì xuất ngay từ đề đã duyệt.',
+          doc: 'create-a-test',
+        },
+        {
+          title: 'Soạn giáo án theo khung 5512 trong EduFlow',
+          text: 'Chọn môn, lớp, chương, chủ đề trong khung GDPT 2018, để AI viết bốn hoạt động, kiểm tổng 45 phút rồi duyệt.',
+          doc: 'lesson-plans',
+        },
+        {
+          title: 'Hỏi trợ lý của EduFlow về việc đang làm',
+          text: 'Trợ lý trong app biết màn đang mở và chỉ gửi bản tóm tắt có cấu trúc. Dùng để hỏi về dự án, chi phí hay nhờ dựng thiết lập, không phải để trò chuyện chủ đề tuỳ ý.',
+          doc: 'using-the-assistant',
+        },
+        {
+          title: 'Xem chi phí trước khi chạy',
+          text: 'Mỗi tác vụ AI hiện hộp Ước tính chi phí; thầy cô bấm Chạy hoặc Huỷ. Việc chạy tại máy như trộn mã đề và xuất tệp tốn 0 đồng.',
+        },
+      ],
+    },
+    limits: {
+      h2: 'EduFlow chưa làm gì',
+      items: [
+        'Không phải trợ lý trò chuyện đa năng: trợ lý trong EduFlow làm việc trong dự án và màn đang mở, trả lời về dữ kiện của app và tài liệu của dự án, không thay cho một khung chat mở cho mọi chủ đề.',
+        'Dạng câu: đề hiện có câu nhiều lựa chọn (bốn phương án, một đáp án) và bài tự luận có điểm kèm hướng dẫn chấm. Câu đúng sai, trả lời ngắn và tự luận có ý nhỏ chưa có, thuộc lộ trình.',
+        'Chỉ cấp Phổ thông có công cụ soạn: công cụ cho học phần (CLO, kế hoạch tuần, đề cương) và chương trình đào tạo nằm trong lộ trình, chưa có.',
+        'Cần cài app trên macOS hoặc Windows, có key hoặc dùng thử, và cần mạng để AI viết; không chạy trên trình duyệt hay điện thoại.',
+      ],
+    },
+    faq: [
+      {
+        q: 'Dùng ChatGPT soạn giáo án có được không?',
+        a: 'Được, nhất là để tìm ý, viết nháp và nhận xét giáo án đã có. Thầy cô nên tự kiểm cấu trúc, tổng thời gian và nội dung của kết quả, và không dán tên học sinh hay thông tin cá nhân. Khi cần giáo án đúng cấu trúc Công văn 5512 có cổng kiểm và người duyệt, EduFlow làm các bước đó trong quy trình.',
+      },
+      {
+        q: 'EduFlow khác ChatGPT ở điểm nào?',
+        a: 'ChatGPT là trợ lý trò chuyện đa năng; EduFlow là app trên máy cho soạn đề, giáo án và slide cấp Phổ thông, với ma trận bốn mức, bản đặc tả, cổng kiểm, nhiều mã đề, người duyệt và chi phí hiện trước khi chạy. Hai công cụ dùng được song song.',
+      },
+      {
+        q: 'EduFlow có thay thế được ChatGPT không?',
+        a: 'Không. EduFlow không phải khung chat mở cho mọi chủ đề; trợ lý của nó làm việc trong dự án và màn đang mở. Thầy cô vẫn có thể dùng ChatGPT hay công cụ chat khác để tìm ý, và dùng EduFlow cho phần cần quy trình.',
+      },
+      {
+        q: 'Dữ liệu của tôi có rời máy khi dùng EduFlow không?',
+        a: 'Tài liệu nguồn được đọc tại máy và tệp gốc không gửi đi. Khi thầy cô bấm sinh nội dung hay hỏi trợ lý, phần thiết lập, ghi chú và các đoạn tài liệu đã chọn được gửi để AI viết, nên việc đó cần mạng. Dự án bật Tắt AI thì không nội dung nào của dự án rời máy.',
+      },
+      {
+        q: 'EduFlow tính phí thế nào so với dùng công cụ chat?',
+        a: 'EduFlow hiện hộp Ước tính chi phí trước mỗi tác vụ AI; bấm Huỷ thì không tốn gì. Việc chạy tại máy như trộn mã đề, kiểm cổng và xuất tệp tốn 0 đồng. Mức phí của ChatGPT hay công cụ khác do nhà cung cấp công cụ đó quy định, thầy cô xem tại trang của họ.',
+      },
+    ],
+    imageAlt: 'Trang chủ EduFlow với ô trò chuyện của trợ lý: câu hỏi "Hôm nay thầy cô muốn soạn gì?", cấp làm việc và các gợi ý soạn đề, giáo án',
+    share: { title: 'EduFlow và ChatGPT', subtitle: 'Khi nào ChatGPT đủ dùng, khi nào cần ma trận, cổng kiểm và người duyệt' },
+  },
 }

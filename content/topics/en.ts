@@ -670,4 +670,332 @@ export const TOPICS_EN: Record<TopicId, TopicCopy> = {
     imageAlt: 'The slide screen of EduFlow: a preview grid of 16:9 slides, the deck settings, the slide gate table and the PDF and PPTX export buttons',
     share: { title: 'AI slide generator', subtitle: '16:9 slides with quizzes, approved by you' },
   },
+  'course-syllabus': {
+    name: 'Course syllabus',
+    metaTitle: 'Course syllabus: structure and how to write one',
+    description: 'What a course syllabus contains and how to write learning outcomes (CLOs) and a weekly plan. EduFlow tools for courses are on the roadmap, not released.',
+    keywords: ['course syllabus', 'course syllabus template', 'course syllabus structure'],
+    eyebrow: 'Template and structure',
+    h1: 'Course syllabus: structure, writing CLOs, and where EduFlow is heading',
+    lead: 'This page explains what a course syllabus contains and how to write course learning outcomes (CLOs) and a weekly plan, so a lecturer can use it with any tool. Up front: the first EduFlow release focuses on the school (K-12) level; tools for drafting CLOs, weekly plans and syllabi for university courses are on the roadmap and not available yet.',
+    card: 'What a course syllabus contains, how to write CLOs and a weekly plan; EduFlow tools for courses are on the roadmap.',
+    inShort:
+      'A course syllabus is the document that describes one course: general information, description, learning outcomes (CLOs), a weekly teaching plan, assessment and materials. In EduFlow, tools for drafting a course syllabus are on the roadmap and not in the first release; today the app only accepts course projects, lets you add lecture files and lets you ask the assistant about them.',
+    definition: {
+      h2: 'What is a course syllabus?',
+      term: 'A course syllabus',
+      rest: 'is the document that describes one course: what it teaches, what students can do after it, how it is taught week by week, how it is assessed and what materials it uses.',
+      paras: [
+        'The usual sections are course information (code, credits, contact hours, prerequisites), a short description, course learning outcomes (CLOs), a weekly teaching plan, teaching and learning methods, assessment and weights, learning materials, and course rules. The exact template, section names and order are set by each institution, so follow your own.',
+        'What decides the quality of a syllabus is how three layers line up: CLOs say what students can do, the weekly plan says what is taught to reach which CLO, and the assessment says which CLO is measured and how. If a CLO has no teaching week or no assessment, the syllabus has a gap.',
+      ],
+    },
+    table: {
+      h2: 'Writing in Word, using ChatGPT, and using EduFlow',
+      caption: 'A comparison of three ways to write a course syllabus: by hand in Word, with ChatGPT or another general chat tool, and with EduFlow (course tools are on the roadmap)',
+      checkedAt: '2026-10-15',
+      head: ['Criterion', 'By hand in Word', 'ChatGPT or a general tool', 'EduFlow'],
+      rows: [
+        [
+          'Syllabus template',
+          'You follow your institution template and fill each section.',
+          'You paste your template into the prompt and check that every section is present.',
+          'Not yet: the course syllabus screen is on the roadmap. The app does not build a syllabus template today.',
+        ],
+        [
+          'Writing CLOs',
+          'You pick measurable verbs and check the level yourself.',
+          'You ask for CLO suggestions and check the verbs and the Bloom level yourself.',
+          'Not yet: a CLO gate by Bloom level is on the roadmap. Today you check this yourself.',
+        ],
+        [
+          'Weekly plan tied to CLOs',
+          'You build the table and cross-check CLOs against each week.',
+          'You ask for a table and cross-check the weeks against the CLOs.',
+          'Not yet: the weekly plan and CLO tracing are on the roadmap.',
+        ],
+        [
+          'Reusing existing lectures',
+          'You open the lectures and copy points into the syllabus.',
+          'You paste lecture passages into the conversation.',
+          `Yes, at the level of adding documents: add PDF, Word or PowerPoint files to a course project (up to ${appFacts.documentMaxMb.course} MB and ${appFacts.documentMaxPages} pages per file); the app reads them on your machine and lets you search passages. It does not build CLOs or a syllabus from them yet.`,
+        ],
+        [
+          'Asking questions about course materials',
+          'You search the files yourself.',
+          'You paste the relevant passages and ask.',
+          'Yes, in a course project: the assistant picks matching passages on your machine, shows them as chips you can remove before sending, and an answer carries a Source chip that opens the exact passage.',
+        ],
+        [
+          'Approval and sign-off',
+          'Through your faculty and university process.',
+          'You record the approval outside the tool.',
+          'Not yet: approval through a signed package is on the roadmap. At school level, Approve is the last step.',
+        ],
+      ],
+    },
+    blocks: [
+      {
+        h2: 'Writing CLOs by Bloom level',
+        paras: [
+          'A good CLO starts with a measurable verb at the cognitive level the course aims for. The revised Bloom scale orders cognitive levels from low to high, each with typical verbs.',
+        ],
+        items: [
+          { title: 'Remember and understand', text: 'state, list, describe, explain. Fits the foundational knowledge of the course.' },
+          { title: 'Apply and analyse', text: 'apply, calculate, compare, analyse. Fits problem solving and handling cases.' },
+          { title: 'Evaluate and create', text: 'evaluate, design, build, propose. Fits products, projects and capstone work.' },
+          { title: 'Verbs to avoid', text: 'know, master, understand well: they cannot be measured directly, so they cannot be matched to an assessment.' },
+        ],
+      },
+      {
+        h2: 'The weekly plan and the CLO to assessment matrix',
+        paras: [
+          'Each week should state its learning outcome, content, teaching and learning activities, and the CLOs the week helps achieve. The weeks run without gaps, and the total hours match the course load.',
+        ],
+        items: [
+          { title: 'CLO to assessment matrix', text: 'A table with CLOs as rows and assessment components as columns (attendance, midterm, project, final); each cell says which component measures which CLO. Every CLO needs at least one marked cell.' },
+          { title: 'Tracing both ways', text: 'From a CLO you can find its teaching weeks and assessments; from an assessment you can find its CLOs. Two-way tracing is the easiest way to show a reviewer the syllabus has no gaps.' },
+        ],
+      },
+      {
+        h2: 'Where EduFlow stands on the course level',
+        paras: [
+          'EduFlow has three levels, school (K-12), course and programme, but the first release has drafting tools only for the school level (tests, lesson plans, slides). At course level the app lets you create a course project, add documents and ask the assistant; a course project has no drafting screen, and the first-run introduction states that course and programme features are still being developed.',
+        ],
+        items: [
+          { title: 'Direction', text: 'On the roadmap, course tools are meant to include CLOs checked by Bloom level, a weekly plan tied to CLOs, session plans, assessments, a ten-section syllabus with a source for each paragraph, and approval through a signed package. This describes a direction, not an available feature, and it has no release date.' },
+          { title: 'Available today', text: 'Document adding and the assistant already work in a course project; see the guide on adding documents.', link: { doc: 'adding-documents' } },
+        ],
+      },
+    ],
+    howTo: {
+      h2: 'Writing a syllabus with EduFlow: what exists today and what is roadmap',
+      lead: 'The first two steps work in the current app. The four after them are on the roadmap; they are listed so you can see the direction, and they have no guide.',
+      steps: [
+        {
+          title: 'Available today: create a course project and add lectures',
+          text: 'Create a project at course level, open Project details, press the add documents button and choose a textbook, an old syllabus or lectures. The app reads them on your machine and does not send the original files.',
+          doc: 'adding-documents',
+        },
+        {
+          title: 'Available today: ask the assistant about the course materials',
+          text: 'Ask the assistant inside the course project, for example what a given week of the textbook covers. The assistant only suggests; it does not draft a syllabus and does not approve for you.',
+          doc: 'using-the-assistant',
+        },
+        {
+          title: 'Roadmap, not available: AI proposes CLOs, checked by Bloom level',
+          text: 'The plan is for AI to propose a set of CLOs from your materials, with a gate (G3) catching verbs that do not match the Bloom level. Not in the app yet.',
+        },
+        {
+          title: 'Roadmap, not available: a weekly plan tied to CLOs',
+          text: 'The plan is for each week to carry a learning outcome, a Bloom level and linked CLOs, with the weeks running without gaps. Not in the app yet.',
+        },
+        {
+          title: 'Roadmap, not available: a ten-section syllabus with sources',
+          text: 'The plan is to build a ten-section syllabus in a standard template, each paragraph with its source, and a section turns approved only when the lecturer marks it passed. Not in the app yet.',
+        },
+        {
+          title: 'Roadmap, not available: gates and approval through a signed package',
+          text: 'The plan is twelve gates, G1 to G12, and a package sent to the head of department for approval. Not in the app yet.',
+        },
+      ],
+    },
+    limits: {
+      h2: 'What EduFlow does not do yet',
+      items: [
+        'All drafting tools for courses: CLOs, weekly plans, 90 or 150 minute session plans, assessments and the ten-section syllabus. Not available, on the roadmap, with no release date. The first release focuses on the school level.',
+        'The twelve course quality gates, G1 to G12, and approval through a signed package: not available. Quality gates that really run exist only at school level (tests, lesson plans, slides).',
+        'Building CLOs or a syllabus from added lectures: not available. A course project only adds documents, searches passages and asks the assistant.',
+        'Reading text from scanned pages or photos: not yet. The app only prepares page images on your machine; Word, PDF and PowerPoint files with a text layer are read.',
+        'Deciding the syllabus content: EduFlow does not do this. Anything AI writes, when it exists, is only a proposal for the lecturer to edit and approve.',
+      ],
+    },
+    faq: [
+      {
+        q: 'What sections does a course syllabus contain?',
+        a: 'Usually course information, a short description, course learning outcomes (CLOs), a weekly teaching plan, teaching and learning methods, assessment and weights, learning materials and course rules. Section names and order are set by each institution, so follow your own template.',
+      },
+      {
+        q: 'How do I write course learning outcomes (CLOs) well?',
+        a: 'Start each CLO with a measurable verb at the Bloom level the course aims for, such as explain, apply, analyse or design, and avoid verbs like know or master. Every CLO should have a teaching week and an assessment so it can be traced.',
+      },
+      {
+        q: 'Can EduFlow write a course syllabus?',
+        a: 'Not yet. The first EduFlow release focuses on the school level. Tools for courses (CLOs, weekly plans, session plans, assessments, the syllabus, approval through a package) are on the roadmap with no release date. Today the app only creates a course project, adds documents and lets you ask the assistant.',
+      },
+      {
+        q: 'What can a course project in EduFlow do today?',
+        a: `Add PDF, Word, PowerPoint or image files (up to ${appFacts.documentMaxMb.course} MB and ${appFacts.documentMaxPages} pages per file), let the app read them on your machine and search passages, and ask the assistant about them. A course project has no drafting screen yet.`,
+      },
+      {
+        q: 'Can I use ChatGPT to write a syllabus?',
+        a: 'Yes, as a way to get a rough draft: paste your institution template and your requirements, then check each section, the CLO verbs and how CLOs, weeks and assessments line up. Checking and approving remain the lecturer\'s job. A fuller comparison is on the EduFlow vs ChatGPT page.',
+      },
+    ],
+    imageAlt: 'A design preview of the EduFlow course workbench screen, on the roadmap and not in the first release: CLOs, the weekly plan and sessions on one screen',
+    share: { title: 'Course syllabus', subtitle: 'Structure and writing CLOs; EduFlow course tools are on the roadmap' },
+  },
+  'vs-chatgpt': {
+    name: 'EduFlow vs ChatGPT',
+    metaTitle: 'EduFlow vs ChatGPT for tests and lesson plans',
+    description: 'EduFlow vs ChatGPT for tests and lesson plans: when ChatGPT is enough, and when you need the blueprint, quality gates, test versions and sign-off of EduFlow.',
+    keywords: ['ChatGPT lesson plans', 'EduFlow vs ChatGPT', 'ChatGPT prompts for lesson plans'],
+    eyebrow: 'An honest comparison',
+    h1: 'ChatGPT lesson plans and tests: how far it goes, and when you need EduFlow',
+    lead: 'ChatGPT is a general-purpose chat assistant: you type a request, read the answer and adjust it. For ideas, single questions and quick drafts that is enough. EduFlow is a desktop app for a narrower job, drafting school-level tests, lesson plans and slides, with a blueprint, quality gates and a reviewer.',
+    card: 'When ChatGPT is enough for tests and lesson plans, and when you need a blueprint, gates, test versions and a reviewer.',
+    inShort:
+      'ChatGPT lesson plans and tests are enough for ideas, single questions and quick drafts. EduFlow is for when you need a process: item counts held to each blueprint cell, a specification, answer re-checks, several test versions, quality gates, a reviewer, source files read on your machine and cost shown before it runs. The two tools do not exclude each other.',
+    definition: {
+      h2: 'How do ChatGPT and EduFlow differ?',
+      term: 'ChatGPT',
+      rest: 'is a general-purpose chat assistant: one open chat window for any topic, where you write a request in plain words, read the result and keep asking. Its strength is flexibility; you decide where the conversation goes and you check the result.',
+      paras: [
+        'EduFlow is the opposite: not an open chat but an app installed on your computer for a specific set of school-teacher jobs: building tests from a blueprint, writing lesson plans in the Official Letter 5512 structure, and making lecture slides. Each job goes through fixed steps: set up, let AI write, the machine checks the gates, you edit and approve, then export.',
+        'So the right question is not which tool is better, but whether the job in front of you needs flexibility or a process. The sections below take each case in turn, with sample prompts you can use right away in ChatGPT or any chat tool.',
+      ],
+    },
+    table: {
+      h2: 'ChatGPT and EduFlow, criterion by criterion',
+      caption: 'A comparison of drafting tests and lesson plans with ChatGPT (a general-purpose chat assistant) and with EduFlow, described by how a teacher works in each',
+      checkedAt: '2026-10-15',
+      head: ['Criterion', 'ChatGPT', 'EduFlow'],
+      rows: [
+        [
+          'Holding to each blueprint cell',
+          'You state the item count per cell in the prompt and recount the result.',
+          'AI writes items to the count of each cell of the four-level blueprint. Gate P3 checks each cell; if it is off, the app regenerates up to 2 times.',
+        ],
+        [
+          'Test specification',
+          'You ask for a table and adjust its layout yourself.',
+          'A Blueprint and specification document lists each item by level, topic and learning requirement.',
+        ],
+        [
+          'Re-checking answers',
+          'You ask for the items to be solved again in the chat and compare.',
+          'When the blueprint has Application or High application items, an independent AI pass solves them again; answer warnings need your confirmation item by item.',
+        ],
+        [
+          'Several test versions',
+          'You ask for a reordering and check each version\'s answers yourself.',
+          `Up to ${appFacts.maxTestVersions} versions (101 to 124), deterministic shuffling of items and options, and the app checks each version's answers before saving.`,
+        ],
+        [
+          'Lesson plan structure (Official Letter 5512)',
+          'You paste the structure into the prompt and check that every section is present.',
+          `A fixed structure with four activities in a ${appFacts.lessonMinutes}-minute lesson; gate P6 checks the sections and gate P7 checks the total minutes.`,
+        ],
+        [
+          'Reviewer',
+          'You check the content and record the approval yourself.',
+          'Tests, lesson plans and slides stay Proposed until you press Approve. Unapproved work can still be exported, but the export carries a DÙNG THỬ (trial) watermark.',
+        ],
+        [
+          'Source data and cost',
+          'You decide what to paste into the chat, and read the tool\'s own terms and prices.',
+          'Source documents are read on your machine; only matching passages, shown as chips you can remove, are sent with a question. A cost estimate box appears before every AI job and Cancel costs nothing. Turn AI off for a project and nothing from it leaves the machine.',
+        ],
+      ],
+    },
+    blocks: [
+      {
+        h2: 'When ChatGPT is already enough',
+        paras: [
+          'Much lesson preparation needs no process, and a general-purpose chat assistant does it well. If your job is one of these, you may not need EduFlow.',
+        ],
+        items: [
+          { title: 'Finding ideas', text: 'Opening scenarios, worked examples, ways to explain a hard concept.' },
+          { title: 'Single questions', text: 'A few quick questions for the end of a lesson, with no need to match a blueprint.' },
+          { title: 'Quick drafts', text: 'A rough draft you will keep editing in your own word processor, with no fixed structure.' },
+        ],
+      },
+      {
+        h2: 'When you need EduFlow',
+        paras: [
+          'EduFlow is worth using when you must hand in a standard-conforming product that someone will review: a test with a blueprint, a lesson plan in the right structure, several test versions, or slides with a quiz.',
+        ],
+        items: [
+          { title: 'A test that follows a blueprint', text: 'Item counts per cell, the specification and answer re-checks are in the process, not something you count by hand.', link: { topic: 'test-generator' } },
+          { title: 'Several test versions', text: 'Shuffled items and options in up to 24 versions, each with its own key, and a reprint gives exactly the version you printed.', link: { topic: 'test-versions' } },
+          { title: 'A lesson plan in a frame', text: 'Four activities, minutes and learning requirements from the GDPT 2018 curriculum frame built into the app.', link: { topic: 'lesson-plans' } },
+          { title: 'A reviewer and a record', text: 'Warnings need confirming line by line, Approve is what makes it final, and the approval is saved on the version.' },
+        ],
+      },
+      {
+        h2: 'ChatGPT prompts for lesson plans and tests: four ready-to-use samples',
+        paras: [
+          'These prompts are neutral and work in ChatGPT or any other chat tool. Replace the text in square brackets with your own, and do not paste student names or personal data. The result always needs you to read and edit it.',
+        ],
+        items: [
+          { title: 'Lesson plan', text: 'Write a lesson plan for [subject], grade [grade], lesson [title], 45 minutes, in the Official Letter 5512 structure with four activities: Opening, Forming new knowledge, Practice, Application. For each activity give the minutes, objectives, content, product and how it is run.' },
+          { title: 'Opening scenarios', text: 'Suggest 5 opening scenarios for the lesson [title] for grade [grade], each no longer than three sentences, tied to students\' everyday life and ending with a question that leads into the lesson.' },
+          { title: 'Multiple-choice items', text: 'Write 8 multiple-choice items with four options on [topic]: 3 recall, 3 comprehension, 2 application. Each item has exactly one correct answer and a short explanation; wrong options must be plausible and not repeat each other.' },
+          { title: 'Feedback on a lesson plan', text: 'Here is my lesson plan: [paste]. Point out where there is no concrete learning product or the way the activity is run is vague, and suggest how to fix it. Do not rewrite the whole lesson.' },
+        ],
+      },
+    ],
+    howTo: {
+      h2: 'Using both: ChatGPT for ideas, EduFlow for a standard-conforming result',
+      lead: 'The two tools complement each other. A simple way to work is to find ideas wherever you are comfortable, then bring the jobs that need a process into EduFlow.',
+      steps: [
+        {
+          title: 'Find ideas and rough drafts in the chat tool you already use',
+          text: 'Use the sample prompts above for opening ideas, examples and draft items. Do not paste student names or personal data.',
+        },
+        {
+          title: 'Build a test from a blueprint in EduFlow',
+          text: 'Set up a four-level blueprint, let AI write items for each cell, read the gate table and approve. If you need several versions, export them straight from the approved test.',
+          doc: 'create-a-test',
+        },
+        {
+          title: 'Write a 5512 lesson plan in EduFlow',
+          text: 'Pick the subject, grade, chapter and topic in the GDPT 2018 frame, let AI write the four activities, check the 45-minute total and approve.',
+          doc: 'lesson-plans',
+        },
+        {
+          title: 'Ask the EduFlow assistant about what you are doing',
+          text: 'The assistant in the app knows the open screen and sends only a structured summary. Use it for questions about projects and cost or to prepare a setup, not for free-ranging chat.',
+          doc: 'using-the-assistant',
+        },
+        {
+          title: 'Read the cost before you run',
+          text: 'Every AI job shows a cost estimate box and you choose Run or Cancel. Work done on your machine, such as shuffling versions and exporting files, costs 0 dong.',
+        },
+      ],
+    },
+    limits: {
+      h2: 'What EduFlow does not do yet',
+      items: [
+        'It is not a general-purpose chat assistant: the assistant in EduFlow works inside the open project and screen, answers about the app\'s own facts and the project\'s documents, and is not a replacement for an open chat window on any topic.',
+        'Item types: a test currently has multiple-choice items (four options, one answer) and scored essays with marking guidance. True/false, short-answer and multi-part essay items are not available and are on the roadmap.',
+        'Only the school level has drafting tools: tools for courses (CLOs, weekly plans, syllabus) and for programmes are on the roadmap and not available.',
+        'It needs the app installed on macOS or Windows, a key or a trial, and an internet connection for AI to write; it does not run in a browser or on a phone.',
+      ],
+    },
+    faq: [
+      {
+        q: 'Can I use ChatGPT to write lesson plans?',
+        a: 'Yes, especially for finding ideas, rough drafts and feedback on a plan you already have. Check the structure, the total time and the content yourself, and do not paste student names or personal data. When you need a plan in the Official Letter 5512 structure with gates and a reviewer, EduFlow does those steps inside its process.',
+      },
+      {
+        q: 'How is EduFlow different from ChatGPT?',
+        a: 'ChatGPT is a general-purpose chat assistant; EduFlow is a desktop app for school-level tests, lesson plans and slides, with a four-level blueprint, a specification, quality gates, several test versions, a reviewer and cost shown before it runs. You can use the two side by side.',
+      },
+      {
+        q: 'Does EduFlow replace ChatGPT?',
+        a: 'No. EduFlow is not an open chat window for any topic; its assistant works inside the open project and screen. You can still use ChatGPT or another chat tool for ideas and use EduFlow for the parts that need a process.',
+      },
+      {
+        q: 'Does my data leave my computer when I use EduFlow?',
+        a: 'Source documents are read on your machine and the original files are not sent. When you generate content or ask the assistant, the setup, notes and the document passages you chose are sent so AI can write, so that step needs a connection. In a project with AI turned off, no content of the project leaves the machine.',
+      },
+      {
+        q: 'How does EduFlow charge compared with a chat tool?',
+        a: 'EduFlow shows a cost estimate box before every AI job, and Cancel costs nothing. Work done on your machine, such as shuffling versions, checking gates and exporting files, costs 0 dong. The price of ChatGPT or any other tool is set by that tool\'s provider; check their own pages.',
+      },
+    ],
+    imageAlt: 'The EduFlow home screen with the assistant chat box: the question "What would you like to prepare today?", the working level and suggestions for tests and lesson plans',
+    share: { title: 'EduFlow vs ChatGPT', subtitle: 'When ChatGPT is enough, and when you need a blueprint, gates and a reviewer' },
+  },
 }

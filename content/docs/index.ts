@@ -168,6 +168,7 @@ export const DOCS: Record<DocId, DocEntry> = {
     group: 'assistant',
     order: 1,
     updatedAt: '2026-10-15',
+    topic: 'vs-chatgpt',
     vi: {
       title: 'Dùng trợ lý AI',
       description: 'Hỏi trợ lý AI của EduFlow về màn đang mở, nhờ dựng thiết lập ở Trang chủ, đọc ba tầng kết luận, bấm thẻ hành động tại máy và tắt AI cho một dự án.',
