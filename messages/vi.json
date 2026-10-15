@@ -331,7 +331,7 @@
         "h1": "AI cho giáo viên phổ thông: đề kiểm tra, giáo án và slide cho từng tiết dạy",
         "lead": "Chọn khung chương trình, lập ma trận, để AI điền nội dung rồi tự duyệt từng cảnh báo trước khi xuất bản.",
         "audience": "Cho giáo viên phổ thông, tổ trưởng chuyên môn và Ban giám hiệu.",
-        "note": "Bản xuất mang dấu chìm DÙNG THỬ cho tới khi thầy cô ký."
+        "note": "Bản xuất mang dấu chìm DÙNG THỬ khi đề chưa được duyệt, còn vi phạm chặn, đang dùng key dùng thử hoặc là hiện vật mẫu."
       },
       "outcomes": {
         "eyebrow": "Làm được gì",
@@ -346,7 +346,7 @@
         },
         "o3": {
           "title": "Kiểm lại đáp án độc lập",
-          "desc": "Một lượt AI khác giải lại đề. Câu bị đổi đáp án thành cảnh báo, thầy cô xác nhận từng câu."
+          "desc": "Khi ma trận có câu Vận dụng hoặc Vận dụng cao, một lượt AI khác giải lại đề. Câu bị đổi đáp án thành cảnh báo, thầy cô xác nhận từng câu."
         },
         "o4": {
           "title": "Giáo án CV5512",
@@ -395,11 +395,11 @@
       "faq": {
         "q1": {
           "q": "EduFlow giúp giáo viên phổ thông soạn những gì?",
-          "a": "Đề kiểm tra trắc nghiệm theo ma trận bốn mức, trộn nhiều mã đề kèm bản đặc tả, đáp án và hướng dẫn chấm; giáo án theo Công văn 5512; slide bài giảng có quiz. Máy dựng khung, AI điền nội dung, thầy cô duyệt và ký."
+          "a": "Đề kiểm tra theo ma trận bốn mức, trộn nhiều mã đề kèm bản đặc tả, đáp án và hướng dẫn chấm; giáo án theo Công văn 5512; slide bài giảng có quiz. Máy dựng khung, AI điền nội dung, thầy cô soát và bấm Duyệt."
         },
         "q2": {
           "q": "Đề kiểm tra có những dạng câu nào?",
-          "a": "Bản hiện tại soạn câu trắc nghiệm nhiều lựa chọn. Câu đúng sai, trả lời ngắn và tự luận có ý nằm trong lộ trình của EduFlow."
+          "a": "Hiện có hai hình thức: Trắc nghiệm (nhiều lựa chọn) và Kết hợp trắc nghiệm và tự luận, với bài tự luận có điểm và hướng dẫn chấm. Câu đúng sai, trả lời ngắn và tự luận có nhiều ý nhỏ nằm trong lộ trình của EduFlow."
         },
         "q3": {
           "q": "Một đề trộn được bao nhiêu mã?",
@@ -407,11 +407,11 @@
         },
         "q4": {
           "q": "Đáp án do AI viết có đáng tin không?",
-          "a": "Một lượt AI khác giải lại đề. Câu bị đổi đáp án hiện thành cảnh báo, và thầy cô xác nhận từng câu trước khi duyệt."
+          "a": "Khi ma trận có câu Vận dụng hoặc Vận dụng cao, một lượt AI khác giải lại đề. Câu bị đổi đáp án hiện thành cảnh báo, và thầy cô xác nhận từng câu trước khi duyệt."
         },
         "q5": {
           "q": "AI có tự xuất bản đề hay giáo án không?",
-          "a": "Không. Nội dung AI mang nhãn Đề xuất cho tới khi thầy cô duyệt, cổng chất lượng không có nút bỏ qua, và chỉ người dùng mới ký. Bản xuất mang dấu chìm DÙNG THỬ cho tới khi thầy cô ký."
+          "a": "Không. Nội dung AI mang nhãn Đề xuất cho tới khi thầy cô bấm Duyệt, cổng chất lượng không có nút bỏ qua, và chỉ người dùng mới duyệt. Ở cấp Phổ thông, Duyệt là bước cuối. Bản xuất mang dấu chìm DÙNG THỬ khi đề chưa duyệt, còn vi phạm chặn, đang dùng key dùng thử hoặc là hiện vật mẫu."
         }
       }
     },
@@ -443,7 +443,7 @@
         },
         "o2": {
           "title": "Nạp bài giảng và giáo trình",
-          "desc": "Nạp PDF, Word, PowerPoint hoặc ảnh, tới 80 MB và 300 trang mỗi tệp; app đọc tại máy và tách đoạn có đường dẫn mục, số trang."
+          "desc": "Nạp PDF, Word, PowerPoint hoặc ảnh, tới 80 MB và 300 trang mỗi tệp; app đọc tại máy và tách đoạn có đường dẫn mục, số trang. Trang quét và ảnh chụp chưa được đọc thành chữ, chúng chờ OCR."
         },
         "o3": {
           "title": "Tìm đoạn tại máy",
@@ -544,7 +544,7 @@
         },
         "o2": {
           "title": "Nạp hồ sơ CTĐT",
-          "desc": "Nạp PDF, Word, PowerPoint hoặc ảnh, tới 80 MB và 300 trang mỗi tệp; app đọc tại máy và tự nhận loại tài liệu như CTĐT, Đề cương học phần, Văn bản quy định."
+          "desc": "Nạp PDF, Word, PowerPoint hoặc ảnh, tới 80 MB và 300 trang mỗi tệp; app đọc tại máy và tự nhận loại tài liệu như CTĐT, Đề cương học phần, Văn bản quy định. Trang quét và ảnh chụp chưa được đọc thành chữ, chúng chờ OCR."
         },
         "o3": {
           "title": "Hỏi trợ lý trên hồ sơ",

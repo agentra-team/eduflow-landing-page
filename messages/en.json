@@ -331,7 +331,7 @@
         "h1": "AI for teachers: test papers, lesson plans and slides for every lesson",
         "lead": "Choose the curriculum framework, build the test blueprint, let AI fill in the content, then review each warning yourself before publishing.",
         "audience": "For K-12 teachers, heads of subject groups and school leadership.",
-        "note": "Exports carry the TRIAL (DÙNG THỬ) watermark until you sign."
+        "note": "Exports carry the TRIAL (DÙNG THỬ) watermark while the test is not approved, a blocking violation remains, a trial key is in use or the item is a sample."
       },
       "outcomes": {
         "eyebrow": "What it does",
@@ -346,7 +346,7 @@
         },
         "o3": {
           "title": "Independent answer check",
-          "desc": "A separate AI pass solves the test again. Any question whose answer changes becomes a warning, and you confirm each one."
+          "desc": "When the matrix has application or advanced application items, a separate AI pass solves the test again. Any question whose answer changes becomes a warning, and you confirm each one."
         },
         "o4": {
           "title": "Lesson plans per Official Letter 5512 (CV5512)",
@@ -395,11 +395,11 @@
       "faq": {
         "q1": {
           "q": "What can EduFlow prepare for K-12 teachers?",
-          "a": "Multiple-choice tests built from a four-level matrix, shuffled into several versions with the test specification, answer key and marking guide; Official Letter 5512 lesson plans; lesson slides with quizzes. The app builds the structure, AI fills in the content, and you review and sign."
+          "a": "Tests built from a four-level matrix, shuffled into several versions with the test specification, answer key and marking guide; Official Letter 5512 lesson plans; lesson slides with quizzes. The app builds the structure, AI fills in the content, and you review and click Approve."
         },
         "q2": {
           "q": "Which question types can a test have?",
-          "a": "The current release writes multiple-choice questions. True or false, short-answer and structured essay questions are on the EduFlow roadmap."
+          "a": "Two forms exist today: multiple choice, and a combined multiple-choice and essay form, where essays are scored and come with a marking guide. True or false, short-answer and essay questions with scored sub-parts are on the EduFlow roadmap."
         },
         "q3": {
           "q": "How many versions can one test have?",
@@ -407,11 +407,11 @@
         },
         "q4": {
           "q": "Can I trust answer keys written by AI?",
-          "a": "A second AI pass solves the test again. Any item whose answer changes becomes a warning, and you confirm each item before approving."
+          "a": "When the matrix has application or advanced application items, a second AI pass solves the test again. Any item whose answer changes becomes a warning, and you confirm each item before approving."
         },
         "q5": {
           "q": "Does AI publish a test or lesson plan on its own?",
-          "a": "No. AI content carries the Suggestion label until you approve it, quality gates have no skip button, and only people sign. Exports carry the TRIAL (DÙNG THỬ) watermark until you sign."
+          "a": "No. AI content carries the Suggestion label until you click Approve, quality gates have no skip button, and only people approve. At the K-12 level, Approve is the last step. Exports carry the TRIAL (DÙNG THỬ) watermark while the test is not approved, a blocking violation remains, a trial key is in use or the item is a sample."
         }
       }
     },
@@ -443,7 +443,7 @@
         },
         "o2": {
           "title": "Add lecture materials and textbooks",
-          "desc": "Add PDF, Word, PowerPoint or image files, up to 80 MB and 300 pages each; the app reads them on your computer and splits them into passages with a section path and page numbers."
+          "desc": "Add PDF, Word, PowerPoint or image files, up to 80 MB and 300 pages each; the app reads them on your computer and splits them into passages with a section path and page numbers. Scanned pages and photos are not read into text yet; they wait for OCR."
         },
         "o3": {
           "title": "Search passages on your computer",
@@ -544,7 +544,7 @@
         },
         "o2": {
           "title": "Add degree program records",
-          "desc": "Add PDF, Word, PowerPoint or image files, up to 80 MB and 300 pages each; the app reads them on your computer and recognizes document types such as degree program, course syllabus and regulation."
+          "desc": "Add PDF, Word, PowerPoint or image files, up to 80 MB and 300 pages each; the app reads them on your computer and recognizes document types such as degree program, course syllabus and regulation. Scanned pages and photos are not read into text yet; they wait for OCR."
         },
         "o3": {
           "title": "Ask the assistant about the records",
