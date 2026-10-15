@@ -1,6 +1,7 @@
 import { readFile } from 'node:fs/promises'
 import { join } from 'node:path'
 import { ImageResponse } from 'next/og'
+import { LogoMark } from '@/components/ui/Logo'
 import { site } from '@/lib/site'
 
 export const OG_SIZE = { width: 1200, height: 630 }
@@ -14,7 +15,7 @@ async function fonts() {
   ]
 }
 
-/** Ảnh Open Graph 1200×630: nền xanh đậm, logo, tiêu đề và dòng phụ (spec §9). */
+/** Ảnh Open Graph 1200×630: nền ink tới olive, logo, tiêu đề và dòng phụ (spec §9.1). */
 export async function ogImage({ title, subtitle, badge }: { title: string; subtitle: string; badge?: string }) {
   return new ImageResponse(
     (
@@ -26,20 +27,13 @@ export async function ogImage({ title, subtitle, badge }: { title: string; subti
           flexDirection: 'column',
           justifyContent: 'space-between',
           padding: 72,
-          background: 'linear-gradient(135deg, #1E2B23 0%, #237A31 100%)',
+          background: 'linear-gradient(135deg, #1E2A14 0%, #567F2E 100%)',
           color: '#ffffff',
           fontFamily: 'BeVietnamPro',
         }}
       >
         <div style={{ display: 'flex', alignItems: 'center', gap: 18 }}>
-          <svg width="56" height="56" viewBox="0 0 34 34">
-            <rect width="34" height="34" rx="9" fill="#237A31" />
-            <g transform="translate(8.5 8.5) scale(0.7083)" fill="none" stroke="#FFFFFF" strokeWidth="3.1" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M4 19V5h10" />
-              <path d="M4 12h8" />
-              <path d="M4 19h12" />
-            </g>
-          </svg>
+          <LogoMark size={56} tone="white" small={false} />
           <span style={{ fontSize: 34, fontWeight: 700, letterSpacing: 0.5 }}>EduFlow</span>
           {badge ? (
             <span
@@ -47,9 +41,9 @@ export async function ogImage({ title, subtitle, badge }: { title: string; subti
                 marginLeft: 16,
                 padding: '6px 16px',
                 borderRadius: 999,
-                background: 'rgba(155,203,60,0.22)',
-                border: '1px solid rgba(155,203,60,0.6)',
-                color: '#E3F1E4',
+                background: 'rgba(242,165,65,0.22)',
+                border: '1px solid rgba(242,165,65,0.6)',
+                color: '#FDF1DE',
                 fontSize: 24,
                 fontWeight: 700,
               }}

@@ -1,6 +1,6 @@
 import { useLocale, useTranslations } from 'next-intl'
 import { Container } from '@/components/ui/Container'
-import { LogoMark, Wordmark } from '@/components/ui/Logo'
+import { Logo } from '@/components/ui/Logo'
 import { Link } from '@/i18n/navigation'
 import type { Locale } from '@/i18n/routing'
 import { site } from '@/lib/site'
@@ -18,9 +18,8 @@ export function Footer() {
       <Container>
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.4fr_repeat(4,minmax(0,1fr))]">
           <div className="flex max-w-[340px] flex-col gap-4 sm:col-span-2 lg:col-span-1">
-            <Link href="/" className="flex min-h-11 items-center gap-2.5 md:min-h-0">
-              <LogoMark size={30} />
-              <Wordmark />
+            <Link href="/" className="flex min-h-11 items-center md:min-h-0">
+              <Logo height={30} />
             </Link>
             <p className="text-[15px] leading-relaxed text-ink2">{t('tagline')}</p>
             <p className="text-sm text-muted">

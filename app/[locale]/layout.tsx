@@ -20,7 +20,7 @@ const display = Fraunces({ subsets: ['latin', 'vietnamese'], weight: ['600', '70
 const mono = JetBrains_Mono({ subsets: ['latin', 'vietnamese'], weight: ['400', '600'], variable: '--font-jetbrains', display: 'swap' })
 
 export const dynamicParams = false
-export const viewport: Viewport = { themeColor: '#237A31', width: 'device-width', initialScale: 1 }
+export const viewport: Viewport = { themeColor: '#567F2E', width: 'device-width', initialScale: 1 }
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params

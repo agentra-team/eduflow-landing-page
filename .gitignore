@@ -43,3 +43,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# công cụ lập kế hoạch cục bộ (superpowers): không commit
+.superpowers/

@@ -1,7 +1,7 @@
 import { useTranslations } from 'next-intl'
 import { ButtonLink } from '@/components/ui/Button'
 import { Container } from '@/components/ui/Container'
-import { LogoMark, Wordmark } from '@/components/ui/Logo'
+import { Logo } from '@/components/ui/Logo'
 import { Link } from '@/i18n/navigation'
 import { LocaleSwitcher } from './LocaleSwitcher'
 import { MobileNav } from './MobileNav'
@@ -14,9 +14,8 @@ export function Header() {
       {/* Nền mờ nằm ở lớp riêng. Đặt backdrop-filter lên chính header sẽ biến header thành khung chứa của panel menu `fixed`, làm panel chỉ còn cao 49 px trên Chrome. */}
       <div className="absolute inset-0 -z-10 bg-card/95 backdrop-blur" aria-hidden="true" />
       <Container className="flex h-full items-center gap-8">
-        <Link href="/" className="flex min-h-11 items-center gap-2.5">
-          <LogoMark size={30} />
-          <Wordmark />
+        <Link href="/" className="flex min-h-11 items-center">
+          <Logo height={30} priority />
         </Link>
         {/* Menu ngang hiện từ 1100 px. Ở 1024 px bản tiếng Anh cần 999 px cho một hàng, trong khi chỉ có 960 px. */}
         <nav aria-label={t('mainNav')} className="ml-auto hidden items-center gap-6 min-[1100px]:flex">
