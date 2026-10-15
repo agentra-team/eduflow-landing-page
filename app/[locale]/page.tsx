@@ -3,7 +3,7 @@ import { getLocale, getTranslations } from 'next-intl/server'
 import { AssistantShowcase } from '@/components/home/AssistantShowcase'
 import { CostTeaser } from '@/components/home/CostTeaser'
 import { DownloadBlock } from '@/components/home/DownloadBlock'
-import { FAQ_KEYS, FaqSection } from '@/components/home/FaqSection'
+import { FaqSection, faqItems } from '@/components/home/FaqSection'
 import { FinalCta } from '@/components/home/FinalCta'
 import { Hero } from '@/components/home/Hero'
 import { LevelCards } from '@/components/home/LevelCards'
@@ -40,7 +40,7 @@ export default async function HomePage() {
       <FinalCta />
       <JsonLd data={webPage({ url: absoluteUrl(locale, '/'), name: finalTitle(seo), description: seo.description, locale })} />
       <JsonLd data={softwareApplication(assets, locale)} />
-      <JsonLd data={faqPage(FAQ_KEYS.map((k) => ({ q: t(`${k}.q`), a: t(`${k}.a`) })))} />
+      <JsonLd data={faqPage(faqItems((k) => t(k as Parameters<typeof t>[0])))} />
     </main>
   )
 }

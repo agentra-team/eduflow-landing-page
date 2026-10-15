@@ -1,12 +1,14 @@
 'use client'
 
+import type { ComponentProps } from 'react'
 import { Icon } from '@/components/ui/Icon'
+import { Link } from '@/i18n/navigation'
 import { track } from '@/lib/analytics'
 
-export function Faq({ items }: { items: Array<{ id: string; q: string; a: string }> }) {
+export function Faq({ items }: { items: Array<{ id: string; q: string; a: string; link?: { href: ComponentProps<typeof Link>['href']; label: string } }> }) {
   return (
     <div className="mx-auto mt-8 max-w-[800px] border-t border-line md:mt-10">
-      {items.map(({ id, q, a }, i) => (
+      {items.map(({ id, q, a, link }, i) => (
         <details
           key={id}
           open={i === 0}
@@ -18,6 +20,11 @@ export function Faq({ items }: { items: Array<{ id: string; q: string; a: string
             <Icon name="chevron-down" size={20} className="shrink-0 text-muted transition-transform group-open:rotate-180" />
           </summary>
           <p className="pb-5 text-[15px] leading-relaxed text-ink2 md:pr-11 md:text-[15.5px]">{a}</p>
+          {link ? (
+            <p className="-mt-3 pb-5">
+              <Link href={link.href} className="font-semibold text-accent-strong underline underline-offset-2 hover:text-ink">{link.label}</Link>
+            </p>
+          ) : null}
         </details>
       ))}
     </div>

@@ -1,7 +1,7 @@
 {
   "common": {
     "siteName": "EduFlow",
-    "tagline": "App desktop soạn đề, giáo án, đề cương và rà soát chương trình đào tạo, có trợ lý AI luôn bên cạnh",
+    "tagline": "App desktop soạn đề kiểm tra, giáo án và slide bài giảng, có trợ lý AI luôn bên cạnh",
     "download": "Tải EduFlow",
     "earlyAccess": "Liên hệ để dùng sớm",
     "contactSales": "Liên hệ báo giá",
@@ -27,14 +27,15 @@
     "transparency": "Minh bạch AI"
   },
   "footer": {
-    "tagline": "EduFlow là sản phẩm của Agentra JSC. Máy dựng khung chuẩn, AI điền nội dung, thầy cô duyệt và ký.",
+    "tagline": "EduFlow là sản phẩm của Agentra JSC. Máy dựng khung chuẩn, AI điền nội dung, thầy cô duyệt.",
     "product": "Sản phẩm",
     "guides": "Hướng dẫn",
     "trust": "Tin cậy",
     "company": "Công ty",
     "allDocs": "Tất cả hướng dẫn",
     "privacy": "Chính sách bảo mật",
-    "copyright": "© {year} Agentra JSC · Đà Nẵng, Việt Nam"
+    "copyright": "© {year} Agentra JSC · Đà Nẵng, Việt Nam",
+    "solutions": "Giải pháp"
   },
   "consent": {
     "label": "Thông báo cookie",
@@ -60,8 +61,8 @@
     },
     "hero": {
       "eyebrow": "App desktop cho macOS và Windows",
-      "h1": "Soạn đề, giáo án, đề cương và rà soát chương trình cùng một trợ lý AI",
-      "sub": "Trò chuyện với trợ lý ngay cạnh màn đang làm. Máy dựng khung chuẩn, AI điền nội dung, thầy cô duyệt và ký.",
+      "h1": "Phần mềm AI cho giáo viên: soạn đề kiểm tra, giáo án và slide bài giảng",
+      "sub": "Hôm nay EduFlow soạn đề kiểm tra, giáo án và slide cho giáo viên phổ thông. Giảng viên và Phòng Đảm bảo chất lượng nạp tài liệu và hỏi trợ lý; soạn đề cương, rà soát chương trình thuộc lộ trình. Máy dựng khung chuẩn, AI điền nội dung, thầy cô duyệt.",
       "platformNote": "EduFlow chạy trên máy tính macOS và Windows.",
       "ctaDefault": "Tải EduFlow",
       "ctaMac": "Tải về cho macOS",
@@ -70,14 +71,19 @@
       "cta2": "Xem trợ lý làm việc",
       "trust1": "Dữ liệu nằm ở máy thầy cô",
       "trust2": "Chi phí hiện trước khi chạy",
-      "trust3": "Người duyệt, người ký",
+      "trust3": "Thầy cô duyệt trước khi xuất",
       "windowTitle": "EduFlow · Trang chủ",
-      "imageAlt": "Trang chủ EduFlow: cột trò chuyện với trợ lý và bản xem trước đề kiểm tra sẽ tạo"
+      "imageAlt": "Trang chủ EduFlow: cột trò chuyện với trợ lý và bản xem trước đề kiểm tra sẽ tạo",
+      "ctaDocs": "Xem hướng dẫn",
+      "stats": {
+        "versions": "mã đề tối đa mỗi đề",
+        "gates": "cổng chất lượng chạy trên mỗi đề kiểm tra"
+      }
     },
     "levels": {
       "eyebrow": "Ba cấp, một app",
       "h2": "Mỗi vai một chỗ làm việc, chung một cách làm",
-      "lead": "Giáo viên phổ thông, giảng viên và Phòng Đảm bảo chất lượng dùng chung một app. Cả ba cấp mở cho mọi người, không khoá theo gói."
+      "lead": "Giáo viên phổ thông, giảng viên và Phòng Đảm bảo chất lượng dùng chung một app. Phổ thông có đủ công cụ soạn; Học phần và Chương trình hiện có dự án, tài liệu và trợ lý, phần còn lại thuộc lộ trình."
     },
     "assistant": {
       "eyebrow": "Trợ lý AI luôn có mặt",
@@ -89,15 +95,15 @@
       },
       "p2": {
         "title": "Việc tại máy 0 đồng, việc AI báo giá trước",
-        "desc": "Thẻ như chạy cổng, biên dịch lại hay mở đúng màn chạy ngay tại máy. Tác vụ AI luôn hiện khoảng chi phí trước khi chạy."
+        "desc": "Thẻ hành động như mở một màn, tạo dự án hay bật Tắt AI chạy ngay tại máy. Tác vụ AI luôn hiện khoảng chi phí trước khi chạy."
       },
       "p3": {
-        "title": "Đề xuất sửa, thầy cô quyết",
-        "desc": "Trợ lý đưa thay đổi dạng trước và sau. Áp vào là tạo bản nháp mới; phiên bản đã ký không bao giờ bị sửa."
+        "title": "Đề xuất rõ ràng, thầy cô quyết",
+        "desc": "Gợi ý của trợ lý mang nhãn “Đề xuất, cần người duyệt”. Đó là chữ để đọc; muốn sửa, thầy cô sửa ở màn soạn, và phiên bản đã duyệt giữ nguyên."
       },
       "p4": {
         "title": "Không duyệt, không ký thay người",
-        "desc": "Nút Duyệt và Ký chỉ nằm ở màn chính. Nhờ trợ lý ký thì trợ lý liệt kê điều kiện còn thiếu và mở đúng màn cho thầy cô."
+        "desc": "Nút Duyệt nằm ở bước Xuất của màn chính. Nhờ trợ lý duyệt hay ký thì trợ lý nói thầy cô tự làm ở màn nào."
       },
       "windowTitle": "EduFlow · Kết quả và cổng chất lượng",
       "imageAlt": "Màn kết quả đề kiểm tra với panel trợ lý giải thích cổng P5 và đề xuất sửa một phương án",
@@ -106,26 +112,26 @@
     "pipeline": {
       "eyebrow": "Cách EduFlow làm việc",
       "h2": "Năm bước, người quyết ở bước cuối",
-      "caption": "Mỗi bước để lại dấu vết: ai làm, lúc nào, dựa trên chuẩn nào.",
+      "caption": "Mỗi dự án lưu các bước trên máy thầy cô để mở lại làm tiếp.",
       "s1": {
         "title": "Thiết lập",
-        "desc": "Chọn khung chuẩn, môn, học phần hoặc hồ sơ CTĐT. Có thể bắt đầu bằng một câu gửi trợ lý."
+        "desc": "Chọn môn, lớp, chủ đề và khung chương trình. Có thể bắt đầu bằng một câu gửi trợ lý."
       },
       "s2": {
         "title": "AI điền nội dung có cấu trúc",
-        "desc": "Máy dựng khung cố định, AI chỉ điền phần nội dung theo hợp đồng dữ liệu chặt."
+        "desc": "Máy dựng khung cố định, AI chỉ điền phần nội dung theo cấu trúc đã định."
       },
       "s3": {
         "title": "Cổng chất lượng kiểm",
         "desc": "Mỗi cổng in số đơn vị đã kiểm. Cổng kiểm 0 đơn vị bị coi là lỗi, không bao giờ báo đạt."
       },
       "s4": {
-        "title": "Thầy cô duyệt và ký",
-        "desc": "Nội dung AI mang nhãn Đề xuất cho tới khi được duyệt. Chữ ký khoá phiên bản, mã băm được công chứng."
+        "title": "Thầy cô duyệt",
+        "desc": "Nội dung AI mang nhãn Đề xuất cho tới khi thầy cô duyệt. Ở cấp Phổ thông, Duyệt là bước cuối; sửa sau đó tạo bản nháp mới."
       },
       "s5": {
-        "title": "Xuất và chia sẻ",
-        "desc": "Xuất PDF, DOCX, PPTX hoặc gói đã ký gửi tổ trưởng, trưởng bộ môn, Phòng Đảm bảo chất lượng."
+        "title": "Xuất tệp",
+        "desc": "Đề và giáo án xuất ra DOCX hoặc PDF, slide ra PDF hoặc PPTX; xuất tệp chạy tại máy, không tốn tiền."
       }
     },
     "trust": {
@@ -137,19 +143,19 @@
       },
       "t2": {
         "title": "Ba tầng kết luận không trộn",
-        "desc": "Tầng tất định khẳng định kèm căn cứ. Tầng đối sánh nói “chưa thấy” kèm số đã kiểm. Tầng đề xuất luôn cần người duyệt."
+        "desc": "Tầng tất định khẳng định kèm căn cứ. Tầng đối sánh nói “chưa thấy”. Tầng đề xuất luôn cần người duyệt."
       },
       "t3": {
         "title": "Kiểm 0 đơn vị không phải là sạch",
         "desc": "Mọi cổng chất lượng in số đơn vị đã kiểm; cổng không kiểm được gì bị coi là lỗi."
       },
       "t4": {
-        "title": "Chữ ký và công chứng mã băm",
-        "desc": "Phiên bản đã ký bị khoá sửa. Máy chủ công chứng mã băm mà không thấy nội dung, người nhận gói xác minh được."
+        "title": "Bản đã duyệt giữ nguyên",
+        "desc": "Sau khi duyệt, sửa đề hay giáo án sẽ tạo bản nháp mới; phiên bản đã duyệt không bị sửa trực tiếp."
       },
       "t5": {
         "title": "Làm việc khi mất mạng",
-        "desc": "Cổng chất lượng, biên dịch lại, ký và xuất tệp vẫn chạy khi mất mạng. Chỉ phần AI cần kết nối."
+        "desc": "Thiết lập, sửa, cổng chất lượng và xuất tệp vẫn làm được khi mất mạng. Chỉ phần AI cần kết nối."
       },
       "t6": {
         "title": "Chi phí minh bạch",
@@ -160,7 +166,7 @@
     "cost": {
       "eyebrow": "Chi phí theo mức dùng",
       "h2": "Trả cho phần AI đã dùng, phần chạy tại máy không tốn tiền",
-      "body": "EduFlow tính theo token AI đã dùng. Cổng chất lượng, trộn mã đề, biên dịch và kịch bản “nếu” chạy tại máy, 0 đồng. Mỗi key có ngân sách tháng và cảnh báo khi dùng tới 80%.",
+      "body": "EduFlow tính theo token AI đã dùng. Cổng chất lượng, xuất nhiều mã đề, biên dịch và đọc tài liệu chạy tại máy, 0 đồng. Mỗi key có ngân sách tháng và cảnh báo khi dùng tới 80%.",
       "link": "Xem cách tính phí"
     },
     "download": {
@@ -197,19 +203,19 @@
       "h2": "Câu hỏi thường gặp",
       "q1": {
         "q": "Key kích hoạt là gì, lấy ở đâu?",
-        "a": "Mỗi trường, khoa hoặc cá nhân nhận một key dùng trên số máy đã thoả thuận. Thầy cô gửi yêu cầu ngay trong app hoặc liên hệ Agentra để nhận key."
+        "a": "Key do trường hoặc Agentra cấp và bắt đầu bằng EDU-. Chưa có key thì gửi đơn dùng thử ngay trong app, hoặc liên hệ Agentra để nhận key."
       },
       "q2": {
         "q": "Dùng thử thế nào?",
-        "a": "Tải và mở EduFlow, bấm Dùng thử ở màn đầu và điền đơn. Key dùng thử chạy trên 1 máy, có ngân sách dùng thử và ngày hết hạn."
+        "a": "Tải và mở EduFlow, chọn Đăng ký dùng thử ở màn đầu và điền đơn. Key dùng thử chạy trên 1 máy, có ngân sách dùng thử và ngày hết hạn; mỗi máy chỉ nhận một key dùng thử."
       },
       "q3": {
         "q": "Có cần Internet không?",
-        "a": "Cần khi kích hoạt, khi chạy tác vụ AI và khi hỏi trợ lý. Cổng chất lượng, biên dịch lại, ký và xuất tệp vẫn chạy khi mất mạng."
+        "a": "Cần khi kích hoạt, khi chạy tác vụ AI và khi hỏi trợ lý. Thiết lập, sửa, cổng chất lượng và xuất tệp vẫn làm được khi mất mạng."
       },
       "q4": {
         "q": "Dữ liệu lưu ở đâu, trợ lý gửi gì đi?",
-        "a": "Dự án và hiện vật nằm ở máy thầy cô. Trợ lý chỉ gửi bản tóm tắt có cấu trúc của màn đang mở, không gửi tệp gốc. Máy chủ không lưu nội dung."
+        "a": "Dự án và hiện vật nằm ở máy thầy cô. Trợ lý chỉ gửi bản tóm tắt có cấu trúc của màn đang mở; khi hỏi trên tài liệu, chỉ các đoạn ở chip thầy cô giữ lại đi cùng câu hỏi. Máy chủ không lưu nội dung."
       },
       "q5": {
         "q": "Tính phí thế nào?",
@@ -217,7 +223,7 @@
       },
       "q6": {
         "q": "Một key dùng cho mấy máy?",
-        "a": "Theo số thiết bị ghi trên key của đơn vị. Khi đổi máy, quản trị Agentra thu hồi máy cũ để trả chỗ cho máy mới."
+        "a": "Theo số thiết bị tối đa của key. Khi đã đủ máy, nhờ quản trị thu hồi một thiết bị cũ qua Agentra rồi kích hoạt lại trên máy mới."
       },
       "q7": {
         "q": "Trường tắt AI cho một dự án được không?",
@@ -225,7 +231,16 @@
       },
       "q8": {
         "q": "Cập nhật bản mới thế nào?",
-        "a": "App tự báo khi có bản mới. Thầy cô bấm Tải về, rồi Khởi động lại để cài; dự án và dữ liệu giữ nguyên."
+        "a": "Bản hiện tại chưa tự cập nhật trong app. Khi cần bản mới, thầy cô vào trang Tải về, tải bộ cài mới nhất rồi cài như lần đầu; dự án nằm trong thư mục dữ liệu riêng của app, tách khỏi thư mục cài."
+      },
+      "q9": {
+        "q": "EduFlow là gì?",
+        "a": "EduFlow là phần mềm AI cho giáo viên và giảng viên: soạn đề kiểm tra theo ma trận, giáo án, slide, đề cương học phần, có trợ lý AI và người duyệt. EduFlow là ứng dụng desktop của Agentra JSC cho macOS và Windows. Hôm nay app có đủ công cụ soạn cho cấp Phổ thông; ở Học phần và Chương trình app có dự án, tài liệu và trợ lý, còn soạn đề cương và rà soát chương trình thuộc lộ trình."
+      },
+      "q10": {
+        "q": "EduFlow khác ChatGPT thế nào?",
+        "a": "ChatGPT là trợ lý trò chuyện đa năng, hợp để lấy ý tưởng hay viết nháp nhanh. EduFlow dựng sẵn khung chuẩn của từng việc soạn: ma trận và bản đặc tả, nhiều mã đề, giáo án 5512, cổng chất lượng và bước duyệt của thầy cô, với dữ liệu nằm ở máy thầy cô.",
+        "link": "EduFlow và ChatGPT"
       }
     },
     "cta": {
@@ -233,6 +248,69 @@
       "sub": "Tải app để dùng thử, hoặc liên hệ Agentra để nhận báo giá theo quy mô trường.",
       "b1": "Tải EduFlow",
       "b2": "Liên hệ báo giá"
+    },
+    "facts": {
+      "levels": "cấp trong một app; Học phần và Chương trình hiện có dự án, tài liệu và trợ lý",
+      "versions": "mã đề tối đa mỗi đề",
+      "local": "đồng cho mọi việc chạy tại máy",
+      "platforms": "macOS và Windows: Apple Silicon, Intel, x64"
+    },
+    "features": {
+      "eyebrow": "Làm được gì",
+      "h2": "Mỗi việc soạn có khung chuẩn, AI điền và người duyệt",
+      "tests": {
+        "tag": "Đề kiểm tra",
+        "title": "Đề theo ma trận và nhiều mã đề",
+        "body": "Lập ma trận chủ đề theo bốn mức, để AI viết câu hỏi, rồi xuất tối đa 24 mã đề xáo theo khoá cố định. Máy kiểm cổng chất lượng, thầy cô duyệt từng câu."
+      },
+      "lessons": {
+        "tag": "Giáo án và slide",
+        "title": "Giáo án 5512 và slide có quiz",
+        "body": "Chọn bài trong khung chương trình GDPT 2018, để AI viết bốn hoạt động của giáo án hoặc nội dung slide 16:9 có quiz; thầy cô sửa, duyệt rồi xuất."
+      },
+      "assistant": {
+        "tag": "Trợ lý AI",
+        "title": "Trợ lý luôn có mặt",
+        "body": "Hỏi ở trang chủ hay ngay cạnh màn đang làm. Trợ lý biết màn đang mở, trả lời theo ba tầng kết luận, dựng sẵn thiết lập đề, giáo án hay slide, hiện chi phí mỗi tin, và không duyệt hay ký thay ai."
+      },
+      "syllabus": {
+        "tag": "Học phần và chương trình",
+        "title": "Tài liệu và trợ lý cho giảng viên, đề cương trong lộ trình",
+        "body": "Hôm nay giảng viên và Phòng Đảm bảo chất lượng tạo dự án, nạp tài liệu để app đọc tại máy và hỏi trợ lý trên chính tài liệu đó. CLO, kế hoạch tuần, đề cương và rà soát chương trình thuộc lộ trình, chưa có trong app."
+      }
+    },
+    "roles": {
+      "eyebrow": "Theo vai trò",
+      "h2": "Việc hằng ngày của từng người trong trường",
+      "teacher": {
+        "label": "Giáo viên phổ thông",
+        "b1": "Soạn đề kiểm tra giữa kỳ theo ma trận chủ đề",
+        "b2": "Xuất nhiều mã đề, kèm tệp đáp án và hướng dẫn chấm riêng",
+        "b3": "Soạn giáo án và slide cho tiết dạy tuần tới"
+      },
+      "head": {
+        "label": "Tổ trưởng chuyên môn",
+        "b1": "Đọc ma trận và bản đặc tả của đề trước khi giao",
+        "b2": "Đọc bảng cổng chất lượng của từng đề",
+        "b3": "Xem kết quả cổng của giáo án theo khung Công văn 5512"
+      },
+      "lecturer": {
+        "label": "Giảng viên",
+        "b1": "Tạo dự án Học phần, nạp giáo trình và bài giảng",
+        "b2": "Hỏi trợ lý trên tài liệu, chip Nguồn mở đúng đoạn",
+        "b3": "CLO, kế hoạch tuần và đề cương: lộ trình, chưa có trong app"
+      },
+      "qa": {
+        "label": "Phòng Đảm bảo chất lượng",
+        "b1": "Tạo dự án Chương trình, nạp hồ sơ CTĐT và văn bản quy định",
+        "b2": "Hỏi trợ lý trên hồ sơ, bật Tắt AI khi cần giữ kín",
+        "b3": "Bản sao số, rà soát tại ngày xét, kịch bản “nếu”: lộ trình"
+      }
+    },
+    "docsHighlights": {
+      "eyebrow": "Hướng dẫn",
+      "h2": "Bắt đầu từ bài phù hợp với việc của thầy cô",
+      "all": "Tất cả hướng dẫn"
     }
   },
   "levels": {

@@ -1,13 +1,18 @@
 import { useTranslations } from 'next-intl'
+import { HOME_FAQ_KEYS } from '@/content/home'
 import { Container } from '@/components/ui/Container'
 import { Section } from '@/components/ui/Section'
 import { Faq } from './Faq'
 import { SectionHead } from './SectionHead'
 
-export const FAQ_KEYS = ['q1', 'q2', 'q3', 'q4', 'q5', 'q6', 'q7', 'q8'] as const
-
 export function faqItems(t: (key: string) => string) {
-  return FAQ_KEYS.map((id) => ({ id, q: t(`${id}.q`), a: t(`${id}.a`) }))
+  return HOME_FAQ_KEYS.map((id) => ({
+    id,
+    q: t(`${id}.q`),
+    a: t(`${id}.a`),
+    // Câu 10 dẫn tới trang so sánh (spec §6.12); anchor là tên trang đó.
+    ...(id === 'q10' ? { link: { href: '/vs-chatgpt' as const, label: t('q10.link') } } : {}),
+  }))
 }
 
 export function FaqSection() {

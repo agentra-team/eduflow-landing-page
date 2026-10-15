@@ -109,3 +109,23 @@ for (const path of ['/ai-cho-giao-vien', '/en/ai-for-lecturers', '/ra-soat-chuon
     expect(ld.find((d) => d['@type'] === 'FAQPage').mainEntity.map((q: { name: string }) => q.name)).toEqual(shown)
   })
 }
+
+// Spec §6.12, §12.1: FAQPage của trang chủ dựng từ đúng 10 câu đang hiển thị; câu 10 dẫn tới trang EduFlow và ChatGPT.
+for (const path of ['/', '/en']) {
+  test(`${path} FAQPage matches the ten questions shown`, async ({ page }) => {
+    await page.goto(path)
+    const shown = (await page.locator('main details summary').allTextContents()).map((s) => s.trim())
+    expect(shown).toHaveLength(10)
+    const ld = (await page.locator('script[type="application/ld+json"]').allTextContents()).map((s) => JSON.parse(s))
+    expect(ld.find((d) => d['@type'] === 'FAQPage').mainEntity.map((q: { name: string }) => q.name)).toEqual(shown)
+    await expect(page.locator('main details').last().locator('a')).toHaveAttribute('href', path === '/' ? '/eduflow-va-chatgpt' : '/en/eduflow-vs-chatgpt')
+  })
+}
+
+// Spec §4.4: footer dẫn tới mọi trang chủ đề trên mọi trang.
+test('the footer links every topic page', async ({ page }) => {
+  await page.goto('/tai-ve')
+  for (const href of ['/ai-tao-de-kiem-tra-theo-ma-tran', '/tron-de-trac-nghiem', '/ai-soan-giao-an', '/tao-slide-bai-giang-bang-ai', '/de-cuong-chi-tiet-hoc-phan', '/eduflow-va-chatgpt']) {
+    await expect(page.locator(`footer a[href="${href}"]`)).toHaveCount(1)
+  }
+})

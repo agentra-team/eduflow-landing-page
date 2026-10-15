@@ -61,7 +61,7 @@ test('with site data blocked the page still renders and the bar works for the se
   await waitForHydration(page.locator('footer'))
   const accept = page.getByRole('button', { name: 'Đồng ý' })
   await expect(accept).toBeVisible()
-  await expect(page.getByRole('heading', { level: 1, name: /Soạn đề, giáo án/ })).toBeVisible()
+  await expect(page.getByRole('heading', { level: 1, name: /Phần mềm AI cho giáo viên/ })).toBeVisible()
   await page.waitForTimeout(800)
   expect(gtm).toHaveLength(0)
   await accept.click()

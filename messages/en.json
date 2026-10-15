@@ -1,7 +1,7 @@
 {
   "common": {
     "siteName": "EduFlow",
-    "tagline": "Desktop app for test papers, lesson plans, course syllabi and degree program review, with an AI assistant always at your side",
+    "tagline": "Desktop app for test papers, lesson plans and lesson slides, with an AI assistant always at your side",
     "download": "Download EduFlow",
     "earlyAccess": "Contact us for early access",
     "contactSales": "Request a quote",
@@ -27,14 +27,15 @@
     "transparency": "AI transparency"
   },
   "footer": {
-    "tagline": "EduFlow is a product of Agentra JSC. The app builds the standard structure, AI fills in the content, and you review and sign.",
+    "tagline": "EduFlow is a product of Agentra JSC. The app builds the standard structure, AI fills in the content, and you review.",
     "product": "Product",
     "guides": "Guides",
     "trust": "Trust",
     "company": "Company",
     "allDocs": "All guides",
     "privacy": "Privacy policy",
-    "copyright": "© {year} Agentra JSC · Da Nang, Vietnam"
+    "copyright": "© {year} Agentra JSC · Da Nang, Vietnam",
+    "solutions": "Solutions"
   },
   "consent": {
     "label": "Cookie notice",
@@ -60,8 +61,8 @@
     },
     "hero": {
       "eyebrow": "Desktop app for macOS and Windows",
-      "h1": "Write test papers, lesson plans and course syllabi, and review degree programs, with one AI assistant",
-      "sub": "Chat with the assistant right beside the screen you are working on. The app builds the standard structure, AI fills in the content, and you review and sign.",
+      "h1": "AI software for teachers: test papers, lesson plans and lesson slides",
+      "sub": "Today EduFlow writes test papers, lesson plans and slides for K-12 teachers. Lecturers and quality assurance offices load documents and ask the assistant; course syllabi and curriculum review are on the roadmap. The app builds the standard structure, AI fills in the content, and you review.",
       "platformNote": "EduFlow runs on macOS and Windows computers.",
       "ctaDefault": "Download EduFlow",
       "ctaMac": "Download for macOS",
@@ -70,14 +71,19 @@
       "cta2": "See the assistant at work",
       "trust1": "Your data stays on your computer",
       "trust2": "Costs shown before anything runs",
-      "trust3": "People review, people sign",
+      "trust3": "You review before anything is exported",
       "windowTitle": "EduFlow · Home",
-      "imageAlt": "EduFlow home screen: the chat column with the assistant and a preview of the test paper about to be created"
+      "imageAlt": "EduFlow home screen: the chat column with the assistant and a preview of the test paper about to be created",
+      "ctaDocs": "Read the guides",
+      "stats": {
+        "versions": "test versions per test, at most",
+        "gates": "quality gates run on every test"
+      }
     },
     "levels": {
       "eyebrow": "Three levels, one app",
       "h2": "A workspace for every role, one way of working",
-      "lead": "K-12 teachers, lecturers and the Quality Assurance Office share one app. All three levels are open to everyone, with nothing locked behind a plan."
+      "lead": "K-12 teachers, lecturers and the Quality Assurance Office share one app. K-12 has the full set of writing tools; Courses and Programs have projects, documents and the assistant today, and the rest is on the roadmap."
     },
     "assistant": {
       "eyebrow": "AI assistant always at hand",
@@ -89,15 +95,15 @@
       },
       "p2": {
         "title": "Local actions cost nothing, AI tasks quote first",
-        "desc": "Cards like running a gate, recompiling or opening the right screen run directly on your computer. AI tasks always show a cost range before they run."
+        "desc": "Action cards like opening a screen, creating a project or switching AI off run directly on your computer. AI tasks always show a cost range before they run."
       },
       "p3": {
-        "title": "Suggests edits, you decide",
-        "desc": "The assistant shows changes as before and after. Applying one creates a new draft; a signed version is never modified."
+        "title": "Clear suggestions, you decide",
+        "desc": "The assistant's suggestions carry the label “Suggestion, needs human review”. They are text to read; to change something, you edit it on the writing screen, and an approved version stays as it is."
       },
       "p4": {
         "title": "Never approves or signs on your behalf",
-        "desc": "The Approve and Sign buttons live only on the main screen. Ask the assistant to sign and it lists the missing conditions and opens the right screen for you."
+        "desc": "The Approve button lives in the Export step of the main screen. Ask the assistant to approve or sign and it tells you which screen to do it on."
       },
       "windowTitle": "EduFlow · Results and quality gates",
       "imageAlt": "Test paper results screen with the assistant panel explaining gate P5 and suggesting a fix to one answer option",
@@ -106,26 +112,26 @@
     "pipeline": {
       "eyebrow": "How EduFlow works",
       "h2": "Five steps, with a person deciding at the last one",
-      "caption": "Every step leaves a trail: who did it, when, and against which standard.",
+      "caption": "Each project keeps its steps on your computer so you can reopen it and carry on.",
       "s1": {
         "title": "Set up",
-        "desc": "Choose the standards framework, subject, course or degree program records. You can start with a single sentence to the assistant."
+        "desc": "Choose the subject, grade, topic and curriculum framework. You can start with a single sentence to the assistant."
       },
       "s2": {
         "title": "AI fills in structured content",
-        "desc": "The app builds a fixed structure; AI only fills in the content under a strict data contract."
+        "desc": "The app builds a fixed structure; AI only fills in the content within it."
       },
       "s3": {
         "title": "Quality gates check",
         "desc": "Each gate prints how many units it checked. A gate that checked 0 units counts as an error and never reports a pass."
       },
       "s4": {
-        "title": "You review and sign",
-        "desc": "AI content carries the Suggestion label until it is approved. Signing locks the version, and its hash is notarized."
+        "title": "You review",
+        "desc": "AI content carries the Suggestion label until you approve it. At K-12, Approve is the last step; editing afterwards creates a new draft."
       },
       "s5": {
-        "title": "Export and share",
-        "desc": "Export PDF, DOCX, PPTX or a signed package for the head of subject group, the head of department or the Quality Assurance Office."
+        "title": "Export files",
+        "desc": "Tests and lesson plans export to DOCX or PDF, slides to PDF or PPTX; exporting runs on your computer and costs nothing."
       }
     },
     "trust": {
@@ -137,19 +143,19 @@
       },
       "t2": {
         "title": "Three tiers of conclusions, never mixed",
-        "desc": "The deterministic tier states facts with their basis. The comparative tier says “not found yet” with the number checked. The suggestion tier always needs human review."
+        "desc": "The deterministic tier states facts with their basis. The comparative tier says “not found yet”. The suggestion tier always needs human review."
       },
       "t3": {
         "title": "Zero units checked is not a clean result",
         "desc": "Every quality gate prints how many units it checked; a gate that checked nothing counts as an error."
       },
       "t4": {
-        "title": "Signatures and hash notarization",
-        "desc": "Signed versions are locked against edits. The server notarizes the hash without seeing the content, and package recipients can verify it."
+        "title": "An approved version stays as it is",
+        "desc": "After approval, editing a test or lesson plan creates a new draft; the approved version is never edited directly."
       },
       "t5": {
         "title": "Works offline",
-        "desc": "Quality gates, recompiling, signing and exporting files keep working offline. Only the AI parts need a connection."
+        "desc": "Setting up, editing, quality gates and exporting files keep working offline. Only the AI parts need a connection."
       },
       "t6": {
         "title": "Transparent costs",
@@ -160,7 +166,7 @@
     "cost": {
       "eyebrow": "Usage-based cost",
       "h2": "Pay for the AI you use; what runs on your computer is free",
-      "body": "EduFlow charges by the AI tokens used. Quality gates, test version shuffling, compiling and “what if” scenarios run on your computer at no cost. Each key has a monthly budget and warns you at 80% usage.",
+      "body": "EduFlow charges by the AI tokens used. Quality gates, exporting test versions, compiling and reading documents run on your computer at no cost. Each key has a monthly budget and warns you at 80% usage.",
       "link": "See how pricing works"
     },
     "download": {
@@ -197,19 +203,19 @@
       "h2": "Frequently asked questions",
       "q1": {
         "q": "What is a license key and where do I get one?",
-        "a": "Each school, faculty or individual receives one license key for an agreed number of computers. Send a request right in the app or contact Agentra to get a key."
+        "a": "A key is issued by your school or Agentra and starts with EDU-. If you do not have one, send a trial request right in the app, or contact Agentra to get a key."
       },
       "q2": {
         "q": "How do I try it?",
-        "a": "Download and open EduFlow, click Try it on the first screen and fill in the form. A trial key works on 1 computer, with a trial budget and an expiry date."
+        "a": "Download and open EduFlow, choose Request a trial on the first screen and fill in the form. A trial key works on 1 computer, with a trial budget and an expiry date; each computer can receive only one trial key."
       },
       "q3": {
         "q": "Do I need an Internet connection?",
-        "a": "Yes, to activate, to run AI tasks and to ask the assistant. Quality gates, recompiling, signing and exporting files keep working offline."
+        "a": "Yes, to activate, to run AI tasks and to ask the assistant. Setting up, editing, quality gates and exporting files keep working offline."
       },
       "q4": {
         "q": "Where is my data stored, and what does the assistant send?",
-        "a": "Projects and artifacts stay on your computer. The assistant only sends a structured summary of the open screen, never the original files. The server does not store content."
+        "a": "Projects and artifacts stay on your computer. The assistant only sends a structured summary of the open screen; when you ask about documents, only the passages in the chips you keep go with the question. The server does not store content."
       },
       "q5": {
         "q": "How am I charged?",
@@ -217,7 +223,7 @@
       },
       "q6": {
         "q": "How many computers can one key be used on?",
-        "a": "As many as the number of devices on your organization's key. When you change computers, an Agentra administrator revokes the old one to free a slot for the new one."
+        "a": "As many as the maximum number of devices on the key. When all slots are used, ask an administrator to revoke an old device through Agentra, then activate on the new computer."
       },
       "q7": {
         "q": "Can a school turn off AI for a project?",
@@ -225,7 +231,16 @@
       },
       "q8": {
         "q": "How do I update to a new version?",
-        "a": "The app tells you when a new version is available. Click Download, then Restart to install; your projects and data stay as they are."
+        "a": "The current version does not update itself in the app. When you need a newer one, go to the Download page, get the latest installer and install it as you did the first time; your projects live in the app's own data folder, apart from the install folder."
+      },
+      "q9": {
+        "q": "What is EduFlow?",
+        "a": "EduFlow is AI software for teachers and lecturers: matrix-based tests, lesson plans, slides and course syllabi, with an AI assistant and human review. EduFlow is a desktop app by Agentra JSC for macOS and Windows. Today the app has the full set of writing tools for K-12; for Courses and Programs it has projects, documents and the assistant, while syllabus writing and curriculum review are on the roadmap."
+      },
+      "q10": {
+        "q": "How is EduFlow different from ChatGPT?",
+        "a": "ChatGPT is a general-purpose chat assistant, good for ideas and quick drafts. EduFlow builds the standard structure of each piece of preparation: blueprint and specification, test versions, 5512 lesson plans, quality gates and your review step, with your data on your computer.",
+        "link": "EduFlow vs ChatGPT"
       }
     },
     "cta": {
@@ -233,6 +248,69 @@
       "sub": "Download the app to try it, or contact Agentra for a quote based on the size of your school.",
       "b1": "Download EduFlow",
       "b2": "Request a quote"
+    },
+    "facts": {
+      "levels": "levels in one app; Courses and Programs have projects, documents and the assistant today",
+      "versions": "test versions per test, at most",
+      "local": "VND for anything that runs on your computer",
+      "platforms": "macOS and Windows: Apple Silicon, Intel, x64"
+    },
+    "features": {
+      "eyebrow": "What it does",
+      "h2": "Every piece of preparation has a standard structure, AI to fill it, and a person to approve it",
+      "tests": {
+        "tag": "Tests",
+        "title": "Blueprint-based tests and test versions",
+        "body": "Build a topic matrix across four levels, let AI write the items, then export up to 24 test versions shuffled with a fixed key. Quality gates check the test; you review each item."
+      },
+      "lessons": {
+        "tag": "Lesson plans and slides",
+        "title": "5512 lesson plans and slides with quizzes",
+        "body": "Pick a lesson from the 2018 general education curriculum and let AI draft the four activities of a lesson plan, or the content of 16:9 slides with quizzes; you edit, approve and export."
+      },
+      "assistant": {
+        "tag": "AI assistant",
+        "title": "An assistant that is always there",
+        "body": "Ask on the home screen or right beside the screen you are working on. The assistant knows the open screen, answers in three tiers of conclusions, sets up a test, lesson plan or slides for you, shows the cost of every message, and never approves or signs for anyone."
+      },
+      "syllabus": {
+        "tag": "Courses and programs",
+        "title": "Documents and the assistant for lecturers, syllabi on the roadmap",
+        "body": "Today lecturers and quality assurance offices create projects, load documents for the app to read on your computer, and ask the assistant about those documents. CLOs, weekly plans, syllabi and curriculum review are on the roadmap and not in the app yet."
+      }
+    },
+    "roles": {
+      "eyebrow": "By role",
+      "h2": "The daily work of everyone in the school",
+      "teacher": {
+        "label": "K-12 teacher",
+        "b1": "Write a midterm test from a topic matrix",
+        "b2": "Export test versions, with the answer key and marking guide in separate files",
+        "b3": "Prepare the lesson plan and slides for next week's lesson"
+      },
+      "head": {
+        "label": "Head of subject group",
+        "b1": "Read the blueprint and specification of a test before it goes out",
+        "b2": "Read the quality gate table of every test",
+        "b3": "Read the gate results of a lesson plan against the Official Letter 5512 template"
+      },
+      "lecturer": {
+        "label": "Lecturer",
+        "b1": "Create a course project and load textbooks and lectures",
+        "b2": "Ask the assistant about your documents; a Source chip opens the exact passage",
+        "b3": "CLOs, weekly plans and syllabi: on the roadmap, not in the app yet"
+      },
+      "qa": {
+        "label": "Quality assurance office",
+        "b1": "Create a program project and load program records and regulations",
+        "b2": "Ask the assistant about the records; switch AI off when they must stay private",
+        "b3": "Digital twin, review at a review date, what-if scenarios: on the roadmap"
+      }
+    },
+    "docsHighlights": {
+      "eyebrow": "Guides",
+      "h2": "Start with the guide that fits your work",
+      "all": "All guides"
     }
   },
   "levels": {
