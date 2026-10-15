@@ -44,3 +44,12 @@ test('the topic FAQPage lists exactly the questions on the page', async ({ page 
   const faq = ld.find((d) => d['@type'] === 'FAQPage')
   expect(faq.mainEntity.map((q: { name: string }) => q.name)).toEqual(shown)
 })
+
+for (const path of ['/llms.txt', '/llms-full.txt']) {
+  test(`${path} is served as UTF-8 plain text`, async ({ request }) => {
+    const res = await request.get(path)
+    expect(res.status()).toBe(200)
+    expect(res.headers()['content-type']).toBe('text/plain; charset=utf-8')
+    expect(await res.text()).toMatch(/^# EduFlow\n/)
+  })
+}
