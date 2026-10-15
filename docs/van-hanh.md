@@ -11,10 +11,11 @@ Sổ tay cho đội dev và đội vận hành. Lệnh chạy từ gốc repo `e
 | 5 | Nâng cấp Next.js |
 | 6 | Trước khi lên production |
 | 7 | Lần chạy CI đầu tiên |
+| 8 | Phát hành landing lên production theo phiên bản, quay lại phiên bản trước |
 
 ## 1. Phát hành bản app mới
 
-Trang Tải về, khối tải ở trang chủ, hai trang hướng dẫn cài, JSON-LD và sitemap cùng đọc `latest.yml` (Windows) và `latest-mac.yml` (macOS) của kênh ổn định tại `DOWNLOAD_FEED_URL` (giá trị chờ OQ-L02). Mỗi tệp tải với giới hạn 5 giây và được cache 10 phút (ISR `revalidate: 600`), nên phát hành bản mới không cần deploy lại site.
+Trang Tải về, khối tải ở trang chủ, hai trang hướng dẫn cài, JSON-LD và sitemap cùng đọc `latest.yml` (Windows) và `latest-mac.yml` (macOS) của kênh ổn định tại `DOWNLOAD_FEED_URL` (giá trị chờ OQ-L02). Mỗi tệp tải với giới hạn 5 giây và được cache 10 phút (ISR `revalidate: 600`), nên phát hành bản mới không cần dựng lại site: production tự lấy feed mới khi trang hết hạn (ISR). Chỉ khi đổi biến môi trường thì mới phải dựng lại, bằng một lần phát hành (mục 8).
 
 1. Build và ký bộ cài theo quy trình phát hành của repo `eduflow-application`.
 2. Upload lên máy chủ phân phối: bộ cài (`.exe`, `.dmg`, `.zip`, `.blockmap`) trước, **hai tệp `latest.yml` và `latest-mac.yml` sau cùng**. Đúng thứ tự này thì feed không bao giờ trỏ tới tệp chưa có. Không sửa tay hai tệp `.yml`: để electron-builder ghi.
@@ -55,7 +56,7 @@ Một tệp `.yml` không phải feed hợp lệ thì **không bao giờ đượ
   - Thông báo lỗi YAML, ví dụ `Implicit keys need to be on a single line at line 1, column 1:` (nhiều dòng, trích dòng đầu tệp): `yaml` ném lỗi, thường vì trang lỗi HTML có `: ` ở một dòng sau dòng đầu (CSS, hay tiêu đề kiểu `Error: 404`).
 - Với `pnpm sync-releases`: lệnh dừng với mã 1 và **không ghi gì** vào `content/releases.json`.
 
-**Sau khi sửa tệp hỏng:** cache dữ liệu build của Next (`.next/cache/fetch-cache`, `revalidate` 600 giây, Vercel khôi phục giữa các lần deploy) có thể trả cho một lần build phản hồi cũ của feed trong khoảng 10 phút sau đó, nên một deploy ngay sau khi sửa vẫn có thể dựng từ tệp hỏng. Chờ 10 phút rồi mới deploy, hoặc redeploy không dùng build cache: Vercel, Deployments, menu của bản deploy mới nhất, Redeploy, bỏ chọn "Use existing Build Cache". Từ CLI thì `vercel deploy --prod --force` (lệnh này deploy từ thư mục cục bộ, nên chạy trên nhánh `main` đã cập nhật). Trang đã sinh tự hết hạn sau 10 phút, không cần làm gì thêm.
+**Sau khi sửa tệp hỏng:** bản preview do Vercel dựng dùng cache dữ liệu build của Next (`.next/cache/fetch-cache`, `revalidate` 600 giây, Vercel khôi phục giữa các lần dựng), nên một bản preview dựng ngay sau khi sửa vẫn có thể lấy phản hồi cũ của feed trong khoảng 10 phút. Bản production do workflow Release dựng trên GitHub Actions từ thư mục sạch, không có cache đó. Production đang chạy tự lấy feed mới khi trang hết hạn sau 10 phút (ISR), không cần làm gì; muốn dựng lại ngay thì chạy tay workflow Release với tag đang chạy (mục 8.4, cách 2).
 
 ### Khi trang chưa đổi sau 10 phút
 
@@ -65,15 +66,15 @@ Một tệp `.yml` không phải feed hợp lệ thì **không bao giờ đượ
 
 ## 2. Lên domain
 
-Thay `<tên-miền>` bằng domain chính thức (OQ-L01).
+Domain chính thức là `eduflow.agentra.io.vn`; `<tên-miền>` dưới đây là tên đó. Lần đầu, bước 2 tới 4 nằm trong mục 8.1 (thiết lập một lần), bước 5 tới 8 làm sau khi phát hành `v1.0.0` (mục 8.2). Production chỉ lên bằng workflow Release, nên "dựng lại production" ở mục này nghĩa là chạy tay workflow Release với tag đang chạy (mục 8.4, cách 2).
 
 1. Kiểm bản preview trước: `/` và `/en`, trang Tải về tải được tệp thật, `/sitemap.xml`, `/robots.txt`. Build preview không bị chặn khi thiếu `NEXT_PUBLIC_SITE_URL`, nhưng khi đó canonical và sitemap của preview trỏ về `http://localhost:3000`; vì vậy nên đặt biến này cho cả Preview (bước 2).
 2. Vercel, Settings, Environment Variables: `NEXT_PUBLIC_SITE_URL=https://<tên-miền>` cho **Production** (bắt buộc) và cho **Preview** (nên đặt, để canonical của preview trỏ về domain chính thức).
-   - **Chốt chặn (Ruling 49).** Build production (`VERCEL_ENV=production`) dừng nếu giá trị trống, không phải URL `http://` hay `https://` đầy đủ, hoặc trỏ về `localhost`, `127.0.0.1`, `[::1]`, `0.0.0.0` hay `*.localhost`. Thông báo lỗi nêu OQ-L01. Dán nhầm `http://localhost:3000` hay chỉ `eduflow.vn` (thiếu `https://`) đều bị chặn. Chốt chặn dựa vào `VERCEL_ENV`, nên cần công tắc "Enable access to System Environment Variables" của Vercel bật (mục 6).
+   - **Chốt chặn (Ruling 49).** Build production (`VERCEL_ENV=production`) dừng nếu giá trị trống, không phải URL `http://` hay `https://` đầy đủ, hoặc trỏ về `localhost`, `127.0.0.1`, `[::1]`, `0.0.0.0` hay `*.localhost`. Thông báo lỗi nêu OQ-L01. Dán nhầm `http://localhost:3000` hay chỉ `eduflow.vn` (thiếu `https://`) đều bị chặn. Chốt chặn dựa vào `VERCEL_ENV`: bản production do workflow Release tự đặt biến này; bản preview do Vercel dựng cần công tắc "Enable access to System Environment Variables" bật (mục 6).
    - Khoảng trắng hai đầu và dấu `/` ở cuối được bỏ khi đọc (`site.siteUrl()`).
-   - `NEXT_PUBLIC_*` được nhúng lúc dựng: đặt xong phải deploy lại.
+   - `NEXT_PUBLIC_*` được nhúng lúc dựng: đặt xong phải dựng lại (preview: lần push sau; production: mục 8.4, cách 2).
 3. Settings, Domains: thêm `<tên-miền>` vào project. Vercel hiện bản ghi DNS cần đặt.
-4. Đặt bản ghi DNS đúng như Vercel hiện (CNAME cho tên miền con, A cho tên miền gốc), rồi chờ Vercel cấp chứng chỉ HTTPS.
+4. Đặt bản ghi DNS đúng như Vercel hiện (CNAME cho tên miền con, A cho tên miền gốc), rồi chờ Vercel cấp chứng chỉ HTTPS. Hiện `eduflow.agentra.io.vn` có bản ghi A trỏ VPS `42.115.41.70` (VPS chung của app EduFlow và DocOps, không phục vụ tên này): xoá bản ghi đó rồi mới đặt bản ghi của Vercel; kiểm bằng `dig +short eduflow.agentra.io.vn`, không còn `42.115.41.70`.
 5. Kiểm sau khi trỏ:
 
 ```bash
@@ -86,7 +87,7 @@ curl -s https://<tên-miền>/sitemap.xml | grep -o '<loc>[^<]*</loc>' | grep -v
 curl -s https://<tên-miền>/pho-thong | grep -o '<link rel="canonical"[^>]*>'           # canonical đúng tên miền
 ```
 
-6. Google Search Console: thêm property cho `<tên-miền>` và xác minh. Xác minh bằng thẻ meta thì đặt giá trị `content` vào `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` rồi deploy lại; bằng bản ghi DNS TXT thì không cần biến. Sau đó gửi `https://<tên-miền>/sitemap.xml`.
+6. Google Search Console: thêm property cho `<tên-miền>` và xác minh. Xác minh bằng thẻ meta thì đặt giá trị `content` vào `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` rồi dựng lại production (mục 8.4, cách 2); bằng bản ghi DNS TXT thì không cần biến. Sau đó gửi `https://<tên-miền>/sitemap.xml`.
 7. Vercel dashboard: bật Web Analytics và Speed Insights (script chỉ được nhúng khi chạy trên Vercel, nhờ `NEXT_PUBLIC_VERCEL_ENV`).
 8. Chạy danh sách kiểm ở mục 6.
 
@@ -184,8 +185,9 @@ Cấu hình:
 - [ ] Web Analytics và Speed Insights đã bật ở dashboard Vercel.
 - [ ] Gói Vercel là Pro hoặc Enterprise: sự kiện tuỳ chỉnh (`track()`) chỉ chạy ở hai gói này. Không có thì sáu sự kiện của spec (`download_click`, `cta_click`, `contact_click`, `locale_switch`, `faq_open`, `consent_change`) không đi đâu cả, nên xác nhận gói trước khi ra mắt.
 - [ ] Settings, Functions, **Function Regions** là Singapore (`sin1`).
-- [ ] Node.js: log build của lần deploy gần nhất có `node -v` ra 24.x. Ô Node.js Version nằm ở Settings, Build and Deployment, nhưng `engines.node` trong `package.json` (hiện `>=22.18`) **thắng** ô đó, nên chỉ tin log build. Log không in sẵn thì đặt tạm Build Command thành `node -v && pnpm build`, deploy, đọc log, rồi bỏ. Không ra 24.x thì chỉnh `engines.node`.
-- [ ] Settings, Environment Variables: **"Enable access to System Environment Variables"** đang bật (trước đây ghi là "Automatically expose System Environment Variables"). Công tắc này cấp `VERCEL_ENV` lúc dựng: không có biến đó thì chốt chặn production ở trên không chạy và build vẫn qua với URL sai. Nó cũng cấp `NEXT_PUBLIC_VERCEL_ENV`: không có biến đó thì site không nhúng Vercel Analytics và Speed Insights.
+- [ ] Node.js: ô Node.js Version (Settings, Build and Deployment) là 24.x. Bản production dựng trên GitHub Actions bằng Node 24 (`actions/setup-node` trong `release.yml`); bản preview dựng trên Vercel theo ô này và `engines.node` trong `package.json` (hiện `>=22.18`, **thắng** ô cài đặt). Muốn chắc, đặt tạm Build Command thành `node -v && pnpm build`, đọc `node -v` trong log của một bản preview (phải 24.x), rồi bỏ.
+- [ ] Settings, Environment Variables: **"Enable access to System Environment Variables"** đang bật (trước đây ghi là "Automatically expose System Environment Variables"). Bản preview cần công tắc này để có `VERCEL_ENV=preview` và `NEXT_PUBLIC_VERCEL_ENV` (script Vercel Analytics, Speed Insights); tắt công tắc thì mọi bản dựng trên Vercel đỏ ở chốt chặn. Bản production không phụ thuộc công tắc lúc dựng: workflow Release tự đặt các biến đó. Không đặt `RELEASE_TAG`, `VERCEL_ENV`, `NEXT_PUBLIC_VERCEL_ENV`, `VERCEL_GIT_COMMIT_SHA` trong Environment Variables, và không đánh dấu Sensitive cho `DOWNLOAD_FEED_URL` hay biến `NEXT_PUBLIC_*`.
+- [ ] Phát hành (mục 8.1): nhánh production của project là `production-from-tags-only`; Deployment Protection là Standard Protection (domain production công khai); environment `production` trên GitHub có ba secret và chỉ nhận `main` cùng tag `v*`; ruleset cho tag `v*` chặn tạo (chỉ admin hoặc maintainer), cập nhật và xoá. `https://<tên-miền>/version.json` trả đúng phiên bản vừa phát hành, `"environment": "production"`.
 
 Điều kiện mà chữ trên site đang dựa vào:
 
@@ -218,4 +220,137 @@ Lúc viết tài liệu này (01/10/2026), `.github/workflows/ci.yml` chưa ch�
 
 Có mục nào sai thì sửa `.github/workflows/ci.yml` hoặc `scripts/serve-fixtures.mjs` thay vì bỏ bước kiểm. Ghi kết quả lần chạy đầu vào pull request.
 
-**Khi lần chạy CI đầu tiên xanh và cả năm mục trên đều đạt, xoá mục 7 này.** Xoá cùng lúc: hàng 7 của bảng đầu tài liệu; chữ "(mục 7)" ở ô "CI xanh trên `main`" của mục 6; và các chỗ nhắc mục này ở `README.md` (dòng "CI chưa chạy lần nào" cuối mục "CI", cụm "lần chạy CI đầu tiên" ở danh sách liên kết đầu trang).
+**Khi lần chạy CI đầu tiên xanh và cả năm mục trên đều đạt, xoá mục 7 này.** Xoá cùng lúc: hàng 7 của bảng đầu tài liệu; chữ "(mục 7)" ở ô "CI xanh trên `main`" của mục 6; và các chỗ nhắc mục này ở `README.md` (dòng "CI chưa chạy lần nào" cuối mục "CI", cụm "lần chạy CI đầu tiên" ở danh sách liên kết đầu trang). **Không đánh số lại mục 8**: mã và test dẫn tới "mục 8" theo số.
+
+## 8. Phát hành landing lên production theo phiên bản
+
+Production chỉ lên bằng workflow `Release` (`.github/workflows/release.yml`), khi đẩy tag `vX.Y.Z` khớp `version` trong `package.json`, như `release.yml` của DocOps application. Push `main` và mọi pull request chỉ ra bản preview. Bản đang chạy tự khai ở `https://eduflow.agentra.io.vn/version.json`:
+
+```json
+{"version":"1.0.0","commit":"<sha đủ 40 ký tự của commit được gắn tag>","environment":"production"}
+```
+
+Bản preview cũng có `/version.json` (`environment` là `preview`, `version` là số trong `package.json` lúc đó, `commit` là commit của bản preview). Tệp này không có trong sitemap và mang `X-Robots-Tag: noindex`.
+
+Ba lớp giữ production đi đúng một đường:
+
+1. **Nhánh production giả.** Vercel không cho tắt hẳn nhánh production; nhánh production của project là `production-from-tags-only`, một nhánh không ai đẩy, nên `main` và pull request đều thành preview. Không dùng `git.deploymentEnabled` của `vercel.json`: khoá đó tắt mọi deploy của nhánh, kể cả preview của `main`.
+2. **Chốt chặn lúc dựng (`lib/env.ts`).** Bản dựng production cho Vercel (`VERCEL=1` và `VERCEL_ENV=production`) dừng nếu thiếu `RELEASE_TAG` dạng `vX.Y.Z`, mà chỉ workflow Release đặt biến này. Các đường production khác đều đỏ: lần dựng production đầu tiên Vercel luôn tự tạo cho project mới (kể cả khi import), nút Redeploy, "Promote to Production" của một bản preview (cả hai dựng lại trên Vercel), `vercel --prod` từ máy cá nhân. Không bao giờ đặt `RELEASE_TAG` trong Environment Variables của Vercel.
+3. **Cổng của workflow.** Trước khi dựng: tag đúng dạng, commit của tag nằm trên `main`, `version` trong `package.json` của commit đó khớp tag, và CI (`ci.yml`) của đúng commit đó xanh (chờ nếu còn chạy, tối đa 45 phút).
+
+Instant Rollback, `vercel rollback` và `vercel promote` một bản production cũ không dựng lại nên không qua chốt chặn 2: đó là các đường quay lại hợp lệ (mục 8.4).
+
+### 8.1 Thiết lập một lần (bước tay của người có quyền)
+
+Làm đúng thứ tự; mỗi bước có cách kiểm.
+
+1. **Đẩy `main` lên GitHub.** Lúc viết, `origin/main` là `eff101f` (Initial commit); `main` ở máy đi trước và chứa toàn bộ landing cùng workflow này. `git push origin main`. CI chạy lần đầu: kiểm theo mục 7. Kiểm: trang Actions có lần chạy `CI` cho commit đầu của `main`.
+2. **Tạo project Vercel trong team đang chứa landing DocOps** (không phải tài khoản cá nhân; tài khoản `lephus` đăng nhập CLI trên máy dev không thuộc team này). Dashboard Vercel, chọn đúng team ở bộ chọn góc trên trái, Add New, Project, Import `agentra-code/eduflow-landing-page` (cài GitHub app của Vercel cho repo nếu được hỏi). Framework Preset: Next.js; Root Directory: `./`; lệnh dựng và cài để mặc định. **Không thêm biến môi trường ở màn import.** Vercel luôn dựng bản đầu tiên của project mới thành production; bản này đỏ với thông báo `Bản production chỉ được dựng bởi workflow Release`: đúng như mong đợi, không sửa gì.
+3. **Nhánh production giả.** Project, Settings, Environments, Production, Branch Tracking: nhập `production-from-tags-only`, Save. Không tạo nhánh này trên GitHub. Nếu dashboard không nhận tên nhánh chưa có: tạo nhánh ở commit `eff101f` (`git push origin eff101f:refs/heads/production-from-tags-only`; commit này chỉ có README nên không dựng được), rồi chặn cập nhật và xoá nhánh đó bằng ruleset (bước 9). Kiểm: lần push tiếp theo lên `main` tạo bản Preview (Deployments, cột Environment). Trước khi có bản production đầu tiên, Vercel có thể vẫn coi lần dựng kế tiếp là production; lần đó cũng đỏ ở chốt chặn, vô hại.
+4. **Cài đặt project.**
+   - Build and Deployment, Node.js Version: 24.x.
+   - Functions, Function Regions: Singapore (`sin1`).
+   - Environment Variables: các biến ở README, mục "Biến môi trường", cho **Production** và **Preview**; `NEXT_PUBLIC_SITE_URL=https://eduflow.agentra.io.vn` ở cả hai. **Không đánh dấu Sensitive** cho `DOWNLOAD_FEED_URL` hay bất kỳ biến `NEXT_PUBLIC_*` nào: biến Sensitive có thể về trống khi `vercel pull`, và bản dựng production sẽ mất feed và GA4 mà không báo lỗi. Nếu chính sách của team ép mọi biến thành Sensitive, xem lại trước khi phát hành. Không đặt `RELEASE_TAG`, `VERCEL_ENV`, `NEXT_PUBLIC_VERCEL_ENV`, `VERCEL_GIT_COMMIT_SHA`.
+   - Environment Variables: giữ bật "Enable access to System Environment Variables". Tắt công tắc này thì `VERCEL_ENV` vắng mặt và chốt chặn của `lib/env.ts` làm đỏ mọi bản dựng trên Vercel.
+   - Deployment Protection: Standard Protection (domain production công khai, các URL còn lại cần đăng nhập Vercel). Không chọn All Deployments: Google không vào được domain và job `verify` đỏ với HTTP 401.
+   - Git: giữ bật Git Fork Protection (pull request từ fork chỉ dựng preview khi người trong team duyệt).
+   - Analytics và Speed Insights: bật.
+   - Chưa kiểm được: biến Sensitive có thật sự về trống khi `vercel pull` hay không. Cho tới khi kiểm, coi đó là rủi ro và làm theo dòng không đánh dấu Sensitive ở trên.
+5. **Domain và DNS.** Settings, Domains, Add: `eduflow.agentra.io.vn`, gắn với Production. Ở nơi quản lý DNS của `agentra.io.vn`: xoá bản ghi A `eduflow` đang trỏ VPS `42.115.41.70`, đặt đúng bản ghi Vercel hiện. Chờ Vercel báo cấu hình hợp lệ và cấp chứng chỉ. Tới khi có bản production đầu tiên (mục 8.2), domain trả trang 404 của Vercel: bình thường. Kiểm: `dig +short eduflow.agentra.io.vn` không còn `42.115.41.70`; `curl -sI https://eduflow.agentra.io.vn/ | head -1` có phản hồi qua HTTPS (lúc này 404 là đúng).
+6. **Token Vercel.** https://vercel.com/account/tokens (ở tài khoản cá nhân, không phải trang team): Name `github-release-eduflow-landing`; Scope: chọn team, rồi chọn project `eduflow-landing-page` (token chỉ dùng được cho project này); Expiration: 1 năm; Create; chép token ngay (chỉ hiện một lần). Đặt nhắc lịch gia hạn trước ngày hết hạn. Nếu workflow báo HTTP 403 ở `vercel pull`, `vercel deploy` hay `vercel promote` với token theo project, tạo lại token với Scope là team (All Projects).
+7. **Hai ID.** Team ID: team Settings, General. Project ID: project Settings, General.
+8. **Environment `production` trên GitHub.** Repo Settings, Environments, New environment, tên `production`:
+   - Deployment branches and tags: Selected branches and tags; Add deployment branch or tag rule: Ref type Branch, `main`; thêm rule thứ hai: Ref type Tag, `v*`.
+   - Environment secrets: `VERCEL_TOKEN` (bước 6), `VERCEL_ORG_ID` (Team ID), `VERCEL_PROJECT_ID`.
+   - Tuỳ chọn: Required reviewers, nếu muốn một người bấm duyệt trước mỗi lần lên production.
+9. **Ruleset cho tag (bắt buộc).** Repo Settings, Rules, Rulesets, New tag ruleset: Enforcement status Active; Target tags: Include by pattern `v*`; bật **Restrict creations**, Restrict updates và Restrict deletions; thêm Repository admin (hoặc Maintain) vào Bypass list, để chỉ người phát hành gắn được tag. Restrict creations là ranh giới bảo mật: đẩy một tag chạy `release.yml` của chính commit được gắn tag, và workflow đó nhận token Vercel, nên ai tạo được tag `v*` thì lấy được token. Restrict updates và deletions giữ cho tag đã phát hành không dời được sang commit khác, nên chạy lại workflow với một tag cũ luôn dựng đúng mã cũ. Nếu bước 3 phải tạo nhánh giả: thêm branch ruleset cho `production-from-tags-only` với Restrict updates và Restrict deletions.
+10. **Tuỳ chọn: bảo vệ `main`.** Branch ruleset cho `main`: Require a pull request before merging, Require status checks to pass với check `verify` (job của CI). Đội đang đẩy thẳng lên `main` thì có thể bỏ qua: workflow Release vẫn đòi CI xanh của commit được gắn tag. Bật ruleset này thì mục 8.2 làm theo cách có pull request.
+11. **Fork.** Settings, Actions, General, mục phê duyệt workflow của pull request từ fork: giữ "Require approval for first-time contributors" hoặc chặt hơn. Workflow Release không có trigger cho pull request nên secret không bao giờ tới mã của fork.
+
+### 8.2 Phát hành một phiên bản
+
+Số phiên bản theo SemVer: sửa lỗi, sửa chữ, cập nhật snapshot: tăng PATCH (`1.0.1`); thêm trang, khối hay tính năng: MINOR (`1.1.0`); đổi lớn như giao diện mới hay bản đồ URL mới: MAJOR (`2.0.0`), PO chọn.
+
+Đẩy thẳng lên `main` (khi không có ruleset bắt buộc pull request):
+
+```bash
+git fetch origin && git switch main && git pull --ff-only
+npm pkg set version=1.0.1                    # chỉ đổi "version" trong package.json, không cài gì
+pnpm verify
+git add package.json
+git commit -m "chore(phat-hanh): EduFlow landing 1.0.1"
+git tag -a v1.0.1 -m "EduFlow landing 1.0.1"
+git push origin main v1.0.1                  # commit và tag cùng lúc; workflow chờ CI của commit này
+```
+
+Khi ruleset bắt buộc pull request trên `main`: làm commit phát hành ở một nhánh, mở pull request, hoà vào `main`, và **chỉ đẩy tag sau khi commit đã nằm trên `main`**. Gắn tag lên `origin/main` sau `git fetch origin`, không bao giờ lên `main` cũ ở máy:
+
+```bash
+git fetch origin && git switch -c chore/phat-hanh-1.0.1 origin/main
+npm pkg set version=1.0.1 && pnpm verify
+git add package.json && git commit -m "chore(phat-hanh): EduFlow landing 1.0.1"
+git push origin chore/phat-hanh-1.0.1        # mở pull request, chờ CI xanh, hoà vào main
+git fetch origin
+git log -1 origin/main                       # phải là commit phát hành (nếu squash: commit gộp)
+git tag -a v1.0.1 -m "EduFlow landing 1.0.1" origin/main
+git push origin v1.0.1
+```
+
+Theo dõi ở GitHub, Actions, `Release`: `gate` (kiểm tag, rồi chờ CI của commit, thường 15 tới 25 phút), `deploy`, `verify`, `github-release`. Xanh cả bốn: production là bản mới và trang Releases có `v1.0.1` với ghi chú tự sinh.
+
+Khi workflow đỏ:
+
+| Job, thông báo | Nghĩa và việc cần làm |
+|---|---|
+| `gate`: `Tag "..." không có dạng vX.Y.Z` | Tag sai dạng (thiếu `v`, có hậu tố). Gắn tag đúng dạng. Tag sai chỉ xoá được bằng quyền vượt ruleset: `git push origin :refs/tags/<tag>`. |
+| `gate`: `không nằm trên main` | Tag gắn lên commit chưa vào `main`. Hoà vào `main`, gắn tag mới lên commit của `main`. |
+| `gate`: `không khớp version` | Commit được gắn tag chưa nâng `version`. Làm commit phát hành như trên với số mới, gắn tag mới. |
+| `gate`: `CI của ... không xanh` | CI của commit đó đỏ hoặc bị huỷ. Lỗi thoáng qua: chạy lại CI của commit đó (Re-run jobs), rồi Re-run workflow Release. Lỗi thật: sửa trên `main`, phát hành số mới. |
+| `gate`: `không có lần chạy CI nào do push lên main` | CI chỉ chạy cho commit đầu của mỗi lần push, nên commit ở giữa không có CI. Gắn tag lên commit đầu của `main`. |
+| `gate`: `Hết 45 phút` | CI quá chậm hoặc kẹt hàng chờ. Khi CI xanh, Re-run workflow Release. |
+| `deploy`: `Bản production chỉ được dựng bởi workflow Release` | `RELEASE_TAG` không tới bước dựng: `release.yml` bị sửa sai. |
+| `deploy`: `NEXT_PUBLIC_SITE_URL phải ...` | Biến Production trên Vercel trống hoặc sai (mục 2). Sửa rồi Re-run. |
+| `deploy`: HTTP 401 hay 403 ở `vercel pull`, `deploy`, `promote` | Token hết hạn hoặc thiếu quyền (8.1 bước 6), hoặc secret của environment `production` sai. |
+| `deploy`: không lấy được URL `*.vercel.app` từ kết quả `vercel deploy` | Team dùng hậu tố URL preview tuỳ chỉnh (custom preview URL suffix) nên URL không có dạng `.vercel.app`; workflow đỏ rõ ràng chứ không promote nhầm. Sửa biểu thức nhận URL trong `release.yml` cho hậu tố đó, rồi Re-run. |
+| `verify`: `chưa đúng sau 20 lần thử` | Domain chưa trỏ Vercel hay chưa có chứng chỉ (8.1 bước 5), hoặc promote chưa xong. Xem log `deploy`, rồi Re-run riêng job `verify` (Re-run failed jobs). |
+
+### 8.3 Kiểm sau mỗi lần phát hành
+
+```bash
+curl -s https://eduflow.agentra.io.vn/version.json                              # đúng version, commit, "production"
+git rev-parse 'v1.0.1^{commit}'                                                  # phải bằng "commit" ở trên
+curl -sI https://eduflow.agentra.io.vn/version.json | grep -i x-robots-tag     # x-robots-tag: noindex
+curl -sI https://eduflow.agentra.io.vn/ | grep -i x-robots-tag                 # không in gì: trang chủ cho index
+```
+
+Lần phát hành đầu (`1.0.0`): làm thêm mục 2, bước 5 tới 8, và danh sách mục 6.
+
+Bản preview của `main`: Vercel, Deployments, lọc Environment là Preview và nhánh `main`; URL theo nhánh có dạng `<project>-git-main-<team>.vercel.app` và luôn trỏ bản mới nhất của `main`.
+
+### 8.4 Quay lại phiên bản trước
+
+Hai cách; cách 1 nhanh hơn và không dựng lại. Khi một lần chạy Release đang chờ CI (hàng chờ concurrency giữ đường chạy tay), quay lại bằng cách 1.
+
+**Cách 1: Instant Rollback (gán domain về một bản production cũ, không dựng lại).**
+
+- Dashboard: project, ô Production Deployment, Instant Rollback, chọn bản cần về, Confirm. Gói Hobby chỉ về được bản ngay trước; Pro về được mọi bản từng là production.
+- CLI (đăng nhập một tài khoản thuộc team; `<team-slug>` ở URL của team trên dashboard):
+
+```bash
+vercel list eduflow-landing-page --prod -m releaseTag=v1.0.0 --scope <team-slug>   # URL bản production của v1.0.0
+vercel rollback <URL ở trên> --scope <team-slug>
+curl -s https://eduflow.agentra.io.vn/version.json                                  # "version": "1.0.0"
+```
+
+Sau rollback, Vercel tắt tự gán domain production cho bản mới. Workflow Release không bị ảnh hưởng vì nó luôn dựng ở trạng thái chờ rồi `vercel promote` (lệnh này cũng bật lại tự gán).
+
+**Cách 2: dựng lại một tag.** GitHub, Actions, Release, Run workflow, Use workflow from: `main`, ô `tag`: ví dụ `v1.0.0`, Run. Workflow kiểm lại tag và CI, dựng mã của tag đó với biến môi trường hiện tại trên Vercel, promote và kiểm `/version.json`. Không tạo GitHub Release mới. Dùng khi bản cũ không còn trên Vercel, khi cần dựng lại với biến môi trường đã đổi, hoặc để dựng lại chính phiên bản đang chạy (ví dụ sau khi đổi một biến `NEXT_PUBLIC_*`).
+
+Sau khi quay lại, sửa tiến bằng một số PATCH mới (mục 8.2); không xoá hay dời tag đã phát hành.
+
+### 8.5 Việc định kỳ
+
+- Token Vercel: tạo token mới trước ngày hết hạn (8.1 bước 6), cập nhật secret `VERCEL_TOKEN` của environment `production`, rồi xoá token cũ.
+- Vercel CLI ghim ở `VERCEL_CLI` trong `release.yml`, các action ghim theo sha kèm chú thích phiên bản: khi nâng, chọn bản đã ra ít nhất hai tuần, sửa số, sha và chú thích cùng lúc, chạy `pnpm verify` (test `release-workflow`), rồi phát hành một bản PATCH để chạy thử.
+- `npx vercel@<bản ghim>` ghim phiên bản của chính CLI nhưng các phụ thuộc gián tiếp của nó được giải ở lúc chạy. Đây là rủi ro đã chấp nhận (quyết định Q8 của kế hoạch phát hành).
+- Các action trong `ci.yml` chưa ghim theo sha (`release.yml` đã ghim): ghim là việc làm sau.

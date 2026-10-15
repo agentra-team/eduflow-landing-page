@@ -1,10 +1,10 @@
 # Landing page EduFlow
 
-Trang web marketing hai ngôn ngữ (tiếng Việt mặc định, tiếng Anh dưới `/en`) cho **EduFlow**, app desktop macOS và Windows gộp ba cấp nghiệp vụ giáo dục: Phổ thông (đề kiểm tra, giáo án, slide), Học phần đại học (CLO, kế hoạch tuần, giáo án buổi, slide, đề cương, đánh giá) và Chương trình đào tạo (bản sao số, rà soát ba tầng, kịch bản nếu), với Trợ lý AI luôn có mặt ở Trang chủ và bên phải mọi màn làm việc của app. Trong một lần ghé, khách cần hiểu EduFlow làm gì cho đúng vai của mình (giáo viên phổ thông, giảng viên, Phòng Đảm bảo chất lượng), thấy trợ lý AI làm việc thế nào và vì sao an toàn (máy đề xuất, người duyệt và ký), hiểu cách tính phí theo mức dùng AI, tải đúng bộ cài, rồi liên hệ Agentra để nhận báo giá hoặc key cho trường. Site có 12 trang × 2 ngôn ngữ, sinh tĩnh lúc build và chạy trên Vercel; trang Tải về đọc feed phát hành của app (ISR 10 phút) và hiện trạng thái "sắp phát hành" khi chưa có bản nào; không có form, không có Route Handler, không thanh toán trực tuyến (dùng thử và xin key nằm trong app).
+Trang web marketing hai ngôn ngữ (tiếng Việt mặc định, tiếng Anh dưới `/en`) cho **EduFlow**, app desktop macOS và Windows gộp ba cấp nghiệp vụ giáo dục: Phổ thông (đề kiểm tra, giáo án, slide), Học phần đại học (CLO, kế hoạch tuần, giáo án buổi, slide, đề cương, đánh giá) và Chương trình đào tạo (bản sao số, rà soát ba tầng, kịch bản nếu), với Trợ lý AI luôn có mặt ở Trang chủ và bên phải mọi màn làm việc của app. Trong một lần ghé, khách cần hiểu EduFlow làm gì cho đúng vai của mình (giáo viên phổ thông, giảng viên, Phòng Đảm bảo chất lượng), thấy trợ lý AI làm việc thế nào và vì sao an toàn (máy đề xuất, người duyệt và ký), hiểu cách tính phí theo mức dùng AI, tải đúng bộ cài, rồi liên hệ Agentra để nhận báo giá hoặc key cho trường. Site có 12 trang × 2 ngôn ngữ, sinh tĩnh lúc build và chạy trên Vercel; trang Tải về đọc feed phát hành của app (ISR 10 phút) và hiện trạng thái "sắp phát hành" khi chưa có bản nào; không có form, Route Handler duy nhất là `/version.json` (sinh tĩnh, khai phiên bản đang chạy), không thanh toán trực tuyến (dùng thử và xin key nằm trong app).
 
 - Spec thiết kế: `docs/superpowers/specs/2026-09-30-eduflow-landing-page-design.md`
 - Kế hoạch triển khai: `docs/superpowers/plans/2026-09-30-eduflow-landing-page.md`
-- Vận hành (phát hành bản app mới, lên domain, làm mới ảnh sản phẩm, nâng cấp Next, danh sách kiểm trước production, lần chạy CI đầu tiên): `docs/van-hanh.md`
+- Vận hành (phát hành bản app mới, lên domain, làm mới ảnh sản phẩm, nâng cấp Next, danh sách kiểm trước production, lần chạy CI đầu tiên, phát hành landing theo phiên bản và quay lại): `docs/van-hanh.md`
 - Canvas thiết kế: xem mục "Canvas thiết kế" bên dưới
 
 ## Lệnh
@@ -111,6 +111,8 @@ Ngưỡng ở `lighthouserc.json`: Accessibility ≥ 0,95, Best Practices ≥ 0,
 
 `.github/workflows/ci.yml` chạy trên mỗi pull request và mỗi lần push `main`, một job tối đa 20 phút: `pnpm install --frozen-lockfile`, `pnpm verify`, cài Chromium, ghi snapshot rỗng vào `content/releases.json`, dựng và chạy e2e ba chế độ (hai feed giả chạy nền ở cổng 3300 và 3301), dựng lại với `NEXT_PUBLIC_SITE_URL=http://localhost:3200`, rồi `pnpm lhci`.
 
+Trên pull request, lần đẩy mới huỷ lần chạy cũ đang dở; trên `main` mỗi commit có nhóm concurrency riêng (theo sha) nên không lần chạy nào bị huỷ, vì workflow Release chỉ phát hành commit có CI xanh của chính nó. Workflow phát hành production là `.github/workflows/release.yml`, không chạy trên pull request: xem mục "Vercel và phát hành".
+
 - Báo cáo không đăng công khai. `lighthouserc.json` ghi báo cáo vào `.lighthouseci` trên đĩa (không dùng kho lưu trữ công cộng của Lighthouse). Bước cuối của workflow đăng artifact `ci-reports`, gồm thư mục `.lighthouseci` và `test-results` (vết Playwright của test hỏng), kể cả khi CI đỏ. Tải ở trang của lần chạy trên GitHub, mục Artifacts.
 - CI chưa chạy lần nào lúc viết tài liệu này. Danh sách kiểm cho lần chạy đầu tiên: `docs/van-hanh.md`, mục 7. Khi lần chạy đầu tiên xanh, xoá dòng này và mục 7 (cách xoá ở cuối mục 7).
 
@@ -132,6 +134,7 @@ app/[locale]/privacy/page.tsx           # /chinh-sach-bao-mat
 app/[locale]/[...rest]/page.tsx         # đường dẫn lạ → 404 theo ngôn ngữ; cùng not-found.tsx, error.tsx
 app/[locale]/opengraph-image.tsx        # ảnh OG theo ngôn ngữ; download/opengraph-image.tsx cho trang Tải về
 app/sitemap.ts  robots.ts  manifest.ts  icon.svg  icon.png  apple-icon.png  globals.css
+app/version.json/route.ts               # /version.json: phiên bản, commit, môi trường của bản dựng (sinh tĩnh)
 proxy.ts                                # next-intl (Next 16 gọi là proxy, thay cho middleware)
 i18n/{routing,navigation,request}.ts    # locale, slug dịch (pathnames)
 global.d.ts  mdx-components.tsx  types/mdx.d.ts
@@ -140,7 +143,8 @@ content/releases.json                   # snapshot feed phát hành
 content/install/{index.ts,vi/*.mdx,en/*.mdx}   # hướng dẫn cài macOS và Windows
 content/privacy/{index.ts,vi.mdx,en.mdx}       # chính sách bảo mật
 lib/site.ts                             # thông tin công ty, siteUrl(), feedUrl()
-lib/env.ts                              # chặn build production thiếu domain thật
+lib/env.ts                              # chặn build production thiếu domain thật, hay dựng cho Vercel mà không qua workflow Release
+lib/release.ts                          # buildInfo() cho /version.json
 lib/releases/{types,parse,feed,snapshot,state,index}.ts   # đọc feed, snapshot, trạng thái sắp phát hành
 lib/seo/{urls,metadata,jsonld,og}       # canonical, hreflang, JSON-LD, ảnh OG
 lib/{analytics,consent,useConsent,contact,format,platform,usePlatform,cn}.ts
@@ -152,13 +156,14 @@ components/level/     # LevelPage và cấu hình ba cấp
 components/download/  # PlatformCard, PlatformGrid, DownloadLink, ChecksumField, SystemRequirements, PrelaunchNotice
 components/guide/     # Step, Toc, OsTabs, CodeBlock
 scripts/sync-releases.mjs  capture-product-images.mjs  serve-fixtures.mjs
+scripts/release-tag.mjs  release-ci.mjs  release-verify.mjs   # các bước kiểm của workflow Release
 public/images/product/*.webp            # ảnh sản phẩm chụp từ canvas app
 assets/fonts/                           # Be Vietnam Pro cho ảnh OG
 docs/superpowers/{specs,plans}/         # spec và kế hoạch triển khai
 docs/thiet-ke/                          # nguồn canvas thiết kế landing page
 docs/van-hanh.md                        # sổ tay vận hành
 tests/unit/**  tests/e2e/**  tests/fixtures/{latest.yml,latest-mac.yml}
-vitest.config.mts  playwright.config.ts  lighthouserc.json  .github/workflows/ci.yml  .env.example
+vitest.config.mts  playwright.config.ts  lighthouserc.json  .github/workflows/{ci,release}.yml  .env.example
 ```
 
 ## Sửa nội dung
@@ -187,15 +192,18 @@ Luật nội dung (spec mục 15): không hứa kết quả kiểm định hay x
 | `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` | Không | Mã xác minh Google Search Console (chỉ giá trị `content` của thẻ meta). | |
 | `NEXT_PUBLIC_CONSENT_BANNER` | Không | `off` tắt thanh cookie (GA4 nạp ngay). Mọi giá trị khác, kể cả không đặt, là bật. Ở production giữ bật: chính sách bảo mật nói GA4 chỉ nạp sau "Đồng ý". | OQ-L03 |
 
-Các biến `NEXT_PUBLIC_*` được nhúng lúc dựng, và biến đặt trên Vercel chỉ áp cho bản deploy tạo sau đó: đổi giá trị xong phải deploy lại. Vercel tự đặt `VERCEL_ENV` và `NEXT_PUBLIC_VERCEL_ENV` khi công tắc "Enable access to System Environment Variables" (Settings, Environment Variables; trước đây ghi là "Automatically expose System Environment Variables") đang bật. Công tắc này cũng quyết định `VERCEL_ENV` có mặt lúc dựng hay không, mà chốt chặn production cần biến đó: tắt công tắc thì chốt chặn không chạy và build production vẫn qua với URL sai. Còn `NEXT_PUBLIC_VERCEL_ENV` quyết định site có nhúng script Vercel Analytics và Speed Insights (ở máy dev và CI không nhúng, để khỏi 404). Giữ công tắc bật.
+Các biến `NEXT_PUBLIC_*` được nhúng lúc dựng, và biến đặt trên Vercel chỉ áp cho bản dựng tạo sau đó: đổi giá trị xong, preview đổi ở lần push sau, còn production phải dựng lại bằng workflow Release (chạy tay với tag đang chạy, `docs/van-hanh.md`, mục 8.4, cách 2). Bản preview do Vercel dựng từ Git nhận `VERCEL_ENV` và `NEXT_PUBLIC_VERCEL_ENV` khi công tắc "Enable access to System Environment Variables" (Settings, Environment Variables; trước đây ghi là "Automatically expose System Environment Variables") đang bật: giữ công tắc bật. Bản production do workflow Release dựng bằng `vercel build` trên GitHub Actions, nơi Vercel không cấp biến hệ thống, nên workflow tự đặt `VERCEL_ENV=production`, `NEXT_PUBLIC_VERCEL_ENV=production`, `VERCEL_GIT_COMMIT_SHA` và `RELEASE_TAG`. `VERCEL_ENV=production` bật chốt chặn của `lib/env.ts` (domain thật, và `RELEASE_TAG` khi dựng cho Vercel); `NEXT_PUBLIC_VERCEL_ENV` quyết định site có nhúng script Vercel Analytics và Speed Insights (ở máy dev và CI không nhúng, để khỏi 404). Không đặt bốn biến này trong Environment Variables của Vercel.
 
-## Cài đặt trên Vercel
+## Vercel và phát hành
 
-1. Import repo vào Vercel. Framework: Next.js. Lệnh dựng mặc định `next build`; pnpm được nhận từ `pnpm-lock.yaml`. Node.js Version: 24.x ở Settings, Build and Deployment; nhưng `engines.node` trong `package.json` (hiện `>=22.18`) thắng ô cài đặt đó, nên kiểm bằng `node -v` trong log build, phải ra 24.x (log không in sẵn thì đặt tạm Build Command thành `node -v && pnpm build`, xem log rồi bỏ).
-2. Settings, Functions, Function Regions: Singapore (`sin1`), để ISR tái tạo trang gần người dùng.
-3. Đặt các biến môi trường ở trên cho Production và Preview. `NEXT_PUBLIC_SITE_URL` bắt buộc ở Production, và nên đặt cả ở Preview (cùng domain chính thức) để canonical của preview không trỏ về localhost. Giữ bật "Enable access to System Environment Variables" (Settings, Environment Variables).
-4. Push `main` thì ra production, mỗi pull request có một URL preview. Bật Web Analytics và Speed Insights trong dashboard của project.
-5. Gắn domain, phát hành bản app và danh sách kiểm trước production: `docs/van-hanh.md`.
+Site chạy trên Vercel, ở team đang chứa landing DocOps. Hai luồng:
+
+- **Preview:** Vercel Git integration dựng mỗi lần push `main` và mỗi pull request thành bản preview (URL riêng, header `X-Robots-Tag: noindex`, cần đăng nhập Vercel khi bật Standard Protection). Nhánh production của project là `production-from-tags-only`, một nhánh không ai đẩy, nên push không bao giờ ra production.
+- **Production:** chỉ workflow `Release` (`.github/workflows/release.yml`), khi đẩy tag `vX.Y.Z` khớp `version` trong `package.json`, hoặc chạy tay với một tag đã có. Workflow kiểm tag (đúng dạng, nằm trên `main`, khớp `package.json`), chờ CI của đúng commit đó xanh, rồi `vercel pull`, `vercel build --prod`, `vercel deploy --prebuilt --prod --skip-domain`, `vercel promote`, kiểm `/version.json` trên domain chính và tạo GitHub Release.
+
+Bản đang chạy tự khai ở `/version.json` (`version`, `commit`, `environment`); tệp này không có trong sitemap và mang `X-Robots-Tag: noindex`. Bản production dựng ngoài workflow (lần dựng đầu tiên Vercel tự tạo khi import repo, nút Redeploy, "Promote to Production" của bản preview, `vercel --prod` từ máy cá nhân) dừng ở chốt chặn của `lib/env.ts` vì thiếu `RELEASE_TAG`.
+
+Thiết lập một lần (project, biến môi trường, domain và DNS, token, environment và secret trên GitHub, ruleset cho tag), phát hành một phiên bản và quay lại phiên bản trước: `docs/van-hanh.md`, mục 8. Cài đặt Vercel cần giữ: Node.js Version 24.x; Function Regions Singapore (`sin1`); các biến ở mục trên cho Production và Preview, không đánh dấu Sensitive; "Enable access to System Environment Variables" bật; Web Analytics và Speed Insights bật; Deployment Protection là Standard Protection.
 
 ## Trạng thái sắp phát hành và cách kết thúc
 
@@ -207,7 +215,7 @@ Cho tới khi app có bản phát hành đầu tiên, `content/releases.json` l�
 Trạng thái này kết thúc như sau:
 
 1. Upload bản phát hành đầu tiên lên máy chủ phân phối, **hai tệp `latest.yml` và `latest-mac.yml` sau cùng**.
-2. Đặt `DOWNLOAD_FEED_URL` (OQ-L02) ở Vercel cho Production và Preview, rồi deploy lại.
+2. Đặt `DOWNLOAD_FEED_URL` (OQ-L02) ở Vercel cho Production và Preview, rồi dựng lại production: chạy tay workflow Release với tag đang chạy (`docs/van-hanh.md`, mục 8.4, cách 2).
 3. Trong tối đa 10 phút, trang Tải về và trang chủ chuyển sang trạng thái có bản phát hành.
 4. Chạy `pnpm sync-releases`, rồi `pnpm verify`, rồi commit `content/releases.json`, để snapshot dự phòng có bản đầu tiên.
 
