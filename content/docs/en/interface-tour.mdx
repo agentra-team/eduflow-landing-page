@@ -1,0 +1,59 @@
+<Steps>
+
+<Step n={1} id="chon-ho-so" title="Choose your first profile">
+
+Right after activation, the <Ui>Chào thầy cô đến với EduFlow</Ui> (Welcome to EduFlow) dialog appears. It asks which level you work at, and you tick at least one of three profiles:
+
+- <Ui>Giáo viên phổ thông</Ui> (K-12 teacher), ticked by default
+- <Ui>Giảng viên đại học</Ui> (University lecturer)
+- <Ui>Chuyên viên đảm bảo chất lượng</Ui> (Quality assurance officer)
+
+A profile only arranges the interface: the tools of the levels you pick are pinned to the top of the sidebar, every level still opens, and no feature is locked by your profile. You can change it at any time in <Ui>Cài đặt</Ui> (Settings), on the <Ui>Hồ sơ làm việc</Ui> (Work profile) card.
+
+The dialog also offers a sample Math 10 project to look at (it costs nothing). Click <Ui>Bắt đầu tham quan</Ui> (Start the tour) to walk through the main areas of the app, or <Ui>Để sau</Ui> (Later); to see the tour again, open <Ui>Trợ giúp</Ui> (Help) and choose <Ui>Xem lại hướng dẫn</Ui> (Replay the guide).
+
+</Step>
+
+</Steps>
+
+## The sidebar
+
+The sidebar on the left has four navigation items: <Ui>Trang chủ</Ui> (Home), <Ui>Dự án</Ui> (Projects), <Ui>Sử dụng và chi phí</Ui> (Usage and cost) and <Ui>Cài đặt</Ui> (Settings). Below them sit the K-12 authoring tools, <Ui>Soạn đề</Ui> (Write a test) and <Ui>Soạn bài dạy</Ui> (Write a lesson); a level that is not in your profile is listed under <Ui>Cấp khác</Ui> (Other levels). At the foot are <Ui>Trợ giúp</Ui> (Help, with Replay the guide and Shortcuts), the unit name and the key type with the number of devices in use.
+
+On work screens, while the assistant panel is open, the sidebar narrows to a thin strip of icons; the item names remain available to screen readers. The top bar shows whether the computer is <Ui>Trực tuyến</Ui> (Online) or <Ui>Mất mạng</Ui> (Offline), and the month button (for example <Ui>Tháng 10</Ui> with the amount used against the budget) opens the usage page. Inside a project, the bar shows the path <Ui>Dự án</Ui> (Projects) / project name / screen name.
+
+## The home screen and the chat box
+
+The home screen opens with a greeting, today's date and the unit name, plus two buttons: <Ui>Tạo đề</Ui> (Create a test) and <Ui>Soạn bài dạy</Ui> (Write a lesson). In the middle is the chat box with the question "What do you want to write today?": pick a level (<Ui>Phổ thông</Ui>, <Ui>Học phần</Ui> or <Ui>Chương trình</Ui>) and type your request in plain words. Below it you find the <Ui>Bắt đầu nhanh</Ui> (Quick start) card (view a sample test, ask the assistant a question, create your first project, write your first test or lesson plan, export a PDF), the <Ui>Gợi ý cho thầy cô</Ui> (Suggestions) section (click to fill the box, nothing is sent) and <Ui>Làm tiếp</Ui> (Continue), which lists recent projects.
+
+<Figure src="/images/product/assistant-home.webp" width={1600} height={1000} alt="EduFlow home screen after the first message: the conversation with the assistant on the left, an unsaved preview panel on the right" caption="After the first message the conversation widens, and on the right a preview shows what would be created." />
+
+When the assistant proposes a setup, the right side shows a <Ui>XEM TRƯỚC · CHƯA LƯU</Ui> (PREVIEW, NOT SAVED) panel and a line saying nothing is created until you click. The assistant only suggests; you review before anything is made. If the computer is offline the assistant cannot answer, but commands that run on the computer still work: type `/` to choose one.
+
+## Work screens and the assistant panel on the right
+
+On every work screen the assistant sits in the panel on the right, named <Ui>Trợ lý EduFlow</Ui> (EduFlow assistant) with the line "Knows what you are looking at". It receives the context of the open screen, shown as chips at the top of the panel, and sends only a structured summary, never the original files. The buttons at the top of the panel:
+
+- <Ui>Cuộc trò chuyện mới</Ui> (New conversation) and <Ui>Lịch sử trò chuyện</Ui> (Conversation history).
+- <Ui>Mở rộng toàn màn</Ui> (Expand to full screen), then <Ui>Thu về panel</Ui> (Back to panel), for more room to chat.
+- <Ui>Thu gọn panel</Ui> (Collapse the panel) turns the panel into a thin strip; click <Ui>Mở trợ lý</Ui> (Open the assistant) to bring it back.
+
+To have the panel open at every start, or to stop attaching the screen context automatically, go to <Ui>Cài đặt</Ui> (Settings), the <Ui>Trợ lý AI</Ui> (AI assistant) card.
+
+## AI jobs and cost
+
+Generating a test, a lesson plan or a slide deck is an AI job. At the setup step the app shows an <Ui>Ước tính chi phí</Ui> (Cost estimate) box before it runs; click <Ui>Chạy</Ui> (Run) to start or <Ui>Huỷ</Ui> (Cancel) to stop, and money is counted only when a job runs. While a job runs, the strip under the step tabs shows its progress with a <Ui>Huỷ</Ui> (Cancel) button; if the unit has many AI calls at once, the app continues by itself after a few seconds.
+
+Work that runs on the computer, such as gates, shuffling versions, compiling and reading documents, carries the label <Ui>Tại máy · 0 ₫</Ui> (On this computer · 0 ₫). The <Ui>Sử dụng và chi phí</Ui> (Usage and cost) page shows the month's total, the <Ui>Ngân sách tháng</Ui> (Monthly budget) with its warn or block mode, tokens in four classes, and cost <Ui>Theo skill</Ui> (By skill) and <Ui>Theo thiết bị</Ui> (By device). The server fixes each amount using the price list at the time of recording; the app only displays it.
+
+## Settings
+
+<Ui>Cài đặt</Ui> (Settings) has these cards:
+
+- <Ui>Key và thiết bị</Ui> (Key and device): unit, key type, status, end date, with <Ui>Kiểm tra lại</Ui> (Check again) and <Ui>Nhập key khác</Ui> (Enter another key).
+- <Ui>Hồ sơ làm việc</Ui> (Work profile): change the levels you picked and replay the guide.
+- <Ui>Trợ lý AI</Ui> (AI assistant): open the panel at start, attach screen context automatically, how long chat history stays on the computer (30 days, 90 days or no limit), delete history and the shortcut that opens the assistant.
+- <Ui>Riêng tư</Ui> (Privacy): turn AI off per project; when a project has AI off, none of its content leaves the computer.
+- <Ui>Đăng xuất và xoá kho trên máy này</Ui> (Sign out and delete the store on this computer), only for when you really want to clear the data on this machine.
+
+The monthly budget belongs to the key and is set by an administrator, not in the app; you see how much has been used on the usage page.

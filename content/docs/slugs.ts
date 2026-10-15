@@ -6,12 +6,14 @@ import type { Locale } from '@/i18n/routing'
  * Slug là chữ thường không dấu nối bằng gạch, duy nhất qua cả hai ngôn ngữ: ảnh chia sẻ /og/docs/<slug> suy ra ngôn ngữ từ slug.
  * Thêm bài: thêm mã vào DOC_IDS, slug vào DOC_SLUGS, mục vào DOCS (content/docs/index.ts) và hai tệp MDX.
  */
-export const DOC_IDS = ['install-macos', 'install-windows'] as const
+export const DOC_IDS = ['install-macos', 'install-windows', 'activation-and-trial', 'interface-tour'] as const
 export type DocId = (typeof DOC_IDS)[number]
 
 export const DOC_SLUGS: Record<DocId, Record<Locale, string>> = {
   'install-macos': { vi: 'cai-dat-macos', en: 'install-macos' },
   'install-windows': { vi: 'cai-dat-windows', en: 'install-windows' },
+  'activation-and-trial': { vi: 'kich-hoat-va-dung-thu', en: 'activation-and-trial' },
+  'interface-tour': { vi: 'lam-quen-giao-dien', en: 'interface-tour' },
 }
 
 export function docIdFromSlug(locale: Locale, slug: string): DocId | undefined {

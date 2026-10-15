@@ -61,10 +61,40 @@ export const DOCS: Record<DocId, DocEntry> = {
       keyword: 'install EduFlow on Windows',
     },
   },
+  'activation-and-trial': {
+    group: 'start',
+    order: 3,
+    updatedAt: '2026-10-15',
+    vi: {
+      title: 'Kích hoạt key và dùng thử',
+      description: 'Nhập key EDU- của trường để kích hoạt EduFlow, hoặc gửi đơn dùng thử ngay trong app; key dùng thử chạy trên một máy, có ngân sách và ngày hết hạn.',
+      keyword: 'kích hoạt key EduFlow',
+    },
+    en: {
+      title: 'Activate a key or start a trial',
+      description: 'Enter your school EDU- key to activate EduFlow, or send a trial request from the app; a trial key runs on one computer, with a budget and an end date.',
+      keyword: 'activate an EduFlow license key',
+    },
+  },
+  'interface-tour': {
+    group: 'start',
+    order: 4,
+    updatedAt: '2026-10-15',
+    vi: {
+      title: 'Làm quen giao diện',
+      description: 'Các vùng của EduFlow: thanh bên, trang chủ có ô trò chuyện, màn làm việc với panel trợ lý, hàng chờ tác vụ và Cài đặt; cách chọn hồ sơ làm việc lần đầu.',
+      keyword: 'giao diện EduFlow',
+    },
+    en: {
+      title: 'A tour of the interface',
+      description: 'The parts of EduFlow: the sidebar, the home screen with its chat box, work screens with the assistant panel, the job queue and Settings, and your first profile.',
+      keyword: 'EduFlow interface',
+    },
+  },
 }
 
 /** Khối "Bắt đầu trong 5 phút" ở mục lục hướng dẫn: cài, kích hoạt, soạn đề đầu tiên (spec §7.3). */
-export const QUICK_START: DocId[] = ['install-macos', 'install-windows']
+export const QUICK_START: DocId[] = ['install-macos', 'install-windows', 'activation-and-trial']
 
 /** Thứ tự đọc: theo nhóm (DOC_GROUPS), rồi theo `order` trong nhóm. Dẫn thanh bên và bài trước, bài sau. */
 export function docsInOrder(): DocId[] {
@@ -89,10 +119,14 @@ export const DOC_SOURCES: Record<Locale, Record<DocId, () => Promise<MdxBody>>> 
   vi: {
     'install-macos': () => import('./vi/cai-dat-macos.mdx'),
     'install-windows': () => import('./vi/cai-dat-windows.mdx'),
+    'activation-and-trial': () => import('./vi/kich-hoat-va-dung-thu.mdx'),
+    'interface-tour': () => import('./vi/lam-quen-giao-dien.mdx'),
   },
   en: {
     'install-macos': () => import('./en/install-macos.mdx'),
     'install-windows': () => import('./en/install-windows.mdx'),
+    'activation-and-trial': () => import('./en/activation-and-trial.mdx'),
+    'interface-tour': () => import('./en/interface-tour.mdx'),
   },
 }
 

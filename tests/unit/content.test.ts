@@ -6,8 +6,8 @@ import en from '@/messages/en.json'
 import vi from '@/messages/vi.json'
 
 // Ai thêm hoặc xoá tệp MDX thì sửa hai số này (tổng, và riêng tiếng Anh): nhờ đó chắc chắn bộ quét thấy tệp.
-const MDX_TOTAL = 6
-const MDX_ENGLISH = 3
+const MDX_TOTAL = 10
+const MDX_ENGLISH = 5
 
 // Gốc repo tính từ vị trí tệp test này, không phụ thuộc thư mục đang chạy lệnh.
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../..')

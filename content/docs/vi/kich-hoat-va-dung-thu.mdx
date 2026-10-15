@@ -1,0 +1,79 @@
+## Trước khi bắt đầu
+
+Máy cần có Internet khi kích hoạt. Key do trường của thầy cô hoặc Agentra cấp và bắt đầu bằng `EDU-`. Chưa có key thì gửi đơn dùng thử ngay trong app, không cần chờ ai gửi key qua email.
+
+<Steps>
+
+<Step n={1} id="kich-hoat-bang-key" title="Kích hoạt bằng key của trường">
+
+Mở EduFlow lần đầu, màn **Chào mừng tới EduFlow** hiện ra với hai lựa chọn ngang hàng: **Nhập key** và **Đăng ký dùng thử**.
+
+1. Chọn **Nhập key**.
+2. Dán nguyên key vào ô **Key**. App tự chuẩn hoá: bỏ khoảng trắng và dấu gạch thừa, đổi chữ thường thành chữ hoa, đổi O thành 0, đổi I và L thành 1, thêm `EDU` nếu thiếu.
+3. Bấm **Kích hoạt**.
+
+Khi xong, app báo "Kích hoạt thành công" kèm tên đơn vị và vào Trang chủ. Nếu key sai, key vẫn nằm trong ô để thầy cô sửa từng nhóm ký tự.
+
+</Step>
+
+<Step n={2} id="gui-don-dung-thu" title="Gửi đơn dùng thử">
+
+Chưa có key thì chọn **Đăng ký dùng thử** và điền form:
+
+| Ô | Bắt buộc |
+|---|---|
+| **Họ tên** | Có |
+| **Email** | Có, đúng dạng email |
+| **Số điện thoại** | Có |
+| **Tên trường hoặc đơn vị** | Có |
+| **Cấp học chính** | Không (Phổ thông, Học phần hoặc Chương trình) |
+| **Mục đích sử dụng** | Không |
+
+Bấm **Gửi đơn**. App gửi kèm mã máy, tên máy, hệ điều hành và phiên bản app; không gửi dữ liệu dự án nào. Khi Agentra bật tự duyệt dùng thử, máy nhận key dùng thử ngay và vào app mà thầy cô không phải gõ key.
+
+Máy từng nhận key dùng thử thì app báo "Máy này đã nhận key dùng thử" và hiện nút **Nhập key trả phí**; mỗi máy chỉ nhận một key dùng thử.
+
+</Step>
+
+<Step n={3} id="don-cho-duyet" title="Khi đơn đang chờ duyệt">
+
+Nếu chưa được tự duyệt, màn hiện **Đơn đang chờ duyệt** kèm mã đơn. Thầy cô không cần làm gì thêm:
+
+- App tự kiểm tra lại mỗi 5 phút khi màn này đang mở, và một lần mỗi khi mở app. Muốn kiểm tra ngay, bấm **Kiểm tra lại**.
+- Khi đơn được duyệt, app tự nhận key và kích hoạt, vào Trang chủ.
+- Nếu đơn chưa được duyệt, màn **Đơn chưa được duyệt** nêu lý do. Bấm **Gửi đơn mới** để điền lại.
+- Nếu app báo key đã được cấp nhưng máy chưa nhận được, liên hệ quản trị để được cấp lại.
+
+<Callout kind="info">Đóng app trong lúc chờ không làm mất đơn: app giữ mã đơn trên máy và kiểm tra lại lần mở sau.</Callout>
+
+</Step>
+
+</Steps>
+
+## Key dùng thử có gì
+
+Key dùng thử chạy trên 1 máy, có ngân sách dùng thử và ngày hết hạn. Trên Trang chủ, app hiện số ngày còn lại và ngân sách còn lại của key. Ngân sách của key dùng thử ở chế độ chặn: dùng hết thì tác vụ AI tạm dừng.
+
+Khi key hết hạn, app hiện băng cảnh báo trên mọi màn và tạm dừng tác vụ AI. Các việc chạy trên máy như mở dự án, sửa hiện vật, chạy cổng và xuất tệp vẫn dùng được. Muốn dùng tiếp tác vụ AI, nhập key trả phí do trường hoặc Agentra cấp ở mục dưới.
+
+Trong **Cài đặt**, thẻ **Key và thiết bị** cho biết đơn vị, loại key (Dùng thử hoặc Trả phí), trạng thái, số thiết bị đang dùng, hạn dùng và tên máy này. App chỉ lưu 4 ký tự cuối của key, nên không có cách hiện lại key đầy đủ.
+
+## Đổi key hay chuyển sang máy khác
+
+**Đổi key trên cùng máy** (ví dụ từ dùng thử sang key của trường): mở **Cài đặt**, thẻ **Key và thiết bị**, bấm **Nhập key khác**, dán key vào ô **Key mới** rồi bấm **Kích hoạt**. Nếu key mới thuộc đơn vị khác, app hỏi xác nhận; bấm **Tiếp tục** để đổi. Dự án, hiện vật và lịch sử tác vụ giữ nguyên.
+
+**Chuyển sang máy khác:** cài EduFlow và kích hoạt key trên máy mới. Mỗi key có số thiết bị tối đa; khi đã đủ, app báo "Key đã dùng đủ số thiết bị cho phép". Lúc đó nhờ quản trị thu hồi một thiết bị cũ qua Agentra rồi kích hoạt lại. Đăng xuất trên máy cũ không trả lại chỗ: app giữ mã máy để lần kích hoạt sau không tốn thêm thiết bị, chỉ khi quản trị thu hồi thiết bị thì chỗ mới được trả.
+
+<Callout kind="warning">Nút **Đăng xuất và xoá** trong Cài đặt xoá toàn bộ kho dự án trên máy đó và đòi gõ xác nhận. Đây không phải cách chuyển sang máy khác; chỉ dùng khi thầy cô thật sự muốn dọn máy.</Callout>
+
+## Lỗi thường gặp khi kích hoạt
+
+| App báo | Thường là | Làm gì |
+|---|---|---|
+| "Key không đúng" | Nhập thiếu hoặc sai một nhóm ký tự | Kiểm tra lại từng nhóm, hoặc liên hệ Agentra để được cấp lại |
+| "Key đã dùng đủ số thiết bị cho phép" | Key đã kích hoạt trên đủ số máy | Nhờ quản trị thu hồi một thiết bị cũ rồi kích hoạt lại |
+| "Key đã hết hạn" | Quá ngày hết hạn của key | Nhập key mới ở **Nhập key khác** |
+| "Không kết nối được máy chủ" | Máy chưa có Internet | Kiểm tra mạng rồi thử lại |
+| "Thử kích hoạt quá nhiều lần" | Nhập sai nhiều lần liên tiếp | Chờ hết thời gian đếm ngược trên màn rồi thử lại |
+
+Các lỗi còn lại và cách xử lý từng bước nằm trong bài xử lý sự cố của mục Hướng dẫn.

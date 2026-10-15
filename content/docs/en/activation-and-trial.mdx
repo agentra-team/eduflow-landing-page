@@ -1,0 +1,79 @@
+## Before you start
+
+The computer needs an Internet connection while you activate. The key comes from your school or from Agentra and starts with `EDU-`. If you have no key yet, send a trial request from inside the app; nobody has to email you a key first.
+
+<Steps>
+
+<Step n={1} id="kich-hoat-bang-key" title="Activate with your school key">
+
+Open EduFlow for the first time and the <Ui>Chào mừng tới EduFlow</Ui> (Welcome to EduFlow) screen appears with two side-by-side options: <Ui>Nhập key</Ui> (Enter key) and <Ui>Đăng ký dùng thử</Ui> (Request a trial).
+
+1. Choose <Ui>Nhập key</Ui> (Enter key).
+2. Paste the whole key into the <Ui>Key</Ui> field. The app tidies it for you: it drops spaces and stray dashes, turns lowercase into uppercase, reads O as 0 and I or L as 1, and adds `EDU` if it is missing.
+3. Click <Ui>Kích hoạt</Ui> (Activate).
+
+When it works, the app says activation succeeded, shows the unit name and opens the home screen. If the key is wrong, it stays in the field so you can fix it group by group.
+
+</Step>
+
+<Step n={2} id="gui-don-dung-thu" title="Send a trial request">
+
+No key yet? Choose <Ui>Đăng ký dùng thử</Ui> (Request a trial) and fill in the form:
+
+| Field | Required |
+|---|---|
+| <Ui>Họ tên</Ui> (Full name) | Yes |
+| <Ui>Email</Ui> | Yes, a valid email address |
+| <Ui>Số điện thoại</Ui> (Phone number) | Yes |
+| <Ui>Tên trường hoặc đơn vị</Ui> (School or unit name) | Yes |
+| <Ui>Cấp học chính</Ui> (Main level) | No (K-12, Course or Program) |
+| <Ui>Mục đích sử dụng</Ui> (Purpose of use) | No |
+
+Click <Ui>Gửi đơn</Ui> (Send request). The app sends along the machine ID, computer name, operating system and app version, and no project data. When Agentra has automatic trial approval switched on, the computer gets a trial key at once and goes straight into the app without you typing a key.
+
+If this computer already received a trial key, the app says so and shows <Ui>Nhập key trả phí</Ui> (Enter a paid key); each computer gets one trial key.
+
+</Step>
+
+<Step n={3} id="don-cho-duyet" title="While your request is waiting for approval">
+
+If it is not approved automatically, the screen shows <Ui>Đơn đang chờ duyệt</Ui> (Request waiting for approval) with a request code. You do not need to do anything else:
+
+- The app checks again every 5 minutes while this screen is open, and once each time you open the app. To check right away, click <Ui>Kiểm tra lại</Ui> (Check again).
+- When the request is approved, the app picks up the key by itself, activates and opens the home screen.
+- If the request is not approved, <Ui>Đơn chưa được duyệt</Ui> (Request not approved) gives the reason. Click <Ui>Gửi đơn mới</Ui> (Send a new request) to fill it in again.
+- If the app says the key was issued but this computer did not receive it, contact your administrator to have it issued again.
+
+<Callout kind="info">Closing the app while you wait does not lose the request: the app keeps the request code on the computer and checks again the next time you open it.</Callout>
+
+</Step>
+
+</Steps>
+
+## What a trial key includes
+
+A trial key runs on 1 computer, with a trial budget and an end date. On the home screen the app shows the days left and the budget left on the key. The budget of a trial key is in blocking mode: once it is used up, AI jobs pause.
+
+When a key expires, the app shows a warning banner on every screen and pauses AI jobs. Work that runs on the computer, such as opening projects, editing artifacts, running gates and exporting files, still works. To keep using AI jobs, enter a paid key from your school or Agentra as described in the next section.
+
+In <Ui>Cài đặt</Ui> (Settings), the <Ui>Key và thiết bị</Ui> (Key and device) card shows the unit, the key type (trial or paid), the status, the number of devices in use, the end date and the name of this computer. The app stores only the last 4 characters of the key, so there is no way to show the full key again.
+
+## Changing a key or moving to another computer
+
+**Changing the key on the same computer** (for example from a trial to your school key): open <Ui>Cài đặt</Ui> (Settings), the <Ui>Key và thiết bị</Ui> (Key and device) card, click <Ui>Nhập key khác</Ui> (Enter another key), paste the key into <Ui>Key mới</Ui> (New key) and click <Ui>Kích hoạt</Ui> (Activate). If the new key belongs to another unit, the app asks you to confirm; click <Ui>Tiếp tục</Ui> (Continue) to switch. Projects, artifacts and job history stay as they were.
+
+**Moving to another computer:** install EduFlow and activate the key on the new computer. Each key has a maximum number of devices; once it is full, the app says the key has used all the devices it allows. Then ask your administrator, through Agentra, to revoke an old device and activate again. Signing out on the old computer does not free the slot: the app keeps the machine ID so the next activation costs no extra device, and the slot comes back only when an administrator revokes the device.
+
+<Callout kind="warning">The <Ui>Đăng xuất và xoá</Ui> (Sign out and delete) button in Settings erases the whole project store on that computer and asks you to type a confirmation. It is not a way to move to another computer; use it only when you really want to clear the machine.</Callout>
+
+## Common activation errors
+
+| The app says | Usually it means | What to do |
+|---|---|---|
+| <Ui>Key không đúng</Ui> (The key is wrong) | A group of characters is missing or mistyped | Check each group, or contact Agentra to have the key issued again |
+| <Ui>Key đã dùng đủ số thiết bị cho phép</Ui> (The key has used all its devices) | The key is already active on the maximum number of computers | Ask your administrator to revoke an old device, then activate again |
+| <Ui>Key đã hết hạn</Ui> (The key has expired) | The key is past its end date | Enter a new key with <Ui>Nhập key khác</Ui> (Enter another key) |
+| <Ui>Không kết nối được máy chủ</Ui> (Cannot reach the server) | The computer has no Internet | Check the connection and try again |
+| <Ui>Thử kích hoạt quá nhiều lần</Ui> (Too many activation attempts) | Several wrong attempts in a row | Wait for the countdown on the screen to end, then try again |
+
+For the other errors and step-by-step fixes, see the troubleshooting article in the Docs section.

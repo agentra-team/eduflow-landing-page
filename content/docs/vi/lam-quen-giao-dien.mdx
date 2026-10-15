@@ -1,0 +1,59 @@
+<Steps>
+
+<Step n={1} id="chon-ho-so" title="Chọn hồ sơ làm việc lần đầu">
+
+Ngay sau khi kích hoạt, hộp thoại **Chào thầy cô đến với EduFlow** hiện ra. Ở đó thầy cô trả lời câu hỏi "Thầy cô làm việc ở cấp nào?" bằng cách chọn ít nhất một trong ba hồ sơ:
+
+- **Giáo viên phổ thông** (chọn sẵn)
+- **Giảng viên đại học**
+- **Chuyên viên đảm bảo chất lượng**
+
+Hồ sơ chỉ sắp xếp giao diện: cụm chức năng của cấp đã chọn được ghim lên đầu thanh bên, còn mọi cấp vẫn mở được và hồ sơ không khoá chức năng nào. Đổi lại bất kỳ lúc nào ở **Cài đặt**, thẻ **Hồ sơ làm việc**.
+
+Hộp thoại còn có ô tạo dự án mẫu Toán 10 để xem trước (không tốn tiền). Bấm **Bắt đầu tham quan** để đi qua các vùng chính của app, hoặc **Để sau**; muốn xem lại, mở **Trợ giúp** rồi chọn **Xem lại hướng dẫn**.
+
+</Step>
+
+</Steps>
+
+## Thanh bên
+
+Thanh bên ở bên trái có bốn mục điều hướng: **Trang chủ**, **Dự án**, **Sử dụng và chi phí** và **Cài đặt**. Dưới đó là cụm việc soạn của cấp Phổ thông: **Soạn đề** và **Soạn bài dạy**; cấp không nằm trong hồ sơ của thầy cô được xếp dưới nhãn **Cấp khác**. Cuối thanh bên là **Trợ giúp** (Xem lại hướng dẫn, Phím tắt), tên đơn vị và loại key kèm số thiết bị đang dùng.
+
+Ở màn làm việc, khi panel trợ lý đang mở, thanh bên thu thành dải biểu tượng hẹp; tên mục vẫn có cho trình đọc màn hình. Thanh trên cùng cho biết máy đang **Trực tuyến** hay **Mất mạng**, và nút tháng (ví dụ "Tháng 10", số tiền đã dùng so với ngân sách) mở thẳng trang Sử dụng và chi phí. Khi mở một dự án, thanh này hiện đường dẫn **Dự án** / tên dự án / tên màn.
+
+## Trang chủ và ô trò chuyện với trợ lý
+
+Trang chủ mở bằng lời chào "Chào thầy cô", ngày hôm nay và tên đơn vị, cùng hai nút **Tạo đề** và **Soạn bài dạy**. Giữa trang là ô trò chuyện với câu hỏi "Hôm nay thầy cô muốn soạn gì?": chọn cấp (**Phổ thông**, **Học phần**, **Chương trình**) rồi gõ yêu cầu bằng lời thường. Bên dưới là thẻ **Bắt đầu nhanh** (Xem đề mẫu, Hỏi trợ lý một câu, Tạo dự án đầu tiên, Soạn đề hay giáo án đầu tiên, Xuất một bản PDF), mục **Gợi ý cho thầy cô** (bấm để điền vào ô soạn, chưa gửi gì) và mục **Làm tiếp** liệt kê các dự án gần đây.
+
+<Figure src="/images/product/assistant-home.webp" width={1600} height={1000} alt="Trang chủ EduFlow sau tin nhắn đầu tiên: cuộc trò chuyện với Trợ lý EduFlow ở bên trái, khung xem trước chưa lưu ở bên phải" caption="Sau tin đầu tiên, cuộc trò chuyện mở rộng ra, còn bên phải là khung xem trước những gì sẽ tạo." />
+
+Khi trợ lý đề xuất một thiết lập, bên phải hiện khung **XEM TRƯỚC · CHƯA LƯU** và dòng "Chưa tạo gì cho tới khi thầy cô bấm". Trợ lý chỉ gợi ý, thầy cô soát lại rồi mới tạo. Mất mạng thì trợ lý không trả lời được, nhưng lệnh chạy tại máy vẫn dùng: gõ `/` để chọn.
+
+## Màn làm việc và panel trợ lý bên phải
+
+Ở mọi màn làm việc, trợ lý nằm ở panel bên phải với tên **Trợ lý EduFlow** và dòng "Biết thầy cô đang xem gì". Trợ lý nhận kèm ngữ cảnh của màn đang mở, hiện thành các chip ở đầu panel, và chỉ gửi bản tóm tắt có cấu trúc, không gửi tệp gốc. Các nút ở đầu panel:
+
+- **Cuộc trò chuyện mới** và **Lịch sử trò chuyện**.
+- **Mở rộng toàn màn** (sau đó là **Thu về panel**) để trò chuyện rộng hơn.
+- **Thu gọn panel** thu panel thành một dải mỏng; bấm **Mở trợ lý** để mở lại.
+
+Muốn panel mở sẵn mỗi khi khởi động, hoặc tắt việc tự đính ngữ cảnh màn, vào **Cài đặt**, thẻ **Trợ lý AI**.
+
+## Tác vụ AI và chi phí
+
+Sinh đề, giáo án hay slide là tác vụ AI. Ở bước thiết lập, app hiện hộp **Ước tính chi phí** trước khi chạy; bấm **Chạy** để bắt đầu hoặc **Huỷ** để dừng, tiền chỉ tính khi chạy. Khi tác vụ đang chạy, thanh trạng thái dưới các tab bước cho biết tiến độ và có nút **Huỷ**; nếu đơn vị có nhiều lời gọi AI cùng lúc, app tự chạy tiếp sau ít giây.
+
+Việc chạy tại máy như chạy cổng, trộn mã đề, biên dịch và đọc tài liệu có nhãn **Tại máy · 0 ₫**. Trang **Sử dụng và chi phí** cho xem tổng tiền trong tháng, **Ngân sách tháng** (kèm chế độ cảnh báo hoặc chặn), số token theo bốn lớp, chi phí **Theo skill** và **Theo thiết bị**. Số tiền do máy chủ chốt theo bảng giá lúc ghi sổ; app chỉ hiển thị.
+
+## Cài đặt
+
+**Cài đặt** gồm các thẻ:
+
+- **Key và thiết bị**: đơn vị, loại key, trạng thái, hạn dùng, nút **Kiểm tra lại** và **Nhập key khác**.
+- **Hồ sơ làm việc**: đổi cấp đã chọn và **Xem lại hướng dẫn**.
+- **Trợ lý AI**: mở panel khi khởi động, tự đính ngữ cảnh màn, thời gian giữ lịch sử tại máy (30 ngày, 90 ngày hoặc không giới hạn), xoá lịch sử và phím tắt mở trợ lý.
+- **Riêng tư**: Tắt AI theo từng dự án; dự án đã tắt AI thì không nội dung nào của dự án rời khỏi máy.
+- **Đăng xuất và xoá kho trên máy này**, chỉ dùng khi thật sự muốn xoá dữ liệu trên máy.
+
+Ngân sách tháng gắn với key và do quản trị đặt, không đặt trong app; thầy cô xem mức đã dùng ở trang Sử dụng và chi phí.

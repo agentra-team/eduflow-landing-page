@@ -11,6 +11,8 @@ export const PAGES: Array<[string, 'vi' | 'en']> = [
   ['/huong-dan', 'vi'], ['/en/docs', 'en'],
   ['/huong-dan/cai-dat-macos', 'vi'], ['/huong-dan/cai-dat-windows', 'vi'],
   ['/en/docs/install-macos', 'en'], ['/en/docs/install-windows', 'en'],
+  ['/huong-dan/kich-hoat-va-dung-thu', 'vi'], ['/huong-dan/lam-quen-giao-dien', 'vi'],
+  ['/en/docs/activation-and-trial', 'en'], ['/en/docs/interface-tour', 'en'],
   ['/lien-he', 'vi'], ['/en/contact', 'en'],
   ['/chinh-sach-bao-mat', 'vi'], ['/en/privacy', 'en'],
 ]
