@@ -12,9 +12,9 @@ import { TrustGrid } from '@/components/home/TrustGrid'
 import { JsonLd } from '@/components/seo/JsonLd'
 import type { Locale } from '@/i18n/routing'
 import { getReleases, latestRelease } from '@/lib/releases'
-import { faqPage, softwareApplication } from '@/lib/seo/jsonld'
+import { faqPage, softwareApplication, webPage } from '@/lib/seo/jsonld'
 import { buildMetadata } from '@/lib/seo/metadata'
-import { staticSeo } from '@/lib/seo/pages'
+import { finalTitle, staticSeo } from '@/lib/seo/pages'
 import { absoluteUrl } from '@/lib/seo/urls'
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -26,6 +26,7 @@ export default async function HomePage() {
   const locale = (await getLocale()) as Locale
   const [{ assets }, t] = await Promise.all([getReleases(), getTranslations('home.faq')])
   const latest = latestRelease(assets)
+  const seo = staticSeo(locale, '/')
   return (
     <main id="main" className="flex-1">
       <Hero assets={assets} />
@@ -37,7 +38,8 @@ export default async function HomePage() {
       <DownloadBlock assets={assets} locale={locale} latest={latest} />
       <FaqSection />
       <FinalCta />
-      <JsonLd data={softwareApplication(assets, locale, absoluteUrl(locale, '/download'))} />
+      <JsonLd data={webPage({ url: absoluteUrl(locale, '/'), name: finalTitle(seo), description: seo.description, locale })} />
+      <JsonLd data={softwareApplication(assets, locale)} />
       <JsonLd data={faqPage(FAQ_KEYS.map((k) => ({ q: t(`${k}.q`), a: t(`${k}.a`) })))} />
     </main>
   )

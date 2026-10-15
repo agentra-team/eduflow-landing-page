@@ -17,8 +17,10 @@ for (const [path, lang] of PAGES) {
     expect(await page.locator('link[rel="alternate"][hreflang]').count()).toBeGreaterThanOrEqual(3)
     await expect(page.locator('meta[property="og:image"]')).toHaveCount(1)
     const ld = (await page.locator('script[type="application/ld+json"]').allTextContents()).map((s) => JSON.parse(s))
-    // Spec §9: Organization trên mọi trang, đúng một khối (Ruling 35).
-    expect(ld.filter((d) => d['@type'] === 'Organization')).toHaveLength(1)
+    // Spec §9.1: một Organization và một WebSite trên mọi trang, nối bằng @id ổn định.
+    expect(ld.filter((d) => d['@type'] === 'Organization').map((d) => d['@id'])).toEqual(['https://agentra.io.vn/#organization'])
+    expect(ld.filter((d) => d['@type'] === 'WebSite')).toHaveLength(1)
+    expect(ld.filter((d) => d['@type'] === 'HowTo')).toEqual([])
     await expect(page.locator('main#main')).toHaveCount(1)
     // Spec §13: không trang nào chứa ký tự gạch ngang dài (U+2014). Dựng ký tự bằng mã để tệp test không chứa nó.
     expect(await page.content()).not.toContain(String.fromCharCode(0x2014))

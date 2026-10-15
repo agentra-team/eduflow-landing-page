@@ -14,7 +14,7 @@ import { routing, type Locale } from '@/i18n/routing'
 import { formatDate } from '@/lib/format'
 import { findAsset, getReleases } from '@/lib/releases'
 import { hasAssetFor } from '@/lib/releases/state'
-import { breadcrumb, howTo } from '@/lib/seo/jsonld'
+import { breadcrumb } from '@/lib/seo/jsonld'
 import { buildMetadata } from '@/lib/seo/metadata'
 import { absoluteUrl } from '@/lib/seo/urls'
 
@@ -111,7 +111,6 @@ export default async function GuidePage({ params }: { params: Params }) {
         </Container>
       </section>
       <JsonLd data={breadcrumb(crumbs)} />
-      <JsonLd data={howTo({ name: meta.title, description: meta.description ?? meta.title, steps: toc.map((s) => ({ name: s.label, text: s.label })) })} />
     </main>
   )
 }
