@@ -82,12 +82,12 @@ export const DOCS: Record<DocId, DocEntry> = {
     updatedAt: '2026-10-15',
     vi: {
       title: 'Làm quen giao diện',
-      description: 'Các vùng của EduFlow: thanh bên, trang chủ có ô trò chuyện, màn làm việc với panel trợ lý, hàng chờ tác vụ và Cài đặt; cách chọn hồ sơ làm việc lần đầu.',
+      description: 'Các vùng của EduFlow: thanh bên, trang chủ có ô trò chuyện, màn làm việc với panel trợ lý, tác vụ AI kèm chi phí và Cài đặt; cách chọn hồ sơ làm việc lần đầu.',
       keyword: 'giao diện EduFlow',
     },
     en: {
       title: 'A tour of the interface',
-      description: 'The parts of EduFlow: the sidebar, the home screen with its chat box, work screens with the assistant panel, the job queue and Settings, and your first profile.',
+      description: 'The parts of EduFlow: sidebar, home screen with its chat box, work screens with the assistant panel, AI jobs and cost, Settings, and your first profile.',
       keyword: 'EduFlow interface',
     },
   },
