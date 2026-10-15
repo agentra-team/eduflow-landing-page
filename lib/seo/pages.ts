@@ -1,6 +1,7 @@
 import { DOC_TITLE_SUFFIX, DOCS, docParams } from '@/content/docs'
 import { DOC_IDS, type DocId } from '@/content/docs/slugs'
 import { PRIVACY_META } from '@/content/privacy/meta'
+import { TOPIC_IDS, TOPIC_META, TOPICS, topicPage, type TopicId } from '@/content/topics'
 import type { Locale, PageKey } from '@/i18n/routing'
 import en from '@/messages/en.json'
 import vi from '@/messages/vi.json'
@@ -59,6 +60,18 @@ export function docSeo(locale: Locale, id: DocId): Seo {
   return { title: c.metaTitle ?? c.title, description: c.description, titleSuffix: DOC_TITLE_SUFFIX[locale] }
 }
 
+/** Chữ SEO của một trang chủ đề: từ content/topics. */
+export function topicSeo(locale: Locale, id: TopicId): Seo {
+  const c = TOPICS[locale][id]
+  return { title: c.metaTitle, description: c.description, ...(TOPIC_META[id].absoluteTitle ? { absoluteTitle: true } : {}) }
+}
+
+/** Tên một trang tĩnh để làm anchor text: từ khoá chính, viết hoa chữ đầu (spec §4.2); trang không có từ khoá thì dùng title. */
+export function pageName(locale: Locale, key: StaticPageKey): string {
+  const keyword = (STATIC_PAGES[key] as StaticEntry).keyword?.[locale]
+  return keyword ? keyword.charAt(0).toUpperCase() + keyword.slice(1) : staticSeo(locale, key).title
+}
+
 export type IndexablePage = {
   /** Mã ổn định: khoá trang tĩnh, `topic:<id>` hoặc `doc:<id>`. */
   id: string
@@ -75,6 +88,15 @@ export function indexablePages(): IndexablePage[] {
     const entry: StaticEntry = STATIC_PAGES[key]
     return { id: key, key, seo: both((l) => staticSeo(l, key)), keyword: entry.keyword, ...(entry.updatedAt ? { updatedAt: entry.updatedAt } : {}) }
   })
+  const topics = TOPIC_IDS.map(
+    (id): IndexablePage => ({
+      id: `topic:${id}`,
+      key: topicPage(id),
+      seo: both((l) => topicSeo(l, id)),
+      keyword: both((l) => TOPICS[l][id].keywords[0]),
+      updatedAt: TOPIC_META[id].updatedAt,
+    }),
+  )
   const docs = DOC_IDS.map(
     (id): IndexablePage => ({
       id: `doc:${id}`,
@@ -85,7 +107,7 @@ export function indexablePages(): IndexablePage[] {
       updatedAt: DOCS[id].updatedAt,
     }),
   )
-  return [...statics, ...docs]
+  return [...statics, ...topics, ...docs]
 }
 
 export function pageUrl(p: IndexablePage, locale: Locale): string {

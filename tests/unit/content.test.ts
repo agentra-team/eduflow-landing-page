@@ -2,6 +2,8 @@ import { readdirSync, readFileSync } from 'node:fs'
 import { basename, dirname, extname, join, relative, resolve, sep } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { expect, test } from 'vitest'
+import { DOCS } from '@/content/docs'
+import { TOPICS } from '@/content/topics'
 import en from '@/messages/en.json'
 import vi from '@/messages/vi.json'
 
@@ -64,10 +66,20 @@ const TRAINING_CLAIMS = [
   /\btraining data\b/i,
 ]
 
-// Mọi chữ người xem đọc được: bộ chữ hai ngôn ngữ và các tệp MDX. Mỗi phần tử là [nơi, nội dung].
+// Chữ của trang chủ đề (content/topics) và của sổ bài hướng dẫn (content/docs/index.ts): cũng là chữ người xem đọc, nhưng không nằm
+// trong messages hay MDX nên bộ quét phải đọc thẳng từ module. Khoá có tên mã chủ đề hoặc mã bài để báo lỗi chỉ đúng chỗ.
+const topicTexts = (locale: 'vi' | 'en') => values(TOPICS[locale]).map(([k, v]) => [`topics.${locale}:${k}`, v] as [string, string])
+const docTexts = (locale: 'vi' | 'en') =>
+  Object.entries(DOCS).flatMap(([id, entry]) => values(entry[locale]).map(([k, v]) => [`docs-registry.${locale}:${id}.${k}`, v] as [string, string]))
+
+// Mọi chữ người xem đọc được: bộ chữ hai ngôn ngữ, trang chủ đề, sổ bài hướng dẫn và các tệp MDX. Mỗi phần tử là [nơi, nội dung].
 const copyTexts = (): Array<[string, string]> => [
   ...values(vi).map(([k, v]) => [`vi:${k}`, v] as [string, string]),
   ...values(en).map(([k, v]) => [`en:${k}`, v] as [string, string]),
+  ...topicTexts('vi'),
+  ...topicTexts('en'),
+  ...docTexts('vi'),
+  ...docTexts('en'),
   ...mdxFiles().map((f) => [rel(f), readFileSync(f, 'utf8')] as [string, string]),
 ]
 
@@ -172,6 +184,8 @@ test('English copy carries no untranslated Vietnamese', () => {
   const guides: Array<[string, string]> = mdx.map((f) => [rel(f), readFileSync(f, 'utf8')])
   const offenders = [
     ...values(en).filter(([, text]) => VIETNAMESE.test(clean(text, WATERMARK))),
+    ...topicTexts('en').filter(([, text]) => VIETNAMESE.test(clean(text, WATERMARK))),
+    ...docTexts('en').filter(([, text]) => VIETNAMESE.test(clean(stripUi(text), WATERMARK))),
     ...guides.filter(([, text]) => VIETNAMESE.test(clean(stripUi(text), WATERMARK))),
   ].map(([where]) => where)
   expect(offenders).toEqual([])

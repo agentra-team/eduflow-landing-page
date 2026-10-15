@@ -3,11 +3,12 @@ import { dirname, join, relative, resolve, sep } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { expect, test } from 'vitest'
 import { DOC_GROUPS, DOC_TITLE_SUFFIX, DOCS, docsByGroup, docsInOrder, QUICK_START } from '@/content/docs'
+import { TOPIC_IDS } from '@/content/topics'
 import { DOC_IDS, DOC_SLUGS, docHref, docIdFromSlug, docParams, findDocSlug } from '@/content/docs/slugs'
 import { extractToc, scanDocLines, slugifyHeading } from '@/lib/docs/toc'
 import { checkDocBody, todayInVietnam, validateDocs } from '@/lib/docs/validate'
 
-const base = { slugs: DOC_SLUGS, groups: DOC_GROUPS, suffix: DOC_TITLE_SUFFIX, today: '2026-10-15' }
+const base = { slugs: DOC_SLUGS, groups: DOC_GROUPS, suffix: DOC_TITLE_SUFFIX, topics: TOPIC_IDS, today: '2026-10-15' }
 const copy = (title: string) => ({ title, description: 'd'.repeat(120), keyword: 'k' })
 const entry = (over: Record<string, unknown> = {}) => ({ group: 'start', order: 1, updatedAt: '2026-10-01', vi: copy('Bài'), en: copy('Article'), ...over })
 
@@ -141,4 +142,11 @@ test('no client component reaches the docs registry', () => {
     }
   }
   expect([...via.entries()].filter(([f]) => rel(f) === 'content/docs/index.ts').map(([, path]) => path)).toEqual([])
+})
+
+test('a guide may point to a topic page only if that page exists', () => {
+  const slugs = { a: { vi: 'bai-a', en: 'article-a' } }
+  const errs = validateDocs({ ...base, slugs, topics: ['test-generator'], docs: { a: entry({ topic: 'khong-co' }) } }).join('\n')
+  expect(errs).toMatch(/content\/docs\/index\.ts \(a\): topic "khong-co" không phải trang chủ đề có thật/)
+  expect(validateDocs({ ...base, slugs, topics: ['test-generator'], docs: { a: entry({ topic: 'test-generator' }) } })).toEqual([])
 })

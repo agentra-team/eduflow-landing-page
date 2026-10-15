@@ -12,6 +12,7 @@ import { Container } from '@/components/ui/Container'
 import { Icon } from '@/components/ui/Icon'
 import { assertDocsValid, DOC_SOURCES, docParams, DOCS } from '@/content/docs'
 import { DOC_IDS, DOC_SLUGS, docIdFromSlug } from '@/content/docs/slugs'
+import { topicCopy, topicPage } from '@/content/topics'
 import { Link } from '@/i18n/navigation'
 import { routing, type Locale } from '@/i18n/routing'
 import { extractToc } from '@/lib/docs/toc'
@@ -80,6 +81,15 @@ export default async function DocPage({ params }: { params: Params }) {
           <div className="flex flex-col gap-8 md:gap-10">
             <Body />
           </div>
+          {doc.topic ? (
+            <aside className="flex flex-col gap-1.5 rounded-card border border-line bg-card p-5">
+              <span className="text-[12.5px] font-bold tracking-[0.5px] text-muted uppercase">{t('readMore')}</span>
+              <Link href={topicPage(doc.topic)} className="font-semibold text-accent-strong underline underline-offset-2 hover:text-ink">
+                {topicCopy(locale, doc.topic).name}
+              </Link>
+              <span className="text-[14.5px] text-ink2">{topicCopy(locale, doc.topic).card}</span>
+            </aside>
+          ) : null}
           <DocsPager current={id} />
           <DocHelp />
         </article>

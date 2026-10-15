@@ -126,6 +126,7 @@ app/[locale]/assistant/page.tsx         # /tro-ly-ai
 app/[locale]/pricing/page.tsx           # /cach-tinh-phi
 app/[locale]/ai-transparency/page.tsx   # /minh-bach-ai
 app/[locale]/download/page.tsx          # /tai-ve
+app/[locale]/test-generator/page.tsx    # /ai-tao-de-kiem-tra-theo-ma-tran (trang chủ đề; opengraph-image.tsx riêng)
 app/[locale]/docs/page.tsx              # /huong-dan, /en/docs
 app/[locale]/docs/[slug]/page.tsx       # /huong-dan/<slug>, /en/docs/<slug>
 app/[locale]/contact/page.tsx           # /lien-he
@@ -139,6 +140,7 @@ global.d.ts  mdx-components.tsx  types/mdx.d.ts
 messages/{vi,en}.json                   # chuỗi giao diện; hai tệp phải cùng tập khoá
 content/releases.json                   # snapshot feed phát hành
 content/docs/{index.ts,slugs.ts,vi/*.mdx,en/*.mdx}   # trung tâm hướng dẫn: sổ bài, slug và bài MDX hai ngôn ngữ
+content/topics/{index.ts,vi.ts,en.ts}          # trang chủ đề: mã, kiểu TopicCopy, nội dung hai ngôn ngữ
 content/privacy/{index.ts,vi.mdx,en.mdx}       # chính sách bảo mật
 lib/site.ts                             # thông tin công ty, siteUrl(), feedUrl()
 lib/env.ts                              # chặn build production thiếu domain thật
@@ -153,6 +155,7 @@ components/home/      # Hero, HeroCta, LevelCards, AssistantShowcase, PipelineSt
 components/level/     # LevelPage và cấu hình ba cấp
 components/download/  # PlatformCard, PlatformGrid, DownloadLink, ChecksumField, SystemRequirements, PrelaunchNotice
 components/guide/     # Step, CodeBlock (dùng trong MDX)
+components/topic/     # TopicPage (khung trang chủ đề)
 components/docs/      # DocsNav, DocsToc, DocsPager, DocHelp, Ui, Figure
 scripts/sync-releases.mjs  capture-product-images.mjs  serve-fixtures.mjs
 public/images/product/*.webp            # ảnh sản phẩm chụp từ canvas app
@@ -185,6 +188,14 @@ Luật nội dung (spec mục 15): không hứa kết quả kiểm định hay x
 3. Viết `content/docs/vi/<slug>.mdx` và `content/docs/en/<slug>.mdx`: tiêu đề từ `##`, chữ trơn; bước dùng `<Steps>`, `<Step n id title>`; ảnh dùng `<Figure>`; nhãn nút của app trong bài tiếng Anh bọc `<Ui>`. Mọi tên nút và đường đi màn đối chiếu với `main` của repo app.
 4. Thêm hai dòng import vào `DOC_SOURCES`, hai đường dẫn vào `tests/e2e/pages.ts`, và tăng `MDX_TOTAL` (thêm 2), `MDX_ENGLISH` (thêm 1) ở `tests/unit/content.test.ts`.
 5. `pnpm verify`. Build dừng khi sổ sai và báo tên tệp, tên trường.
+
+### Thêm một trang chủ đề
+
+1. Chọn từ khoá chính chưa trang nào dùng (bản đồ ở đầu `lib/seo/brand.ts`); slug tiếng Việt là từ khoá đó.
+2. Thêm khoá vào `routing.pathnames` (`i18n/routing.ts`) và mã vào `TOPIC_IDS`, `TOPIC_META` (`content/topics/index.ts`).
+3. Viết nội dung hai ngôn ngữ ở `content/topics/vi.ts`, `content/topics/en.ts` theo kiểu `TopicCopy`: H1 và ô Tóm tắt chứa từ khoá chính; bảng so sánh có ngày kiểm tra; mục "EduFlow chưa làm gì"; đúng 5 câu hỏi đáp; tiếng Việt 1.200 tới 1.800 chữ. Mọi câu về app phải đối chiếu với `main` của repo app; luật nội dung quét cả hai tệp này.
+4. Tạo `app/[locale]/<mã>/page.tsx` và `opengraph-image.tsx` (chép từ `app/[locale]/test-generator/`), thêm hai đường dẫn vào `tests/e2e/pages.ts`.
+5. `pnpm verify` rồi lệnh SEO-AUDIT ở README.
 
 ## Biến môi trường
 

@@ -846,5 +846,18 @@
       "btn": "Send email",
       "subject": "EduFlow support"
     }
+  },
+  "topics": {
+    "breadcrumb": "Location in the site",
+    "inShort": "In short",
+    "updated": "Updated {date}",
+    "checked": "Table checked on {date}.",
+    "readGuide": "Read the guide",
+    "relatedH2": "Related topics",
+    "pillar": "Part of",
+    "faqEyebrow": "FAQ",
+    "faqH2": "Frequently asked questions",
+    "ctaH2": "Try EduFlow on a real piece of your own preparation work",
+    "ctaSub": "Download the app and start a trial from the first screen, or contact Agentra for a quote for your school."
   }
 }

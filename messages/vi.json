@@ -846,5 +846,18 @@
       "btn": "Gửi email",
       "subject": "Hỗ trợ EduFlow"
     }
+  },
+  "topics": {
+    "breadcrumb": "Vị trí trong trang",
+    "inShort": "Tóm tắt",
+    "updated": "Cập nhật {date}",
+    "checked": "Bảng được kiểm tra ngày {date}.",
+    "readGuide": "Đọc hướng dẫn",
+    "relatedH2": "Chủ đề liên quan",
+    "pillar": "Thuộc nhóm",
+    "faqEyebrow": "Hỏi đáp",
+    "faqH2": "Câu hỏi thường gặp",
+    "ctaH2": "Thử EduFlow với một việc soạn thật của thầy cô",
+    "ctaSub": "Tải app và bấm Dùng thử ở màn đầu, hoặc liên hệ Agentra để nhận báo giá cho trường."
   }
 }

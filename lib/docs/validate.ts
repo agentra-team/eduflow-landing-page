@@ -5,7 +5,7 @@ const SLUG = /^[a-z0-9]+(?:-[a-z0-9]+)*$/
 const LOCALES: Locale[] = ['vi', 'en']
 
 type CopyLike = { title: string; metaTitle?: string; description: string; keyword: string }
-type DocEntryLike = { group: string; order: number; updatedAt: string; vi: CopyLike; en: CopyLike }
+type DocEntryLike = { group: string; order: number; updatedAt: string; topic?: string; vi: CopyLike; en: CopyLike }
 
 /** Hôm nay theo giờ Việt Nam, YYYY-MM-DD. Build trên CI chạy theo UTC, còn ngày ghi trong bài là ngày Việt Nam. */
 export function todayInVietnam(now: Date = new Date()): string {
@@ -25,6 +25,8 @@ export function validateDocs(input: {
   slugs: Record<string, Record<Locale, string>>
   groups: readonly string[]
   suffix: Record<Locale, string>
+  /** Mã các trang chủ đề có thật (content/topics): trường `topic` của bài phải thuộc danh sách này. */
+  topics: readonly string[]
   today: string
 }): string[] {
   const errors: string[] = []
@@ -38,6 +40,7 @@ export function validateDocs(input: {
     const clash = seenOrder.get(orderKey)
     if (clash) errors.push(`${where}: order ${entry.order} trùng với ${clash} trong nhóm ${entry.group}`)
     else seenOrder.set(orderKey, id)
+    if (entry.topic !== undefined && !input.topics.includes(entry.topic)) errors.push(`${where}: topic "${entry.topic}" không phải trang chủ đề có thật`)
     if (!isRealDate(entry.updatedAt)) errors.push(`${where}: updatedAt "${entry.updatedAt}" không phải ngày YYYY-MM-DD có thật`)
     else if (entry.updatedAt > input.today) errors.push(`${where}: updatedAt ${entry.updatedAt} ở tương lai (hôm nay ${input.today})`)
     for (const locale of LOCALES) {

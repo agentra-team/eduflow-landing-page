@@ -2,6 +2,7 @@ import { afterEach, beforeEach, expect, test, vi } from 'vitest'
 import sitemap from '@/app/sitemap'
 import { DOCS } from '@/content/docs'
 import { DOC_IDS, DOC_SLUGS } from '@/content/docs/slugs'
+import { TOPIC_IDS, TOPIC_META, topicPage } from '@/content/topics'
 import { indexablePages, pageUrl } from '@/lib/seo/pages'
 import { absoluteUrl } from '@/lib/seo/urls'
 
@@ -43,7 +44,10 @@ const docDates = () =>
       (['vi', 'en'] as const).map((l) => [absoluteUrl(l, '/docs/[slug]', { slug: DOC_SLUGS[id][l] }), new Date(`${DOCS[id].updatedAt}T00:00:00+07:00`)]),
     ),
   )
-const datedContent = () => ({ ...Object.fromEntries(PRIVACY_URLS.map((u) => [u, PRIVACY_LASTMOD])), ...docDates() })
+// Trang chủ đề mang ngày cập nhật của TOPIC_META, cũng là nửa đêm giờ Việt Nam.
+const topicDates = () =>
+  Object.fromEntries(TOPIC_IDS.flatMap((id) => (['vi', 'en'] as const).map((l) => [absoluteUrl(l, topicPage(id)), new Date(`${TOPIC_META[id].updatedAt}T00:00:00+07:00`)])))
+const datedContent = () => ({ ...Object.fromEntries(PRIVACY_URLS.map((u) => [u, PRIVACY_LASTMOD])), ...topicDates(), ...docDates() })
 
 beforeEach(() => {
   vi.stubEnv('DOWNLOAD_FEED_URL', 'https://feed.example.test/desktop')
@@ -56,8 +60,9 @@ afterEach(() => {
   vi.useRealTimers()
 })
 
-test('the registry marks exactly the privacy pages and the docs articles as dated content', () => {
-  expect(datedUrls()).toEqual([...PRIVACY_URLS, ...Object.keys(docDates())].sort())
+test('the registry marks exactly the privacy pages, the topic pages and the docs articles as dated content', () => {
+  expect(datedUrls()).toEqual([...PRIVACY_URLS, ...Object.keys(topicDates()), ...Object.keys(docDates())].sort())
+  expect(Object.keys(topicDates())).toHaveLength(TOPIC_IDS.length * 2)
   expect(Object.keys(docDates())).toHaveLength(DOC_IDS.length * 2)
 })
 

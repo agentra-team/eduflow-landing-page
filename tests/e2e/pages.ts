@@ -4,6 +4,7 @@ export const PAGES: Array<[string, 'vi' | 'en']> = [
   ['/ai-cho-giao-vien', 'vi'], ['/en/ai-for-teachers', 'en'],
   ['/ai-cho-giang-vien', 'vi'], ['/en/ai-for-lecturers', 'en'],
   ['/ra-soat-chuong-trinh-dao-tao', 'vi'], ['/en/curriculum-review', 'en'],
+  ['/ai-tao-de-kiem-tra-theo-ma-tran', 'vi'], ['/en/ai-test-generator', 'en'],
   ['/tro-ly-ai', 'vi'], ['/en/ai-assistant', 'en'],
   ['/cach-tinh-phi', 'vi'], ['/en/pricing', 'en'],
   ['/minh-bach-ai', 'vi'], ['/en/ai-transparency', 'en'],

@@ -2,6 +2,8 @@ import { readFile } from 'node:fs/promises'
 import { join } from 'node:path'
 import { ImageResponse } from 'next/og'
 import { LogoMark } from '@/components/ui/Logo'
+import { topicCopy, type TopicId } from '@/content/topics'
+import type { Locale } from '@/i18n/routing'
 import { site } from '@/lib/site'
 
 export const OG_SIZE = { width: 1200, height: 630 }
@@ -64,4 +66,10 @@ export async function ogImage({ title, subtitle, badge }: { title: string; subti
     ),
     { ...OG_SIZE, fonts: await fonts() },
   )
+}
+
+/** Ảnh chia sẻ riêng của trang chủ đề (spec §7.2). */
+export function topicOgImage(locale: Locale, id: TopicId) {
+  const { share } = topicCopy(locale, id)
+  return ogImage({ title: share.title, subtitle: share.subtitle })
 }

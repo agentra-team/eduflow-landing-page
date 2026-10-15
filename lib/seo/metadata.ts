@@ -1,17 +1,18 @@
 import type { Metadata } from 'next'
 import type { Locale, PageKey } from '@/i18n/routing'
 import { DOC_SLUGS, type DocId } from '@/content/docs/slugs'
+import { isTopicPage } from '@/content/topics'
 import { site } from '@/lib/site'
 import type { Seo } from './pages'
 import { absoluteUrl } from './urls'
 
-/** Trang có ảnh chia sẻ riêng theo file convention `opengraph-image.tsx` trong thư mục của trang; còn lại dùng ảnh của trang chủ. */
+/** Trang có ảnh chia sẻ riêng theo file convention `opengraph-image.tsx` trong thư mục của trang: Tải về và các trang chủ đề; còn lại dùng ảnh của trang chủ. */
 const OWN_OG_IMAGE = new Set<PageKey>(['/download'])
 
 /** URL tuyệt đối của ảnh chia sẻ 1200×630 theo file convention: đường dẫn theo khoá nội bộ, không tiền tố với vi, /en với en. */
 export function ogImageUrl(locale: Locale, page: PageKey): string {
   const prefix = locale === 'vi' ? '' : `/${locale}`
-  return `${site.siteUrl()}${prefix}${OWN_OG_IMAGE.has(page) ? page : ''}/opengraph-image`
+  return `${site.siteUrl()}${prefix}${OWN_OG_IMAGE.has(page) || isTopicPage(page) ? page : ''}/opengraph-image`
 }
 
 /** Ảnh chia sẻ của một bài hướng dẫn (app/og/docs/[slug]/route.tsx). */

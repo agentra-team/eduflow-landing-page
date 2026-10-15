@@ -1,5 +1,6 @@
 import type { ComponentType } from 'react'
 import type { Locale } from '@/i18n/routing'
+import { TOPIC_IDS, type TopicId } from '@/content/topics'
 import { todayInVietnam, validateDocs } from '@/lib/docs/validate'
 import { DOC_IDS, DOC_SLUGS, type DocId } from './slugs'
 
@@ -26,7 +27,15 @@ export type DocCopy = {
   keyword: string
 }
 
-export type DocEntry = { group: DocGroup; order: number; updatedAt: string; vi: DocCopy; en: DocCopy }
+export type DocEntry = {
+  group: DocGroup
+  order: number
+  updatedAt: string
+  /** Mã trang chủ đề tương ứng (khối "Đọc thêm"), hoặc bỏ trống. */
+  topic?: TopicId
+  vi: DocCopy
+  en: DocCopy
+}
 
 export const DOC_TITLE_SUFFIX: Record<Locale, string> = { vi: ' · Hướng dẫn EduFlow', en: ' · EduFlow Docs' }
 
@@ -95,6 +104,7 @@ export const DOCS: Record<DocId, DocEntry> = {
     group: 'k12',
     order: 1,
     updatedAt: '2026-10-15',
+    topic: 'test-generator',
     vi: {
       title: 'Soạn đề kiểm tra theo ma trận',
       description: 'Từng bước soạn một đề kiểm tra trên EduFlow: thiết lập môn và thời lượng, lập ma trận bốn mức, để AI viết câu, xem cổng chất lượng rồi duyệt.',
@@ -110,6 +120,7 @@ export const DOCS: Record<DocId, DocEntry> = {
     group: 'k12',
     order: 2,
     updatedAt: '2026-10-15',
+    topic: 'test-generator',
     vi: {
       title: 'Xuất đề với nhiều mã đề',
       description: 'Chọn số mã đề tối đa 24, bật hoặc tắt xáo trộn câu và đáp án, xem các phép kiểm tra rồi xuất DOCX hoặc PDF; đáp án và hướng dẫn chấm nằm ở tệp riêng.',
@@ -268,6 +279,6 @@ export const DOC_SOURCES: Record<Locale, Record<DocId, () => Promise<MdxBody>>> 
 
 /** Dừng build khi sổ sai; thông báo nêu từng tệp và trường. */
 export function assertDocsValid(today: string = todayInVietnam()): void {
-  const errors = validateDocs({ docs: DOCS, slugs: DOC_SLUGS, groups: DOC_GROUPS, suffix: DOC_TITLE_SUFFIX, today })
+  const errors = validateDocs({ docs: DOCS, slugs: DOC_SLUGS, groups: DOC_GROUPS, suffix: DOC_TITLE_SUFFIX, topics: TOPIC_IDS, today })
   if (errors.length) throw new Error(`Sổ bài hướng dẫn sai:\n${errors.join('\n')}`)
 }
