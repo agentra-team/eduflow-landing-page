@@ -56,8 +56,8 @@
   },
   "home": {
     "meta": {
-      "title": "EduFlow · Soạn đề, giáo án, đề cương cùng trợ lý AI",
-      "description": "App desktop cho macOS và Windows: soạn đề kiểm tra, giáo án, đề cương học phần, rà soát chương trình đào tạo, có trợ lý AI và dữ liệu nằm ở máy thầy cô."
+      "title": "EduFlow · Phần mềm AI cho giáo viên soạn đề, giáo án",
+      "description": "EduFlow là phần mềm AI cho giáo viên và giảng viên: soạn đề kiểm tra theo ma trận, giáo án, slide, đề cương học phần, có trợ lý AI và người duyệt."
     },
     "hero": {
       "eyebrow": "App desktop cho macOS và Windows",
@@ -246,8 +246,8 @@
         "link": "Xem cấp Phổ thông"
       },
       "meta": {
-        "title": "Cấp Phổ thông: đề kiểm tra, giáo án, slide",
-        "description": "Soạn đề kiểm tra theo ma trận bốn mức với nhiều mã đề, giáo án CV5512 và slide có quiz; 12 cổng chất lượng; thầy cô duyệt và ký trước khi xuất bản."
+        "title": "AI cho giáo viên phổ thông: đề kiểm tra, giáo án",
+        "description": "AI cho giáo viên phổ thông: soạn đề kiểm tra theo ma trận, trộn nhiều mã đề, giáo án 5512 và slide có quiz; máy kiểm cổng chất lượng, thầy cô duyệt và ký."
       },
       "hero": {
         "eyebrow": "Cấp Phổ thông",
@@ -325,8 +325,8 @@
         "link": "Xem cấp Học phần"
       },
       "meta": {
-        "title": "Cấp Học phần: CLO, kế hoạch tuần, đề cương",
-        "description": "Từ bài giảng tới CLO, kế hoạch tuần, giáo án buổi, slide, đánh giá và đề cương 10 mục; kiểm 12 cổng G1..G12; trưởng bộ môn ký duyệt qua gói đã ký."
+        "title": "AI cho giảng viên: CLO, kế hoạch tuần, đề cương",
+        "description": "AI cho giảng viên đại học: từ bài giảng tới chuẩn đầu ra học phần (CLO), kế hoạch tuần, giáo án buổi, đánh giá và đề cương, có cổng kiểm và chữ ký duyệt."
       },
       "hero": {
         "eyebrow": "Cấp Học phần đại học",
@@ -404,8 +404,8 @@
         "link": "Xem cấp Chương trình"
       },
       "meta": {
-        "title": "Cấp Chương trình: bản sao số, rà soát ba tầng",
-        "description": "Dựng bản sao số của chương trình đào tạo, rà hiệu lực pháp lý tại ngày xét, bảy phép kiểm curriculum map, lớp phủ tiêu chí và kịch bản “nếu” trước khi sửa."
+        "title": "Rà soát chương trình đào tạo tại một ngày xét",
+        "description": "Rà soát chương trình đào tạo trên bản sao số: ma trận chuẩn đầu ra, curriculum map, hiệu lực văn bản tại ngày xét và kịch bản “nếu” trước khi sửa."
       },
       "hero": {
         "eyebrow": "Cấp Chương trình đào tạo",
@@ -477,8 +477,8 @@
   },
   "assistant": {
     "meta": {
-      "title": "Trợ lý AI trong ứng dụng",
-      "description": "Trợ lý AI luôn có mặt trong EduFlow: hiểu màn đang mở, trả lời theo ba tầng kết luận, đưa thẻ hành động, đề xuất sửa vào bản nháp và không ký thay người."
+      "title": "Trợ lý AI cho giáo viên ngay trong ứng dụng",
+      "description": "Trợ lý AI cho giáo viên luôn có mặt trong EduFlow: hiểu màn đang mở, trả lời theo ba tầng kết luận, đề xuất sửa vào bản nháp và không ký thay thầy cô."
     },
     "hero": {
       "eyebrow": "Trợ lý AI",
@@ -573,8 +573,8 @@
   },
   "pricing": {
     "meta": {
-      "title": "Cách tính phí",
-      "description": "EduFlow tính theo token AI đã dùng, ngân sách tháng theo key, chi phí hiện trước khi chạy; phần chạy tại máy không tốn tiền. Liên hệ Agentra để nhận báo giá."
+      "title": "Chi phí EduFlow: tính phí theo token AI đã dùng",
+      "description": "Chi phí EduFlow tính theo token AI đã dùng, có ngân sách tháng theo key và hiện trước khi chạy; phần chạy tại máy không tốn tiền. Liên hệ Agentra để báo giá."
     },
     "hero": {
       "eyebrow": "Cách tính phí",
@@ -658,8 +658,8 @@
   },
   "transparency": {
     "meta": {
-      "title": "Minh bạch AI và dữ liệu",
-      "description": "EduFlow dùng AI ở đâu, gửi dữ liệu gì, dữ liệu nào ở lại máy thầy cô, máy chủ ghi gì, cùng các nguyên tắc máy đề xuất, người quyết định và ba tầng kết luận."
+      "title": "Minh bạch AI và dữ liệu của trường",
+      "description": "Minh bạch AI ở EduFlow: AI dùng ở đâu, gửi dữ liệu gì, dữ liệu nào ở lại máy thầy cô, máy chủ ghi gì, và nguyên tắc máy đề xuất, người quyết định."
     },
     "eyebrow": "Minh bạch AI",
     "h1": "Minh bạch AI và dữ liệu",
@@ -700,7 +700,7 @@
   },
   "download": {
     "meta": {
-      "title": "Tải về cho macOS và Windows",
+      "title": "Tải EduFlow cho macOS và Windows",
       "description": "Tải EduFlow cho macOS (Apple Silicon, Intel) và Windows 64-bit, kèm mã SHA-512, yêu cầu hệ thống, hướng dẫn cài đặt và cách nhận bản cập nhật trong app."
     },
     "eyebrow": "Tải về",
@@ -790,7 +790,7 @@
   },
   "contact": {
     "meta": {
-      "title": "Liên hệ Agentra",
+      "title": "Liên hệ Agentra EduFlow: báo giá, key, dùng thử",
       "description": "Liên hệ Agentra để nhận báo giá EduFlow cho trường, xin key kích hoạt, hỏi về dùng thử hoặc báo lỗi; trang có email, địa chỉ và các bước nhận key."
     },
     "eyebrow": "Liên hệ",

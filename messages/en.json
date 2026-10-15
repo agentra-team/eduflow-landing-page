@@ -56,8 +56,8 @@
   },
   "home": {
     "meta": {
-      "title": "EduFlow · Test papers, lesson plans and course syllabi with an AI assistant",
-      "description": "Desktop app for macOS and Windows: test papers, lesson plans, course syllabi and degree program review, with an AI assistant and your data on your computer."
+      "title": "EduFlow · AI software for teachers: tests, lesson plans",
+      "description": "EduFlow is AI software for teachers and lecturers: matrix-based tests, lesson plans, slides and course syllabi, with an AI assistant and human review."
     },
     "hero": {
       "eyebrow": "Desktop app for macOS and Windows",
@@ -246,8 +246,8 @@
         "link": "Explore the K-12 level"
       },
       "meta": {
-        "title": "K-12 level: test papers, lesson plans, slides",
-        "description": "Four-level test blueprints and multiple test versions, Official Letter 5512 (CV5512) lesson plans, quiz slides, 12 quality gates, sign-off before publishing."
+        "title": "AI for teachers: tests, lesson plans, slides",
+        "description": "AI for K-12 teachers: tests built from a blueprint, shuffled test versions, Official Letter 5512 lesson plans and quiz slides, checked by gates, signed by you."
       },
       "hero": {
         "eyebrow": "K-12 level",
@@ -325,8 +325,8 @@
         "link": "Explore the University courses level"
       },
       "meta": {
-        "title": "University courses level: CLOs, weekly plans, course syllabi",
-        "description": "From lectures to CLOs, weekly plans, session plans, slides, assessments and a 10-section course syllabus; 12 gates G1..G12; sign-off by the head of department."
+        "title": "AI for lecturers: CLOs, weekly plans, syllabi",
+        "description": "AI for university lecturers: from lecture materials to course learning outcomes (CLOs), weekly plans, session plans, assessments and a signed course syllabus."
       },
       "hero": {
         "eyebrow": "University courses level",
@@ -404,8 +404,8 @@
         "link": "Explore the Degree program level"
       },
       "meta": {
-        "title": "Degree program level: digital twin, three-tier review",
-        "description": "Build your degree program's digital twin, check legal validity at a review date and run seven curriculum map checks, a criteria overlay and what-if scenarios."
+        "title": "Curriculum review on a digital twin of a program",
+        "description": "Curriculum review on a digital twin of your degree program: learning outcome matrix, curriculum map checks, legal validity at a review date and what-if runs."
       },
       "hero": {
         "eyebrow": "Degree program level",
@@ -477,8 +477,8 @@
   },
   "assistant": {
     "meta": {
-      "title": "The in-app AI assistant",
-      "description": "EduFlow's always-present AI assistant reads the open screen, answers in three tiers, offers action cards, suggests edits to a draft and never signs for you."
+      "title": "AI assistant for teachers, built into the app",
+      "description": "An AI assistant for teachers, always present in EduFlow: it reads the open screen, answers in three tiers, suggests edits to a draft and never signs for you."
     },
     "hero": {
       "eyebrow": "AI assistant",
@@ -573,8 +573,8 @@
   },
   "pricing": {
     "meta": {
-      "title": "How pricing works",
-      "description": "EduFlow charges by the AI tokens used, with a monthly budget per key and costs shown before anything runs; local work is free. Contact Agentra for a quote."
+      "title": "EduFlow pricing: billed by the AI tokens you use",
+      "description": "EduFlow pricing is based on the AI tokens used, with a monthly budget per key and costs shown before anything runs; local work is free. Ask Agentra for a quote."
     },
     "hero": {
       "eyebrow": "Pricing",
@@ -658,8 +658,8 @@
   },
   "transparency": {
     "meta": {
-      "title": "AI and data transparency",
-      "description": "Where EduFlow uses AI, what data it sends, which data never leaves your computer, and the principle that the machine suggests and people decide."
+      "title": "AI and data transparency for schools",
+      "description": "AI transparency at EduFlow: where AI is used, what data it sends, which data stays on your computer, what the server logs, and why people make the decisions."
     },
     "eyebrow": "AI transparency",
     "h1": "AI and data transparency",
@@ -700,7 +700,7 @@
   },
   "download": {
     "meta": {
-      "title": "Download for macOS and Windows",
+      "title": "Download EduFlow for macOS and Windows",
       "description": "Download EduFlow for macOS (Apple Silicon, Intel) and 64-bit Windows, with SHA-512 checksums, system requirements, installation guides and in-app updates."
     },
     "eyebrow": "Download",
@@ -790,7 +790,7 @@
   },
   "contact": {
     "meta": {
-      "title": "Contact Agentra",
+      "title": "Contact Agentra EduFlow: quotes, keys, trials",
       "description": "Contact Agentra for an EduFlow quote for your school, a license key, a trial or a bug report; the page lists the email, the address and how to get a key."
     },
     "eyebrow": "Contact",

@@ -36,10 +36,10 @@ export const STATIC_PAGES = {
   '/university': { meta: (m) => m.levels.university.meta, keyword: { vi: 'AI cho giảng viên', en: 'AI for lecturers' } },
   '/program': { meta: (m) => m.levels.program.meta, keyword: { vi: 'rà soát chương trình đào tạo', en: 'curriculum review' } },
   '/assistant': { meta: (m) => m.assistant.meta, keyword: { vi: 'trợ lý AI cho giáo viên', en: 'AI assistant for teachers' } },
-  '/pricing': { meta: (m) => m.pricing.meta, keyword: { vi: 'chi phí EduFlow', en: 'EduFlow pricing' } },
-  '/download': { meta: (m) => m.download.meta, keyword: { vi: 'tải EduFlow', en: 'download EduFlow' } },
+  '/pricing': { meta: (m) => m.pricing.meta, absoluteTitle: true, keyword: { vi: 'chi phí EduFlow', en: 'EduFlow pricing' } },
+  '/download': { meta: (m) => m.download.meta, absoluteTitle: true, keyword: { vi: 'tải EduFlow', en: 'download EduFlow' } },
   '/ai-transparency': { meta: (m) => m.transparency.meta, keyword: { vi: 'minh bạch AI', en: 'AI and data transparency' } },
-  '/contact': { meta: (m) => m.contact.meta, keyword: { vi: 'liên hệ Agentra EduFlow', en: 'contact Agentra EduFlow' } },
+  '/contact': { meta: (m) => m.contact.meta, absoluteTitle: true, keyword: { vi: 'liên hệ Agentra EduFlow', en: 'contact Agentra EduFlow' } },
   '/privacy': { meta: (_, locale) => PRIVACY_META[locale], keyword: null, updatedAt: PRIVACY_META.vi.updated },
 } satisfies Partial<Record<PageKey, StaticEntry>>
 
