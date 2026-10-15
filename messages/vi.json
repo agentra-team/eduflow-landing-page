@@ -324,14 +324,14 @@
       },
       "meta": {
         "title": "AI cho giáo viên phổ thông: đề kiểm tra, giáo án",
-        "description": "AI cho giáo viên phổ thông: soạn đề kiểm tra theo ma trận, trộn nhiều mã đề, giáo án 5512 và slide có quiz; máy kiểm cổng chất lượng, thầy cô duyệt và ký."
+        "description": "AI cho giáo viên phổ thông: soạn đề kiểm tra theo ma trận, trộn nhiều mã đề, giáo án 5512 và slide có quiz; máy kiểm cổng chất lượng, thầy cô duyệt cảnh báo."
       },
       "hero": {
         "eyebrow": "Cấp Phổ thông",
         "h1": "AI cho giáo viên phổ thông: đề kiểm tra, giáo án và slide cho từng tiết dạy",
         "lead": "Chọn khung chương trình, lập ma trận, để AI điền nội dung rồi tự duyệt từng cảnh báo trước khi xuất bản.",
         "audience": "Cho giáo viên phổ thông, tổ trưởng chuyên môn và Ban giám hiệu.",
-        "note": "Bản xuất mang dấu chìm DÙNG THỬ khi đề chưa được duyệt, còn vi phạm chặn, đang dùng key dùng thử hoặc là hiện vật mẫu."
+        "note": "Bản xuất mang dấu chìm DÙNG THỬ khi đề chưa được duyệt, còn vi phạm chặn, đang dùng key dùng thử, chưa kiểm được loại key của máy này hoặc là hiện vật mẫu."
       },
       "outcomes": {
         "eyebrow": "Làm được gì",
@@ -411,7 +411,7 @@
         },
         "q5": {
           "q": "AI có tự xuất bản đề hay giáo án không?",
-          "a": "Không. Nội dung AI mang nhãn Đề xuất cho tới khi thầy cô bấm Duyệt, cổng chất lượng không có nút bỏ qua, và chỉ người dùng mới duyệt. Ở cấp Phổ thông, Duyệt là bước cuối. Bản xuất mang dấu chìm DÙNG THỬ khi đề chưa duyệt, còn vi phạm chặn, đang dùng key dùng thử hoặc là hiện vật mẫu."
+          "a": "Không. Nội dung AI mang nhãn Đề xuất cho tới khi thầy cô bấm Duyệt, cổng chất lượng không có nút bỏ qua, và chỉ người dùng mới duyệt. Ở cấp Phổ thông, Duyệt là bước cuối. Bản xuất mang dấu chìm DÙNG THỬ khi đề chưa duyệt, còn vi phạm chặn, đang dùng key dùng thử, chưa kiểm được loại key của máy này hoặc là hiện vật mẫu."
         }
       }
     },

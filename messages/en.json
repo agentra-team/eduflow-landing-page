@@ -324,14 +324,14 @@
       },
       "meta": {
         "title": "AI for teachers: test papers, lesson plans, slides",
-        "description": "AI for K-12 teachers: tests built from a blueprint, shuffled test versions, Official Letter 5512 lesson plans and quiz slides, checked by gates, signed by you."
+        "description": "AI for K-12 teachers: tests from a blueprint, shuffled test versions, Official Letter 5512 lesson plans and quiz slides, checked by gates, approved by you."
       },
       "hero": {
         "eyebrow": "K-12 level",
         "h1": "AI for teachers: test papers, lesson plans and slides for every lesson",
         "lead": "Choose the curriculum framework, build the test blueprint, let AI fill in the content, then review each warning yourself before publishing.",
         "audience": "For K-12 teachers, heads of subject groups and school leadership.",
-        "note": "Exports carry the TRIAL (DÙNG THỬ) watermark while the test is not approved, a blocking violation remains, a trial key is in use or the item is a sample."
+        "note": "Exports carry the TRIAL (DÙNG THỬ) watermark while the test is not approved, a blocking violation remains, a trial key is in use, the key type of this computer could not be checked or the item is a sample."
       },
       "outcomes": {
         "eyebrow": "What it does",
@@ -411,7 +411,7 @@
         },
         "q5": {
           "q": "Does AI publish a test or lesson plan on its own?",
-          "a": "No. AI content carries the Suggestion label until you click Approve, quality gates have no skip button, and only people approve. At the K-12 level, Approve is the last step. Exports carry the TRIAL (DÙNG THỬ) watermark while the test is not approved, a blocking violation remains, a trial key is in use or the item is a sample."
+          "a": "No. AI content carries the Suggestion label until you click Approve, quality gates have no skip button, and only people approve. At the K-12 level, Approve is the last step. Exports carry the TRIAL (DÙNG THỬ) watermark while the test is not approved, a blocking violation remains, a trial key is in use, the key type of this computer could not be checked or the item is a sample."
         }
       }
     },
