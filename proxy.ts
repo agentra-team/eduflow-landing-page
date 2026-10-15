@@ -4,5 +4,6 @@ import { routing } from './i18n/routing'
 export default createMiddleware(routing)
 
 export const config = {
-  matcher: '/((?!api|_next|_vercel|.*\\..*).*)',
+  // og/: ảnh chia sẻ của bài hướng dẫn (app/og/docs/[slug]) nằm ngoài [locale], không qua next-intl.
+  matcher: '/((?!api|_next|_vercel|og/|.*\\..*).*)',
 }

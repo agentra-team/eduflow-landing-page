@@ -52,3 +52,13 @@ test('the sitemap lists every indexable page in both languages, with hreflang', 
   const dl = entries.find((e) => e.url.endsWith('/tai-ve'))!
   expect(dl.alternates?.languages).toEqual({ vi: 'https://eduflow.test/tai-ve', en: 'https://eduflow.test/en/download', 'x-default': 'https://eduflow.test/tai-ve' })
 })
+
+test('an article shares its own image at /og/docs/<slug>', async () => {
+  const { docOgImageUrl } = await import('@/lib/seo/metadata')
+  const { DOC_IDS, DOC_SLUGS } = await import('@/content/docs/slugs')
+  expect(docOgImageUrl('vi', 'install-macos')).toBe('https://eduflow.test/og/docs/cai-dat-macos')
+  expect(docOgImageUrl('en', 'install-macos')).toBe('https://eduflow.test/og/docs/install-macos')
+  for (const id of DOC_IDS) {
+    for (const locale of ['vi', 'en'] as const) expect(docOgImageUrl(locale, id)).toBe(`https://eduflow.test/og/docs/${DOC_SLUGS[id][locale]}`)
+  }
+})
