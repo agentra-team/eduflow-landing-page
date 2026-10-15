@@ -12,7 +12,9 @@
 # verify          không secret. /version.json trên domain chính mang đúng version, commit, environment (scripts/release-verify.mjs).
 # github-release  GitHub Release với ghi chú tự sinh, chỉ khi đẩy tag (chạy tay là dựng lại một phiên bản đã có release).
 #
-# gate và verify chạy script của chính commit chứa workflow này; deploy chỉ dựng mã của commit được gắn tag, không chạy script nào.
+# gate và verify chạy script của chính commit chứa workflow này. deploy dựng mã của commit được gắn tag và không gọi script nào
+# trong scripts/, nhưng vẫn chạy mã của repo và của phụ thuộc (pnpm install, vercel build) trong cùng job có token Vercel: xem
+# ghi chú ở job deploy.
 # Không dùng cache của Actions ở workflow này (cache dùng chung có thể bị nhiễm): setup-node tắt cache tự động, cài sạch mỗi lần.
 name: Release
 on:
@@ -70,6 +72,10 @@ jobs:
     needs: gate
     runs-on: ubuntu-latest
     timeout-minutes: 30
+    # VERCEL_TOKEN chỉ được đặt vào env của hai bước nói chuyện với Vercel (pull; deploy rồi promote), nhưng trong một job đó không
+    # phải ranh giới: mã chạy trước trong cùng job (script vòng đời của phụ thuộc lúc pnpm install, mã của repo lúc vercel build)
+    # có thể ghi $GITHUB_PATH, đặt BASH_ENV qua $GITHUB_ENV hay thay CLI đã tải trong ~/.npm/_npx, rồi đọc token ở bước sau.
+    # Rủi ro đã chấp nhận, kèm việc tách job để siết lại: docs/van-hanh.md, mục 8.5.
     environment: production
     permissions:
       contents: read
@@ -105,7 +111,8 @@ jobs:
         run: echo "line=$(grep -m 1 '^NEXT_PUBLIC_SITE_URL=' .vercel/.env.production.local || true)" >> "$GITHUB_OUTPUT"
       # vercel build chạy ngoài Vercel nên không có biến hệ thống: đặt tay. VERCEL_ENV bật chốt chặn của lib/env.ts và RELEASE_TAG
       # qua được chốt chặn đó; NEXT_PUBLIC_VERCEL_ENV nhúng Vercel Analytics và Speed Insights; VERCEL_GIT_COMMIT_SHA vào
-      # /version.json. Không cần token: vercel build đọc cài đặt đã pull.
+      # /version.json. Bước này không cần token (vercel build đọc cài đặt đã pull) nên không đặt VERCEL_TOKEN vào env của nó; đó không
+      # có nghĩa mã lúc dựng không với tới token (ghi chú ở đầu job).
       - name: Build for production
         env:
           VERCEL_ENV: production

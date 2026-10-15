@@ -17,7 +17,13 @@ type Job = {
 }
 
 const text = readFileSync(new URL('../../.github/workflows/release.yml', import.meta.url), 'utf8')
-const workflow = parse(text) as { on: Record<string, unknown>; permissions: unknown; concurrency: unknown; jobs: Record<string, Job> }
+const workflow = parse(text) as {
+  on: Record<string, unknown>
+  permissions: unknown
+  concurrency: unknown
+  env?: Record<string, string>
+  jobs: Record<string, Job>
+}
 const jobs = workflow.jobs
 // Mã của workflow, bỏ dòng chú thích: chú thích được phép nhắc tới điều mã không được làm.
 const code = text
@@ -56,7 +62,7 @@ describe('release.yml: secrets and supply chain', () => {
   test('Vercel secrets live only in the deploy job, under the production environment', () => {
     for (const [name, job] of Object.entries(jobs)) {
       if (name === 'deploy') continue
-      expect(JSON.stringify(job), name).not.toContain('secrets.')
+      expect(JSON.stringify(job), name).not.toMatch(/\bsecrets\b/)
       expect(job.environment, name).toBeUndefined()
     }
     expect(jobs.deploy.environment).toBe('production')
@@ -68,10 +74,35 @@ describe('release.yml: secrets and supply chain', () => {
     ])
   })
 
-  test('the Vercel token reaches only the steps that talk to Vercel, never install or build', () => {
+  test('the whole file uses exactly these secrets, never the secrets context as a whole, and none at the top level', () => {
+    expect(code.match(/secrets\.\w+/g)?.sort()).toEqual([
+      'secrets.VERCEL_ORG_ID',
+      'secrets.VERCEL_PROJECT_ID',
+      'secrets.VERCEL_TOKEN',
+      'secrets.VERCEL_TOKEN',
+    ])
+    // Mỗi lần nhắc tới secrets đều là một trong bốn dòng trên: không có toJSON(secrets), secrets['...'] hay secrets: inherit.
+    expect(code.match(/\bsecrets\b/g)).toHaveLength(4)
+    expect(JSON.stringify(workflow.env ?? {})).not.toMatch(/\bsecrets\b/)
+  })
+
+  // Đặt token theo bước chỉ giữ token khỏi env của bước khác; trong cùng job, mã chạy trước vẫn với tới nó (docs/van-hanh.md, mục 8.5).
+  test('VERCEL_TOKEN is set in the env of the pull and deploy steps only, not in the env of install or build', () => {
     expect(jobs.deploy.env).not.toHaveProperty('VERCEL_TOKEN')
     const withToken = jobs.deploy.steps.filter((s) => s.env?.VERCEL_TOKEN).map((s) => s.name)
     expect(withToken).toEqual(['Pull production settings and variables', 'Deploy staged, then promote'])
+    const install = jobs.deploy.steps.find((s) => s.run === 'pnpm install --frozen-lockfile')
+    expect(install).toBeDefined()
+    expect(install?.env ?? {}).not.toHaveProperty('VERCEL_TOKEN')
+    expect(step('deploy', 'Build for production').env).not.toHaveProperty('VERCEL_TOKEN')
+  })
+
+  test('every checkout leaves no credentials behind, the verify job included', () => {
+    expect(jobs.verify.steps[0].uses).toMatch(/^actions\/checkout@/)
+    expect(jobs.verify.steps[0].with).toMatchObject({ 'persist-credentials': false })
+    const checkouts = allSteps().filter((s) => s.uses?.startsWith('actions/checkout@'))
+    expect(checkouts).toHaveLength(3)
+    for (const s of checkouts) expect(s.with?.['persist-credentials']).toBe(false)
   })
 
   test('every action is pinned to a full commit sha, and the Vercel CLI to an exact version outside package.json', () => {
