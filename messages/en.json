@@ -105,8 +105,8 @@
         "title": "Never approves or signs on your behalf",
         "desc": "The Approve button lives in the Export step of the main screen. Ask the assistant to approve or sign and it tells you which screen to do it on."
       },
-      "windowTitle": "EduFlow · Results and quality gates",
-      "imageAlt": "Test paper results screen with the assistant panel explaining gate P5 and suggesting a fix to one answer option",
+      "windowTitle": "EduFlow · Results and quality gates (design preview)",
+      "imageAlt": "Design preview, not a screenshot of the app: the test results screen with the gate table and the assistant panel explaining gate P5",
       "link": "Learn about the assistant"
     },
     "pipeline": {
@@ -358,7 +358,7 @@
         },
         "o6": {
           "title": "Full sets and a template library",
-          "desc": "One setup for the slides, lesson plan and test paper of the same lesson; the template library works offline."
+          "desc": "One full-set run creates the lesson plan and the slides of the same lesson; the template library works offline."
         }
       },
       "screens": {
@@ -372,25 +372,25 @@
         },
         "s2": {
           "title": "Results and quality gates",
-          "desc": "The P1..P12 gate table reports how many units each gate checked, and a test runs the 8 gates that apply; answer warnings must be confirmed item by item.",
-          "alt": "Results screen with the P1..P12 gate table",
-          "windowTitle": "EduFlow · Results and quality gates"
+          "desc": "The gate table of a test has 8 gates from P1..P12, each reporting how many units it checked; answer warnings must be confirmed item by item.",
+          "alt": "Design preview, not a screenshot of the app: results screen with the P1..P12 gate table",
+          "windowTitle": "EduFlow · Results and quality gates (design preview)"
         },
         "s3": {
           "title": "Slide studio",
-          "desc": "Preview the deck, the draft scoring rubric and the slide gates before exporting PDF or PPTX.",
-          "alt": "Slide studio screen",
-          "windowTitle": "EduFlow · Slide studio"
+          "desc": "Preview the deck, edit each slide and read the slide gates before exporting PDF or PPTX.",
+          "alt": "Design preview, not a screenshot of the app: slide studio screen",
+          "windowTitle": "EduFlow · Slide studio (design preview)"
         }
       },
       "gates": {
         "title": "12 gates, P1..P12",
-        "body": "Gates check compilation, the question count in each blueprint cell, the share of questions with figures, confirmed answers, lesson plan and slide structure, and the standards library stamp.",
+        "body": "The gate table covers compilation, the question count in each blueprint cell, the share of questions with figures, confirmed answers, lesson plan and slide structure, and the standards library stamp. In this version the compilation gates P1 and P2 do not apply yet and the figure gate P4 is off.",
         "rule": "A gate that checked 0 units shows Gate error, never Pass."
       },
       "cta": {
         "h2": "Prepare your next lesson with EduFlow",
-        "sub": "Download the app and click Try it on the first screen."
+        "sub": "Download the app and choose Request a trial on the first screen."
       },
       "faq": {
         "q1": {
@@ -629,14 +629,14 @@
   "assistant": {
     "meta": {
       "title": "AI assistant for teachers, built into the app",
-      "description": "An AI assistant for teachers, always present in EduFlow: it reads the open screen, answers in three tiers, suggests edits to a draft and never signs for you."
+      "description": "An AI assistant for teachers, always present in EduFlow: it reads the open screen, answers in three tiers, prepares a test setup and never approves for you."
     },
     "hero": {
       "eyebrow": "AI assistant",
       "h1": "Chat with AI throughout your work, while people still make the decisions",
       "lead": "The home screen is a chat box. Every work screen has an assistant panel on the right that expands to full screen when needed.",
       "windowTitle": "EduFlow · Home",
-      "imageAlt": "The assistant expanded to full screen with a test paper plan and a test blueprint preview"
+      "imageAlt": "EduFlow home screen after the first message: the conversation with the assistant on the left, an unsaved preview panel on the right"
     },
     "where": {
       "eyebrow": "Where it is",
@@ -651,7 +651,7 @@
       },
       "w3": {
         "title": "Expand to full screen",
-        "desc": "Chat in full screen with a preview pane alongside, then shrink back to the panel without losing a single message."
+        "desc": "Expand the panel over the whole work area to read long answers, then shrink it back or press Esc without losing a single message."
       }
     },
     "how": {
@@ -667,24 +667,24 @@
       },
       "c3": {
         "title": "Action cards",
-        "desc": "Local actions such as opening a screen, running a gate, recompiling or running a what-if scenario cost nothing and run when you click. AI tasks open a cost estimate first."
+        "desc": "Cards open a screen, create a project, switch AI off for a project or open an editor with the setup filled in: they run on your computer, cost nothing and run only when you click. Generating content with AI still goes through the cost estimate."
       },
       "c4": {
-        "title": "Suggested edits go into a draft",
-        "desc": "Changes appear as before and after. Applying one creates a new draft version and reruns the affected gates."
+        "title": "You make the edits yourself",
+        "desc": "The assistant's suggestions are text to read; there is no button that applies them to a test or lesson plan. To change something, edit it on the writing screen; editing an approved version always creates a new draft."
       },
-      "windowTitle": "EduFlow · Results and quality gates",
-      "imageAlt": "The assistant panel explaining a P5 violation and suggesting a fix to one answer option"
+      "windowTitle": "EduFlow · Results and quality gates (design preview)",
+      "imageAlt": "Design preview, not a screenshot of the app: the test results screen with the gate table and the assistant panel explaining gate P5"
     },
     "never": {
       "eyebrow": "Limits",
       "h2": "What the assistant never does",
-      "lead": "These actions exist only on the main screen, and you click them yourself.",
-      "n1": "Approve an artifact",
-      "n2": "Sign a version",
-      "n3": "Confirm answer warnings or gate warnings",
-      "n4": "Publish officially",
-      "n5": "Send or import packages"
+      "lead": "The assistant only suggests. Asked to do any of these, it tells you which screen to do it on, or that an administrator handles it.",
+      "n1": "Approve a test, lesson plan or slide deck",
+      "n2": "Confirm answer warnings or gate warnings",
+      "n3": "Export files or publish officially",
+      "n4": "Change the key or account settings",
+      "n5": "Change the monthly budget"
     },
     "cost": {
       "title": "Cost per message",
@@ -694,8 +694,8 @@
       "eyebrow": "When it cannot answer",
       "h2": "The assistant says why, and local work keeps running",
       "lead": "Messages are never silently queued; you know right away what you can still do.",
-      "windowTitle": "EduFlow · Assistant states",
-      "imageAlt": "Four states of the assistant panel: offline, AI off, key locked, over budget",
+      "windowTitle": "EduFlow · Assistant states (design preview)",
+      "imageAlt": "Design preview, not a screenshot of the app: four states of the assistant panel when offline, with AI off, with the key locked and over budget",
       "s1": {
         "title": "Offline",
         "desc": "The message box is locked; local commands typed with / still run."
@@ -706,20 +706,20 @@
       },
       "s3": {
         "title": "Key locked",
-        "desc": "The assistant stops while features that do not use AI keep working; a button lets you ask for the key to be reissued."
+        "desc": "The assistant stops while features that do not use AI keep working; the Check again button asks for the key status again."
       },
       "s4": {
         "title": "Over budget",
-        "desc": "In block mode, the assistant stops until next month or until the budget is raised; a button lets you request a higher budget."
+        "desc": "In block mode, the assistant stops until the 1st of next month or until an administrator raises the budget; local work keeps running."
       }
     },
     "privacy": {
       "title": "Chat history stays on your computer",
-      "body": "Conversations are saved per project on your computer and can be deleted at any time. The server does not store chat content; packages sent to colleagues do not carry the history."
+      "body": "Conversations are saved on your computer and can be deleted at any time; the AI assistant card in Settings lets you keep history for 30 days, 90 days or with no limit. The server does not store chat content."
     },
     "cta": {
       "h2": "Try the assistant on your own lesson, course or degree program",
-      "sub": "Download the app and click Try it on the first screen."
+      "sub": "Download the app and choose Request a trial on the first screen."
     }
   },
   "pricing": {
@@ -741,7 +741,7 @@
       },
       "s2": {
         "title": "Try it in the app",
-        "body": "Click Try it on the first screen. A trial key works on 1 computer, with a trial budget and an expiry date."
+        "body": "Choose Request a trial on the first screen and send the form. A trial key works on 1 computer, with a trial budget and an expiry date."
       },
       "s3": {
         "title": "Measured in tokens",
@@ -757,11 +757,11 @@
       },
       "s6": {
         "title": "Monthly budget per key",
-        "body": "Your organization chooses warn mode or block mode. The app notifies you at 80% and 100% of the budget."
+        "body": "An administrator sets the monthly budget and warn or block mode for the key. The app notifies you at 80% and 100% of the budget."
       },
       "s7": {
         "title": "Monthly reconciliation",
-        "body": "Agentra sends a monthly statement per organization as CSV and PDF. The statement is for reconciliation and is not an invoice."
+        "body": "Agentra can export your organization's monthly usage as CSV, each call with its tokens and amount, for reconciliation. It is not an invoice."
       }
     },
     "formula": {
@@ -778,28 +778,28 @@
       },
       "near": {
         "title": "Near the limit",
-        "desc": "From 80% of the budget, the app notifies you once on the home screen and in the estimate dialog."
+        "desc": "From 80% of the budget, the home screen shows a warning, once per threshold per month on each computer. The estimate dialog shows the budget left for the month."
       },
       "over": {
         "title": "Over budget",
         "desc": "Warn mode: tasks keep running. Block mode: AI tasks stop until the 1st of next month or until the budget is raised."
       },
-      "essential": "When blocked, OCR of scanned pages and LaTeX compile-error fixes still run, so your exports never get stuck."
+      "essential": "When blocked, local work such as opening projects, editing, running gates and exporting files keeps working, so your exports never get stuck."
     },
     "free": {
       "eyebrow": "Free",
       "h2": "What runs on your computer, free of charge",
-      "i1": "Quality gates P, G, K",
+      "i1": "Quality gates P1..P12 for tests, lesson plans and slides",
       "i2": "Shuffling test versions and building test blueprints",
-      "i3": "Recompiling and exporting PDF, DOCX, PPTX",
-      "i4": "Tiers 1 and 2 of degree program review",
-      "i5": "“What if” scenarios",
-      "i6": "Signing and verifying packages",
-      "i7": "The assistant's local action cards",
+      "i3": "Compiling and exporting PDF, DOCX, PPTX",
+      "i4": "Reading documents, splitting them into passages and searching them",
+      "i5": "Local slide theme suggestions",
+      "i6": "Editing content and approving versions",
+      "i7": "The assistant's action cards and / commands",
       "i8": "Viewing your organization's costs and usage"
     },
-    "windowTitle": "EduFlow · Usage and costs",
-    "imageAlt": "Usage and costs screen with the monthly total, four token classes and a breakdown by skill",
+    "windowTitle": "EduFlow · Usage and costs (design preview)",
+    "imageAlt": "Design preview, not a screenshot of the app: the usage and costs screen with the monthly total, four token classes and a breakdown by skill",
     "cta": {
       "h2": "Get a quote for your school",
       "sub": "Send your organization's name, the expected number of computers and the main level you will use; Agentra will get back to you with a quote.",
@@ -814,23 +814,23 @@
     },
     "eyebrow": "AI transparency",
     "h1": "AI and data transparency",
-    "lead": "This page matches the AI transparency page in the app: which skills use AI, what data is sent and which data never leaves your computer.",
+    "lead": "This page sets out which of the app's skills use AI, what data is sent and which data never leaves your computer.",
     "updated": "Updated {date}",
     "p1": {
       "title": "Where AI is used",
-      "body": "AI fills in structured content for test papers, answer rechecks, lesson plans, slides, CLOs, weekly plans, session plans, course syllabi, assessment briefs, tier 3 suggestions in degree program review and the chat assistant. Everything else runs on your computer."
+      "body": "In the current version, AI fills in structured content for test questions, answer verification, the lesson plan body and its review, slide content, slide theme suggestions and the chat assistant. Everything else runs on your computer."
     },
     "p2": {
       "title": "Model tiers",
-      "body": "Each skill runs on the fast, standard or strong tier. Agentra maps each tier to a specific model; the AI transparency page in the app lists the tier of every skill."
+      "body": "Each skill runs on the fast, standard or strong tier; Agentra maps each tier to a specific model. In the Export step of a test, lesson plan or slide deck, a note lists the AI steps that ran, the tier, the actual cost and when the version was made."
     },
     "p3": {
       "title": "Data sent out",
-      "body": "Each call sends only the content the skill needs, under a strict data contract. The assistant sends a structured summary of the open screen with the latest messages of the conversation, never the original files."
+      "body": "Each call sends only the content the skill needs, under a strict data contract. The assistant sends a structured summary of the open screen, the document passages in the Viewing chips and the latest messages of the conversation, never the original files."
     },
     "p4": {
       "title": "Data that stays on your computer",
-      "body": "The project store, chat history, signatures and activation secrets stay on your computer. Imported files are parsed locally; only when you run OCR on a scanned page is that page image sent for text recognition."
+      "body": "The project store, chat history and activation secrets stay on your computer. Imported files are read locally and the original files are never sent; scanned pages and photos are not read into text yet."
     },
     "p5": {
       "title": "The server stores no content",
@@ -842,7 +842,7 @@
     },
     "p7": {
       "title": "Three tiers of conclusions",
-      "body": "The deterministic tier states facts with their basis and review date. The comparative tier says “not found yet” with the number of units checked. The suggestion tier opens with “Suggestion, needs human review”."
+      "body": "Tier 1 (deterministic) is a sentence the app itself writes for one of its facts, with a Basis line. Tier 2 opens with “Not found yet” for what the assistant has not seen. Tier 3 carries the label “Suggestion, needs human review”."
     },
     "p8": {
       "title": "AI off per project",
@@ -852,7 +852,7 @@
   "download": {
     "meta": {
       "title": "Download EduFlow for macOS and Windows",
-      "description": "Download EduFlow for macOS (Apple Silicon, Intel) and 64-bit Windows, with SHA-512 checksums, system requirements, installation guides and in-app updates."
+      "description": "Download EduFlow for macOS (Apple Silicon, Intel) and 64-bit Windows, with SHA-512 checksums, system requirements, installation guides and how to update."
     },
     "eyebrow": "Download",
     "h1": "Download EduFlow for your computer",
@@ -898,7 +898,7 @@
     },
     "update": {
       "title": "Already installed?",
-      "body": "The app tells you when a new version is available: click Download, then Restart to install. Your projects and data stay as they are."
+      "body": "The current version does not update itself in the app. When a new version is out, download the latest installer from this page and install it as you did the first time; your projects live in the app's own data folder, apart from the install folder."
     },
     "help": "Download not working? Send an email to <email></email>.",
     "prelaunch": {
@@ -977,18 +977,18 @@
       },
       "s2": {
         "title": "Send a request",
-        "desc": "On the app's first screen, send a key request with your organization's name and a contact person; or email Agentra with your organization's name and the number of computers."
+        "desc": "Email Agentra with your organization's name, a contact person and the expected number of computers. To start right away, send a trial request from the app's first screen."
       },
       "s3": {
         "title": "Receive your key",
-        "desc": "Agentra reviews the request and sends the key to your organization. Enter the key on the Activation screen."
+        "desc": "Agentra reviews the request and sends the key to your organization. Choose Enter key on the app's first screen, or Enter another key in Settings if the computer already uses a key."
       },
-      "note": "Want to try it first? Click Try it on the app's first screen; a trial key works on 1 computer."
+      "note": "Want to try it first? Choose Request a trial on the app's first screen; a trial key works on 1 computer."
     },
     "support": {
       "eyebrow": "Support",
       "h2": "Bug reports and feedback",
-      "lead": "The fastest way is the Feedback section in the app: it attaches sanitized diagnostics and never sends project content.",
+      "lead": "Email Agentra with the details below. If the app shows an error with a reference code, include that code.",
       "i1": "A screenshot of the error",
       "i2": "The steps you were taking",
       "i3": "The error message, if any",

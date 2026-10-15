@@ -11,7 +11,8 @@ import { buildMetadata } from '@/lib/seo/metadata'
 import { staticSeo } from '@/lib/seo/pages'
 import { absoluteUrl } from '@/lib/seo/urls'
 
-const UPDATED = '2026-09-30'
+// Ngày nội dung trang đổi thật (giờ Việt Nam): lượt quét dữ kiện 15/10/2026 viết lại cho khớp app v1.
+const UPDATED = '2026-10-15'
 const ITEMS = ['p1', 'p2', 'p3', 'p4', 'p5', 'p6', 'p7', 'p8'] as const
 
 export async function generateMetadata(): Promise<Metadata> {

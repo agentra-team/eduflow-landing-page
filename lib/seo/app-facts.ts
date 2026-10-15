@@ -48,7 +48,7 @@ export const appFacts = {
   documentMaxPages: 300,
   documentMaxMb: { k12: 12, course: 80, program: 80 },
   assistantDocumentBudgetKb: 16,
-  /** Việc chạy tại máy (cổng, trộn mã đề, biên dịch, đọc và OCR tại máy) tốn 0 đồng. Nguồn: spec app §8, DR2a. */
+  /** Việc chạy tại máy (cổng, trộn mã đề, biên dịch, xuất tệp, đọc tài liệu và tìm đoạn) tốn 0 đồng; app v1 chưa có OCR. Nguồn: spec app §8, DR2a. */
   localWorkCostVnd: 0,
   /** Ngân sách tháng của key cảnh báo khi dùng tới 80%. Nguồn: M1f, spec 30/09. */
   budgetWarnPercent: 80,

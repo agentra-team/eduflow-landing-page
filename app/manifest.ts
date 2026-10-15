@@ -1,10 +1,12 @@
 import type { MetadataRoute } from 'next'
+import { brand } from '@/lib/seo/brand'
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
     name: 'EduFlow',
     short_name: 'EduFlow',
-    description: 'Phần mềm AI cho giáo viên và giảng viên: soạn đề kiểm tra, giáo án, slide, đề cương học phần',
+    // Câu mô tả chuẩn (lib/seo/brand.ts): chỉ nói điều app v1 có.
+    description: brand.description.vi,
     start_url: '/',
     display: 'browser',
     background_color: '#FFFFFF',
