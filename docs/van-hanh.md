@@ -81,7 +81,7 @@ curl -sI https://<tên-miền>/ | head -1          # trả 200
 curl -sI http://<tên-miền>/ | head -1           # chuyển sang https (Vercel trả 308)
 curl -sI https://<tên-miền>/ | grep -i -E 'strict-transport-security|x-frame-options|x-content-type-options|referrer-policy|permissions-policy'   # đủ 5 header bảo mật
 curl -s https://<tên-miền>/robots.txt           # có dòng Sitemap: https://<tên-miền>/sitemap.xml
-curl -s https://<tên-miền>/sitemap.xml | grep -o '<loc>[^<]*</loc>' | wc -l            # 24 (12 trang × 2 ngôn ngữ)
+curl -s https://<tên-miền>/sitemap.xml | grep -o '<loc>[^<]*</loc>' | wc -l            # 58 (29 trang × 2 ngôn ngữ)
 curl -s https://<tên-miền>/sitemap.xml | grep -o '<loc>[^<]*</loc>' | grep -v '<loc>https://<tên-miền>'   # không in gì: mọi URL đúng tên miền
 curl -s https://<tên-miền>/ai-cho-giao-vien | grep -o '<link rel="canonical"[^>]*>'           # canonical đúng tên miền
 ```
@@ -200,7 +200,7 @@ Cấu hình:
 
 Kiểm trên domain thật:
 
-- [ ] Các lệnh kiểm ở mục 2 (HTTPS, header bảo mật, `robots.txt`, `sitemap.xml` đủ 24 URL, canonical) đều đạt; Search Console đã xác minh và đã gửi sitemap.
+- [ ] Các lệnh kiểm ở mục 2 (HTTPS, header bảo mật, `robots.txt`, `sitemap.xml` đủ 58 URL, canonical) đều đạt; Search Console đã xác minh và đã gửi sitemap.
 - [ ] **Lighthouse mobile trên URL production, cho cùng mười URL: SEO phải là 100** (Ruling 55: chỉ đọc được ở đây, vì preview gửi `noindex`). Đọc luôn Performance ≥ 90, Accessibility ≥ 95 và Best Practices ≥ 95 để xác nhận lần cuối. Cách đo như ở mục "Đo trên Vercel" ở trên; PageSpeed Insights dùng được vì URL production công khai.
 - [ ] Duyệt tay cả hai ngôn ngữ: trang chủ, ba trang cấp, Trợ lý AI, Cách tính phí, Minh bạch AI, Liên hệ, hai trang cài đặt, Chính sách bảo mật. Trang Tải về đúng trạng thái (có bản phát hành, hoặc sắp phát hành); mỗi link tải mở được (HTTP 200).
 - [ ] Chính sách bảo mật và trang Minh bạch AI đã được PO và pháp chế rà soát (spec mục 6.11).

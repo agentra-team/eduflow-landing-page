@@ -3,3 +3,5 @@ node_modules
 pnpm-lock.yaml
 docs/thiet-ke/*.html
 public
+# Chép nguyên văn từ skill seo-master, không định dạng lại tại đây
+scripts/seo-audit.mjs
