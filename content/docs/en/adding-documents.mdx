@@ -1,0 +1,60 @@
+## What documents are for
+
+Every project has a <Ui>Tài liệu nguồn</Ui> (Source documents) card: the place to add your own textbooks, course texts, syllabi, lecture notes or regulations. The app reads the documents on your computer, cuts them into passages with a section path and page numbers, and lets you search them. In this version, the place documents are used is the AI assistant: when you ask the assistant inside a project, the app picks the passages that match your question on your computer, shows them as chips so you can review and drop some, and sends only those passages with your question. An answer that relies on a document has a <Ui>Nguồn</Ui> (Source) chip that opens the exact passage.
+
+<Steps>
+
+<Step n={1} id="nap-tep" title="Add a file to the project">
+
+Open the project from <Ui>Dự án</Ui> (Projects) to reach <Ui>Chi tiết dự án</Ui> (Project details), find the <Ui>Tài liệu nguồn</Ui> card and click <Ui>Nạp tài liệu</Ui> (Add a document). The file dialog of your operating system opens. The app accepts PDF, Word (.docx), PowerPoint (.pptx) and PNG or JPEG images. An old .doc or .ppt file has to be saved again as .docx or .pptx before you can add it.
+
+Limits per file: at most 12 MB in a K-12 project and 80 MB in a Course or Program project, and at most 300 pages (or slides). Over the limit, the app says so and suggests splitting the file or reducing the image size. A password-protected file has to be unlocked in its original software, saved as a new copy and added again. A file already in the project is not added twice: the app keeps the copy it has and says "This file is already in the project". An archived project is read-only, so nothing more can be added to it.
+
+</Step>
+
+<Step n={2} id="cho-app-doc" title="Wait while the app reads it on your computer">
+
+The file appears as a row in the card's table, with the columns <Ui>Tệp</Ui> (File), <Ui>Loại</Ui> (Type), <Ui>Loại tài liệu</Ui> (Document kind), <Ui>Trạng thái</Ui> (Status), <Ui>Trang</Ui> (Pages) and <Ui>Nạp ngày</Ui> (Added on). While it reads, the status column says <Ui>Đang đọc</Ui> (Reading) and the pages column shows the progress in pages. All of this runs on your computer: the original file stays on this computer, the app reads the text layer of the file without sending anything over the network, and it costs nothing.
+
+How it reads depends on the file type. A Word file is read directly (<Ui>Tệp Word đọc trực tiếp, không cần OCR</Ui> (Word file read directly, no OCR needed)). For PDF and PowerPoint, the pages column tells you what kind each page or slide is, for example 12 pages with enough text and 3 pages that need OCR. The final status is <Ui>Hoàn tất</Ui> (Done), <Ui>Hoàn tất có cảnh báo</Ui> (Done with warnings), <Ui>Cần xem lại</Ui> (Needs a look), <Ui>Chưa đọc hết</Ui> (Not fully read) or <Ui>Đã đọc đủ, chưa phân tích</Ui> (Fully read, not analysed). The app also recognises the document kind by itself (<Ui>Sách giáo khoa</Ui> (Textbook), <Ui>Giáo trình</Ui> (Course text), <Ui>Đề cương học phần</Ui> (Course syllabus), <Ui>CTĐT</Ui> (Study program), <Ui>Văn bản quy định</Ui> (Regulation), <Ui>Slide bài giảng</Ui> (Lecture slides), <Ui>Đề thi</Ui> (Exam) or <Ui>Khác</Ui> (Other)); pick another kind in that box and the app cuts the passages again on your computer.
+
+A scanned page or a photo with no text layer is classed as needing OCR: the app draws and prepares the page image on your computer (the <Ui>Xem</Ui> (View) box in the next step shows the line "Page images waiting for OCR: prepared on this computer, ... pages"), but the text on those pages has not been read out. The "Current limits" section below explains this further.
+
+</Step>
+
+<Step n={3} id="xem-trang-va-doan" title="Look at the pages and passages that were read">
+
+Click <Ui>Xem</Ui> at the end of the file's row to open the document viewer. At the top are the status, the pages by kind, and the report on the reading (<Ui>Kiểm sau ghép (G8)</Ui> (Check after stitching) passed or "some places need a look", with the number of passages). The viewer has two tabs, chosen under <Ui>Phần xem</Ui> (Views):
+
+- <Ui>Nội dung</Ui> (Content), read-only: the <Ui>Mục lục</Ui> (Outline) on the left, and on the right the blocks of text of the chosen section, each showing its section path, block kind (heading, paragraph, table, formula...) and page number. The <Ui>Tham chiếu chưa nối</Ui> (Unresolved references) list shows places where the document points to somewhere the app could not link.
+- <Ui>Đoạn</Ui> (Passages): the passages the app cut for searching, each with a name, kind (paragraph, table, article, question...), pages and number of characters. For PDF and image files, the right-hand column shows the page image with boxes around the blocks of the open passage. If the app could not cut any passage, <Ui>Tách lại</Ui> (Cut again) tries once more.
+
+Every outline entry and every block of a passage has a <Ui>Không gửi cho AI</Ui> (Do not send to AI) switch with a lock icon. Turn it on and that part is never sent to the assistant, even if it matches a question. A switch turned on for a section also locks every block inside that section.
+
+For a Word file with formulas, charts, images with text or embedded objects, the app says how many places it could not read, so you can look at them in the original file; the rest of the text is read directly and usable.
+
+</Step>
+
+<Step n={4} id="thu-tim-doan" title="Try searching for a passage">
+
+Once the project has documents, a <Ui>Thử tìm</Ui> (Try a search) section appears under the table. Type a sentence in the <Ui>Câu hỏi để thử tìm</Ui> (Question to try) box, for example "What does Article 7 say?", then click <Ui>Tìm</Ui> (Search). The note below says it plainly: the search runs on this computer across all the project's documents, costs 0 ₫ and needs no network.
+
+The results list the matching passages, each with its path, why it was found (such as <Ui>Đúng nhãn</Ui> (Exact label), <Ui>Khớp chữ</Ui> (Text match), <Ui>Cùng mục</Ui> (Same section), <Ui>Định nghĩa</Ui> (Definition)), a score, its kind, its pages and its first lines; a passage under Do not send to AI shows a lock. If nothing matches, the app says so.
+
+The line <Ui>Sẽ gửi cho trợ lý: ... đoạn, ... KB / 16 KB</Ui> (Will be sent to the assistant: ... passages, ... KB / 16 KB) tells you how much of the document allowance of one assistant message those passages take. Click <Ui>Đính vào trợ lý</Ui> (Attach to the assistant) and the passages become chips in the <Ui>ĐANG XEM</Ui> (NOW VIEWING) strip of the assistant panel, even if you turned off automatic context; the button is locked while the project has AI turned off. A chip looks like "document name · 5 passages · 8 KB": click it to see each passage, and click the x to drop one passage or a whole document from the next message. The line under the strip says exactly what the app does: it sends a structured summary and the document passages on the chips, never the original files, and the Do not send to AI parts are never sent. If the document part is over the ceiling, the assistant receives only the first passages and the app reminds you to drop some on the chips.
+
+</Step>
+
+</Steps>
+
+## Where the document data lives
+
+The original file stays on your computer. Reading, cutting into passages and trying a search all run on your computer, cost nothing, and run even when a project has AI turned off or the computer is offline. When you send a message to the assistant, the document passages on the NOW VIEWING chips go along with your question and the summary of the open screen; you can drop any passage before you send. In a project with <Ui>Tắt AI</Ui> (AI off), nothing leaves your computer.
+
+## Current limits
+
+- **Scanned pages and photos are not read into text yet.** The app draws and prepares page images on your computer, but the text on those pages waits for OCR. While a project has AI on, the notice says that reading images with AI comes in a later update; in the app's plan, that is an AI job that is billed. While a project has AI off, these pages wait for OCR and nothing leaves your computer. Text already read from the file's text layer stays usable; a file with no text layer at all is shown as having no readable block of text yet.
+- **Images with text inside Word and PowerPoint files** belong to the same OCR that is not available yet.
+- **The document map** (AI analysis of the structure, keywords and questions of each section, and suggested subject, grade and topic from a document) is not available; it is an item of a later plan. For now the app only cuts passages and searches on your computer.
+- **For now documents serve the assistant.** You ask the assistant about the project's documents; that is where documents are used in this version.
+- Limits per file: 12 MB (K-12) or 80 MB (Course, Program), 300 pages or slides; only PDF, .docx, .pptx, PNG and JPEG.

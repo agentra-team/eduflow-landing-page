@@ -1,0 +1,65 @@
+## Trợ lý ở đâu
+
+Trợ lý EduFlow có hai chỗ. Ở **Trang chủ**, trợ lý là ô trò chuyện giữa trang, với câu hỏi "Hôm nay thầy cô muốn soạn gì?". Ở các màn làm việc, trợ lý là panel **Trợ lý EduFlow** bên phải; panel có thể **Mở rộng toàn màn** (rồi **Thu về panel**, hoặc bấm Esc) hay **Thu gọn panel** thành một dải mỏng, và **Mở trợ lý** để mở lại. Phím tắt ⌘J trên macOS hoặc Ctrl J trên Windows mở hoặc thu panel; ở Trang chủ, phím này chỉ đặt con trỏ vào ô trò chuyện.
+
+Trợ lý là một tác vụ AI như soạn đề: cần mạng, và mỗi tin tính tiền theo token. Dưới ô gõ có dòng "Mỗi tin ... đến ... ₫" là khoảng chi phí ước tính của một tin; sau mỗi câu trả lời, app ghi chi phí thật của tin đó ("Tin này ... ₫ · ... token"). Bấm **Dừng** khi câu trả lời đang hiện thì phần đã trả lời được giữ lại, và tin đó chỉ tính tiền cho phần ấy.
+
+<Steps>
+
+<Step n={1} id="hoi-man-dang-mo" title="Hỏi về màn đang mở">
+
+Gõ câu hỏi vào ô **Hỏi hoặc giao việc cho trợ lý**, rồi bấm Enter hoặc nút **Gửi** (Shift Enter xuống dòng). Ví dụ trợ lý gợi ý ở Trang chủ: "Tháng này đơn vị đã dùng bao nhiêu ngân sách AI?". Các câu gợi ý ở panel chỉ điền vào ô, chưa gửi gì.
+
+Trợ lý biết thầy cô đang xem gì nhờ dải **ĐANG XEM** ở đầu panel: mỗi chip là một mục của màn đang mở (ví dụ tên đề kiểm tra kèm số phiên bản, như "... · v1"). Dòng dưới dải cho biết đúng việc app làm: "Chỉ gửi bản tóm tắt có cấu trúc, không gửi tệp gốc." Muốn bỏ một mục khỏi tin kế tiếp, bấm dấu x trên chip; sang màn khác thì các chip hiện lại. Nếu thầy cô đã tắt **Tự đính ngữ cảnh màn** trong **Cài đặt**, dải ghi "Chưa đính ngữ cảnh" và nút **Đính ngữ cảnh màn này** cho đính khi cần.
+
+Nút **Lịch sử trò chuyện** mở danh sách các cuộc trò chuyện của phạm vi đang xem, có ô **Tìm trong lịch sử**; **Cuộc trò chuyện mới** bắt đầu một cuộc khác. Trong một dự án, danh sách có nút **Xoá lịch sử** để xoá lịch sử trò chuyện của dự án đó.
+
+<Callout kind="info">Ô gõ bị khoá, kèm lý do ngay trên ô, khi máy mất mạng, dự án đang Tắt AI, thiết bị không còn được phép dùng key, key hết hạn hay bị khoá, hoặc ngân sách tháng đã hết ở chế độ chặn. Chữ đang gõ được giữ lại, và các lệnh gõ <code>/</code> vẫn dùng được.</Callout>
+
+</Step>
+
+<Step n={2} id="nho-dung-thiet-lap" title="Nhờ dựng thiết lập ở Trang chủ">
+
+Ở Trang chủ, thầy cô nói việc cần làm bằng lời thường, ví dụ câu gợi ý của app: "Soạn đề 45 phút Toán 10 chương 3, 2 mã đề". Sau tin đầu tiên, Trang chủ chuyển thành cuộc trò chuyện ở bên trái và khung **XEM TRƯỚC · CHƯA LƯU** ở bên phải, với dòng "Chưa tạo gì cho tới khi thầy cô bấm."
+
+Câu của thầy cô cần nêu rõ môn và lớp. Nếu thiếu, trợ lý được dặn hỏi lại đúng trường còn thiếu chứ không đoán. Khi đủ, trợ lý đưa một thẻ với nút **Mở soạn đề**, **Mở soạn giáo án**, **Mở soạn slide** hoặc **Mở soạn cả bộ**. Bấm nút thì app tạo đề, giáo án hay slide trong một dự án Phổ thông mới và mở thẳng bước **Thiết lập** với các ô đã điền, ô nào do trợ lý điền thì có nhãn **Trợ lý điền** để thầy cô soát lại. Riêng **Mở soạn cả bộ**, hoặc thẻ chưa xác định được chủ đề, mở hộp **Soạn bài dạy** với các ô điền sẵn để thầy cô chọn tiếp. Với yêu cầu tạo dự án, thẻ **Tạo dự án** mở hộp tạo dự án điền sẵn, có dòng "Trợ lý gợi ý, thầy cô soát lại trước khi tạo."
+
+Trợ lý chỉ dựng thiết lập; **Sinh câu hỏi**, **Sinh giáo án** hay **Sinh slide** vẫn do thầy cô bấm ở màn đó, và hộp **Ước tính chi phí** hiện trước khi chạy, như các bài soạn đề và soạn giáo án đã nêu.
+
+</Step>
+
+<Step n={3} id="doc-ba-tang-ket-luan" title="Đọc ba tầng kết luận">
+
+Một câu trả lời có thể gồm ba loại khối, để thầy cô biết nên tin đến mức nào:
+
+- **Tầng 1, khối "TẦNG 1 · TẤT ĐỊNH":** câu do chính app viết cho một dữ kiện của app (số tiền đã dùng, trạng thái key, số dự án, kết quả cổng...), không phải lời của trợ lý. Dưới khối có dòng "Căn cứ", ví dụ "Căn cứ: kho trên máy này" hay "Căn cứ: số liệu usage của máy chủ".
+- **Tầng 2, khối nền nhạt:** điều trợ lý chưa thấy, mở đầu bằng "Chưa thấy ...", ví dụ chưa thấy dự án nào ở cấp Học phần.
+- **Tầng 3, khối viền đứt, nhãn "Đề xuất, cần người duyệt":** gợi ý của trợ lý, chẳng hạn nên bật Tắt AI cho dự án có dữ liệu học sinh. Khối này chỉ là chữ để thầy cô đọc và cân nhắc, không có nút áp vào đề hay giáo án; muốn sửa, thầy cô sửa ở màn soạn như các bài trước.
+
+Chữ thường nằm giữa các khối là lời của trợ lý. Khi câu trả lời dựa vào tài liệu nguồn của dự án, chip **Nguồn** cuối câu mở đúng đoạn trong tài liệu; bài tiếp theo nói về tài liệu. Nút **Sao chép câu trả lời** ở cuối mỗi câu trả lời chép nội dung ra để dùng ở nơi khác.
+
+</Step>
+
+<Step n={4} id="dung-the-hanh-dong" title="Dùng thẻ hành động">
+
+Thẻ hành động là nút trợ lý đưa ra để mở một màn hay làm một việc nhỏ tại máy. Thẻ có chip **Tại máy · 0 ₫**: bấm là chạy ngay, không gọi AI và không tốn tiền, và trợ lý không tự chạy thẻ nào. Thẻ có bốn loại: **Mở** một màn (Trang chủ, Dự án, Sử dụng và chi phí, Cài đặt hoặc một dự án), **Tạo dự án**, **Bật Tắt AI** cho một dự án và các nút **Mở soạn ...** ở bước trước. Thẻ chỉ hiện khi màn đang mở có lệnh đó; ví dụ **Bật Tắt AI** chỉ hiện ở Chi tiết dự án của chính dự án ấy.
+
+Chạy xong, thẻ ghi "Đã chạy lúc ...". Bấm lại thẻ đã chạy thì app hỏi "Lệnh ... đã chạy lúc ... Chạy lại lần nữa?", vì một lần bấm nữa có thể tạo thêm một dự án hay một đề. Thẻ không sinh nội dung bằng AI: việc đó vẫn đi qua nút **Sinh** và hộp **Ước tính chi phí** ở màn soạn.
+
+Thầy cô cũng gọi được lệnh tại máy mà không cần hỏi: gõ <code>/</code> ở đầu ô hoặc bấm **/ Lệnh** để mở menu "Lệnh tại máy · 0 ₫" của màn đang mở. Menu vẫn dùng được khi ô gõ bị khoá hay máy mất mạng.
+
+</Step>
+
+</Steps>
+
+## Những việc trợ lý không làm
+
+Trợ lý chỉ gợi ý; thầy cô là người quyết định. Trợ lý không duyệt, không ký, không xác nhận cảnh báo, không xuất bản chính thức, không xuất hay nhập gói, không đổi cài đặt tài khoản và không đổi ngân sách. Khi được nhờ những việc này, trợ lý nói thầy cô tự làm ở màn nào: ví dụ **Duyệt** là nút ở bước **3. Xuất** của đề hay giáo án, đổi key ở **Cài đặt**, còn ngân sách tháng do quản trị đặt.
+
+Bốn loại thẻ ở bước trước là toàn bộ việc app cho trợ lý đưa ra: không loại nào duyệt, ký hay xuất tệp.
+
+## Tắt AI cho một dự án
+
+Với dự án có dữ liệu cần giữ kín, bật **Công tắc Tắt AI** ở thẻ **Tắt AI cho dự án này** trong **Chi tiết dự án** (mở từ **Dự án**). Khi công tắc bật, app không gửi lời gọi AI nào cho dự án đó, kể cả trợ lý, và không nội dung nào của dự án rời khỏi máy. Cổng, tầng 1, tầng 2, biên dịch và xuất tệp vẫn chạy tại máy. Ô trò chuyện ở dự án đó bị khoá với lý do "Dự án đang bật Tắt AI", kèm nút **Mở Chi tiết dự án**, và dải ĐANG XEM ghi "Dự án đang Tắt AI: không gửi gì ra khỏi máy."
+
+Mỗi lần bật hay tắt đều ghi vào nhật ký của dự án. Dự án đang Tắt AI có nhãn **Tắt AI** trong danh sách **Làm tiếp** ở Trang chủ, và thẻ **Riêng tư** trong **Cài đặt** cho biết có bao nhiêu dự án đang tắt AI.

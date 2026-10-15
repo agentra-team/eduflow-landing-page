@@ -41,6 +41,13 @@ export const appFacts = {
   quizTotalRange: [3, 10],
   deckContentSlidesRange: [20, 28],
   deckStarterThemes: 8,
+  /**
+   * Tài liệu nguồn (bài nạp tài liệu). Nguồn: eduflow-application packages/contracts/src/document.ts:85 (DOCUMENT_PAGE_MAX 300 trang hay slide),
+   * :88 (DOCUMENT_BYTES_MAX: Phổ thông 12 MB, Học phần và Chương trình 80 MB); contracts/src/retrieval.ts:37 (ASSISTANT_DOCUMENT_BUDGET_KB 16).
+   */
+  documentMaxPages: 300,
+  documentMaxMb: { k12: 12, course: 80, program: 80 },
+  assistantDocumentBudgetKb: 16,
   /** Việc chạy tại máy (cổng, trộn mã đề, biên dịch, đọc và OCR tại máy) tốn 0 đồng. Nguồn: spec app §8, DR2a. */
   localWorkCostVnd: 0,
   /** Ngân sách tháng của key cảnh báo khi dùng tới 80%. Nguồn: M1f, spec 30/09. */

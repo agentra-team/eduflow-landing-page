@@ -151,6 +151,36 @@ export const DOCS: Record<DocId, DocEntry> = {
       keyword: 'create lesson slides in EduFlow',
     },
   },
+  'using-the-assistant': {
+    group: 'assistant',
+    order: 1,
+    updatedAt: '2026-10-15',
+    vi: {
+      title: 'Dùng trợ lý AI',
+      description: 'Hỏi trợ lý AI của EduFlow về màn đang mở, nhờ dựng thiết lập ở Trang chủ, đọc ba tầng kết luận, bấm thẻ hành động tại máy và tắt AI cho một dự án.',
+      keyword: 'cách dùng trợ lý AI của EduFlow',
+    },
+    en: {
+      title: 'Use the AI assistant',
+      description: 'Ask the EduFlow AI assistant about the open screen, have it prepare a setup, read its three-tier answers, use local action cards, and turn AI off per project.',
+      keyword: 'how to use the EduFlow assistant',
+    },
+  },
+  'adding-documents': {
+    group: 'assistant',
+    order: 2,
+    updatedAt: '2026-10-15',
+    vi: {
+      title: 'Nạp tài liệu cho trợ lý AI',
+      description: 'Nạp PDF, Word, PowerPoint hoặc ảnh vào dự án EduFlow: app đọc lớp chữ ngay tại máy, tách đoạn để thử tìm, và chỉ gửi các đoạn thầy cô giữ lại cho trợ lý.',
+      keyword: 'nạp tài liệu vào EduFlow',
+    },
+    en: {
+      title: 'Add documents for the assistant',
+      description: 'Add PDF, Word, PowerPoint or image files to EduFlow: the app reads text on your computer, cuts passages to search, and sends the assistant only those you keep.',
+      keyword: 'add documents to EduFlow',
+    },
+  },
 }
 
 /** Khối "Bắt đầu trong 5 phút" ở mục lục hướng dẫn: cài, kích hoạt, soạn đề đầu tiên (spec §7.3). */
@@ -185,6 +215,8 @@ export const DOC_SOURCES: Record<Locale, Record<DocId, () => Promise<MdxBody>>> 
     'export-test-versions': () => import('./vi/xuat-nhieu-ma-de.mdx'),
     'lesson-plans': () => import('./vi/soan-giao-an-5512.mdx'),
     'lesson-slides': () => import('./vi/tao-slide-bai-giang.mdx'),
+    'using-the-assistant': () => import('./vi/dung-tro-ly-ai.mdx'),
+    'adding-documents': () => import('./vi/nap-tai-lieu.mdx'),
   },
   en: {
     'install-macos': () => import('./en/install-macos.mdx'),
@@ -195,6 +227,8 @@ export const DOC_SOURCES: Record<Locale, Record<DocId, () => Promise<MdxBody>>> 
     'export-test-versions': () => import('./en/export-test-versions.mdx'),
     'lesson-plans': () => import('./en/lesson-plans.mdx'),
     'lesson-slides': () => import('./en/lesson-slides.mdx'),
+    'using-the-assistant': () => import('./en/using-the-assistant.mdx'),
+    'adding-documents': () => import('./en/adding-documents.mdx'),
   },
 }
 

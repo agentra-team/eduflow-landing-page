@@ -1,0 +1,60 @@
+## Tài liệu dùng để làm gì
+
+Mỗi dự án có thẻ **Tài liệu nguồn**: nơi thầy cô nạp sách giáo khoa, giáo trình, đề cương, bài giảng hay văn bản quy định của chính mình. App đọc tài liệu ngay trên máy, tách thành các đoạn có đường dẫn mục và số trang, rồi cho thầy cô tìm trong đó. Ở bản hiện tại, chỗ dùng tài liệu là trợ lý AI: khi thầy cô hỏi trợ lý trong dự án, app chọn tại máy các đoạn khớp câu hỏi, hiện chúng thành chip để thầy cô xem và bỏ bớt, rồi chỉ gửi những đoạn đó cùng câu hỏi. Câu trả lời dựa vào tài liệu có chip **Nguồn** mở đúng đoạn.
+
+<Steps>
+
+<Step n={1} id="nap-tep" title="Nạp tệp vào dự án">
+
+Mở dự án từ **Dự án** để vào **Chi tiết dự án**, tìm thẻ **Tài liệu nguồn** rồi bấm **Nạp tài liệu**. Hộp chọn tệp của hệ điều hành hiện ra. App nhận tệp PDF, Word (.docx), PowerPoint (.pptx) và ảnh PNG hoặc JPEG. Tệp .doc hay .ppt cũ cần được lưu lại thành .docx hay .pptx rồi mới nạp được.
+
+Giới hạn mỗi tệp: tối đa 12 MB ở dự án Phổ thông và 80 MB ở dự án Học phần hay Chương trình, và tối đa 300 trang (hay slide). Quá giới hạn thì app báo và gợi ý tách nhỏ tệp hoặc giảm dung lượng ảnh. Tệp có mật khẩu cần mở khoá bằng phần mềm gốc, lưu bản mới rồi nạp lại. Tệp đã có trong dự án thì app giữ bản đã nạp và báo "Tệp này đã có trong dự án". Dự án đang lưu trữ chỉ đọc nên không nạp thêm được.
+
+</Step>
+
+<Step n={2} id="cho-app-doc" title="Chờ app đọc tại máy">
+
+Tệp hiện thành một dòng trong bảng của thẻ, gồm **Tệp**, **Loại**, **Loại tài liệu**, **Trạng thái**, **Trang** và **Nạp ngày**. Trong lúc đọc, cột Trạng thái ghi **Đang đọc** và cột Trang ghi "Đang đọc ... trang". Mọi bước này chạy tại máy: tệp gốc nằm trên máy này, app đọc lớp chữ của tệp mà không gửi gì ra mạng, và không tốn tiền.
+
+Cách đọc phụ thuộc loại tệp. Tệp Word được đọc trực tiếp ("Tệp Word đọc trực tiếp, không cần OCR"). Với PDF và PowerPoint, cột Trang cho biết mỗi trang hay slide thuộc loại nào, ví dụ "12 trang đủ chữ, 3 trang cần OCR". Trạng thái cuối là **Hoàn tất**, **Hoàn tất có cảnh báo**, **Cần xem lại**, **Chưa đọc hết** hoặc **Đã đọc đủ, chưa phân tích**. App cũng tự nhận ra **Loại tài liệu** (Sách giáo khoa, Giáo trình, Đề cương học phần, CTĐT, Văn bản quy định, Slide bài giảng, Đề thi hoặc Khác); chọn loại khác ở ô này thì app tách lại đoạn ngay trên máy.
+
+Trang quét hay ảnh chụp chưa có lớp chữ thì được xếp là **cần OCR**: app dựng và chuẩn bị ảnh trang ngay trên máy (hộp **Xem** ở bước sau ghi "Ảnh trang chờ OCR: đã chuẩn bị tại máy ... trang"), nhưng chữ trên các trang đó chưa được đọc ra. Mục "Giới hạn hiện tại" bên dưới nói rõ hơn.
+
+</Step>
+
+<Step n={3} id="xem-trang-va-doan" title="Xem trang và đoạn đã đọc">
+
+Bấm **Xem** ở cuối dòng của tệp để mở hộp xem tài liệu. Đầu hộp là trạng thái, số trang theo loại, và báo cáo kiểm tra việc đọc ("Kiểm sau ghép (G8): đạt" hoặc "còn chỗ cần xem", kèm số đoạn). Hộp có hai thẻ, chọn ở **Phần xem**:
+
+- **Nội dung** (chỉ đọc): **Mục lục** bên trái, bên phải là các khối chữ của mục đang chọn, mỗi khối ghi đường dẫn mục, loại khối (Đề mục, Đoạn, Bảng, Công thức...) và số trang. Mục **Tham chiếu chưa nối** liệt kê những chỗ trong tài liệu nhắc tới một nơi mà app chưa nối được.
+- **Đoạn**: các đoạn mà app đã tách để tìm, mỗi đoạn có tên, loại (Đoạn văn, Bảng, Điều, Câu hỏi...), số trang và số ký tự. Với PDF và tệp ảnh, cột bên phải hiện ảnh trang kèm khung tô quanh các khối của đoạn đang mở. Nếu app chưa tách được đoạn nào, nút **Tách lại** thử lại.
+
+Mỗi mục trong mục lục và mỗi khối của đoạn có công tắc **Không gửi cho AI** (kèm biểu tượng khoá). Bật công tắc thì phần đó không bao giờ được gửi cho trợ lý, kể cả khi nó khớp câu hỏi. Công tắc đã bật ở một mục thì khoá luôn các khối bên trong mục ấy.
+
+Tệp Word có công thức, biểu đồ, ảnh có chữ hay đối tượng nhúng thì app báo có bao nhiêu chỗ chưa đọc được, để thầy cô xem các chỗ đó trong tệp gốc; phần chữ còn lại vẫn đọc trực tiếp và dùng được.
+
+</Step>
+
+<Step n={4} id="thu-tim-doan" title="Thử tìm một đoạn">
+
+Khi dự án đã có tài liệu, dưới bảng có mục **Thử tìm**. Gõ một câu vào ô **Câu hỏi để thử tìm**, ví dụ "Điều 7 quy định gì?", rồi bấm **Tìm**. Dòng ghi chú bên dưới nói rõ: tìm tại máy trong mọi tài liệu của dự án, 0 đồng, không cần mạng.
+
+Kết quả liệt kê các đoạn khớp, mỗi đoạn có đường dẫn, lý do tìm thấy (như **Đúng nhãn**, **Khớp chữ**, **Cùng mục**, **Định nghĩa**), điểm, loại, số trang và vài dòng đầu; đoạn đã bật Không gửi cho AI hiện kèm khoá. Không có đoạn nào khớp thì app báo "Không thấy đoạn nào khớp câu hỏi."
+
+Dòng "Sẽ gửi cho trợ lý: ... đoạn, ... KB / 16 KB" cho biết các đoạn ấy chiếm bao nhiêu phần dung lượng tài liệu mà một tin gửi trợ lý được nhận. Bấm **Đính vào trợ lý** thì các đoạn này thành chip ở dải **ĐANG XEM** của panel trợ lý, ngay cả khi thầy cô đã tắt tự đính ngữ cảnh; nút này khoá khi dự án đang Tắt AI. Chip có dạng "tên tài liệu · 5 đoạn · 8 KB": bấm chip để xem từng đoạn, bấm dấu x để bỏ một đoạn hay cả tài liệu khỏi tin kế tiếp. Dòng dưới dải nói đúng việc app làm: gửi bản tóm tắt có cấu trúc và các đoạn tài liệu ở chip, không gửi tệp gốc, và phần Không gửi cho AI không bao giờ được gửi. Nếu phần tài liệu dài quá trần, trợ lý chỉ nhận các đoạn đầu tiên và app nhắc bỏ bớt đoạn ở chip.
+
+</Step>
+
+</Steps>
+
+## Dữ liệu tài liệu nằm ở đâu
+
+Tệp gốc nằm trên máy của thầy cô. Việc đọc, tách đoạn và Thử tìm đều chạy tại máy, không tốn tiền, và chạy cả khi dự án đang Tắt AI hay máy mất mạng. Khi thầy cô gửi một tin cho trợ lý, các đoạn tài liệu ở chip ĐANG XEM đi cùng câu hỏi và bản tóm tắt màn đang mở; thầy cô bỏ được từng đoạn trước khi gửi. Dự án bật Tắt AI thì không có gì rời khỏi máy.
+
+## Giới hạn hiện tại
+
+- **Trang quét và ảnh chụp chưa được đọc ra chữ.** App dựng và chuẩn bị ảnh trang tại máy, nhưng chữ trên các trang đó đang chờ OCR. Khi dự án đang bật AI, thông báo nói việc đọc ảnh bằng AI sẽ có ở bản cập nhật sau; theo kế hoạch của app, đó là tác vụ AI có tính tiền. Khi dự án đang Tắt AI, các trang này chờ OCR và không gửi gì ra khỏi máy. Phần chữ đã đọc được từ lớp chữ của tệp vẫn dùng được; tệp không có lớp chữ nào thì app ghi chưa có khối chữ nào đọc được.
+- **Ảnh có chữ trong Word và PowerPoint** cũng thuộc phần OCR chưa có, như trên.
+- **Bản đồ tài liệu** (AI phân tích cấu trúc, từ khoá và câu hỏi của từng mục, đề xuất môn, lớp, chủ đề từ tài liệu) chưa có; đây là hạng mục của kế hoạch sau. Hiện app chỉ tách đoạn và tìm tại máy.
+- **Hiện tài liệu phục vụ trợ lý.** Thầy cô hỏi trợ lý về tài liệu của dự án; đó là chỗ dùng tài liệu ở bản này.
+- Giới hạn mỗi tệp: 12 MB (Phổ thông) hay 80 MB (Học phần, Chương trình), 300 trang hay slide; chỉ PDF, .docx, .pptx, PNG và JPEG.

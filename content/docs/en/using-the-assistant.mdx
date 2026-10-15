@@ -1,0 +1,65 @@
+## Where the assistant is
+
+The EduFlow assistant lives in two places. On the <Ui>Trang chủ</Ui> (Home) screen it is the chat box in the middle of the page, with the question "What do you want to write today?". On work screens it is the <Ui>Trợ lý EduFlow</Ui> (EduFlow assistant) panel on the right; the panel can be expanded with <Ui>Mở rộng toàn màn</Ui> (Expand to full screen) (then <Ui>Thu về panel</Ui> (Back to panel), or press Esc) or collapsed with <Ui>Thu gọn panel</Ui> (Collapse the panel) into a thin strip, and <Ui>Mở trợ lý</Ui> (Open the assistant) brings it back. The shortcut ⌘J on macOS or Ctrl J on Windows opens or collapses the panel; on the home screen it only puts the cursor in the chat box.
+
+The assistant is an AI job like writing a test: it needs a network, and each message is billed by tokens. Under the input box a line like "Each message ... to ... ₫" shows the estimated cost range of one message; after each answer the app records the real cost of that message ("This message ... ₫ · ... tokens"). Click <Ui>Dừng</Ui> (Stop) while an answer is appearing and the part already shown is kept, and that message is billed only for that part.
+
+<Steps>
+
+<Step n={1} id="hoi-man-dang-mo" title="Ask about the open screen">
+
+Type your question in the <Ui>Hỏi hoặc giao việc cho trợ lý</Ui> (Ask or give the assistant a task) box, then press Enter or click <Ui>Gửi</Ui> (Send) (Shift Enter adds a line). An example the assistant suggests on the home screen: "How much of the unit's AI budget has been used this month?". The suggestion chips in the panel only fill the box; nothing is sent.
+
+The assistant knows what you are looking at through the <Ui>ĐANG XEM</Ui> (NOW VIEWING) strip at the top of the panel: each chip is an item of the open screen (for example a test name with its version number, like "... · v1"). The line under the strip says exactly what the app does: "Sends only a structured summary, never the original files." To leave an item out of the next message, click the x on its chip; on another screen the chips come back. If you turned off <Ui>Tự đính ngữ cảnh màn</Ui> (Attach the screen context automatically) in <Ui>Cài đặt</Ui> (Settings), the strip says <Ui>Chưa đính ngữ cảnh</Ui> (No context attached) and the <Ui>Đính ngữ cảnh màn này</Ui> (Attach this screen's context) button attaches it when you need it.
+
+The <Ui>Lịch sử trò chuyện</Ui> (Conversation history) button opens the list of conversations in the scope you are viewing, with a <Ui>Tìm trong lịch sử</Ui> (Search the history) box; <Ui>Cuộc trò chuyện mới</Ui> (New conversation) starts another one. Inside a project, the list has an <Ui>Xoá lịch sử</Ui> (Delete history) button that deletes that project's chat history.
+
+<Callout kind="info">The input box is locked, with the reason right above it, when the computer is offline, the project has AI turned off, the device is no longer allowed to use the key, the key has expired or is locked, or the monthly budget is used up in block mode. What you were typing is kept, and the commands you reach by typing <code>/</code> still work.</Callout>
+
+</Step>
+
+<Step n={2} id="nho-dung-thiet-lap" title="Have it prepare a setup from the home screen">
+
+On the home screen, say what you want in plain words, for example the app's own suggestion: "Write a 45-minute Math 10 test on chapter 3, 2 test versions". After your first message the home screen turns into a conversation on the left and a <Ui>XEM TRƯỚC · CHƯA LƯU</Ui> (PREVIEW, NOT SAVED) panel on the right, with the line "Nothing is created until you click."
+
+Your sentence needs to name the subject and the grade. If one is missing, the assistant is told to ask for exactly the missing field rather than guess. When it has both, the assistant offers a card with a button <Ui>Mở soạn đề</Ui> (Open test setup), <Ui>Mở soạn giáo án</Ui> (Open lesson plan setup), <Ui>Mở soạn slide</Ui> (Open slide setup) or <Ui>Mở soạn cả bộ</Ui> (Open full set setup). Click the button and the app creates the test, lesson plan or slides in a new K-12 project and opens straight onto the <Ui>Thiết lập</Ui> (Setup) step with the fields filled in; fields the assistant filled carry the <Ui>Trợ lý điền</Ui> (Filled by the assistant) mark so you can review them. For <Ui>Mở soạn cả bộ</Ui>, or a card where the topic could not be resolved, the <Ui>Soạn bài dạy</Ui> (Prepare a lesson) dialog opens with its fields filled in so you can pick the rest. For a request to create a project, the <Ui>Tạo dự án</Ui> (Create a project) card opens the create-project dialog filled in, with the line "The assistant suggests this; review it before you create."
+
+The assistant only prepares the setup; <Ui>Sinh câu hỏi</Ui> (Generate questions), <Ui>Sinh giáo án</Ui> (Generate lesson plan) or <Ui>Sinh slide</Ui> (Generate slides) is still your click on that screen, and the <Ui>Ước tính chi phí</Ui> (Cost estimate) box appears before anything runs, as the articles on writing tests and lesson plans describe.
+
+</Step>
+
+<Step n={3} id="doc-ba-tang-ket-luan" title="Read the three tiers of an answer">
+
+An answer can hold three kinds of block, so you know how far to trust each part:
+
+- **Tier 1, the <Ui>TẦNG 1 · TẤT ĐỊNH</Ui> (TIER 1 · DETERMINISTIC) block:** a sentence written by the app itself for a fact it holds (the amount spent, the key status, the number of projects, a gate result...), not the assistant's own words. Under the block is a line starting <Ui>Căn cứ</Ui> (Basis), for example <Ui>Căn cứ: kho trên máy này</Ui> (the store on this computer) or <Ui>Căn cứ: số liệu usage của máy chủ</Ui> (the server's usage figures).
+- **Tier 2, the pale block:** what the assistant has not seen, opening with <Ui>Chưa thấy</Ui> (Not seen) "...", for example that it has not seen any project at the Course level.
+- **Tier 3, the dashed-border block labelled <Ui>Đề xuất, cần người duyệt</Ui> (Proposal, needs a person to approve):** the assistant's suggestion, for instance to turn AI off for a project that holds student data. This block is text for you to read and weigh, with no button that applies it to a test or lesson plan; to change something, you edit it on the authoring screen as in the earlier articles.
+
+Plain text between the blocks is the assistant's own words. When an answer relies on the project's source documents, the <Ui>Nguồn</Ui> (Source) chip at the end of a sentence opens the exact passage in the document; the next article covers documents. The <Ui>Sao chép câu trả lời</Ui> (Copy the answer) button at the end of each answer copies it out for use elsewhere.
+
+</Step>
+
+<Step n={4} id="dung-the-hanh-dong" title="Use action cards">
+
+An action card is a button the assistant offers to open a screen or do a small job on your computer. A card carries the <Ui>Tại máy · 0 ₫</Ui> (On this computer · 0 ₫) chip: click and it runs at once, with no AI call and no cost, and the assistant never runs a card by itself. There are four kinds: <Ui>Mở</Ui> (Open) a screen (Home, Projects, Usage and cost, Settings or a project), <Ui>Tạo dự án</Ui> (Create a project), <Ui>Bật Tắt AI</Ui> (Turn on the AI-off switch) for a project, and the <Ui>Mở soạn ...</Ui> (Open ... setup) buttons from the previous step. A card shows only when the open screen has that command; for example <Ui>Bật Tắt AI</Ui> shows only on the <Ui>Chi tiết dự án</Ui> (Project details) screen of that very project.
+
+After it runs, the card says <Ui>Đã chạy lúc ...</Ui> (Ran at ...). Click a card that already ran and the app asks "The command ... ran at ... Run it again?", because one more click could create another project or test. A card does not generate content with AI: that still goes through the <Ui>Sinh</Ui> (Generate) button and the <Ui>Ước tính chi phí</Ui> box on the authoring screen.
+
+You can also call a local command without asking: type <code>/</code> at the start of the box or click <Ui>/ Lệnh</Ui> (/ Commands) to open the <Ui>Lệnh tại máy · 0 ₫</Ui> (Commands on this computer · 0 ₫) menu of the open screen. The menu still works when the box is locked or the computer is offline.
+
+</Step>
+
+</Steps>
+
+## What the assistant does not do
+
+The assistant only suggests; you decide. It does not approve, does not sign, does not confirm warnings, does not publish officially, does not export or import packages, does not change account settings and does not change the budget. When you ask for one of these, it tells you which screen to do it on: for example <Ui>Duyệt</Ui> (Approve) is a button on step <Ui>3. Xuất</Ui> (Export) of a test or lesson plan, the key is changed in <Ui>Cài đặt</Ui>, and the monthly budget is set by the administrator.
+
+The four kinds of card in the previous step are everything the app lets the assistant offer: none of them approves, signs or exports a file.
+
+## Turn AI off for a project
+
+For a project whose data must stay private, turn on the <Ui>Công tắc Tắt AI</Ui> (AI-off switch) in the <Ui>Tắt AI cho dự án này</Ui> (Turn AI off for this project) card of <Ui>Chi tiết dự án</Ui> (opened from <Ui>Dự án</Ui>, Projects). While the switch is on, the app sends no AI call for that project, the assistant included, and no content of the project leaves your computer. Gates, tier 1, tier 2, compiling and file export still run on your computer. The chat box in that project is locked with the reason "The project has AI turned off", with an <Ui>Mở Chi tiết dự án</Ui> (Open project details) button, and the NOW VIEWING strip reads "The project has AI turned off: nothing is sent off this computer."
+
+Each time it is turned on or off, the change is written to the project's log. A project with AI off carries a <Ui>Tắt AI</Ui> label in the <Ui>Làm tiếp</Ui> (Continue) list on the home screen, and the <Ui>Riêng tư</Ui> (Privacy) card in <Ui>Cài đặt</Ui> shows how many projects have AI turned off.
