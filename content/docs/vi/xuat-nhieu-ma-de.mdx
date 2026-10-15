@@ -1,0 +1,73 @@
+## Khi nào cần nhiều mã đề
+
+Khi nhiều học sinh làm bài cùng lúc trong một phòng, các mã đề khác nhau giúp bạn ngồi cạnh nhau không có cùng thứ tự câu và cùng thứ tự phương án. EduFlow dựng các mã từ cùng một đề đã soạn, đánh số 101, 102, 103 và cứ thế; một đề có tối đa 24 mã đề, tức là mã 101 tới 124. Câu hỏi và đáp án đúng giữ nguyên, chỉ thứ tự thay đổi. Đáp án của từng mã nằm ở một tệp riêng, không lẫn vào tệp đề.
+
+Bài này tiếp nối bài soạn đề: đề đã có câu hỏi và nên đã qua cổng chất lượng và duyệt. Xuất đề chưa duyệt vẫn được, nhưng bản xuất mang dấu chìm DÙNG THỬ như bài trước đã nêu.
+
+<Steps>
+
+<Step n={1} id="mo-buoc-xuat" title="Mở bước Xuất của đề đã duyệt">
+
+Mở đề trong màn **Soạn đề kiểm tra** rồi chọn **3. Xuất** ở dải **Các bước soạn đề**. Cột bên trái là phần **Xem trước**: chọn trong ô **Xem** để xem từng mã (Mã 101, Mã 102...) và các tài liệu của giáo viên. Cột bên phải có thẻ **Bộ đề**, danh sách **Kiểm tra bản xuất** và các nút xuất. Các tuỳ chọn trong thẻ **Bộ đề** là cách in các mã, không phải nội dung đề.
+
+</Step>
+
+<Step n={2} id="chon-so-ma-de" title="Chọn số mã đề">
+
+Trong thẻ **Bộ đề**, gõ số vào ô **Số mã đề**, từ 1 tới 24. Dòng gợi ý bên dưới cho biết dải mã, ví dụ "Từ 1 đến 24, mã 101 đến 124". Số hợp lệ được lưu sau một nhịp ngắn khi thầy cô ngừng gõ.
+
+Gõ số ngoài khoảng thì app không tự sửa mà báo "Số mã đề phải từ 1 đến 24", và các nút xuất chờ cho tới khi số hợp lệ. Nếu trợ lý đã điền sẵn số mã đề lúc soạn, ô này hiện sẵn số đó và thầy cô đổi ở đây.
+
+</Step>
+
+<Step n={3} id="xao-tron" title="Bật hay tắt xáo trộn câu hỏi và xáo trộn đáp án">
+
+Hai ô tick trong thẻ **Bộ đề**, mặc định bật cả hai:
+
+- **Xáo trộn câu hỏi:** đổi thứ tự câu trong từng phần của mỗi mã. Câu tự luận giữ nguyên thứ tự và không câu nào đổi sang phần khác.
+- **Xáo trộn đáp án:** đổi thứ tự bốn phương án A, B, C, D của câu nhiều lựa chọn.
+
+Đổi các tuỳ chọn này, kể cả số mã đề, không tạo phiên bản mới, không phải duyệt lại và không làm đổi kết quả cổng nào. Tắt cả hai và chọn một mã thì cho đúng một đề theo thứ tự gốc.
+
+<Callout kind="warning">Đề và đáp án phải xuất cùng một bộ tuỳ chọn. Nếu thầy cô đổi tuỳ chọn sau lần xuất trước, app hiện cảnh báo nêu tuỳ chọn của lần đó, ví dụ "12 mã đề (101 đến 112), xáo câu hỏi, xáo đáp án", và nhắc xuất lại cả hai tệp.</Callout>
+
+</Step>
+
+<Step n={4} id="kiem-tra-truoc-khi-luu" title="Kiểm tra trước khi lưu">
+
+Trước khi lưu tệp, app chạy sáu phép kiểm trên chính các tài liệu đã dựng. Kết quả hiện ở **Kiểm tra bản xuất**, mỗi dòng có kết quả (**Đạt**, **Cảnh báo**, **Cần xem**, **Lỗi**, **Lỗi kiểm** hoặc **Không áp dụng**) và số đơn vị đã kiểm:
+
+1. **Mỗi mã đề đủ câu:** mọi mã có đủ số câu và đủ các phần.
+2. **Đáp án khớp từng mã đề:** chữ cái đáp án đúng của mỗi mã khớp với thứ tự phương án sau khi xáo.
+3. **Đề không chứa đáp án:** tờ đề không lộ đáp án.
+4. **Tổng điểm khớp thang điểm:** tổng điểm in trên đề bằng thang điểm của đề.
+5. **Không có mã đề trùng nhau:** nếu có mã giống hệt, app nêu tên các mã ("Mã 101, 102 giống hệt nhau") và gợi ý bật xáo trộn, thêm câu hoặc giảm số mã đề. Trường hợp này thường gặp khi tắt xáo trộn hoặc đề có rất ít câu.
+6. **Đầu đề đủ thông tin:** Trường, Năm học và, với đề giữa hoặc cuối học kỳ, Học kỳ. Còn thiếu ô nào thì app nêu tên ô đó và bản in để dòng chấm cho thầy cô điền tay.
+
+Phép kiểm nào ở mức **Lỗi** thì app không lưu tệp và báo tên phép kiểm, kèm lời nhờ gửi góp ý cho EduFlow cùng tên đề. Các mức còn lại là thông tin để thầy cô xem trước khi in.
+
+</Step>
+
+<Step n={5} id="nhan-tep" title="Nhận tệp">
+
+Ở dải **Tài liệu xuất**, chọn một tài liệu rồi bấm **Xuất PDF** hoặc **Xuất DOCX**. Mỗi lần xuất một tài liệu:
+
+| Tài liệu | Có gì |
+|---|---|
+| **Đề thi** | Chỉ các mã đề, tất cả trong một tệp; không có đáp án |
+| **Đáp án và hướng dẫn chấm** | Đáp án theo từng mã và hướng dẫn chấm, tệp riêng |
+| **Ma trận và bản đặc tả** | Ma trận đề và bản đặc tả, tệp riêng |
+
+Đề được tạo bằng bản hiện nay có ba tài liệu như trên. Đề dựng từ các bản cũ hơn có bố cục khác: **Đề thi**, **Phụ lục** và **Đề và phụ lục**, trong đó phụ lục gom ma trận, bản đặc tả, đáp án theo mã và hướng dẫn chấm. Danh sách trên màn luôn là danh sách đúng của đề đang mở.
+
+Xuất xong, app báo "Đã lưu" kèm tên tệp, số trang từng mã (ví dụ "Mã 101: 2 trang") và nhắc mở tệp xem lại trước khi in. Nút **Mở thư mục** mở nơi tệp được lưu. Việc dựng mã và xuất tệp chạy trên máy, không tốn tiền.
+
+</Step>
+
+</Steps>
+
+## Xáo trộn tất định nghĩa là gì
+
+Thứ tự của một mã đề không chọn ngẫu nhiên mỗi lần xuất. App tính nó chỉ từ số mã đề, số câu trắc nghiệm của đề và hai tuỳ chọn xáo trộn, không phụ thuộc nội dung chữ. Nghĩa là cùng một đề và cùng tuỳ chọn thì mã 101 luôn ra đúng một thứ tự câu và phương án, trên macOS cũng như Windows: thầy cô in lại hôm sau hay xuất lại sau khi sửa một lỗi chính tả đều thấy mã 101 không đổi. Thứ tự chỉ đổi khi thầy cô thêm hoặc bớt câu trắc nghiệm, hoặc đổi tuỳ chọn xáo trộn.
+
+Điều này giúp đáp án của từng mã luôn khớp với tờ đề đã in, và là lý do app xuất đề và đáp án cùng một bộ tuỳ chọn. Tắt một loại xáo trộn không làm đổi phần còn lại: thứ tự của loại còn bật vẫn như khi bật cả hai.

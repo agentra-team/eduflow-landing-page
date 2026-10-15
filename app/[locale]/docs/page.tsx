@@ -37,7 +37,7 @@ export default async function DocsIndexPage() {
           <section className="flex flex-col gap-4">
             <h2 className="text-[24px] font-bold">{t('quickStart.h2')}</h2>
             <p className="text-ink2">{t('quickStart.lead')}</p>
-            <ol className="grid gap-4 md:grid-cols-3">
+            <ol className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
               {QUICK_START.map((id, i) => (
                 <li key={id}>
                   <Link href={docHref(locale, id)} className={card}>

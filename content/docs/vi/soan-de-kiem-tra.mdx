@@ -1,0 +1,97 @@
+## Đề kiểm tra trong EduFlow gồm gì
+
+Màn **Soạn đề kiểm tra** có ba bước, chọn ở dải **Các bước soạn đề**: **1. Thiết lập** (môn, lớp, chương, thời gian, điểm và ma trận), **2. Câu hỏi** (xem và sửa từng câu) và **3. Xuất** (cổng chất lượng, duyệt, xuất tệp). Một đề kiểm tra là một ma trận chủ đề theo bốn mức nhận thức: Nhận biết, Thông hiểu, Vận dụng và Vận dụng cao. AI viết câu cho từng ô của ma trận, còn thầy cô quyết định ma trận, sửa câu và duyệt đề.
+
+Câu hỏi là câu nhiều lựa chọn, mỗi câu có bốn phương án và một đáp án đúng. Hình thức **Kết hợp trắc nghiệm và tự luận** thêm các bài tự luận có điểm và hướng dẫn chấm. Phần cuối bài nói rõ những dạng câu chưa có.
+
+<Steps>
+
+<Step n={1} id="mo-man-soan-de" title="Mở màn Soạn đề kiểm tra">
+
+Có ba đường vào, đều mở hộp thoại **Tạo đề kiểm tra**:
+
+- Ở Trang chủ, bấm **Tạo đề**.
+- Ở thanh bên, bấm **Soạn đề**.
+- Trong một dự án Phổ thông, bấm **Soạn đề mới**.
+
+Trong hộp thoại, chọn **Dự án mới** (đặt **Tên dự án**) hoặc **Dự án Phổ thông có sẵn**, rồi chọn **Môn** và **Lớp**. Bấm **Tạo và mở**: đề được tạo ngay trên máy và màn mở ở bước **1. Thiết lập**.
+
+</Step>
+
+<Step n={2} id="thiet-lap" title="Thiết lập: môn, lớp, chương, thời gian, điểm">
+
+Hàng trên cùng của bước **1. Thiết lập** gồm **Môn**, **Lớp**, **Loại đề** (Kiểm tra 15 phút, Kiểm tra 45 phút, Giữa học kỳ, Cuối học kỳ), **Thời gian** (15, 45, 60, 90 hoặc 120 phút) và **Hình thức** (**Trắc nghiệm** hoặc **Kết hợp trắc nghiệm và tự luận**). Đề đã có câu hỏi thì không đổi được môn và lớp; muốn đổi, tạo đề mới.
+
+- **Chương:** tick chương trong khung GDPT 2018 có sẵn trên máy, có ô **Tìm chương**. Tick một chương là thêm các chủ đề của chương vào ma trận cùng yêu cầu cần đạt (YCCĐ) của từng chủ đề. Khung được đọc tại máy, không cần mạng. Môn hoặc lớp không có chương trong khung thì ô thành **Tên chương** để thầy cô gõ tay.
+- **Khung đầu đề:** bấm để mở các ô Sở GD&ĐT, Trường, Tổ chuyên môn, Giáo viên, Năm học, Học kỳ. Thông tin này chỉ in lên đề, không gửi cho AI. Ô **Trường** lấy sẵn tên đơn vị của key; sửa nếu trường của thầy cô khác. Ô nào để trống thì bản in có dòng chấm để điền tay.
+- **Ghi chú cho AI:** lời dặn thêm, được gửi cho AI cùng ma trận.
+- **Tóm tắt** (cột bên phải): **Tổng câu**, **Thang điểm** (10 hoặc 100) và số điểm mỗi câu trắc nghiệm. Với hình thức Kết hợp có thêm **Số bài tự luận**, **Điểm trắc nghiệm** và **Điểm tự luận**; hai phần điểm cộng lại phải bằng thang điểm.
+
+Mọi thay đổi được lưu tự động sau chừng một giây. Số mã đề không chọn ở bước này mà ở bước **3. Xuất**.
+
+</Step>
+
+<Step n={3} id="lap-ma-tran" title="Lập ma trận chủ đề × bốn mức">
+
+Thẻ **Ma trận đề** là bảng các chủ đề theo bốn cột **NB**, **TH**, **VD**, **VDC** (Nhận biết, Thông hiểu, Vận dụng, Vận dụng cao), mỗi ô là số câu, cuối bảng có **Tổng câu** và **Tỷ lệ**. Nhập số câu vào từng ô, hoặc dùng các cách sau:
+
+- **Rải nhanh:** ba nút theo mẫu, mỗi nút chia tổng số câu cho các chủ đề theo tỷ lệ NB/TH/VD/VDC: **15 phút** (10 câu, 50/30/20/0), **45 phút giữa kỳ** (20 câu, 40/30/20/10) và **Cuối kỳ** (28 câu, 30/40/20/10). Nút chỉ dùng được khi ma trận đã có ít nhất một chủ đề. Rải nhanh thay toàn bộ số câu hiện có, nên app hỏi lại trước khi làm.
+- **Thêm chủ đề tự do:** gõ **Tên chủ đề tự do** và, nếu muốn, **YCCĐ tự nhập** (mỗi dòng một YCCĐ) rồi bấm **Thêm**.
+- **Nhập CSV** và **Xuất CSV:** nhập ma trận từ tệp .csv, mỗi dòng một chủ đề, các cột cách nhau bằng dấu chấm phẩy; xuất ra tệp `eduflow-ma-tran.csv` để sửa ở bảng tính.
+
+Một ma trận có tối đa 40 dòng chủ đề; một đề tối đa 200 câu và mỗi chủ đề tối đa 120 câu. Ma trận chưa có câu nào thì nút **Sinh câu hỏi** bị khoá kèm lý do. Khi ma trận có câu Vận dụng hoặc Vận dụng cao, app bật thêm bước kiểm chứng đáp án độc lập.
+
+</Step>
+
+<Step n={4} id="ai-viet-cau" title="Để AI viết câu hỏi">
+
+Bấm **Sinh câu hỏi** (hoặc ⌘ Enter trên macOS, Ctrl Enter trên Windows). Việc này cần mạng; thiết lập, sửa câu và xuất tệp vẫn làm được khi mất mạng.
+
+App chưa chạy gì ngay mà mở hộp **Ước tính chi phí**: khoảng tiền ước tính (ví dụ "6.200 đến 9.800 ₫"), các bước AI sẽ chạy và ngân sách tháng còn lại. Bấm **Chạy** để bắt đầu, hoặc **Huỷ** thì không có tác vụ nào được tạo và không tốn gì. Nếu ngân hàng câu lệch ma trận, app tự sinh lại tối đa 2 lần, mỗi lần tính thêm tiền.
+
+Trong lúc chạy, một băng tiến độ hiện dưới các bước, có nút **Huỷ**; huỷ thì phiên bản hiện tại giữ nguyên. Chạy xong, màn tự mở bước **2. Câu hỏi**, nơi câu được xếp theo chủ đề và mức. Mỗi câu có nút **Sửa**. **Sửa cấu hình** quay lại bước Thiết lập; **Sinh lại** tạo phiên bản mới (cũng qua hộp ước tính) và phiên bản cũ nằm trong lịch sử.
+
+<Callout kind="warning">Nội dung do AI sinh nên có thể có sai sót. Thầy cô kiểm tra và chỉnh lại đáp án, số liệu trước khi dùng trên lớp: app luôn đặt đề ở trạng thái **Đề xuất** cho tới khi thầy cô duyệt.</Callout>
+
+</Step>
+
+<Step n={5} id="doc-cong-chat-luong" title="Đọc cổng chất lượng">
+
+Mở bước **3. Xuất**. Cột kết quả có **Bảng cổng** gồm tám cổng, mỗi hàng ghi **Mã**, tên cổng, **Đơn vị đã kiểm**, **Vi phạm** và **Kết quả**:
+
+| Mã | Cổng kiểm gì |
+|---|---|
+| P1 | Biên dịch ra PDF |
+| P2 | Không phải bản rút gọn chữ thuần |
+| P3 | Số câu từng ô đúng ma trận |
+| P4 | Ít nhất 40% câu có hình |
+| P5 | Đúng 4 phương án, 1 đáp án; cảnh báo đáp án đã xác nhận |
+| P10 | Đã được giáo viên duyệt |
+| P11 | Có neo YCCĐ |
+| P12 | Mang mã, phiên bản, checksum kho chuẩn |
+
+Kết quả là **Đạt**, **Cảnh báo**, **Đã xác nhận**, **Vi phạm chặn**, **Lỗi cổng**, **Không áp dụng**, **Tắt** hoặc **Chờ** (riêng P10 ghi **Chờ duyệt** cho tới khi thầy cô duyệt). Ở bản này P1 và P2 ghi **Không áp dụng (kết xuất HTML)** và P4 ghi **Tắt trong bản này**, vì app chưa biên dịch bằng LaTeX và chưa có hình trong câu.
+
+Cột **Đơn vị đã kiểm** cho biết cổng đã xem bao nhiêu đơn vị (câu, ô của ma trận, phiên bản). Cổng nào kiểm 0 đơn vị thì không được coi là đạt: app ghi **Lỗi cổng** và nêu "Cổng P3 không kiểm được đơn vị nào", nghĩa là dữ liệu đầu vào có vấn đề. Dưới bảng, mỗi vi phạm hay cảnh báo nằm một dòng, kèm nút **Mở câu** để nhảy tới câu đó ở bước Câu hỏi.
+
+</Step>
+
+<Step n={6} id="duyet-tung-cau" title="Duyệt từng câu và duyệt đề">
+
+Cảnh báo đáp án (ví dụ "cần xác nhận đáp án vì chưa kiểm chứng được" hoặc "vì giám khảo đổi đáp án") phải được xác nhận từng câu: mỗi dòng có nút **Xác nhận** riêng, không có nút xác nhận tất cả. Ở bước **2. Câu hỏi**, nút **Kiểm từng câu** đi lần lượt qua các câu cần xác nhận: Enter xác nhận câu đang chọn, mũi tên lên xuống để chuyển câu, E để sửa, Esc để thoát. Sửa một câu thì xác nhận của câu đó bị huỷ.
+
+Nút **Duyệt** ở bước **3. Xuất** bị khoá, kèm lý do, khi còn vi phạm mức chặn (ngoài P10) hoặc còn cảnh báo chưa xác nhận. Khi đủ điều kiện, bấm **Duyệt** và xác nhận trong hộp thoại: bằng chứng duyệt được lưu vào phiên bản. Ở cấp Phổ thông, **Duyệt** là bước cuối, không có thêm bước ký riêng. Sau đó, sửa đề sẽ tạo bản nháp mới (nút **Sửa trên bản nháp mới**), phiên bản đã duyệt giữ nguyên.
+
+Xuất tệp luôn làm được, kể cả khi đề chưa duyệt, nhưng bản xuất mang dấu chìm **DÙNG THỬ** trong các trường hợp: phiên bản chưa được duyệt, còn vi phạm mức chặn, key đang dùng thử, chưa kiểm được loại key của máy này, hoặc đây là hiện vật mẫu. Mỗi lý do hiện một dòng ngay trên nút xuất. Đề đã duyệt, không còn vi phạm chặn và chạy bằng key trả phí thì bản xuất không có dấu chìm. Bài sau nói về cách xuất nhiều mã đề.
+
+</Step>
+
+</Steps>
+
+## Đề này chưa làm được gì
+
+- Câu **đúng sai**, câu **trả lời ngắn** và câu **tự luận có ý nhỏ** (nhiều ý, mỗi ý có điểm): chưa có, thuộc lộ trình. Bài tự luận hiện có là bài có điểm và hướng dẫn chấm, chỉ ở hình thức Kết hợp.
+- Hình vẽ trong câu hỏi: chưa có. AI không vẽ hình và cổng P4 đang tắt.
+- Biên dịch bằng LaTeX ra PDF và trình sửa mã LaTeX: chưa có; cổng P1 và P2 chưa áp dụng. Công thức viết trong câu hỏi vẫn hiện ở màn xem trước.
+- Ba mức Biết, Hiểu, Vận dụng của Công văn 7991: chưa có, ma trận hiện dùng bốn mức.
+- AI chỉ viết bản đề xuất: thầy cô kiểm tra, sửa và duyệt từng câu trước khi dùng.

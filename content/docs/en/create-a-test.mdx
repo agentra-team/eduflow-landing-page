@@ -1,0 +1,97 @@
+## What a test in EduFlow consists of
+
+The <Ui>Soạn đề kiểm tra</Ui> (Create a test) screen has three steps, chosen in the <Ui>Các bước soạn đề</Ui> (Test steps) bar: <Ui>1. Thiết lập</Ui> (Setup: subject, grade, chapters, time, points and the matrix), <Ui>2. Câu hỏi</Ui> (Questions: read and edit each item) and <Ui>3. Xuất</Ui> (Export: quality gates, approval, export files). A test is a matrix of topics across four cognitive levels: <Ui>Nhận biết</Ui> (recognition), <Ui>Thông hiểu</Ui> (comprehension), <Ui>Vận dụng</Ui> (application) and <Ui>Vận dụng cao</Ui> (high application). AI writes items for each cell of the matrix, while you decide the matrix, edit the items and approve the test.
+
+Items are multiple-choice, each with four options and one correct answer. The form <Ui>Kết hợp trắc nghiệm và tự luận</Ui> (Multiple choice plus essay) adds essay tasks with points and a marking guide. The last section lists the item types that are not available yet.
+
+<Steps>
+
+<Step n={1} id="mo-man-soan-de" title="Open the Create a test screen">
+
+There are three ways in, and all of them open the <Ui>Tạo đề kiểm tra</Ui> (Create a test) dialog:
+
+- On the home screen, click <Ui>Tạo đề</Ui> (Create test).
+- In the sidebar, click <Ui>Soạn đề</Ui> (Write a test).
+- Inside a K-12 project, click <Ui>Soạn đề mới</Ui> (New test).
+
+In the dialog, choose <Ui>Dự án mới</Ui> (New project, and name it in <Ui>Tên dự án</Ui>) or <Ui>Dự án Phổ thông có sẵn</Ui> (An existing K-12 project), then pick the <Ui>Môn</Ui> (Subject) and <Ui>Lớp</Ui> (Grade). Click <Ui>Tạo và mở</Ui> (Create and open): the test is created on your computer straight away and the screen opens on step <Ui>1. Thiết lập</Ui>.
+
+</Step>
+
+<Step n={2} id="thiet-lap" title="Setup: subject, grade, chapters, time, points">
+
+The top row of step <Ui>1. Thiết lập</Ui> holds <Ui>Môn</Ui> (Subject), <Ui>Lớp</Ui> (Grade), <Ui>Loại đề</Ui> (Test type: 15-minute quiz, 45-minute quiz, mid-term, end-of-term), <Ui>Thời gian</Ui> (Time: 15, 45, 60, 90 or 120 minutes) and <Ui>Hình thức</Ui> (Form: <Ui>Trắc nghiệm</Ui> (Multiple choice) or <Ui>Kết hợp trắc nghiệm và tự luận</Ui> (Multiple choice plus essay)). Once a test has items, its subject and grade are locked; to change them, create a new test.
+
+- <Ui>Chương</Ui> (Chapters): tick chapters from the GDPT 2018 framework stored on your computer; a <Ui>Tìm chương</Ui> (Search chapters) box helps. Ticking a chapter adds its topics to the matrix together with each topic's learning requirements (<Ui>YCCĐ</Ui>). The framework is read on your machine, with no network needed. If a subject or grade has no chapters in the framework, the field becomes <Ui>Tên chương</Ui> (Chapter name) and you type it by hand.
+- <Ui>Khung đầu đề</Ui> (Test header): click to open the fields <Ui>Sở GD&ĐT</Ui> (Department of Education), <Ui>Trường</Ui> (School), <Ui>Tổ chuyên môn</Ui> (Subject group), <Ui>Giáo viên</Ui> (Teacher), <Ui>Năm học</Ui> (School year) and <Ui>Học kỳ</Ui> (Term). This information is only printed on the test and is never sent to AI. <Ui>Trường</Ui> starts as the unit name of your key; change it if your school differs. Any field left empty prints as a dotted line to fill in by hand.
+- <Ui>Ghi chú cho AI</Ui> (Note for AI): an extra instruction, sent to AI together with the matrix.
+- <Ui>Tóm tắt</Ui> (Summary, right column): <Ui>Tổng câu</Ui> (Total items), <Ui>Thang điểm</Ui> (Score scale, 10 or 100) and the points per multiple-choice item. With the combined form you also get <Ui>Số bài tự luận</Ui> (Number of essays), <Ui>Điểm trắc nghiệm</Ui> (Multiple-choice points) and <Ui>Điểm tự luận</Ui> (Essay points); the two parts must add up to the scale.
+
+Every change is saved automatically within about a second. The number of versions is not chosen here but in step <Ui>3. Xuất</Ui>.
+
+</Step>
+
+<Step n={3} id="lap-ma-tran" title="Build the topic by four-level matrix">
+
+The <Ui>Ma trận đề</Ui> (Test matrix) card is a table of topics against four columns, <Ui>NB</Ui>, <Ui>TH</Ui>, <Ui>VD</Ui> and <Ui>VDC</Ui> (recognition, comprehension, application, high application); each cell is a number of items, and the foot of the table shows <Ui>Tổng câu</Ui> (Total items) and <Ui>Tỷ lệ</Ui> (Ratio). Type a number into each cell, or use one of these:
+
+- <Ui>Rải nhanh</Ui> (Quick fill): three template buttons, each of which spreads a total number of items over the topics by NB/TH/VD/VDC ratio: <Ui>15 phút</Ui> (15 minutes: 10 items, 50/30/20/0), <Ui>45 phút giữa kỳ</Ui> (45 minutes, mid-term: 20 items, 40/30/20/10) and <Ui>Cuối kỳ</Ui> (End of term: 28 items, 30/40/20/10). The buttons work once the matrix has at least one topic. Quick fill replaces every count already in the matrix, so the app asks you to confirm first.
+- <Ui>Thêm chủ đề tự do</Ui> (Add a free topic): type a <Ui>Tên chủ đề tự do</Ui> (Free topic name) and, if you like, <Ui>YCCĐ tự nhập</Ui> (Your own learning requirements, one per line), then click <Ui>Thêm</Ui> (Add).
+- <Ui>Nhập CSV</Ui> (Import CSV) and <Ui>Xuất CSV</Ui> (Export CSV): import a matrix from a .csv file with one topic per row and columns separated by semicolons; export to `eduflow-ma-tran.csv` to edit it in a spreadsheet.
+
+A matrix holds up to 40 topic rows; a test holds up to 200 items and each topic up to 120 items. While the matrix has no items, <Ui>Sinh câu hỏi</Ui> (Generate items) is locked and says why. When the matrix includes application or high-application items, the app also switches on an independent answer check.
+
+</Step>
+
+<Step n={4} id="ai-viet-cau" title="Let AI write the items">
+
+Click <Ui>Sinh câu hỏi</Ui> (Generate items), or press ⌘ Enter on macOS or Ctrl Enter on Windows. This needs a network connection; setup, editing items and exporting files still work offline.
+
+The app does not run anything yet. It opens the <Ui>Ước tính chi phí</Ui> (Cost estimate) box: an estimated range (for example <Ui>6.200 đến 9.800 ₫</Ui>), the AI steps that will run and the monthly budget left. Click <Ui>Chạy</Ui> (Run) to start, or <Ui>Huỷ</Ui> (Cancel) and no job is created and nothing is charged. If the item bank does not match the matrix, the app regenerates it up to 2 more times, and each attempt is charged.
+
+While it runs, a progress band under the steps has a <Ui>Huỷ</Ui> button; cancelling leaves the current version untouched. When it finishes, the screen opens step <Ui>2. Câu hỏi</Ui> by itself, with items grouped by topic and level. Each item has a <Ui>Sửa</Ui> (Edit) button. <Ui>Sửa cấu hình</Ui> (Edit setup) goes back to Setup; <Ui>Sinh lại</Ui> (Regenerate) creates a new version (through the same estimate box) and the old one stays in the history.
+
+<Callout kind="warning">AI-written content may contain mistakes. Check and correct the answers and figures before using the test in class: the app keeps the test as <Ui>Đề xuất</Ui> (Draft proposal) until you approve it.</Callout>
+
+</Step>
+
+<Step n={5} id="doc-cong-chat-luong" title="Read the quality gates">
+
+Open step <Ui>3. Xuất</Ui>. The result column has a <Ui>Bảng cổng</Ui> (Gate table) with eight gates; each row shows <Ui>Mã</Ui> (Code), the gate name, <Ui>Đơn vị đã kiểm</Ui> (Units checked), <Ui>Vi phạm</Ui> (Violations) and <Ui>Kết quả</Ui> (Result):
+
+| Code | What the gate checks |
+|---|---|
+| P1 | <Ui>Biên dịch ra PDF</Ui> (Compiles to PDF) |
+| P2 | <Ui>Không phải bản rút gọn chữ thuần</Ui> (Not a plain-text shortcut) |
+| P3 | <Ui>Số câu từng ô đúng ma trận</Ui> (Item count in each cell matches the matrix) |
+| P4 | <Ui>Ít nhất 40% câu có hình</Ui> (At least 40% of items have a figure) |
+| P5 | <Ui>Đúng 4 phương án, 1 đáp án; cảnh báo đáp án đã xác nhận</Ui> (Exactly 4 options, 1 answer; answer warnings confirmed) |
+| P10 | <Ui>Đã được giáo viên duyệt</Ui> (Approved by the teacher) |
+| P11 | <Ui>Có neo YCCĐ</Ui> (Anchored to a learning requirement) |
+| P12 | <Ui>Mang mã, phiên bản, checksum kho chuẩn</Ui> (Carries the framework code, version and checksum) |
+
+A result is <Ui>Đạt</Ui> (Pass), <Ui>Cảnh báo</Ui> (Warning), <Ui>Đã xác nhận</Ui> (Confirmed), <Ui>Vi phạm chặn</Ui> (Blocking violation), <Ui>Lỗi cổng</Ui> (Gate error), <Ui>Không áp dụng</Ui> (Not applicable), <Ui>Tắt</Ui> (Off) or <Ui>Chờ</Ui> (Pending); P10 alone reads <Ui>Chờ duyệt</Ui> (Awaiting approval) until you approve. In this version P1 and P2 read <Ui>Không áp dụng (kết xuất HTML)</Ui> (Not applicable, HTML rendering) and P4 reads <Ui>Tắt trong bản này</Ui> (Off in this version), because the app does not compile through LaTeX yet and has no figures in items.
+
+The <Ui>Đơn vị đã kiểm</Ui> column shows how many units the gate looked at (items, matrix cells, versions). A gate that checked 0 units is not counted as passed: the app marks it <Ui>Lỗi cổng</Ui> and says gate P3, for example, checked no unit, which means the input data has a problem. Below the table, each violation or warning has its own line with an <Ui>Mở câu</Ui> (Open item) button that jumps to that item in the Questions step.
+
+</Step>
+
+<Step n={6} id="duyet-tung-cau" title="Review each item and approve">
+
+Answer warnings (for example "the answer needs confirming because it could not be verified", or "because the independent checker changed the answer") must be confirmed one item at a time: each line has its own <Ui>Xác nhận</Ui> (Confirm) button, and there is no confirm-all. In step <Ui>2. Câu hỏi</Ui>, the <Ui>Kiểm từng câu</Ui> (Review one by one) button walks through the items that need confirming: Enter confirms the selected item, the up and down arrows move between items, E edits and Esc leaves. Editing an item cancels its confirmation.
+
+The <Ui>Duyệt</Ui> (Approve) button in step <Ui>3. Xuất</Ui> is locked, with the reason shown, while blocking violations (other than P10) or unconfirmed warnings remain. Once it is free, click <Ui>Duyệt</Ui> and confirm in the dialog: the approval evidence is stored in the version. At K-12 level, <Ui>Duyệt</Ui> is the final step; there is no separate signing step. After that, editing creates a new draft (the <Ui>Sửa trên bản nháp mới</Ui> (Edit on a new draft) button) and the approved version stays as it is.
+
+Exporting always works, even for a test that is not approved, but the export carries a <Ui>DÙNG THỬ</Ui> (TRIAL) watermark in these cases: the version is not approved, blocking violations remain, the key is a trial key, the app could not check this computer's key type, or the test is a sample. Each reason appears on its own line just above the export buttons. An approved test with no blocking violations, run on a paid key, exports without the watermark. The next article covers exporting several versions.
+
+</Step>
+
+</Steps>
+
+## What this test cannot do yet
+
+- **True/false** items, **short-answer** items and **essays with sub-parts** (several parts, each with its own points): not available, on the roadmap. The essay tasks that exist have points and a marking guide, and only in the combined form.
+- Figures in items: not available. AI does not draw figures and gate P4 is off.
+- Compiling through LaTeX to PDF and a LaTeX source editor: not available; gates P1 and P2 do not apply. Formulas written in an item still show in the preview.
+- The three levels of Official Letter 7991 (<Ui>Biết</Ui>, <Ui>Hiểu</Ui>, <Ui>Vận dụng</Ui>): not available; the matrix uses four levels.
+- AI only writes a draft proposal: you check, edit and approve each item before using it.

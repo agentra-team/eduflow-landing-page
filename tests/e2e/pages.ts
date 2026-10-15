@@ -13,6 +13,8 @@ export const PAGES: Array<[string, 'vi' | 'en']> = [
   ['/en/docs/install-macos', 'en'], ['/en/docs/install-windows', 'en'],
   ['/huong-dan/kich-hoat-va-dung-thu', 'vi'], ['/huong-dan/lam-quen-giao-dien', 'vi'],
   ['/en/docs/activation-and-trial', 'en'], ['/en/docs/interface-tour', 'en'],
+  ['/huong-dan/soan-de-kiem-tra', 'vi'], ['/huong-dan/xuat-nhieu-ma-de', 'vi'],
+  ['/en/docs/create-a-test', 'en'], ['/en/docs/export-test-versions', 'en'],
   ['/lien-he', 'vi'], ['/en/contact', 'en'],
   ['/chinh-sach-bao-mat', 'vi'], ['/en/privacy', 'en'],
 ]

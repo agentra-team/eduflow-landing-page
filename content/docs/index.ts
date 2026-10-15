@@ -91,10 +91,40 @@ export const DOCS: Record<DocId, DocEntry> = {
       keyword: 'EduFlow interface',
     },
   },
+  'create-a-test': {
+    group: 'k12',
+    order: 1,
+    updatedAt: '2026-10-15',
+    vi: {
+      title: 'Soạn đề kiểm tra theo ma trận',
+      description: 'Từng bước soạn một đề kiểm tra trên EduFlow: thiết lập môn và thời lượng, lập ma trận bốn mức, để AI viết câu, xem cổng chất lượng rồi duyệt.',
+      keyword: 'cách soạn đề kiểm tra trên EduFlow',
+    },
+    en: {
+      title: 'Create a test from a blueprint',
+      description: 'Create a test in EduFlow step by step: set the subject and duration, build a four-level matrix, let AI write items, read the quality gates, then approve.',
+      keyword: 'how to create a test in EduFlow',
+    },
+  },
+  'export-test-versions': {
+    group: 'k12',
+    order: 2,
+    updatedAt: '2026-10-15',
+    vi: {
+      title: 'Xuất đề với nhiều mã đề',
+      description: 'Chọn số mã đề tối đa 24, bật hoặc tắt xáo trộn câu và đáp án, xem các phép kiểm tra rồi xuất DOCX hoặc PDF; đáp án và hướng dẫn chấm nằm ở tệp riêng.',
+      keyword: 'xuất nhiều mã đề trên EduFlow',
+    },
+    en: {
+      title: 'Export a test in several versions',
+      description: 'Choose up to 24 test versions, turn question and answer shuffling on or off, read the export checks, then export DOCX or PDF; the key is a separate file.',
+      keyword: 'export test versions in EduFlow',
+    },
+  },
 }
 
 /** Khối "Bắt đầu trong 5 phút" ở mục lục hướng dẫn: cài, kích hoạt, soạn đề đầu tiên (spec §7.3). */
-export const QUICK_START: DocId[] = ['install-macos', 'install-windows', 'activation-and-trial']
+export const QUICK_START: DocId[] = ['install-macos', 'install-windows', 'activation-and-trial', 'create-a-test']
 
 /** Thứ tự đọc: theo nhóm (DOC_GROUPS), rồi theo `order` trong nhóm. Dẫn thanh bên và bài trước, bài sau. */
 export function docsInOrder(): DocId[] {
@@ -121,12 +151,16 @@ export const DOC_SOURCES: Record<Locale, Record<DocId, () => Promise<MdxBody>>> 
     'install-windows': () => import('./vi/cai-dat-windows.mdx'),
     'activation-and-trial': () => import('./vi/kich-hoat-va-dung-thu.mdx'),
     'interface-tour': () => import('./vi/lam-quen-giao-dien.mdx'),
+    'create-a-test': () => import('./vi/soan-de-kiem-tra.mdx'),
+    'export-test-versions': () => import('./vi/xuat-nhieu-ma-de.mdx'),
   },
   en: {
     'install-macos': () => import('./en/install-macos.mdx'),
     'install-windows': () => import('./en/install-windows.mdx'),
     'activation-and-trial': () => import('./en/activation-and-trial.mdx'),
     'interface-tour': () => import('./en/interface-tour.mdx'),
+    'create-a-test': () => import('./en/create-a-test.mdx'),
+    'export-test-versions': () => import('./en/export-test-versions.mdx'),
   },
 }
 

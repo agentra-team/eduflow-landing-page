@@ -1,0 +1,73 @@
+## When you need several versions
+
+When many students sit a test in one room, different versions mean that neighbours do not share the same question order or the same option order. EduFlow builds the versions from the one test you wrote, numbered 101, 102, 103 and so on; a test can have up to 24 test versions, which is versions 101 to 124. The items and the correct answers stay the same; only the order changes. The key for each version lives in a separate file, never mixed into the test file.
+
+This article follows the one on creating a test: the test already has items and has been through the quality gates and approval. You can still export a test that is not approved, but the export carries the TRIAL watermark described in the previous article.
+
+<Steps>
+
+<Step n={1} id="mo-buoc-xuat" title="Open the Export step of an approved test">
+
+Open the test in the <Ui>Soạn đề kiểm tra</Ui> (Create a test) screen and choose <Ui>3. Xuất</Ui> (Export) in the <Ui>Các bước soạn đề</Ui> (Test steps) bar. The left column is the <Ui>Xem trước</Ui> (Preview): use the <Ui>Xem</Ui> (View) box to look at each version (<Ui>Mã 101</Ui>, <Ui>Mã 102</Ui>...) and the teacher documents. The right column holds the <Ui>Bộ đề</Ui> (Test set) card, the <Ui>Kiểm tra bản xuất</Ui> (Export checks) list and the export buttons. The options in the <Ui>Bộ đề</Ui> card are how the versions print, not the content of the test.
+
+</Step>
+
+<Step n={2} id="chon-so-ma-de" title="Choose the number of versions">
+
+In the <Ui>Bộ đề</Ui> card, type a number into <Ui>Số mã đề</Ui> (Number of versions), from 1 to 24. The hint below shows the range of codes, for example <Ui>Từ 1 đến 24, mã 101 đến 124</Ui> (From 1 to 24, codes 101 to 124). A valid number is saved a moment after you stop typing.
+
+A number outside the range is not corrected for you: the app says <Ui>Số mã đề phải từ 1 đến 24</Ui> (The number of versions must be from 1 to 24), and the export buttons wait until the number is valid. If the assistant filled in the number of versions while you were writing the test, the box shows it and you change it here.
+
+</Step>
+
+<Step n={3} id="xao-tron" title="Turn question and answer shuffling on or off">
+
+Two checkboxes in the <Ui>Bộ đề</Ui> card, both on by default:
+
+- <Ui>Xáo trộn câu hỏi</Ui> (Shuffle questions): changes the order of items within each part of every version. Essay tasks keep their order, and no item moves to another part.
+- <Ui>Xáo trộn đáp án</Ui> (Shuffle answers): changes the order of the four options A, B, C, D of multiple-choice items.
+
+Changing these options, the number of versions included, does not create a new version, does not need a new approval and does not move any gate result. With both off and one version you get exactly one test, in the original order.
+
+<Callout kind="warning">The test and its key must be exported with the same set of options. If you change the options after the last export, the app shows a warning that names the options of that export, for example <Ui>12 mã đề (101 đến 112), xáo câu hỏi, xáo đáp án</Ui> (12 versions, 101 to 112, shuffled questions, shuffled answers), and asks you to export both files again.</Callout>
+
+</Step>
+
+<Step n={4} id="kiem-tra-truoc-khi-luu" title="Run the checks before saving">
+
+Before it saves a file, the app runs six checks on the documents it has built. The results show under <Ui>Kiểm tra bản xuất</Ui> (Export checks); each row has a result (<Ui>Đạt</Ui> (Pass), <Ui>Cảnh báo</Ui> (Warning), <Ui>Cần xem</Ui> (Take a look), <Ui>Lỗi</Ui> (Error), <Ui>Lỗi kiểm</Ui> (Check error) or <Ui>Không áp dụng</Ui> (Not applicable)) and the number of units checked:
+
+1. <Ui>Mỗi mã đề đủ câu</Ui> (Every version has all its items): each version has the full number of items and all its parts.
+2. <Ui>Đáp án khớp từng mã đề</Ui> (The key matches each version): the correct answer letter of each version matches the option order after shuffling.
+3. <Ui>Đề không chứa đáp án</Ui> (The test holds no answers): the test sheet does not reveal the answers.
+4. <Ui>Tổng điểm khớp thang điểm</Ui> (Total points match the scale): the points printed on the test add up to the score scale.
+5. <Ui>Không có mã đề trùng nhau</Ui> (No two versions are identical): if some versions are identical, the app names them (<Ui>Mã 101, 102 giống hệt nhau</Ui>) and suggests turning shuffling on, adding items or reducing the number of versions. This tends to happen when shuffling is off or the test has very few items.
+6. <Ui>Đầu đề đủ thông tin</Ui> (The header is complete): <Ui>Trường</Ui> (School), <Ui>Năm học</Ui> (School year) and, for a mid-term or end-of-term test, <Ui>Học kỳ</Ui> (Term). If a field is empty the app names it, and the printout leaves a dotted line for you to fill in by hand.
+
+A check at the <Ui>Lỗi</Ui> level stops the app from saving the file and names the check, with a request to send feedback to EduFlow along with the test name. The other levels are information for you to read before printing.
+
+</Step>
+
+<Step n={5} id="nhan-tep" title="Get the files">
+
+In the <Ui>Tài liệu xuất</Ui> (Export document) bar, choose one document and click <Ui>Xuất PDF</Ui> (Export PDF) or <Ui>Xuất DOCX</Ui> (Export DOCX). Each export covers one document:
+
+| Document | What it holds |
+|---|---|
+| <Ui>Đề thi</Ui> (Test) | Only the versions, all in one file; no answers |
+| <Ui>Đáp án và hướng dẫn chấm</Ui> (Key and marking guide) | The key for every version and the marking guide, as a separate file |
+| <Ui>Ma trận và bản đặc tả</Ui> (Matrix and specification) | The test matrix and the specification, as a separate file |
+
+A test made with the current version has the three documents above. A test built with older versions has a different layout: <Ui>Đề thi</Ui>, <Ui>Phụ lục</Ui> (Appendix) and <Ui>Đề và phụ lục</Ui> (Test and appendix), where the appendix gathers the matrix, the specification, the key per version and the marking guide. The list on screen is always the right list for the test that is open.
+
+When the export finishes, the app says it saved the file, with the file name, the page count of each version (for example <Ui>Mã 101: 2 trang</Ui> (Version 101: 2 pages)) and a reminder to open the file and look it over before printing. The <Ui>Mở thư mục</Ui> (Open folder) button opens the place where the file was saved. Building the versions and exporting files run on your computer and cost nothing.
+
+</Step>
+
+</Steps>
+
+## What deterministic shuffling means
+
+The order of a version is not drawn at random each time you export. The app works it out only from the version number, the number of multiple-choice items in the test and the two shuffle options, never from the text. So for the same test with the same options, version 101 always comes out with exactly the same item order and option order, on macOS and on Windows: reprint it the next day, or export it again after fixing a typo, and version 101 is unchanged. The order changes only when you add or remove multiple-choice items, or change the shuffle options.
+
+This keeps the key for each version in step with the sheet you printed, and it is why the app exports the test and the key with one set of options. Turning one kind of shuffling off does not change the other: the order of the kind that stays on is the same as when both were on.
