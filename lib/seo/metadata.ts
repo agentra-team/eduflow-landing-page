@@ -1,40 +1,40 @@
 import type { Metadata } from 'next'
 import type { Locale, PageKey } from '@/i18n/routing'
 import { site } from '@/lib/site'
-import { absoluteUrl, localizedPath } from './urls'
+import type { Seo } from './pages'
+import { absoluteUrl } from './urls'
 
-/** Metadata chuẩn cho một trang: canonical, hreflang (x-default = vi), Open Graph, Twitter (spec §9). */
-export function buildMetadata(opts: {
-  locale: Locale
-  page: PageKey
-  params?: Record<string, string>
-  title: string
-  description: string
-  /** Trang chủ: không nối template '· EduFlow'. */
-  absoluteTitle?: boolean
-}): Metadata {
-  const { locale, page, params, title, description, absoluteTitle } = opts
-  const url = absoluteUrl(locale, page, params)
-  const vi = absoluteUrl('vi', page, params)
-  const en = absoluteUrl('en', page, params)
-  // Ảnh OG theo file convention nằm ở app/[locale]/opengraph-image.tsx (mọi trang) và
-  // app/[locale]/download/opengraph-image.tsx (trang Tải về). URL ngoài: không tiền tố với vi, /en với en.
-  const ogPath = `${localizedPath(locale, '/') === '/' ? '' : localizedPath(locale, '/')}${page === '/download' ? '/download' : ''}/opengraph-image`
-  const ogImage = { url: `${site.siteUrl()}${ogPath}`, width: 1200, height: 630, alt: title }
+/** Trang có ảnh chia sẻ riêng theo file convention `opengraph-image.tsx` trong thư mục của trang; còn lại dùng ảnh của trang chủ. */
+const OWN_OG_IMAGE = new Set<PageKey>(['/download'])
+
+/** URL tuyệt đối của ảnh chia sẻ 1200×630 theo file convention: đường dẫn theo khoá nội bộ, không tiền tố với vi, /en với en. */
+export function ogImageUrl(locale: Locale, page: PageKey): string {
+  const prefix = locale === 'vi' ? '' : `/${locale}`
+  return `${site.siteUrl()}${prefix}${OWN_OG_IMAGE.has(page) ? page : ''}/opengraph-image`
+}
+
+/** Metadata chuẩn của một trang: title từ sổ trang, canonical, hreflang (x-default = vi), Open Graph, Twitter (spec §9). */
+export function buildMetadata(opts: { locale: Locale; page: PageKey; params?: Record<Locale, Record<string, string>>; seo: Seo; ogImage?: string }): Metadata {
+  const { locale, page, params, seo } = opts
+  const url = absoluteUrl(locale, page, params?.[locale])
+  const vi = absoluteUrl('vi', page, params?.vi)
+  const en = absoluteUrl('en', page, params?.en)
+  const image = { url: opts.ogImage ?? ogImageUrl(locale, page), width: 1200, height: 630, alt: seo.title }
+  const title = seo.absoluteTitle ? { absolute: seo.title } : seo.titleSuffix ? { absolute: `${seo.title}${seo.titleSuffix}` } : seo.title
   return {
-    title: absoluteTitle ? { absolute: title } : title,
-    description,
+    title,
+    description: seo.description,
     alternates: { canonical: url, languages: { vi, en, 'x-default': vi } },
     openGraph: {
-      title,
-      description,
+      title: seo.title,
+      description: seo.description,
       url,
       siteName: site.name,
       locale: locale === 'vi' ? 'vi_VN' : 'en_US',
       alternateLocale: locale === 'vi' ? 'en_US' : 'vi_VN',
       type: 'website',
-      images: [ogImage],
+      images: [image],
     },
-    twitter: { card: 'summary_large_image', title, description, images: [ogImage.url] },
+    twitter: { card: 'summary_large_image', title: seo.title, description: seo.description, images: [image.url] },
   }
 }

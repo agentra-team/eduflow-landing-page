@@ -13,6 +13,7 @@ import type { Locale } from '@/i18n/routing'
 import { cn } from '@/lib/cn'
 import { breadcrumb } from '@/lib/seo/jsonld'
 import { buildMetadata } from '@/lib/seo/metadata'
+import { staticSeo } from '@/lib/seo/pages'
 import { absoluteUrl } from '@/lib/seo/urls'
 import { LEVELS, type LevelKey } from './levels'
 
@@ -25,8 +26,7 @@ const ns = (level: LevelKey) => `levels.${level}` as 'levels.k12'
 
 export async function levelMetadata(level: LevelKey): Promise<Metadata> {
   const locale = (await getLocale()) as Locale
-  const t = await getTranslations(ns(level))
-  return buildMetadata({ locale, page: LEVELS[level].page, title: t('meta.title'), description: t('meta.description') })
+  return buildMetadata({ locale, page: LEVELS[level].page, seo: staticSeo(locale, LEVELS[level].page) })
 }
 
 export async function LevelPage({ level }: { level: LevelKey }) {

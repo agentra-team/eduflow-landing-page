@@ -8,12 +8,12 @@ import type { Locale } from '@/i18n/routing'
 import { formatDate } from '@/lib/format'
 import { breadcrumb } from '@/lib/seo/jsonld'
 import { buildMetadata } from '@/lib/seo/metadata'
+import { staticSeo } from '@/lib/seo/pages'
 import { absoluteUrl } from '@/lib/seo/urls'
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale = (await getLocale()) as Locale
-  const { meta } = await PRIVACY[locale]()
-  return buildMetadata({ locale, page: '/privacy', title: meta.title, description: meta.description ?? meta.title })
+  return buildMetadata({ locale, page: '/privacy', seo: staticSeo(locale, '/privacy') })
 }
 
 export default async function PrivacyPage() {

@@ -12,13 +12,13 @@ import { Section } from '@/components/ui/Section'
 import type { Locale } from '@/i18n/routing'
 import { breadcrumb } from '@/lib/seo/jsonld'
 import { buildMetadata } from '@/lib/seo/metadata'
+import { staticSeo } from '@/lib/seo/pages'
 import { absoluteUrl } from '@/lib/seo/urls'
 import { site } from '@/lib/site'
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale = (await getLocale()) as Locale
-  const t = await getTranslations('contact.meta')
-  return buildMetadata({ locale, page: '/contact', title: t('title'), description: t('description') })
+  return buildMetadata({ locale, page: '/contact', seo: staticSeo(locale, '/contact') })
 }
 
 const linkClass = 'inline-flex min-h-11 items-center gap-1.5 text-[14.5px] font-semibold text-accent-strong hover:text-accent md:min-h-0'

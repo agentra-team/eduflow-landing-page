@@ -1,20 +1,6 @@
 import { expect, test } from '@playwright/test'
+import { PAGES } from './pages'
 import { priceHits } from './prices'
-
-export const PAGES: Array<[string, 'vi' | 'en']> = [
-  ['/', 'vi'], ['/en', 'en'],
-  ['/ai-cho-giao-vien', 'vi'], ['/en/ai-for-teachers', 'en'],
-  ['/ai-cho-giang-vien', 'vi'], ['/en/ai-for-lecturers', 'en'],
-  ['/ra-soat-chuong-trinh-dao-tao', 'vi'], ['/en/curriculum-review', 'en'],
-  ['/tro-ly-ai', 'vi'], ['/en/ai-assistant', 'en'],
-  ['/cach-tinh-phi', 'vi'], ['/en/pricing', 'en'],
-  ['/minh-bach-ai', 'vi'], ['/en/ai-transparency', 'en'],
-  ['/tai-ve', 'vi'], ['/en/download', 'en'],
-  ['/huong-dan-cai-dat/macos', 'vi'], ['/huong-dan-cai-dat/windows', 'vi'],
-  ['/en/install/macos', 'en'], ['/en/install/windows', 'en'],
-  ['/lien-he', 'vi'], ['/en/contact', 'en'],
-  ['/chinh-sach-bao-mat', 'vi'], ['/en/privacy', 'en'],
-]
 
 for (const [path, lang] of PAGES) {
   test(`${path} renders with SEO basics`, async ({ page }) => {

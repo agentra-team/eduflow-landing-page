@@ -12,6 +12,7 @@ import { WindowFrame } from '@/components/ui/WindowFrame'
 import type { Locale } from '@/i18n/routing'
 import { breadcrumb } from '@/lib/seo/jsonld'
 import { buildMetadata } from '@/lib/seo/metadata'
+import { staticSeo } from '@/lib/seo/pages'
 import { absoluteUrl } from '@/lib/seo/urls'
 
 const WHERE: Array<{ key: 'w1' | 'w2' | 'w3'; icon: IconName }> = [
@@ -35,8 +36,7 @@ const STATES: Array<{ key: 's1' | 's2' | 's3' | 's4'; icon: IconName }> = [
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale = (await getLocale()) as Locale
-  const t = await getTranslations('assistant.meta')
-  return buildMetadata({ locale, page: '/assistant', title: t('title'), description: t('description') })
+  return buildMetadata({ locale, page: '/assistant', seo: staticSeo(locale, '/assistant') })
 }
 
 export default async function AssistantPage() {

@@ -16,6 +16,7 @@ import { downloadState, hasAssetFor } from '@/lib/releases/state'
 import { appFacts } from '@/lib/seo/app-facts'
 import { breadcrumb, softwareApplication } from '@/lib/seo/jsonld'
 import { buildMetadata } from '@/lib/seo/metadata'
+import { staticSeo } from '@/lib/seo/pages'
 import { absoluteUrl } from '@/lib/seo/urls'
 import { site } from '@/lib/site'
 
@@ -24,8 +25,7 @@ const SIGNING = appFacts.installerSigned ? 'signed' : 'unsigned'
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale = (await getLocale()) as Locale
-  const t = await getTranslations('download.meta')
-  return buildMetadata({ locale, page: '/download', title: t('title'), description: t('description') })
+  return buildMetadata({ locale, page: '/download', seo: staticSeo(locale, '/download') })
 }
 
 export default async function DownloadPage() {

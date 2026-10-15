@@ -17,9 +17,10 @@ test('absoluteUrl localizes slugs and prefixes', async () => {
   expect(absoluteUrl('vi', '/install/[os]', { os: 'windows' })).toBe('https://eduflow.test/huong-dan-cai-dat/windows')
 })
 
-test('buildMetadata emits canonical + hreflang with x-default = vi', async () => {
+test('buildMetadata takes the SEO copy from the page registry, with per-language params', async () => {
   const { buildMetadata } = await import('@/lib/seo/metadata')
-  const m = buildMetadata({ locale: 'en', page: '/pricing', title: 'Pricing', description: 'd' })
+  const m = buildMetadata({ locale: 'en', page: '/pricing', seo: { title: 'Pricing', description: 'd' } })
+  expect(m.title).toBe('Pricing')
   expect(m.alternates?.canonical).toBe('https://eduflow.test/en/pricing')
   expect(m.alternates?.languages).toEqual({
     vi: 'https://eduflow.test/cach-tinh-phi',
@@ -27,17 +28,27 @@ test('buildMetadata emits canonical + hreflang with x-default = vi', async () =>
     'x-default': 'https://eduflow.test/cach-tinh-phi',
   })
   expect(m.openGraph).toMatchObject({ locale: 'en_US', siteName: 'EduFlow', url: 'https://eduflow.test/en/pricing' })
-  expect(buildMetadata({ locale: 'vi', page: '/', title: 'T', description: 'd', absoluteTitle: true }).title).toEqual({ absolute: 'T' })
+  expect(m.openGraph?.images).toEqual([{ url: 'https://eduflow.test/en/opengraph-image', width: 1200, height: 630, alt: 'Pricing' }])
+  expect(buildMetadata({ locale: 'vi', page: '/', seo: { title: 'T', description: 'd', absoluteTitle: true } }).title).toEqual({ absolute: 'T' })
+  expect(buildMetadata({ locale: 'en', page: '/pricing', seo: { title: 'Install', description: 'd', titleSuffix: ' · EduFlow Docs' } }).title).toEqual({
+    absolute: 'Install · EduFlow Docs',
+  })
+  // Slug khác nhau giữa hai ngôn ngữ (bài hướng dẫn): canonical và hreflang dùng đúng params của từng ngôn ngữ.
+  const d = buildMetadata({ locale: 'vi', page: '/install/[os]', params: { vi: { os: 'macos' }, en: { os: 'windows' } }, seo: { title: 'X', description: 'd' } })
+  expect(d.alternates?.canonical).toBe('https://eduflow.test/huong-dan-cai-dat/macos')
+  expect(d.alternates?.languages).toMatchObject({ en: 'https://eduflow.test/en/install/windows' })
+  expect(buildMetadata({ locale: 'vi', page: '/download', seo: { title: 'T', description: 'd' } }).openGraph?.images).toEqual([
+    { url: 'https://eduflow.test/download/opengraph-image', width: 1200, height: 630, alt: 'T' },
+  ])
 })
 
-test('sitemap lists 24 urls (12 pages × 2 locales) with alternates', async () => {
+test('the sitemap lists every indexable page in both languages, with hreflang', async () => {
   const { default: sitemap } = await import('@/app/sitemap')
+  const { indexablePages, pageUrl } = await import('@/lib/seo/pages')
   const entries = await sitemap()
-  expect(entries).toHaveLength(24)
-  const urls = entries.map((e) => e.url)
-  for (const u of ['https://eduflow.test', 'https://eduflow.test/ai-cho-giao-vien', 'https://eduflow.test/en/curriculum-review', 'https://eduflow.test/cach-tinh-phi', 'https://eduflow.test/en/install/windows']) {
-    expect(urls).toContain(u)
-  }
+  const expected = indexablePages().flatMap((p) => [pageUrl(p, 'vi'), pageUrl(p, 'en')])
+  expect(entries.map((e) => e.url).sort()).toEqual([...expected].sort())
+  expect(new Set(expected).size).toBe(expected.length)
   const dl = entries.find((e) => e.url.endsWith('/tai-ve'))!
-  expect(dl.alternates?.languages).toMatchObject({ en: 'https://eduflow.test/en/download', 'x-default': 'https://eduflow.test/tai-ve' })
+  expect(dl.alternates?.languages).toEqual({ vi: 'https://eduflow.test/tai-ve', en: 'https://eduflow.test/en/download', 'x-default': 'https://eduflow.test/tai-ve' })
 })

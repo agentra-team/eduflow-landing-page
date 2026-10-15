@@ -197,25 +197,3 @@ test('no U+2014 em-dash in any source file', () => {
   expect(files.filter((f) => EM_DASH.test(readFileSync(f, 'utf8'))).map(rel)).toEqual([])
 })
 
-test('every meta description is 140 to 160 characters (spec §9)', () => {
-  // Trang Chính sách bảo mật lấy mô tả từ meta.description của tệp MDX, các trang khác lấy từ messages.
-  const privacy = ['vi', 'en'].map((lang) => {
-    const src = readFileSync(join(ROOT, 'content', 'privacy', `${lang}.mdx`), 'utf8')
-    return [`content/privacy/${lang}.mdx`, /description:\s*(['"])(.+)\1/.exec(src)?.[2] ?? '']
-  })
-  const bad = [...values(vi).map(([k, v]) => [`vi:${k}`, v]), ...values(en).map(([k, v]) => [`en:${k}`, v])]
-    .filter(([k]) => k.endsWith('.description'))
-    .concat(privacy)
-    .filter(([, v]) => v.length < 140 || v.length > 160)
-    .map(([k, v]) => `${k} (${v.length})`)
-  expect(bad).toEqual([])
-})
-
-test('page titles do not repeat the brand the title template adds', () => {
-  const bad = [...values(vi).map(([k, v]) => [`vi:${k}`, v] as const), ...values(en).map(([k, v]) => [`en:${k}`, v] as const)]
-    // Khoá kiểu `…meta.title` và `install.meta.macos.title`; trang chủ dùng tiêu đề tuyệt đối nên được mang tên.
-    .filter(([k]) => /\bmeta\.(?:\w+\.)?title$/.test(k) && !k.endsWith(':home.meta.title'))
-    .filter(([, v]) => v.includes('EduFlow'))
-    .map(([k]) => k)
-  expect(bad).toEqual([])
-})

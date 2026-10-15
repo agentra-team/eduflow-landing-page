@@ -1,5 +1,4 @@
 import type { IconName } from '@/components/ui/icons'
-import type { PageKey } from '@/i18n/routing'
 
 export type LevelKey = 'k12' | 'university' | 'program'
 export type Shot = { src: string; width: number; height: number }
@@ -8,7 +7,7 @@ const shot = (name: string): Shot => ({ src: `/images/product/${name}.webp`, wid
 
 type Six<T> = [T, T, T, T, T, T]
 
-export const LEVELS: Record<LevelKey, { page: PageKey; screens: [Shot, Shot, Shot]; icons: Six<IconName> }> = {
+export const LEVELS: Record<LevelKey, { page: '/k12' | '/university' | '/program'; screens: [Shot, Shot, Shot]; icons: Six<IconName> }> = {
   k12: {
     page: '/k12',
     screens: [shot('exam-setup'), shot('result'), shot('slide-studio')],

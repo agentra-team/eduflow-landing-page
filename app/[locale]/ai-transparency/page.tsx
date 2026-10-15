@@ -8,6 +8,7 @@ import type { Locale } from '@/i18n/routing'
 import { formatDate } from '@/lib/format'
 import { breadcrumb } from '@/lib/seo/jsonld'
 import { buildMetadata } from '@/lib/seo/metadata'
+import { staticSeo } from '@/lib/seo/pages'
 import { absoluteUrl } from '@/lib/seo/urls'
 
 const UPDATED = '2026-09-30'
@@ -15,8 +16,7 @@ const ITEMS = ['p1', 'p2', 'p3', 'p4', 'p5', 'p6', 'p7', 'p8'] as const
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale = (await getLocale()) as Locale
-  const t = await getTranslations('transparency.meta')
-  return buildMetadata({ locale, page: '/ai-transparency', title: t('title'), description: t('description') })
+  return buildMetadata({ locale, page: '/ai-transparency', seo: staticSeo(locale, '/ai-transparency') })
 }
 
 export default async function TransparencyPage() {

@@ -13,6 +13,7 @@ import type { Locale } from '@/i18n/routing'
 import { contactSalesHref } from '@/lib/contact'
 import { breadcrumb } from '@/lib/seo/jsonld'
 import { buildMetadata } from '@/lib/seo/metadata'
+import { staticSeo } from '@/lib/seo/pages'
 import { absoluteUrl } from '@/lib/seo/urls'
 
 const STEPS = ['s1', 's2', 's3', 's4', 's5', 's6', 's7'] as const
@@ -25,8 +26,7 @@ const BUDGET = [
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale = (await getLocale()) as Locale
-  const t = await getTranslations('pricing.meta')
-  return buildMetadata({ locale, page: '/pricing', title: t('title'), description: t('description') })
+  return buildMetadata({ locale, page: '/pricing', seo: staticSeo(locale, '/pricing') })
 }
 
 export default async function PricingPage() {

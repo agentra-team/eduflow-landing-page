@@ -33,9 +33,8 @@ export async function generateMetadata({ params }: { params: Params }): Promise<
   return buildMetadata({
     locale: locale as Locale,
     page: '/install/[os]',
-    params: { os },
-    title: t(`${os}.title`),
-    description: t(`${os}.description`),
+    params: { vi: { os }, en: { os } },
+    seo: { title: t(`${os}.title`), description: t(`${os}.description`) },
   })
 }
 

@@ -14,12 +14,12 @@ import type { Locale } from '@/i18n/routing'
 import { getReleases, latestRelease } from '@/lib/releases'
 import { faqPage, softwareApplication } from '@/lib/seo/jsonld'
 import { buildMetadata } from '@/lib/seo/metadata'
+import { staticSeo } from '@/lib/seo/pages'
 import { absoluteUrl } from '@/lib/seo/urls'
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale = (await getLocale()) as Locale
-  const t = await getTranslations('home.meta')
-  return buildMetadata({ locale, page: '/', title: t('title'), description: t('description'), absoluteTitle: true })
+  return buildMetadata({ locale, page: '/', seo: staticSeo(locale, '/') })
 }
 
 export default async function HomePage() {
