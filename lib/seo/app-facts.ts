@@ -29,6 +29,18 @@ export const appFacts = {
   matrixMaxRows: 40,
   testMaxItems: 200,
   topicMaxItems: 120,
+  /**
+   * Giáo án và slide (bài soạn giáo án 5512, tạo slide). Nguồn: eduflow-application packages/contracts/src/teach.ts:19 (TEN_BAI_MAX 120),
+   * :21 (LESSON_MINUTES 45), :23 (LESSON_MIN_CHARS 4500), :63-64 (QUIZ_TOTAL 3..10), :138-139 (DECK_CONTENT 20..28); core/src/lesson.ts:13
+   * (bốn hoạt động); desktop teach/ActivityEditor.tsx:21 (YCCD_MAX 6); contracts/src/deckTheme.ts:16 (tám mẫu có sẵn).
+   */
+  lessonActivities: 4,
+  lessonMinutes: 45,
+  lessonNameMaxChars: 120,
+  lessonShortBodyChars: 4500,
+  quizTotalRange: [3, 10],
+  deckContentSlidesRange: [20, 28],
+  deckStarterThemes: 8,
   /** Việc chạy tại máy (cổng, trộn mã đề, biên dịch, đọc và OCR tại máy) tốn 0 đồng. Nguồn: spec app §8, DR2a. */
   localWorkCostVnd: 0,
   /** Ngân sách tháng của key cảnh báo khi dùng tới 80%. Nguồn: M1f, spec 30/09. */

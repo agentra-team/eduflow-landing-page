@@ -15,6 +15,8 @@ export const PAGES: Array<[string, 'vi' | 'en']> = [
   ['/en/docs/activation-and-trial', 'en'], ['/en/docs/interface-tour', 'en'],
   ['/huong-dan/soan-de-kiem-tra', 'vi'], ['/huong-dan/xuat-nhieu-ma-de', 'vi'],
   ['/en/docs/create-a-test', 'en'], ['/en/docs/export-test-versions', 'en'],
+  ['/huong-dan/soan-giao-an-5512', 'vi'], ['/huong-dan/tao-slide-bai-giang', 'vi'],
+  ['/en/docs/lesson-plans', 'en'], ['/en/docs/lesson-slides', 'en'],
   ['/lien-he', 'vi'], ['/en/contact', 'en'],
   ['/chinh-sach-bao-mat', 'vi'], ['/en/privacy', 'en'],
 ]

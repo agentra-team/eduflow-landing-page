@@ -1,0 +1,90 @@
+## Slides in EduFlow
+
+The <Ui>Soạn slide</Ui> (Write slides) screen has three steps, chosen in the <Ui>Các bước soạn slide</Ui> (Slide steps) bar: <Ui>1. Thiết lập</Ui> (Setup: lesson scope, lesson name, quiz allocation, slide look), <Ui>2. Slide</Ui> (Slides: preview the whole deck and edit each slide) and <Ui>3. Xuất</Ui> (Export: quality gates, approval, export files). Slides are 16:9 and come in these kinds: <Ui>Bìa</Ui> (Cover), <Ui>Mục tiêu</Ui> (Objectives), <Ui>Sơ đồ nội dung</Ui> (Content map), <Ui>Khởi động</Ui> (Warm-up), <Ui>Kiến thức</Ui> (Knowledge), <Ui>Ví dụ</Ui> (Example), <Ui>Luyện tập nhanh</Ui> (Quick practice, the quiz questions), <Ui>Đáp án</Ui> (Answer), <Ui>Luyện tập ở lớp</Ui> (Practice in class), <Ui>Bài tập về nhà</Ui> (Homework), <Ui>Bảng tóm tắt</Ui> (Summary table), <Ui>Tổng kết</Ui> (Wrap-up) and <Ui>Cảm ơn</Ui> (Thank you). The cover, content map, answer and thank-you slides are built by the app; AI writes the rest.
+
+A deck is made for one topic of the GDPT 2018 framework, from its own scope, learning requirements (<Ui>YCCĐ</Ui>) and <Ui>Tên bài dạy</Ui> (Lesson name). A deck does not read the content of a lesson plan: if you want both, choose <Ui>Cả bộ</Ui> (The full set) to create the two items at once. AI writes a proposal, and you view, edit and approve it.
+
+<Steps>
+
+<Step n={1} id="chon-slide-hay-ca-bo" title="Choose Slide or the full set when preparing a lesson">
+
+Open the <Ui>Soạn bài dạy</Ui> (Prepare a lesson) dialog with the <Ui>Soạn bài dạy</Ui> button on the home screen or in the sidebar, or <Ui>Soạn bài dạy mới</Ui> (New lesson) inside a K-12 project. In the <Ui>Loại</Ui> (Type) group, choose <Ui>Slide</Ui> (slides only) or <Ui>Cả bộ (giáo án và slide)</Ui> (The full set: lesson plan and slides). Then choose <Ui>Môn</Ui> (Subject), <Ui>Lớp</Ui> (Grade), <Ui>Chương</Ui> (Chapter), <Ui>Chủ đề</Ui> (Topic) and <Ui>Tên bài dạy</Ui> as in the lesson plan article; the scope is fixed at creation.
+
+With <Ui>Slide</Ui>, click <Ui>Tạo</Ui> (Create): the deck is created on your computer and opens on step <Ui>1. Thiết lập</Ui>. With <Ui>Cả bộ</Ui>, click <Ui>Sinh cả bộ</Ui> (Generate the full set): the app opens an <Ui>Ước tính chi phí</Ui> (Cost estimate) box with each part (lesson plan, slides) and a total; one <Ui>Chạy</Ui> (Run) creates both items and starts both jobs, and the screen opens the lesson plan first. Each item carries a <Ui>Cùng bộ</Ui> (Same set) chip pointing to the other. If the upper bound of the cost is above the budget left, the app warns you; any part that calls AI after the budget runs out stops.
+
+</Step>
+
+<Step n={2} id="chon-mau-slide" title="Choose a slide template">
+
+For <Ui>Slide</Ui> and <Ui>Cả bộ</Ui>, the dialog has a line <Ui>Giao diện slide:</Ui> (Slide look:) with the name of the template in use (the project's default, otherwise <Ui>Xanh EduFlow</Ui>) and an <Ui>Đổi</Ui> (Change) button. It opens the <Ui>Thư viện giao diện</Ui> (Look library) with three tabs: <Ui>Mẫu có sẵn</Ui> (Built-in templates: eight of them, <Ui>Xanh EduFlow</Ui>, <Ui>Giấy kẻ</Ui>, <Ui>Biên tập</Ui>, <Ui>Vườn nắng</Ui>, <Ui>Chuyên nghiệp</Ui>, <Ui>Khối màu</Ui>, <Ui>Bảng đen</Ui>, <Ui>Tối giản</Ui>), <Ui>Của tôi</Ui> (Mine) and <Ui>Của trường</Ui> (My school's). Click <Ui>Chọn</Ui> (Choose) on the template you want.
+
+After creation, step <Ui>1. Thiết lập</Ui> has a <Ui>Giao diện slide</Ui> card: three suggestions, <Ui>An toàn</Ui> (Safe), <Ui>Nổi bật</Ui> (Bold) and <Ui>Bất ngờ</Ui> (Surprising), picked by subject and grade and drawn on the real cover and objectives of the lesson, each with a <Ui>Chọn</Ui> button. Below them are <Ui>Màu chủ đạo</Ui> (Main colour: sample swatches, or a code in <Ui>Màu khác (#RRGGBB)</Ui> (Other colour)), a <Ui>Xem thêm</Ui> (See more) button (opens the library, with <Ui>Dùng cho deck này</Ui> (Use for this deck) and <Ui>Đặt làm mặc định của dự án</Ui> (Set as the project default)) and a <Ui>Tự thiết kế</Ui> (Design your own) button. The main colour must contrast enough with the background (at least 3:1) to be readable on a projector; a colour that falls short is refused with the reason. Changing the look does not call AI. While an AI job is running on the deck, the change buttons are locked.
+
+</Step>
+
+<Step n={3} id="ai-viet-noi-dung-slide" title="Let AI write the slide content">
+
+In step <Ui>1. Thiết lập</Ui>, check <Ui>Tên bài dạy</Ui> (sent to AI as the focus), fill in the <Ui>Header</Ui> (<Ui>Trường</Ui> (School), <Ui>Tổ</Ui> (Subject group), <Ui>Họ và tên giáo viên</Ui> (Teacher's full name), marked <Ui>Không gửi cho AI</Ui> (Not sent to AI)) and, if you like, <Ui>Ghi chú của giáo viên</Ui> (Teacher's note, marked <Ui>Gửi nguyên văn cho AI</Ui> (Sent to AI word for word)). Then click <Ui>Sinh slide</Ui> (Generate slides), or press ⌘ Enter on macOS or Ctrl Enter on Windows. This needs a network; setup, editing and exporting still work offline.
+
+The app opens the <Ui>Ước tính chi phí</Ui> box before it runs; click <Ui>Chạy</Ui> to start, or <Ui>Huỷ</Ui> (Cancel) and nothing is spent. AI runs two passes in parallel, <Ui>Soạn phần kiến thức của slide</Ui> (Write the knowledge part of the slides) and <Ui>Soạn phần luyện tập của slide</Ui> (Write the practice part of the slides), and then the app builds and measures the slides. While it runs there is a progress band with a <Ui>Huỷ</Ui> button. If a pass is still malformed after two retries, the app names that pass and the <Ui>Thử lại lượt này</Ui> (Retry this pass) button re-runs only that one; the other pass is kept. When it finishes, the screen opens step <Ui>2. Slide</Ui>. <Ui>Sinh lại</Ui> (Regenerate) creates a new version (also through the estimate box) and the old version stays in the history.
+
+A deck has roughly 20 to 28 content slides; outside that range the slide gate warns you.
+
+<Callout kind="warning">AI-generated content can contain mistakes. Check and correct the content and the quiz answers before using them in class: AI only writes a proposal and does not do your lesson planning for you.</Callout>
+
+</Step>
+
+<Step n={4} id="them-quiz-trong-slide" title="Add quizzes in the slides">
+
+The quiz is set before generating, in the <Ui>Phân bổ câu quiz theo mức</Ui> (Quiz allocation by level) card of step <Ui>1. Thiết lập</Ui>: four number fields for <Ui>Nhận biết</Ui> (Recognition), <Ui>Thông hiểu</Ui> (Comprehension), <Ui>Vận dụng</Ui> (Application) and <Ui>Vận dụng cao</Ui> (High application), or three <Ui>Đặt nhanh</Ui> (Quick set) buttons: <Ui>6 câu</Ui> (6 questions), <Ui>8 câu</Ui> and <Ui>10 câu</Ui>. The default is 3, 3, 2, 0 (8 questions). The total must be from 3 to 10 questions; outside that range <Ui>Sinh slide</Ui> is locked with the reason shown and the app never trims for you. The line below shows the total and the number of quiz clusters: 3 clusters under 8 questions, 4 clusters from 8.
+
+The quiz is spread through the lesson in clusters, and each cluster is followed straight away by an <Ui>Đáp án</Ui> (Answer) slide that the app builds from the cluster's questions. Each question slide holds at most two questions, and each question has four options and one correct answer. To edit a question, open step <Ui>2. Slide</Ui> and click that <Ui>Luyện tập nhanh</Ui> slide: under the slide editor each question has <Ui>Câu hỏi</Ui> (Question), four <Ui>Phương án</Ui> (Options), <Ui>Đáp án đúng</Ui> (Correct answer) and <Ui>Giải thích</Ui> (Explanation), then click <Ui>Lưu câu</Ui> (Save question). To change an answer slide, edit the question on the cluster's question slide.
+
+</Step>
+
+<Step n={5} id="xem-truoc-va-cong-slide" title="Preview, read the slide gates and approve">
+
+Step <Ui>2. Slide</Ui> has <Ui>Xem trước deck</Ui> (Deck preview): a grid of 16:9 slides, each showing its number and kind (for example <Ui>5 · Kiến thức</Ui>). A slide that still overflows its frame after the last measurement has a <Ui>Tràn khung</Ui> (Overflowing) label. Click a slide to open <Ui>Sửa slide n</Ui> (Edit slide n): a <Ui>Bố cục</Ui> (Layout) field (<Ui>Tự động</Ui> (Automatic) or a layout for that kind of slide), <Ui>Tiêu đề</Ui> (Title), the <Ui>Nội dung</Ui> (Content) fields, <Ui>YCCĐ liên kết</Ui>, <Ui>Việc của giáo viên</Ui> (Teacher's task), <Ui>Việc của học sinh</Ui> (Students' task), then <Ui>Lưu slide</Ui> (Save slide). The cover, content map and thank-you slides are built by the machine, so change the lesson name or header in the Setup step. The <Ui>Giao diện:</Ui> (Look:) chip with its <Ui>Đổi</Ui> button opens the look panel right here, and each suggestion carries a <Ui>Vừa khung</Ui> (Fits the frame) label or the number of slides that need rebalancing.
+
+Step <Ui>3. Xuất</Ui> has <Ui>Xem trước bản xuất</Ui> (Export preview, every page) and the <Ui>Bảng cổng</Ui> (Gate table) for the deck, each row giving <Ui>Mã</Ui> (Code), the gate name, <Ui>Đơn vị đã kiểm</Ui> (Units checked), <Ui>Vi phạm</Ui> (Violations) and <Ui>Kết quả</Ui> (Result):
+
+| Code | What the gate checks |
+|---|---|
+| P1 | <Ui>Biên dịch ra PDF</Ui> (Compiles to PDF) |
+| P2 | <Ui>Không phải bản rút gọn chữ thuần</Ui> (Not a plain-text reduction) |
+| P8 | <Ui>Slide đủ bố cục và cụm quiz</Ui> (The deck has all required parts and quiz clusters) |
+| P9 | <Ui>Slide không tràn khung</Ui> (No slide overflows its frame) |
+| P10 | <Ui>Giáo viên đã duyệt</Ui> (Approved by the teacher) |
+| P11 | <Ui>Hoạt động, slide neo YCCĐ</Ui> (Activities and slides anchored to a learning requirement) |
+| P12 | <Ui>Đóng dấu kho chuẩn</Ui> (Stamped with the framework) |
+
+P1 and P2 read <Ui>Không áp dụng (kết xuất HTML)</Ui> (Not applicable, HTML rendering); P10 reads <Ui>Chờ duyệt</Ui> (Awaiting approval) until you approve. P8 reports a missing required part, a slide count outside the range, or a quiz cluster in the wrong place; P9 reports a slide that still overflows after three rebalancing rounds, or the note <Ui>Chưa đo tràn khung của nội dung này; Duyệt sẽ đo lại</Ui> (Overflow not yet measured for this content; Approve will measure again) when the content has just been edited. Each violation or warning has its own line with an <Ui>Mở slide n</Ui> (Open slide n) button that jumps to that slide and, for a warning, its own <Ui>Xác nhận</Ui> (Confirm) button; there is no confirm-all.
+
+</Step>
+
+<Step n={6} id="duyet-va-xuat" title="Approve and export">
+
+The <Ui>Duyệt</Ui> (Approve) button is locked, with the reason shown, while blocking violations (other than P10) or unconfirmed warnings remain. Once it is free, click <Ui>Duyệt</Ui> and confirm in the dialog; the app measures the slides again during the approval. At K-12 level, <Ui>Duyệt</Ui> is the final step; there is no separate signing step. After that, editing a slide creates a new draft and the approved version stays as it is.
+
+Click <Ui>Xuất PDF</Ui> (Export PDF) or <Ui>Xuất PPTX</Ui> (Export PPTX). In the PPTX file, each page is an image of a 16:9 slide with speaker notes: the text in it cannot be edited in PowerPoint. An editable PPTX is on the roadmap and is not available in this version; to change a slide, edit it in the app and export again. Exporting always works, even for slides that are not approved, but the export carries a <Ui>DÙNG THỬ</Ui> (TRIAL) watermark in these cases: the version is not approved, blocking violations remain, the key is a trial key, the app could not check this computer's key type, or the deck is a sample. Each reason appears on its own line just above the export buttons. An approved deck with no blocking violations, run on a paid key, exports without the watermark. The <Ui>Mở thư mục</Ui> (Open folder) button opens the place where the file was saved.
+
+</Step>
+
+</Steps>
+
+## Slide look suggestions
+
+The <Ui>Tự thiết kế</Ui> button (in the <Ui>Giao diện slide</Ui> card of the Setup step) opens the look designer: background, motif, fonts, title bar, card style, text density and logo, with <Ui>Kiểm tra tràn khung</Ui> (Check overflow) and <Ui>Lưu vào Của tôi</Ui> (Save to Mine) buttons. There are two ways to get suggestions from a description typed in the <Ui>Mô tả giao diện bạn muốn</Ui> (Describe the look you want) box (3 to 300 characters):
+
+- <Ui>Gợi ý tại máy (miễn phí)</Ui> (Suggest on this computer, free): by the colours, school level and character in the sentence, with no AI and no cost. It is always there, even in a project with <Ui>Tắt AI</Ui> on and when opened from the <Ui>Soạn bài dạy</Ui> dialog.
+- <Ui>Gợi ý 3 kiểu</Ui> (Suggest 3 looks): uses AI, and is available only in a project with AI on when you open <Ui>Tự thiết kế</Ui> from a slide or from the project detail screen. The app opens the <Ui>Ước tính chi phí</Ui> box before it runs. Clicking <Ui>Đóng</Ui> (Close) while it waits does not stop the suggestion run: the run goes on, is still charged, and the result appears under the description box. A look without enough contrast is dropped; if none is left usable, that run is still charged.
+
+Suggested looks are only loaded into the controls for you to see; <Ui>Hoàn tác</Ui> (Undo) returns the design from before.
+
+## What slides cannot do yet
+
+- Figures in slides: not available; AI does not draw figures.
+- An editable PPTX (text and shapes as separate objects): not available; the PPTX is currently an image of each page.
+- Slides that read the content of the lesson plan in the same set to cross-check it: not available; the two items are independent and share only the lesson scope.
+- Compiling through LaTeX to PDF: not available; gates P1 and P2 do not apply.
+- The subjects that come only with the full package (<Ui>Ngữ văn</Ui>, <Ui>Tiếng Việt</Ui>, <Ui>Âm nhạc</Ui>, <Ui>Mỹ thuật</Ui>, <Ui>Hoạt động trải nghiệm</Ui>): not available.

@@ -1,0 +1,92 @@
+## An Official Letter 5512 lesson plan in EduFlow
+
+The <Ui>Soạn giáo án</Ui> (Write a lesson plan) screen has three steps, chosen in the <Ui>Các bước soạn giáo án</Ui> (Lesson plan steps) bar: <Ui>1. Thiết lập</Ui> (Setup: lesson scope, lesson name, plan header), <Ui>2. Giáo án</Ui> (Lesson plan: read and edit the content) and <Ui>3. Xuất</Ui> (Export: quality gates, approval, export files). Each lesson plan is one 45-minute period, fixed, in the structure of Official Letter 5512: <Ui>I. Mục tiêu</Ui> (I. Objectives), <Ui>II. Thiết bị dạy học và học liệu</Ui> (II. Teaching equipment and materials) and <Ui>III. Tiến trình dạy học</Ui> (III. Teaching process) with four activities in this order: Opening, Forming new knowledge, Practice, Application. Each activity has <Ui>Số phút</Ui> (Minutes), its linked learning requirements (<Ui>YCCĐ liên kết</Ui>), a) Objectives, b) Content, c) Product and d) Organisation with four steps: Assign the task, Carry out the task, Report and discuss, Conclude and assess.
+
+The subject, grade, chapter, topic and learning requirements (<Ui>YCCĐ</Ui>) come from the 2018 general education curriculum (GDPT 2018) framework built into the app, read on your computer with no network. AI writes a draft, and you read, edit and approve it: the app keeps the lesson plan marked <Ui>Đề xuất</Ui> (Proposed) until you approve.
+
+<Steps>
+
+<Step n={1} id="mo-soan-bai-day" title="Click Prepare a lesson and choose the lesson plan type">
+
+There are three ways in, and all of them open the <Ui>Soạn bài dạy</Ui> (Prepare a lesson) dialog:
+
+- On the home screen, click <Ui>Soạn bài dạy</Ui>.
+- In the sidebar, click <Ui>Soạn bài dạy</Ui>.
+- Inside a K-12 project, click <Ui>Soạn bài dạy mới</Ui> (New lesson).
+
+In the <Ui>Loại</Ui> (Type) group, choose <Ui>Giáo án</Ui> (Lesson plan). The other two choices are <Ui>Slide</Ui> and <Ui>Cả bộ (giáo án và slide)</Ui> (The full set: lesson plan and slides); the next article covers slides. If you opened the dialog from the home screen or the sidebar, also choose in the <Ui>Dự án</Ui> (Project) group: <Ui>Dự án mới</Ui> (New project, and name it in <Ui>Tên dự án</Ui>) or <Ui>Dự án Phổ thông có sẵn</Ui> (An existing K-12 project).
+
+</Step>
+
+<Step n={2} id="chon-mon-lop-bai" title="Choose the subject, grade, chapter, topic and lesson name">
+
+Choose <Ui>Môn</Ui> (Subject) and <Ui>Lớp</Ui> (Grade), then <Ui>Chương</Ui> (Chapter) and <Ui>Chủ đề</Ui> (Topic) from the lists of the built-in GDPT 2018 framework. The <Ui>Tên bài dạy</Ui> (Lesson name) field is filled with the topic name; you can edit it, up to 120 characters. The lesson name is sent to AI as the focus of the period, so do not write student names or personal information. Click <Ui>Tạo</Ui> (Create): the lesson plan is created on your computer straight away and the screen opens on step <Ui>1. Thiết lập</Ui>.
+
+The subject, grade, chapter and topic are fixed at creation. To change them, create a new lesson.
+
+</Step>
+
+<Step n={3} id="thiet-lap" title="Setup: scope, learning requirements, plan header">
+
+Step <Ui>1. Thiết lập</Ui> has these cards:
+
+- <Ui>Phạm vi bài dạy</Ui> (Lesson scope): read-only, showing <Ui>Môn</Ui>, <Ui>Lớp</Ui>, <Ui>Chương</Ui>, <Ui>Chủ đề</Ui>, the topic's list of learning requirements (<Ui>YCCĐ</Ui>) and the line <Ui>Thời lượng 1 tiết (45 phút), cố định</Ui> (Duration: one period, 45 minutes, fixed). If the topic has no period data yet, the app says it will write a 45-minute slice of the topic.
+- <Ui>Tên bài dạy</Ui>: editable here.
+- <Ui>Header</Ui> (the plan header), marked <Ui>Không gửi cho AI</Ui> (Not sent to AI): three fields, <Ui>Trường</Ui> (School), <Ui>Tổ</Ui> (Subject group) and <Ui>Họ và tên giáo viên</Ui> (Teacher's full name). This information is only printed at the top of the lesson plan and is never sent to AI. <Ui>Trường</Ui> starts as the unit name of your key; change it if your school differs. Any field left empty prints as a dotted line to fill in by hand.
+- <Ui>Ghi chú của giáo viên</Ui> (Teacher's note), marked <Ui>Gửi nguyên văn cho AI</Ui> (Sent to AI word for word): an extra instruction for AI. Unlike the plan header, this note is sent as written.
+
+Every change is saved automatically within about a second.
+
+</Step>
+
+<Step n={4} id="ai-viet-bon-hoat-dong" title="Let AI write the four activities">
+
+Click <Ui>Sinh giáo án</Ui> (Generate lesson plan), or press ⌘ Enter on macOS or Ctrl Enter on Windows. This needs a network; setup, editing and exporting still work offline. The button is locked, with the reason shown, when <Ui>Tên bài dạy</Ui> is empty, when the project has <Ui>Tắt AI</Ui> (AI off) on, or when another AI job is already running on this lesson plan.
+
+The app does not run anything straight away but opens an <Ui>Ước tính chi phí</Ui> (Cost estimate) box: an estimated price range, the AI steps and what is left of the monthly budget. Click <Ui>Chạy</Ui> (Run) to start, or <Ui>Huỷ</Ui> (Cancel) and no job is created. The run has two AI steps: <Ui>Soạn thân giáo án</Ui> (Write the plan body: objectives, equipment, four activities) and then <Ui>Thẩm định giáo án</Ui> (Review the plan). While it runs, a progress band appears under the steps with a <Ui>Huỷ</Ui> button; cancelling keeps the current version as it is. When it finishes, the screen opens step <Ui>2. Giáo án</Ui> and a band shows the real cost of the job.
+
+If the plan body is shorter than 4,500 characters after one regeneration, the app warns you and reminds you to check each activity for completeness. <Ui>Sinh lại</Ui> (Regenerate) creates a new version (also through the estimate box) and the old version stays in the history.
+
+<Callout kind="warning">AI-generated content can contain mistakes. Check and correct it before using it in class: AI only writes a proposal and does not do your lesson planning for you.</Callout>
+
+</Step>
+
+<Step n={5} id="doc-canh-bao-va-sua" title="Read the gate warnings and edit">
+
+In step <Ui>2. Giáo án</Ui>, the editor has all of parts I, II and III. Objectives and equipment are fields with one item per line; each of the four activities is a block with <Ui>Số phút</Ui>, <Ui>YCCĐ liên kết</Ui> (tick up to six learning requirements) and the fields a), b), c), d). The line <Ui>Tổng thời gian: n / 45 phút</Ui> (Total time: n / 45 minutes) updates as you edit; the total must be exactly 45. Click <Ui>Lưu</Ui> (Save) to store it: the app runs gates P6, P7 and P11 again. Parts you edited by hand are marked <Ui>Đã sửa</Ui> (Edited). The <Ui>Thẩm định ngữ nghĩa</Ui> (Semantic review) card shows eight criteria, each <Ui>Đạt</Ui> (Pass) or <Ui>Chưa đạt</Ui> (Not yet), with a note; it is only a proposal for the approver and locks nothing. <Ui>Thẩm định lại</Ui> (Review again) re-runs it (through the estimate box) on the saved draft.
+
+Then go to step <Ui>3. Xuất</Ui>: the left column is a preview of the lesson plan, and the right column has the <Ui>Bảng cổng</Ui> (Gate table) with the lesson plan's gates, each row giving <Ui>Mã</Ui> (Code), the gate name, <Ui>Đơn vị đã kiểm</Ui> (Units checked), <Ui>Vi phạm</Ui> (Violations) and <Ui>Kết quả</Ui> (Result):
+
+| Code | What the gate checks |
+|---|---|
+| P1 | <Ui>Biên dịch ra PDF</Ui> (Compiles to PDF) |
+| P2 | <Ui>Không phải bản rút gọn chữ thuần</Ui> (Not a plain-text reduction) |
+| P6 | <Ui>Giáo án đủ cấu trúc CV5512</Ui> (The plan has the full CV5512 structure) |
+| P7 | <Ui>Tổng phút bằng số tiết × 45</Ui> (Total minutes equal periods × 45) |
+| P10 | <Ui>Giáo viên đã duyệt</Ui> (Approved by the teacher) |
+| P11 | <Ui>Hoạt động, slide neo YCCĐ</Ui> (Activities and slides anchored to a learning requirement) |
+| P12 | <Ui>Đóng dấu kho chuẩn</Ui> (Stamped with the framework) |
+
+In this version P1 and P2 read <Ui>Không áp dụng (kết xuất HTML)</Ui> (Not applicable, HTML rendering); P10 reads <Ui>Chờ duyệt</Ui> (Awaiting approval) until you approve. P11 reads <Ui>Không áp dụng</Ui> (Not applicable) if the topic has no learning requirements in the framework. A gate that checked 0 units is not counted as passed: the app marks it <Ui>Lỗi cổng</Ui> (Gate error).
+
+Below the table, each violation or warning has its own line. A missing required part (P6) or a wrong total of minutes (P7) is a blocking violation: fix it in the Lesson plan step and click <Ui>Lưu</Ui>. A line that belongs to an activity has an <Ui>Mở hoạt động k</Ui> (Open activity k) button that jumps to that activity. An activity with no linked learning requirement (P11) is a warning: tick a learning requirement in that activity and <Ui>Lưu</Ui>, or click <Ui>Xác nhận</Ui> (Confirm) right on the warning line. Each warning has its own <Ui>Xác nhận</Ui> button; there is no confirm-all.
+
+</Step>
+
+<Step n={6} id="duyet-va-xuat" title="Approve and export">
+
+The <Ui>Duyệt</Ui> (Approve) button in step <Ui>3. Xuất</Ui> is locked, with the reason shown, while blocking violations (other than P10) or unconfirmed warnings remain. Once it is free, click <Ui>Duyệt</Ui> and confirm in the dialog: the approval evidence is stored in the version. At K-12 level, <Ui>Duyệt</Ui> is the final step; there is no separate signing step. After that, editing the lesson plan creates a new draft (the <Ui>Sửa trên bản nháp mới</Ui> (Edit on a new draft) button in the Setup step, or <Ui>Lưu</Ui> in the Lesson plan step asks first), and the approved version stays as it is.
+
+Click <Ui>Xuất PDF</Ui> (Export PDF) or <Ui>Xuất DOCX</Ui> (Export DOCX); the DOCX file opens in Word for further changes. Exporting always works, even for a lesson plan that is not approved, but the export carries a <Ui>DÙNG THỬ</Ui> (TRIAL) watermark in these cases: the version is not approved, blocking violations remain, the key is a trial key, the app could not check this computer's key type, or the lesson plan is a sample. Each reason appears on its own line just above the export buttons. An approved lesson plan with no blocking violations, run on a paid key, exports without the watermark. After exporting, <Ui>Mở thư mục</Ui> (Open folder) opens the place where the file was saved.
+
+</Step>
+
+</Steps>
+
+## Subjects not in this version
+
+The <Ui>Soạn bài dạy</Ui> dialog lists only the subjects of the GDPT 2018 framework that ships with the app. <Ui>Ngữ văn</Ui> (Literature), <Ui>Tiếng Việt</Ui> (Vietnamese), <Ui>Âm nhạc</Ui> (Music), <Ui>Mỹ thuật</Ui> (Fine arts) and <Ui>Hoạt động trải nghiệm</Ui> (Experiential activities) are not in that framework yet: these subjects come only with the full package, which belongs to work after the first release and has no date. You cannot write lesson plans for them in EduFlow in the current version.
+
+## A school's own lesson plan template
+
+Not available in this version. EduFlow builds a lesson plan in one fixed structure of Official Letter 5512 (three main parts, four activities, four items per activity) and cannot yet load a school's sample lesson plan to build from. You edit the content in the app, or export DOCX and adjust it further in a word processor.

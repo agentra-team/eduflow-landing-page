@@ -121,6 +121,36 @@ export const DOCS: Record<DocId, DocEntry> = {
       keyword: 'export test versions in EduFlow',
     },
   },
+  'lesson-plans': {
+    group: 'k12',
+    order: 3,
+    updatedAt: '2026-10-15',
+    vi: {
+      title: 'Soạn giáo án theo Công văn 5512',
+      description: 'Soạn giáo án theo Công văn 5512 trên EduFlow: chọn bài, để AI viết bốn hoạt động, đọc cảnh báo của cổng, sửa, duyệt và xuất DOCX hoặc PDF.',
+      keyword: 'cách soạn giáo án 5512 trên EduFlow',
+    },
+    en: {
+      title: 'Write a lesson plan (Official Letter 5512)',
+      description: 'Write an Official Letter 5512 lesson plan in EduFlow: pick the lesson, let AI draft the four activities, read gate warnings, edit, approve, export DOCX or PDF.',
+      keyword: 'how to write a 5512 lesson plan in EduFlow',
+    },
+  },
+  'lesson-slides': {
+    group: 'k12',
+    order: 4,
+    updatedAt: '2026-10-15',
+    vi: {
+      title: 'Tạo slide bài giảng có quiz',
+      description: 'Tạo slide bài giảng 16:9 trên EduFlow: chọn Slide hay Cả bộ, chọn giao diện, để AI viết nội dung và quiz, xem trước, đọc cổng, duyệt và xuất PDF hoặc PPTX.',
+      keyword: 'tạo slide bài giảng trên EduFlow',
+    },
+    en: {
+      title: 'Create lesson slides with quizzes',
+      description: 'Create 16:9 lesson slides in EduFlow: pick Slide or the full set and a look, let AI write content and quizzes, preview, read gates, approve, export PDF or PPTX.',
+      keyword: 'create lesson slides in EduFlow',
+    },
+  },
 }
 
 /** Khối "Bắt đầu trong 5 phút" ở mục lục hướng dẫn: cài, kích hoạt, soạn đề đầu tiên (spec §7.3). */
@@ -153,6 +183,8 @@ export const DOC_SOURCES: Record<Locale, Record<DocId, () => Promise<MdxBody>>> 
     'interface-tour': () => import('./vi/lam-quen-giao-dien.mdx'),
     'create-a-test': () => import('./vi/soan-de-kiem-tra.mdx'),
     'export-test-versions': () => import('./vi/xuat-nhieu-ma-de.mdx'),
+    'lesson-plans': () => import('./vi/soan-giao-an-5512.mdx'),
+    'lesson-slides': () => import('./vi/tao-slide-bai-giang.mdx'),
   },
   en: {
     'install-macos': () => import('./en/install-macos.mdx'),
@@ -161,6 +193,8 @@ export const DOC_SOURCES: Record<Locale, Record<DocId, () => Promise<MdxBody>>> 
     'interface-tour': () => import('./en/interface-tour.mdx'),
     'create-a-test': () => import('./en/create-a-test.mdx'),
     'export-test-versions': () => import('./en/export-test-versions.mdx'),
+    'lesson-plans': () => import('./en/lesson-plans.mdx'),
+    'lesson-slides': () => import('./en/lesson-slides.mdx'),
   },
 }
 

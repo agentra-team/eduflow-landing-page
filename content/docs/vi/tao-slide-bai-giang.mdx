@@ -1,0 +1,90 @@
+## Slide trong EduFlow
+
+Màn **Soạn slide** có ba bước, chọn ở dải **Các bước soạn slide**: **1. Thiết lập** (phạm vi bài dạy, tên bài, phân bổ câu quiz, giao diện slide), **2. Slide** (xem trước cả bộ và sửa từng slide) và **3. Xuất** (cổng chất lượng, duyệt, xuất tệp). Slide có tỉ lệ 16:9 và gồm các loại: **Bìa**, **Mục tiêu**, **Sơ đồ nội dung**, **Khởi động**, **Kiến thức**, **Ví dụ**, **Luyện tập nhanh** (các câu quiz), **Đáp án**, **Luyện tập ở lớp**, **Bài tập về nhà**, **Bảng tóm tắt**, **Tổng kết** và **Cảm ơn**. Slide bìa, sơ đồ nội dung, đáp án và cảm ơn do app dựng; AI viết phần còn lại.
+
+Một bộ slide soạn riêng cho một chủ đề của khung GDPT 2018, từ phạm vi, yêu cầu cần đạt (YCCĐ) và **Tên bài dạy** của chính nó. Slide không đọc nội dung của giáo án: nếu muốn có cả hai, chọn **Cả bộ** để tạo hai hiện vật cùng một lần. AI viết bản đề xuất, còn thầy cô xem, sửa và duyệt.
+
+<Steps>
+
+<Step n={1} id="chon-slide-hay-ca-bo" title="Chọn Slide hay Cả bộ khi Soạn bài dạy">
+
+Mở hộp thoại **Soạn bài dạy** bằng nút **Soạn bài dạy** ở Trang chủ hay thanh bên, hoặc **Soạn bài dạy mới** trong một dự án Phổ thông. Ở nhóm **Loại**, chọn **Slide** (chỉ slide) hoặc **Cả bộ (giáo án và slide)**. Rồi chọn **Môn**, **Lớp**, **Chương**, **Chủ đề** và **Tên bài dạy** như bài soạn giáo án; phạm vi được chốt lúc tạo.
+
+Với **Slide**, bấm **Tạo**: slide được tạo trên máy và mở ở bước **1. Thiết lập**. Với **Cả bộ**, bấm **Sinh cả bộ**: app mở hộp **Ước tính chi phí** có từng phần (Giáo án, Slide) và tổng, một lần **Chạy** tạo cả hai hiện vật và bắt đầu cả hai tác vụ; màn mở giáo án trước. Mỗi hiện vật mang nhãn **Cùng bộ** trỏ sang hiện vật kia. Nếu cận trên chi phí vượt ngân sách còn lại, app cảnh báo; phần nào gọi AI khi ngân sách đã hết sẽ dừng.
+
+</Step>
+
+<Step n={2} id="chon-mau-slide" title="Chọn mẫu slide">
+
+Với **Slide** và **Cả bộ**, hộp thoại có dòng **Giao diện slide:** kèm tên mẫu đang dùng (mặc định của dự án, không thì **Xanh EduFlow**) và nút **Đổi**. Nút mở **Thư viện giao diện** với ba thẻ: **Mẫu có sẵn** (tám mẫu: Xanh EduFlow, Giấy kẻ, Biên tập, Vườn nắng, Chuyên nghiệp, Khối màu, Bảng đen, Tối giản), **Của tôi** và **Của trường**. Bấm **Chọn** ở mẫu thầy cô muốn.
+
+Sau khi tạo, bước **1. Thiết lập** có thẻ **Giao diện slide**: ba gợi ý **An toàn**, **Nổi bật**, **Bất ngờ** chọn theo môn và lớp, vẽ trên bìa và mục tiêu thật của bài, mỗi gợi ý có nút **Chọn**. Dưới đó là **Màu chủ đạo** (ô màu mẫu hoặc mã **Màu khác (#RRGGBB)**), nút **Xem thêm** (mở thư viện, có nút **Dùng cho deck này** và **Đặt làm mặc định của dự án**) và nút **Tự thiết kế**. Màu chủ đạo phải đủ tương phản với nền (từ 3:1) để đọc được trên máy chiếu; màu chưa đạt bị app từ chối kèm lý do. Đổi giao diện không gọi AI. Khi đang có tác vụ AI trên deck thì nút đổi bị khoá.
+
+</Step>
+
+<Step n={3} id="ai-viet-noi-dung-slide" title="Để AI viết nội dung slide">
+
+Ở bước **1. Thiết lập**, kiểm tra **Tên bài dạy** (gửi cho AI làm trọng tâm), điền phần đầu **Header** (**Trường**, **Tổ**, **Họ và tên giáo viên**, dấu **Không gửi cho AI**) và, nếu muốn, **Ghi chú của giáo viên** (dấu **Gửi nguyên văn cho AI**). Rồi bấm **Sinh slide** (hoặc ⌘ Enter trên macOS, Ctrl Enter trên Windows). Việc này cần mạng; thiết lập, sửa và xuất tệp vẫn làm được khi mất mạng.
+
+App mở hộp **Ước tính chi phí** trước khi chạy; bấm **Chạy** để bắt đầu hoặc **Huỷ** thì không tốn gì. AI chạy hai lượt song song, **Soạn phần kiến thức của slide** và **Soạn phần luyện tập của slide**, rồi app dựng và đo slide. Trong lúc chạy có băng tiến độ kèm nút **Huỷ**. Nếu một lượt vẫn sai định dạng sau hai lần thử lại, app nêu tên lượt đó và nút **Thử lại lượt này** chạy lại riêng lượt đó; lượt còn lại được giữ. Chạy xong, màn tự mở bước **2. Slide**. **Sinh lại** tạo phiên bản mới (cũng qua hộp ước tính) và phiên bản cũ nằm trong lịch sử.
+
+Một bộ có khoảng 20 tới 28 slide nội dung; ngoài khoảng đó cổng slide cảnh báo.
+
+<Callout kind="warning">Nội dung do AI sinh nên có thể có sai sót. Thầy cô kiểm tra và chỉnh lại nội dung, đáp án quiz trước khi dùng trên lớp: AI chỉ viết bản đề xuất, không thay thầy cô soạn bài.</Callout>
+
+</Step>
+
+<Step n={4} id="them-quiz-trong-slide" title="Thêm quiz trong slide">
+
+Quiz được đặt trước khi sinh, ở thẻ **Phân bổ câu quiz theo mức** của bước **1. Thiết lập**: bốn ô số cho **Nhận biết**, **Thông hiểu**, **Vận dụng**, **Vận dụng cao**, hoặc ba nút **Đặt nhanh**: **6 câu**, **8 câu**, **10 câu**. Mặc định là 3, 3, 2, 0 (8 câu). Tổng phải từ 3 tới 10 câu; ngoài khoảng đó nút **Sinh slide** bị khoá kèm lý do và app không tự rút bớt. Dòng bên dưới cho biết tổng và số cụm quiz: 3 cụm khi dưới 8 câu, 4 cụm từ 8 câu.
+
+Quiz rải thành các cụm trong bài, mỗi cụm có slide **Đáp án** ngay sau, do app dựng từ các câu của cụm. Mỗi slide câu hỏi tối đa hai câu, mỗi câu có bốn phương án và một đáp án đúng. Để sửa một câu, mở bước **2. Slide**, bấm slide **Luyện tập nhanh** đó: dưới phần sửa slide có từng câu với **Câu hỏi**, bốn **Phương án**, **Đáp án đúng** và **Giải thích**, rồi bấm **Lưu câu**. Muốn sửa slide đáp án, sửa câu ở slide câu hỏi của cụm.
+
+</Step>
+
+<Step n={5} id="xem-truoc-va-cong-slide" title="Xem trước, đọc cổng slide và duyệt">
+
+Bước **2. Slide** có **Xem trước deck**: lưới các slide 16:9, mỗi slide ghi số thứ tự và loại (ví dụ "5 · Kiến thức"). Slide nào còn tràn khung sau lần đo gần nhất có nhãn **Tràn khung**. Bấm một slide để mở **Sửa slide n**: ô **Bố cục** (**Tự động** hoặc một bố cục cho loại slide đó), **Tiêu đề**, các ô **Nội dung**, **YCCĐ liên kết**, **Việc của giáo viên**, **Việc của học sinh**, rồi **Lưu slide**. Slide bìa, sơ đồ nội dung và cảm ơn do máy dựng, nên đổi tên bài hay header ở bước Thiết lập. Chip **Giao diện:** với nút **Đổi** mở bảng đổi giao diện ngay tại đây, mỗi gợi ý có nhãn **Vừa khung** hoặc số slide cần cân lại.
+
+Bước **3. Xuất** có **Xem trước bản xuất** (mọi trang) và **Bảng cổng** của slide, mỗi hàng ghi **Mã**, tên cổng, **Đơn vị đã kiểm**, **Vi phạm** và **Kết quả**:
+
+| Mã | Cổng kiểm gì |
+|---|---|
+| P1 | Biên dịch ra PDF |
+| P2 | Không phải bản rút gọn chữ thuần |
+| P8 | Slide đủ bố cục và cụm quiz |
+| P9 | Slide không tràn khung |
+| P10 | Giáo viên đã duyệt |
+| P11 | Hoạt động, slide neo YCCĐ |
+| P12 | Đóng dấu kho chuẩn |
+
+P1 và P2 ghi **Không áp dụng (kết xuất HTML)**; P10 ghi **Chờ duyệt** cho tới khi thầy cô duyệt. P8 báo thiếu phần bắt buộc, số slide ngoài khoảng hay cụm quiz đặt sai chỗ; P9 báo slide còn tràn khung sau ba vòng cân lại, hoặc ghi chú "Chưa đo tràn khung của nội dung này; Duyệt sẽ đo lại" khi nội dung vừa sửa. Mỗi vi phạm hay cảnh báo nằm một dòng với nút **Mở slide n** để nhảy tới slide đó và, với cảnh báo, nút **Xác nhận** riêng, không có nút xác nhận tất cả.
+
+</Step>
+
+<Step n={6} id="duyet-va-xuat" title="Duyệt và xuất">
+
+Nút **Duyệt** bị khoá, kèm lý do, khi còn vi phạm mức chặn (ngoài P10) hoặc còn cảnh báo chưa xác nhận. Khi đủ điều kiện, bấm **Duyệt** và xác nhận trong hộp thoại; app đo lại slide ngay trong lúc duyệt. Ở cấp Phổ thông, **Duyệt** là bước cuối, không có thêm bước ký riêng. Sau đó, sửa slide sẽ tạo bản nháp mới và phiên bản đã duyệt giữ nguyên.
+
+Bấm **Xuất PDF** hoặc **Xuất PPTX**. Trong tệp PPTX, mỗi trang là một ảnh slide 16:9 kèm ghi chú trình bày: chữ trong đó không sửa được bằng PowerPoint. PPTX sửa được là lộ trình, chưa có ở bản này; muốn sửa, thầy cô sửa trong app rồi xuất lại. Xuất tệp luôn làm được, kể cả khi slide chưa duyệt, nhưng bản xuất mang dấu chìm **DÙNG THỬ** trong các trường hợp: phiên bản chưa được duyệt, còn vi phạm mức chặn, key đang dùng thử, chưa kiểm được loại key của máy này, hoặc đây là hiện vật mẫu. Mỗi lý do hiện một dòng ngay trên nút xuất. Slide đã duyệt, không còn vi phạm chặn và chạy bằng key trả phí thì bản xuất không có dấu chìm. Nút **Mở thư mục** mở nơi tệp được lưu.
+
+</Step>
+
+</Steps>
+
+## Gợi ý giao diện slide
+
+Nút **Tự thiết kế** (thẻ **Giao diện slide** ở bước Thiết lập) mở trình thiết kế giao diện: nền, hoạ tiết, bộ chữ, thanh tiêu đề, kiểu thẻ, mật độ chữ, logo, kèm nút **Kiểm tra tràn khung** và **Lưu vào Của tôi**. Có hai cách gợi ý theo lời mô tả, nhập ở ô **Mô tả giao diện bạn muốn** (từ 3 đến 300 ký tự):
+
+- **Gợi ý tại máy (miễn phí):** theo màu, cấp học và tính chất trong câu, không dùng AI, không tốn tiền. Cách này luôn có, kể cả ở dự án **Tắt AI** và khi mở từ hộp **Soạn bài dạy**.
+- **Gợi ý 3 kiểu:** dùng AI, chỉ có ở dự án bật AI khi mở **Tự thiết kế** từ một slide hay từ Chi tiết dự án. App mở hộp **Ước tính chi phí** trước khi chạy. Bấm **Đóng** khi đang chờ không dừng lượt gợi ý: lượt vẫn chạy, vẫn tính phí và kết quả hiện dưới ô mô tả. Kiểu nào không đủ tương phản bị bỏ; nếu không còn kiểu nào dùng được thì lượt đó vẫn bị tính phí.
+
+Các kiểu gợi ý chỉ nạp vào các điều khiển để thầy cô xem; **Hoàn tác** trả lại bản thiết kế trước đó.
+
+## Slide chưa làm được gì
+
+- Hình vẽ trong slide: chưa có, AI không vẽ hình.
+- PPTX sửa được (chữ và hình là đối tượng riêng): chưa có; PPTX hiện là ảnh từng trang.
+- Slide đọc nội dung giáo án cùng bộ để đối chiếu: chưa có; hai hiện vật độc lập, chỉ chung phạm vi bài dạy.
+- Biên dịch bằng LaTeX ra PDF: chưa có; cổng P1 và P2 chưa áp dụng.
+- Các môn chỉ có ở gói đầy đủ (Ngữ văn, Tiếng Việt, Âm nhạc, Mỹ thuật, Hoạt động trải nghiệm): chưa có.
