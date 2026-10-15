@@ -181,6 +181,36 @@ export const DOCS: Record<DocId, DocEntry> = {
       keyword: 'add documents to EduFlow',
     },
   },
+  'costs-and-budget': {
+    group: 'operations',
+    order: 1,
+    updatedAt: '2026-10-15',
+    vi: {
+      title: 'Chi phí và ngân sách theo key',
+      description: 'Đọc ước tính chi phí trước mỗi tác vụ AI, xem chi phí đã dùng và ngân sách tháng của key, hiểu cảnh báo khi dùng tới 80% và việc tại máy luôn 0 đồng.',
+      keyword: 'xem ngân sách tháng của key EduFlow',
+    },
+    en: {
+      title: 'Costs and the monthly budget',
+      description: "Read the cost estimate before each AI job, see the cost used and your key's monthly budget, read the 80% warning, and know which local work costs nothing.",
+      keyword: 'check the monthly budget of an EduFlow key',
+    },
+  },
+  troubleshooting: {
+    group: 'operations',
+    order: 2,
+    updatedAt: '2026-10-15',
+    vi: {
+      title: 'Xử lý sự cố thường gặp',
+      description: 'Cách xử lý sự cố EduFlow: macOS hay Windows chặn khi mở, không kích hoạt được key, tác vụ AI dừng, cập nhật bản mới, gỡ cài đặt và dữ liệu nằm ở đâu.',
+      keyword: 'sửa lỗi EduFlow',
+    },
+    en: {
+      title: 'Troubleshooting common problems',
+      description: 'Fix common EduFlow problems: macOS or Windows blocks the app, a key will not activate, an AI job stops, updating, uninstalling, and finding your data.',
+      keyword: 'fix EduFlow problems',
+    },
+  },
 }
 
 /** Khối "Bắt đầu trong 5 phút" ở mục lục hướng dẫn: cài, kích hoạt, soạn đề đầu tiên (spec §7.3). */
@@ -217,6 +247,8 @@ export const DOC_SOURCES: Record<Locale, Record<DocId, () => Promise<MdxBody>>> 
     'lesson-slides': () => import('./vi/tao-slide-bai-giang.mdx'),
     'using-the-assistant': () => import('./vi/dung-tro-ly-ai.mdx'),
     'adding-documents': () => import('./vi/nap-tai-lieu.mdx'),
+    'costs-and-budget': () => import('./vi/chi-phi-va-ngan-sach.mdx'),
+    troubleshooting: () => import('./vi/xu-ly-su-co.mdx'),
   },
   en: {
     'install-macos': () => import('./en/install-macos.mdx'),
@@ -229,6 +261,8 @@ export const DOC_SOURCES: Record<Locale, Record<DocId, () => Promise<MdxBody>>> 
     'lesson-slides': () => import('./en/lesson-slides.mdx'),
     'using-the-assistant': () => import('./en/using-the-assistant.mdx'),
     'adding-documents': () => import('./en/adding-documents.mdx'),
+    'costs-and-budget': () => import('./en/costs-and-budget.mdx'),
+    troubleshooting: () => import('./en/troubleshooting.mdx'),
   },
 }
 

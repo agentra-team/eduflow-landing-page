@@ -6,7 +6,7 @@ import type { Locale } from '@/i18n/routing'
  * Slug là chữ thường không dấu nối bằng gạch, duy nhất qua cả hai ngôn ngữ: ảnh chia sẻ /og/docs/<slug> suy ra ngôn ngữ từ slug.
  * Thêm bài: thêm mã vào DOC_IDS, slug vào DOC_SLUGS, mục vào DOCS (content/docs/index.ts) và hai tệp MDX.
  */
-export const DOC_IDS = ['install-macos', 'install-windows', 'activation-and-trial', 'interface-tour', 'create-a-test', 'export-test-versions', 'lesson-plans', 'lesson-slides', 'using-the-assistant', 'adding-documents'] as const
+export const DOC_IDS = ['install-macos', 'install-windows', 'activation-and-trial', 'interface-tour', 'create-a-test', 'export-test-versions', 'lesson-plans', 'lesson-slides', 'using-the-assistant', 'adding-documents', 'costs-and-budget', 'troubleshooting'] as const
 export type DocId = (typeof DOC_IDS)[number]
 
 export const DOC_SLUGS: Record<DocId, Record<Locale, string>> = {
@@ -20,6 +20,8 @@ export const DOC_SLUGS: Record<DocId, Record<Locale, string>> = {
   'lesson-slides': { vi: 'tao-slide-bai-giang', en: 'lesson-slides' },
   'using-the-assistant': { vi: 'dung-tro-ly-ai', en: 'using-the-assistant' },
   'adding-documents': { vi: 'nap-tai-lieu', en: 'adding-documents' },
+  'costs-and-budget': { vi: 'chi-phi-va-ngan-sach', en: 'costs-and-budget' },
+  troubleshooting: { vi: 'xu-ly-su-co', en: 'troubleshooting' },
 }
 
 export function docIdFromSlug(locale: Locale, slug: string): DocId | undefined {

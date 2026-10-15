@@ -1,0 +1,77 @@
+## EduFlow tính phí thế nào
+
+EduFlow tính phí theo lượng AI đã dùng, đo bằng token. Mỗi lượt gọi AI (soạn câu hỏi, soạn giáo án, tạo slide, một tin của trợ lý) ghi lại số token ở bốn lớp: **Input**, **Output**, **Cache ghi** và **Cache đọc**. Số tiền do máy chủ chốt theo bảng giá có hiệu lực lúc ghi sổ; app chỉ hiển thị, không tự tính lại. Site này không công bố đơn giá. Cách tính phí nói chung nằm ở trang [Cách tính phí](/cach-tinh-phi).
+
+Chi phí và ngân sách tháng gắn với key.
+
+<Steps>
+
+<Step n={1} id="doc-hop-uoc-tinh" title="Đọc hộp ước tính trước khi chạy">
+
+Soạn đề, giáo án hay slide đều bắt đầu bằng một hộp **Ước tính chi phí**; app chưa chạy gì cho tới khi thầy cô bấm. Hộp cho biết:
+
+- Dòng đầu nêu việc sắp chạy và số bước AI, ví dụ "Sinh câu hỏi Toán 10 · ... bước AI".
+- Khoảng tiền ước tính, dạng "... đến ... ₫". Nếu máy chủ chưa đủ số liệu, hộp ghi "Chưa đủ số liệu để ước tính chi phí."
+- Danh sách các bước sẽ chạy. Với giáo án và slide, hộp tách từng phần, và khi tạo cả bộ có thêm dòng **Cả bộ**.
+- Dòng "Ngân sách tháng còn ... ₫" khi key có ngân sách.
+- Cảnh báo "Ước tính vượt phần ngân sách tháng còn lại." khi khoảng ước tính lớn hơn số còn lại.
+
+Bấm **Chạy** để bắt đầu, hoặc **Huỷ**: không có tác vụ nào được tạo và không tốn gì. Khoảng này là ước tính; chi phí thật của tác vụ do máy chủ ghi sổ sau khi chạy.
+
+</Step>
+
+<Step n={2} id="xem-chi-phi-da-dung" title="Xem chi phí đã dùng">
+
+Có hai cách mở trang **Sử dụng và chi phí**: chọn mục cùng tên ở thanh bên, hoặc bấm nút tháng trên thanh trên cùng (ví dụ "Tháng 10", kèm số tiền đã dùng so với ngân sách). Trang tính theo tháng giờ Việt Nam và gồm:
+
+- Thẻ **Tổng tiền** của tháng, kèm số lượt gọi AI và số token qua bốn lớp. Tháng chưa có tác vụ AI nào thì thẻ ghi "Tháng này chưa có tác vụ AI nào."
+- Thẻ **Ngân sách tháng** (xem bước sau).
+- Thẻ **Bốn lớp token**: bảng **Input**, **Output**, **Cache ghi**, **Cache đọc** và dòng **Tổng**.
+- Thẻ **Theo skill**, chia chi phí theo từng loại việc AI, và thẻ **Theo thiết bị**, chia theo từng máy dùng key; máy đang dùng có nhãn **Máy này**.
+
+Dòng cuối trang nhắc: số tiền do máy chủ chốt, app chỉ hiển thị. Khi máy chưa kết nối được để làm mới, trang hiện "Số liệu cập nhật lúc ... Chưa kết nối được máy chủ để làm mới."
+
+Ngoài trang này, chi phí còn hiện ngay chỗ phát sinh. Sau khi sinh câu hỏi cho đề, băng tiến độ ghi "Chi phí thật của tác vụ: ... ₫"; nếu tác vụ bị huỷ hay mất kết nối, số này ghi thêm "tạm tính" cho tới khi máy chủ ghi đủ mọi lượt. Với trợ lý, mỗi câu trả lời kèm "Tin này ... ₫ · ... token".
+
+</Step>
+
+<Step n={3} id="xem-ngan-sach-thang" title="Xem ngân sách tháng của key">
+
+Thẻ **Ngân sách tháng** của trang Sử dụng và chi phí cho biết:
+
+- Trạng thái: **Bình thường**, **Gần ngưỡng** hoặc **Vượt ngân sách**.
+- "đã dùng ...% của ..." và "còn ...", kèm thanh tiến độ.
+- Chế độ của ngân sách: "Chế độ cảnh báo" hoặc "Chế độ chặn" (xem mục cuối).
+
+Nếu key chưa có ngân sách, thẻ ghi "Đơn vị chưa đặt ngân sách tháng." Trên Trang chủ, key dùng thử còn hiện chip "Dùng thử: còn ... ngày, ngân sách còn ...".
+
+Ngân sách do quản trị đặt, theo từng key hoặc theo mức mặc định, trên trang quản trị của Agentra; thầy cô không đặt ngân sách trong app. Muốn đổi ngân sách, nhờ quản trị hoặc liên hệ Agentra qua trang [Liên hệ](/lien-he).
+
+</Step>
+
+</Steps>
+
+## Cảnh báo khi dùng tới 80%
+
+Khi số đã dùng từ 80% ngân sách tháng, trạng thái chuyển sang **Gần ngưỡng**; từ 100% là **Vượt ngân sách**. Máy chủ quyết các ngưỡng này; app chỉ hiển thị, không tự so số tiền với ngân sách. Lúc đó:
+
+- Nút tháng trên thanh trên cùng và trạng thái trên thẻ **Ngân sách tháng** đổi theo.
+- Trang chủ hiện băng cảnh báo "Đơn vị đã dùng ...% ngân sách AI tháng này (... / ...)." Mỗi ngưỡng chỉ cảnh báo một lần trong tháng trên mỗi máy.
+
+## Việc nào luôn 0 đồng
+
+Việc chạy trên máy của thầy cô không gọi AI nên không tốn tiền. Chỗ nào app nói rõ thì mang chip **Tại máy · 0 ₫**, như thẻ hành động và lệnh gõ <code>/</code> của trợ lý. Các việc tại máy gồm:
+
+- Cổng chất lượng của đề và giáo án, biên dịch và xuất tệp (gồm xáo trộn câu hỏi và đáp án khi xuất nhiều mã đề). Dự án đang Tắt AI vẫn chạy các việc này.
+- Đọc tài liệu: đọc lớp chữ của tệp, tách đoạn và **Thử tìm** đều chạy tại máy và ghi 0 ₫.
+
+Việc gọi AI mới tính tiền: bấm **Chạy** trong hộp ước tính, hoặc gửi một tin cho trợ lý.
+
+## Khi hết ngân sách
+
+Cách app xử lý khi **Vượt ngân sách** phụ thuộc chế độ của key:
+
+- **Chế độ cảnh báo:** tác vụ AI vẫn chạy. Trang chủ ghi "Đơn vị đã vượt ngân sách AI tháng này (... / ...). Tác vụ AI vẫn chạy theo chế độ cảnh báo."
+- **Chế độ chặn:** app ghi "Đơn vị đã dùng hết ngân sách AI tháng này (... / ...). Tác vụ AI tạm dừng tới ngày 1 tháng sau hoặc khi ngân sách được nâng." Key dùng thử luôn ở chế độ chặn.
+
+Ngân sách tính theo tháng giờ Việt Nam, nên sang tháng mới số đã dùng bắt đầu lại. Muốn dùng tiếp trước đó, nhờ quản trị nâng ngân sách, rồi mở lại trang Sử dụng và chi phí để app làm mới số liệu. Việc chạy tại máy không bị ngân sách giới hạn vì không tốn tiền. Các thông báo khác khi tác vụ dừng nằm trong bài [Xử lý sự cố thường gặp](/huong-dan/xu-ly-su-co).

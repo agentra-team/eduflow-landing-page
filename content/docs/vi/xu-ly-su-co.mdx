@@ -1,0 +1,101 @@
+## macOS không mở được EduFlow
+
+Bộ cài hiện chưa ký số bằng chứng thư Apple, nên lần mở đầu tiên macOS chặn và báo không kiểm được ứng dụng. Việc này chỉ cần làm một lần:
+
+1. Mở EduFlow từ **Applications**; khi macOS báo không mở được, bấm **Xong**.
+2. Mở **Cài đặt hệ thống** › **Quyền riêng tư & Bảo mật**, kéo xuống mục **Bảo mật**, bấm **Vẫn mở** ở dòng nói về EduFlow rồi nhập mật khẩu máy.
+3. Bấm **Mở** ở hộp thoại hỏi lại.
+
+Các bước đầy đủ, kèm cách chọn đúng tệp theo chip của máy Mac, nằm ở mục "Mở lần đầu" của bài [Cài đặt trên macOS](/huong-dan/cai-dat-macos). Chỉ mở tệp tải từ trang [Tải về](/tai-ve) của EduFlow.
+
+## Windows SmartScreen chặn bộ cài
+
+Bộ cài cũng chưa ký số bằng chứng thư Microsoft, nên Windows Defender SmartScreen hiện hộp thoại **"Windows đã bảo vệ PC của bạn"** với nhà phát hành **Nhà phát hành không xác định**.
+
+1. Bấm **Thông tin thêm**.
+2. Kiểm tên tệp đúng là tệp vừa tải từ trang Tải về của EduFlow.
+3. Bấm **Vẫn chạy**.
+
+Muốn chắc tệp không bị sửa, so mã SHA-512 trên trang Tải về với kết quả của lệnh sau (mở PowerShell trong thư mục chứa tệp):
+
+<CodeBlock code={'certutil -hashfile "EduFlow Setup <phiên bản>.exe" SHA512'} copyLabel="Sao chép" copiedLabel="Đã sao chép" />
+
+Bài [Cài đặt trên Windows](/huong-dan/cai-dat-windows) có đủ các bước.
+
+## Không kích hoạt được key
+
+Mở lại màn kích hoạt hay mục **Key và thiết bị** trong **Cài đặt** và đọc câu app báo:
+
+| App báo | Làm gì |
+|---|---|
+| "Key không đúng. Kiểm tra lại từng nhóm ký tự hoặc liên hệ Agentra để được cấp lại." | Key sai hoặc thiếu một nhóm ký tự. Key vẫn nằm trong ô; app tự bỏ khoảng trắng và dấu gạch thừa, nên chỉ cần soát từng nhóm. Vẫn không được thì liên hệ Agentra |
+| "Key đã dùng đủ số thiết bị cho phép. Nhờ quản trị thu hồi một thiết bị cũ rồi kích hoạt lại." | Nhờ quản trị thu hồi một máy cũ qua Agentra rồi kích hoạt lại |
+| "Key đã hết hạn ..." | Nhập key mới ở **Nhập key khác** trong **Cài đặt**, hoặc liên hệ Agentra để gia hạn |
+| "Key của đơn vị đang bị tạm khoá. Các chức năng không dùng AI vẫn hoạt động." | Liên hệ Agentra. Các chức năng không dùng AI vẫn hoạt động |
+| "Thiết bị này không còn được phép dùng key. Gửi yêu cầu cấp lại key trong Trợ giúp." | Liên hệ Agentra để được cấp lại key |
+| "Không kết nối được máy chủ. Kiểm tra mạng rồi thử lại." | Kích hoạt cần Internet; kiểm tra mạng rồi bấm lại **Kích hoạt** |
+| "Thử kích hoạt quá nhiều lần. Thử lại sau ... giây." | Chờ hết thời gian đếm ngược trên màn rồi thử lại |
+| "Hệ điều hành chưa cho phép lưu bí mật an toàn nên máy này chưa kích hoạt được. Đăng nhập lại tài khoản hệ điều hành rồi thử lại." | Đăng nhập lại tài khoản của macOS hay Windows rồi thử kích hoạt lại |
+
+Khi dùng thử, app còn có các câu "Nhập đủ họ tên, email hợp lệ, số điện thoại và đơn vị để gửi đơn." (điền đủ các ô bắt buộc), "Máy này đã nhận key dùng thử. Nếu bạn có key trả phí, hãy nhập key." (mỗi máy chỉ nhận một key dùng thử) và "Key đã được cấp nhưng máy chưa nhận được. Liên hệ quản trị để được cấp lại." Chi tiết nằm trong bài [Kích hoạt key và dùng thử](/huong-dan/kich-hoat-va-dung-thu).
+
+## Tác vụ AI dừng hay báo lỗi
+
+Tác vụ AI cần mạng. Thanh trên cùng cho biết máy đang **Trực tuyến** hay **Mất mạng**. Các câu app báo khi một tác vụ AI không chạy được:
+
+| App báo | Làm gì |
+|---|---|
+| "Không kết nối được máy chủ. Kiểm tra mạng rồi thử lại." | Kiểm tra mạng rồi chạy lại. Thiết lập, sửa và xuất tệp vẫn làm được khi mất mạng |
+| "Mất kết nối khi trợ lý đang trả lời. Phần đã hiện được giữ lại; tin này không được gửi lại để tránh tính tiền hai lần." | Đọc phần đã hiện, rồi gửi lại tin nếu cần |
+| "Đơn vị đã dùng hết ngân sách AI tháng này (... / ...). Tác vụ AI tạm dừng tới ngày 1 tháng sau hoặc khi ngân sách được nâng." | Hết ngân sách ở chế độ chặn; xem bài [Chi phí và ngân sách theo key](/huong-dan/chi-phi-va-ngan-sach) |
+| "Nhà cung cấp AI đang quá tải. App tự thử lại sau ... giây. Lượt này chưa bị tính tiền." | Chờ, app tự thử lại |
+| "Đang có nhiều lời gọi AI cùng lúc cho đơn vị. App tự chạy tiếp sau ... giây, hạn mức không bị trừ." | Chờ, app tự chạy tiếp |
+| "Nhà cung cấp AI trả lỗi. Thầy cô thử gửi lại sau ít phút." | Thử lại sau ít phút |
+| "Hệ thống AI đang chạm hạn mức của nhà cung cấp. Agentra đang xử lý. Thử lại sau." | Thử lại sau |
+| "Tính năng AI đang tạm tắt. Các chức năng khác vẫn hoạt động." | Dùng các chức năng khác trong lúc chờ |
+| "Dự án đang bật Tắt AI. Tắt công tắc trong Chi tiết dự án để chạy tác vụ này." | Tắt công tắc **Tắt AI** của dự án trong **Chi tiết dự án** |
+| "Mô hình từ chối yêu cầu này. Kiểm tra nội dung đầu vào rồi thử lại." | Sửa nội dung đầu vào rồi chạy lại |
+| "Máy chủ gặp lỗi. Mã tham chiếu ..." | Ghi lại mã tham chiếu và liên hệ Agentra |
+| "Sau 3 lần sinh, ngân hàng câu vẫn lệch ma trận ở ... ô: ... Sửa ma trận hoặc bấm Thử lại." | Sửa ma trận hoặc bấm **Thử lại** ở băng tiến độ; chi phí của các lần sinh nằm trong chi tiết tác vụ |
+
+Khi một tác vụ đang chạy, bấm **Huỷ** ở băng tiến độ để dừng; app ghi "Đã huỷ. Phiên bản hiện tại giữ nguyên."
+
+## App báo lỗi chung hoặc không xuất được tệp
+
+- "Có lỗi trong app. Thử lại; nếu lặp lại, khởi động lại EduFlow."
+- "Không gọi được tiến trình chính của app. Khởi động lại EduFlow."
+- "Chưa xuất được tệp. Thử lại; nếu lặp lại, khởi động lại EduFlow."
+- "Không mở hoặc ghi được kho dữ liệu trên máy này." và "EduFlow không mở được dữ liệu trên máy này." là hai câu app báo khi không mở được kho dữ liệu; thư mục dữ liệu nằm ở mục cuối. Liên hệ Agentra kèm câu app báo.
+
+EduFlow chỉ cho một bản chạy trên mỗi thư mục dữ liệu, vì hai tiến trình cùng ghi một kho dữ liệu làm hỏng kho.
+
+## Cập nhật bản mới
+
+Bản hiện tại chưa tự cập nhật trong app. Khi cần bản mới, vào trang [Tải về](/tai-ve), tải bộ cài mới nhất rồi cài như lần đầu (macOS: kéo vào **Applications**; Windows: chạy tệp **.exe**). Dự án nằm trong thư mục dữ liệu riêng của app, tách khỏi thư mục cài.
+
+## Gỡ cài đặt và giữ dữ liệu
+
+- **macOS:** thoát EduFlow rồi kéo **EduFlow** từ **Applications** vào Thùng rác.
+- **Windows:** mở **Cài đặt** của Windows, chọn **Ứng dụng**, tìm **EduFlow** và bấm **Gỡ cài đặt**.
+
+Dữ liệu dự án nằm trong thư mục dữ liệu riêng, tách khỏi thư mục cài (xem mục sau). Tệp đã xuất (PDF, DOCX...) nằm ở chỗ thầy cô chọn khi lưu.
+
+<Callout kind="warning">Nút **Đăng xuất và xoá** trong **Cài đặt** xoá toàn bộ kho dự án trên máy và đòi gõ **XOÁ KHO** để xác nhận. Gỡ cài đặt không cần bấm nút này; chỉ dùng khi thật sự muốn xoá dữ liệu trên máy.</Callout>
+
+## Dữ liệu nằm ở đâu
+
+Dữ liệu của EduFlow nằm trong thư mục dữ liệu của app, tên thư mục là `EduFlow`:
+
+| Hệ điều hành | Thư mục |
+|---|---|
+| macOS | `~/Library/Application Support/EduFlow` |
+| Windows | `%APPDATA%\EduFlow` (thường là `C:\Users\<tên người dùng>\AppData\Roaming\EduFlow`) |
+
+Trong thư mục này:
+
+- `store/`: kho dự án (cơ sở dữ liệu `eduflow.db`) và các tệp kèm theo.
+- `secrets/`: thông tin của máy này, mã hoá bằng hệ điều hành.
+- `machine-settings.json`: lựa chọn riêng của máy, như panel trợ lý mở khi khởi động.
+- `app-state.json`: vị trí cửa sổ và ảnh chụp cuối của trạng thái key và chi phí.
+
+<Callout kind="info">Chưa giải quyết được sự cố? Gửi cho Agentra qua trang [Liên hệ](/lien-he) kèm câu app báo, hệ điều hành và phiên bản EduFlow.</Callout>

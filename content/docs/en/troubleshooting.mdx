@@ -1,0 +1,101 @@
+## macOS will not open EduFlow
+
+The installer is not signed yet with an Apple certificate, so the first time you open it macOS blocks it and says it cannot check the app. You only do this once:
+
+1. Open EduFlow from **Applications**; when macOS says the app cannot be opened, click **Done**.
+2. Open **System Settings** › **Privacy & Security**, scroll down to **Security**, click **Open Anyway** next to the line about EduFlow, then enter your Mac password.
+3. Click **Open** in the dialog that asks again.
+
+The full steps, with how to pick the right file for your Mac chip, are in the "First launch" step of [Install on macOS](/en/docs/install-macos). Only open files downloaded from the EduFlow [Download](/en/download) page.
+
+## Windows SmartScreen blocks the installer
+
+The installer is not signed yet with a Microsoft certificate either, so Windows Defender SmartScreen shows **"Windows protected your PC"** with the publisher **Unknown publisher**.
+
+1. Click **More info**.
+2. Check that the file name is the file you just downloaded from the EduFlow Download page.
+3. Click **Run anyway**.
+
+To make sure the file was not altered, compare the SHA-512 checksum on the Download page with the output of this command (open PowerShell in the folder that holds the file):
+
+<CodeBlock code={'certutil -hashfile "EduFlow Setup <version>.exe" SHA512'} copyLabel="Copy" copiedLabel="Copied" />
+
+[Install on Windows](/en/docs/install-windows) has every step.
+
+## A key will not activate
+
+Reopen the activation screen, or the <Ui>Key và thiết bị</Ui> (Key and devices) card in <Ui>Cài đặt</Ui> (Settings), and read what the app says:
+
+| The app says | What to do |
+|---|---|
+| <Ui>Key không đúng. Kiểm tra lại từng nhóm ký tự hoặc liên hệ Agentra để được cấp lại.</Ui> (The key is wrong. Check each group of characters or contact Agentra to have it issued again.) | The key is mistyped or a group is missing. It stays in the field; the app drops spaces and stray dashes itself, so just check each group. If it still fails, contact Agentra |
+| <Ui>Key đã dùng đủ số thiết bị cho phép. Nhờ quản trị thu hồi một thiết bị cũ rồi kích hoạt lại.</Ui> (The key has used all its devices. Ask your administrator to revoke an old device, then activate again.) | Ask your administrator to revoke an old computer through Agentra, then activate again |
+| <Ui>Key đã hết hạn ...</Ui> (The key has expired ...) | Enter a new key with <Ui>Nhập key khác</Ui> (Enter another key) in <Ui>Cài đặt</Ui> (Settings), or contact Agentra to renew it |
+| <Ui>Key của đơn vị đang bị tạm khoá. Các chức năng không dùng AI vẫn hoạt động.</Ui> (The unit's key is temporarily locked. Features that do not use AI still work.) | Contact Agentra. Features that do not use AI still work |
+| <Ui>Thiết bị này không còn được phép dùng key. Gửi yêu cầu cấp lại key trong Trợ giúp.</Ui> (This device is no longer allowed to use the key. Send a request to have the key issued again in Help.) | Contact Agentra to have the key issued again |
+| <Ui>Không kết nối được máy chủ. Kiểm tra mạng rồi thử lại.</Ui> (Cannot reach the server. Check the network and try again.) | Activation needs the Internet; check the connection and click <Ui>Kích hoạt</Ui> (Activate) again |
+| <Ui>Thử kích hoạt quá nhiều lần. Thử lại sau ... giây.</Ui> (Too many activation attempts. Try again in ... seconds.) | Wait for the countdown on the screen to end, then try again |
+| <Ui>Hệ điều hành chưa cho phép lưu bí mật an toàn nên máy này chưa kích hoạt được. Đăng nhập lại tài khoản hệ điều hành rồi thử lại.</Ui> (The operating system does not yet allow secure storage of secrets, so this computer cannot be activated yet. Sign in to your operating system account again and retry.) | Sign in to your macOS or Windows account again, then try activating again |
+
+During a trial the app also has these messages: <Ui>Nhập đủ họ tên, email hợp lệ, số điện thoại và đơn vị để gửi đơn.</Ui> (Enter a full name, a valid email, a phone number and a unit to send the request.) means fill in every required field; <Ui>Máy này đã nhận key dùng thử. Nếu bạn có key trả phí, hãy nhập key.</Ui> (This computer already received a trial key. If you have a paid key, enter it.) means each computer gets one trial key; and <Ui>Key đã được cấp nhưng máy chưa nhận được. Liên hệ quản trị để được cấp lại.</Ui> (The key was issued but the computer has not received it. Contact your administrator to have it issued again.) Details are in [Activate a key or start a trial](/en/docs/activation-and-trial).
+
+## An AI job stops or shows an error
+
+AI jobs need the network. The top bar says whether the computer is <Ui>Trực tuyến</Ui> (Online) or <Ui>Mất mạng</Ui> (Offline). These are what the app says when an AI job cannot run:
+
+| The app says | What to do |
+|---|---|
+| <Ui>Không kết nối được máy chủ. Kiểm tra mạng rồi thử lại.</Ui> (Cannot reach the server. Check the network and try again.) | Check the network, then run again. Setup, editing and exporting files still work offline |
+| <Ui>Mất kết nối khi trợ lý đang trả lời. Phần đã hiện được giữ lại; tin này không được gửi lại để tránh tính tiền hai lần.</Ui> (Connection lost while the assistant was answering. What was shown is kept; the message is not resent so you are not charged twice.) | Read what was shown, then send the message again if you need to |
+| <Ui>Đơn vị đã dùng hết ngân sách AI tháng này (... / ...). Tác vụ AI tạm dừng tới ngày 1 tháng sau hoặc khi ngân sách được nâng.</Ui> (The unit has used up this month's AI budget (... / ...). AI jobs are paused until the 1st of next month or until the budget is raised.) | The budget ran out in block mode; see [Costs and the monthly budget](/en/docs/costs-and-budget) |
+| <Ui>Nhà cung cấp AI đang quá tải. App tự thử lại sau ... giây. Lượt này chưa bị tính tiền.</Ui> (The AI provider is overloaded. The app retries in ... seconds. This call has not been charged.) | Wait; the app retries by itself |
+| <Ui>Đang có nhiều lời gọi AI cùng lúc cho đơn vị. App tự chạy tiếp sau ... giây, hạn mức không bị trừ.</Ui> (Many AI calls are running at once for the unit. The app continues in ... seconds, the allowance is not deducted.) | Wait; the app continues by itself |
+| <Ui>Nhà cung cấp AI trả lỗi. Thầy cô thử gửi lại sau ít phút.</Ui> (The AI provider returned an error. Try sending again in a few minutes.) | Try again in a few minutes |
+| <Ui>Hệ thống AI đang chạm hạn mức của nhà cung cấp. Agentra đang xử lý. Thử lại sau.</Ui> (The AI system has hit the provider's limit. Agentra is handling it. Try again later.) | Try again later |
+| <Ui>Tính năng AI đang tạm tắt. Các chức năng khác vẫn hoạt động.</Ui> (The AI feature is temporarily off. Other features still work.) | Use the other features meanwhile |
+| <Ui>Dự án đang bật Tắt AI. Tắt công tắc trong Chi tiết dự án để chạy tác vụ này.</Ui> (The project has AI turned off. Turn the switch off in Project details to run this job.) | Turn off the <Ui>Tắt AI</Ui> (AI off) switch of the project in <Ui>Chi tiết dự án</Ui> (Project details) |
+| <Ui>Mô hình từ chối yêu cầu này. Kiểm tra nội dung đầu vào rồi thử lại.</Ui> (The model refused this request. Check the input and try again.) | Fix the input, then run again |
+| <Ui>Máy chủ gặp lỗi. Mã tham chiếu ...</Ui> (The server hit an error. Reference code ...) | Note the reference code and contact Agentra |
+| <Ui>Sau 3 lần sinh, ngân hàng câu vẫn lệch ma trận ở ... ô: ... Sửa ma trận hoặc bấm Thử lại.</Ui> (After 3 attempts the item bank still does not match the matrix in ... cells: ... Fix the matrix or click Retry.) | Fix the matrix or click <Ui>Thử lại</Ui> (Retry) in the progress banner; the cost of the attempts is in the job details |
+
+While a job runs, click <Ui>Huỷ</Ui> (Cancel) in the progress banner to stop it; the app says <Ui>Đã huỷ. Phiên bản hiện tại giữ nguyên.</Ui> (Cancelled. The current version is kept.)
+
+## The app shows a general error or cannot export a file
+
+- <Ui>Có lỗi trong app. Thử lại; nếu lặp lại, khởi động lại EduFlow.</Ui> (There is an error in the app. Try again; if it repeats, restart EduFlow.)
+- <Ui>Không gọi được tiến trình chính của app. Khởi động lại EduFlow.</Ui> (Cannot reach the app's main process. Restart EduFlow.)
+- <Ui>Chưa xuất được tệp. Thử lại; nếu lặp lại, khởi động lại EduFlow.</Ui> (The file could not be exported yet. Try again; if it repeats, restart EduFlow.)
+- <Ui>Không mở hoặc ghi được kho dữ liệu trên máy này.</Ui> (Cannot open or write the data store on this computer.) and <Ui>EduFlow không mở được dữ liệu trên máy này.</Ui> (EduFlow cannot open the data on this computer.) are the two messages when the data store cannot be opened; the data folder is in the last section. Contact Agentra with the message.
+
+EduFlow allows only one running copy per data folder, because two processes writing one data store corrupt it.
+
+## Updating to a new version
+
+This version does not update itself inside the app. When you need a newer version, go to the [Download](/en/download) page, download the latest installer and install it as the first time (macOS: drag it into **Applications**; Windows: run the **.exe** file). Your projects live in the app's own data folder, separate from the install folder.
+
+## Uninstalling and keeping your data
+
+- **macOS:** quit EduFlow, then drag **EduFlow** from **Applications** to the Trash.
+- **Windows:** open Windows **Settings**, choose **Apps**, find **EduFlow** and click **Uninstall**.
+
+Your project data lives in the app's own data folder, separate from the install folder (see the next section). Files you exported (PDF, DOCX...) are wherever you chose to save them.
+
+<Callout kind="warning">The <Ui>Đăng xuất và xoá</Ui> (Sign out and delete) button in <Ui>Cài đặt</Ui> (Settings) deletes the whole project store on that computer and asks you to type <Ui>XOÁ KHO</Ui> (DELETE STORE) to confirm. Uninstalling does not need this button; use it only when you really want to wipe the data on the computer.</Callout>
+
+## Where your data is
+
+EduFlow keeps its data in the app's data folder, named `EduFlow`:
+
+| Operating system | Folder |
+|---|---|
+| macOS | `~/Library/Application Support/EduFlow` |
+| Windows | `%APPDATA%\EduFlow` (usually `C:\Users\<user name>\AppData\Roaming\EduFlow`) |
+
+Inside that folder:
+
+- `store/`: the project store (the `eduflow.db` database) and its attached files.
+- `secrets/`: information about this computer, encrypted by the operating system.
+- `machine-settings.json`: this computer's own choices, such as opening the assistant panel at start.
+- `app-state.json`: the window position and the last snapshot of the key and cost state.
+
+<Callout kind="info">Problem still not solved? Send it to Agentra through the [Contact](/en/contact) page with the message the app showed, your operating system and the EduFlow version.</Callout>

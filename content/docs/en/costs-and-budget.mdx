@@ -1,0 +1,77 @@
+## How EduFlow charges
+
+EduFlow charges for the AI you use, measured in tokens. Each AI call (writing questions, a lesson plan, slides, one assistant message) records its tokens in four classes: <Ui>Input</Ui>, <Ui>Output</Ui>, <Ui>Cache ghi</Ui> (Cache write) and <Ui>Cache đọc</Ui> (Cache read). The server fixes the amount from the price list in force when the call is booked; the app only shows it and never recalculates it. This site does not publish unit prices. For how pricing works in general, see the [pricing page](/en/pricing).
+
+Cost and the monthly budget belong to the key.
+
+<Steps>
+
+<Step n={1} id="doc-hop-uoc-tinh" title="Read the estimate before you run">
+
+Writing a test, a lesson plan or slides always starts with a <Ui>Ước tính chi phí</Ui> (Cost estimate) box; the app runs nothing until you click. The box shows:
+
+- A first line naming the job and its number of AI steps, for example <Ui>Sinh câu hỏi Toán 10 · ... bước AI</Ui> (Generate Math 10 questions · ... AI steps).
+- An estimated range, written <Ui>... đến ... ₫</Ui> (... to ... ₫). If the server does not have enough data yet, the box says <Ui>Chưa đủ số liệu để ước tính chi phí.</Ui> (Not enough data to estimate the cost yet.)
+- The list of steps that will run. For lesson plans and slides the box splits the parts, and when you create a whole set there is an extra <Ui>Cả bộ</Ui> (Whole set) line.
+- A line <Ui>Ngân sách tháng còn ... ₫</Ui> (Monthly budget left ... ₫) when the key has a budget.
+- The warning <Ui>Ước tính vượt phần ngân sách tháng còn lại.</Ui> (The estimate is above the monthly budget that is left.) when the estimated range is above what is left.
+
+Click <Ui>Chạy</Ui> (Run) to start, or <Ui>Huỷ</Ui> (Cancel): no job is created and nothing is charged. The range is an estimate; the real cost of a job is booked by the server after it runs.
+
+</Step>
+
+<Step n={2} id="xem-chi-phi-da-dung" title="See the cost used">
+
+There are two ways to open the <Ui>Sử dụng và chi phí</Ui> (Usage and cost) page: choose the item of that name in the sidebar, or click the month button in the top bar (for example <Ui>Tháng 10</Ui> (October), with the amount used against the budget). The page counts by calendar month in Vietnam time and contains:
+
+- The <Ui>Tổng tiền</Ui> (Total) card for the month, with the number of AI calls and the tokens across the four classes. A month with no AI job yet says <Ui>Tháng này chưa có tác vụ AI nào.</Ui> (No AI job this month yet.)
+- The <Ui>Ngân sách tháng</Ui> (Monthly budget) card (see the next step).
+- The <Ui>Bốn lớp token</Ui> (Four token classes) card: a table of <Ui>Input</Ui>, <Ui>Output</Ui>, <Ui>Cache ghi</Ui> (Cache write), <Ui>Cache đọc</Ui> (Cache read) and a <Ui>Tổng</Ui> (Total) row.
+- The <Ui>Theo skill</Ui> (By skill) card, which splits the cost by kind of AI work, and the <Ui>Theo thiết bị</Ui> (By device) card, which splits it by computer using the key; this computer carries the <Ui>Máy này</Ui> (This computer) tag.
+
+The last line of the page reminds you that the server fixes the amount and the app only shows it. When the computer cannot connect to refresh, the page shows <Ui>Số liệu cập nhật lúc ... Chưa kết nối được máy chủ để làm mới.</Ui> (Figures updated at ... Could not reach the server to refresh.)
+
+The cost also appears where it happens. After the questions of a test are generated, the progress banner says <Ui>Chi phí thật của tác vụ: ... ₫</Ui> (Real cost of the job: ... ₫); if the job was cancelled or the connection was lost, the figure carries <Ui>tạm tính</Ui> (provisional) until the server has booked every call. For the assistant, each answer comes with <Ui>Tin này ... ₫ · ... token</Ui> (This message ... ₫ · ... tokens).
+
+</Step>
+
+<Step n={3} id="xem-ngan-sach-thang" title="See the monthly budget of the key">
+
+The <Ui>Ngân sách tháng</Ui> (Monthly budget) card of the Usage and cost page shows:
+
+- The status: <Ui>Bình thường</Ui> (Normal), <Ui>Gần ngưỡng</Ui> (Near the limit) or <Ui>Vượt ngân sách</Ui> (Over budget).
+- <Ui>đã dùng ...% của ...</Ui> (used ...% of ...) and <Ui>còn ...</Ui> (... left), with a progress bar.
+- The mode of the budget: <Ui>Chế độ cảnh báo</Ui> (Warn mode) or <Ui>Chế độ chặn</Ui> (Block mode); see the last section.
+
+If the key has no budget yet, the card says <Ui>Đơn vị chưa đặt ngân sách tháng.</Ui> (The unit has not set a monthly budget.) On the home screen a trial key also shows the chip <Ui>Dùng thử: còn ... ngày, ngân sách còn ...</Ui> (Trial: ... days left, budget left ...).
+
+The budget is set by an administrator, per key or as a default, on the Agentra admin site; you do not set a budget inside the app. To change it, ask your administrator or contact Agentra through the [Contact](/en/contact) page.
+
+</Step>
+
+</Steps>
+
+## The warning at 80%
+
+When the amount used reaches 80% of the monthly budget, the status becomes <Ui>Gần ngưỡng</Ui> (Near the limit); from 100% it is <Ui>Vượt ngân sách</Ui> (Over budget). The server decides these thresholds; the app only shows them and never compares the amounts itself. Then:
+
+- The month button in the top bar and the status on the <Ui>Ngân sách tháng</Ui> (Monthly budget) card change with it.
+- The home screen shows a warning banner <Ui>Đơn vị đã dùng ...% ngân sách AI tháng này (... / ...).</Ui> (The unit has used ...% of this month's AI budget (... / ...).) Each threshold warns once a month on each computer.
+
+## What is always 0 ₫
+
+Work that runs on your computer does not call AI, so it costs nothing. Where the app says so, it carries the chip <Ui>Tại máy · 0 ₫</Ui> (On this computer · 0 ₫), as on the assistant's action cards and <code>/</code> commands. Local work includes:
+
+- The quality gates of tests and lesson plans, compiling and exporting files (including shuffling questions and answers when you export several test versions). A project with AI turned off still runs these.
+- Reading documents: reading the text layer of a file, cutting passages and <Ui>Thử tìm</Ui> (Try a search) all run on your computer and show 0 ₫.
+
+An AI call is what costs money: click <Ui>Chạy</Ui> (Run) in the estimate box, or send a message to the assistant.
+
+## When the budget runs out
+
+What the app does when the status is <Ui>Vượt ngân sách</Ui> (Over budget) depends on the mode of the key:
+
+- **Warn mode:** AI jobs keep running. The home screen says <Ui>Đơn vị đã vượt ngân sách AI tháng này (... / ...). Tác vụ AI vẫn chạy theo chế độ cảnh báo.</Ui> (The unit is over this month's AI budget (... / ...). AI jobs still run in warn mode.)
+- **Block mode:** the app says <Ui>Đơn vị đã dùng hết ngân sách AI tháng này (... / ...). Tác vụ AI tạm dừng tới ngày 1 tháng sau hoặc khi ngân sách được nâng.</Ui> (The unit has used up this month's AI budget (... / ...). AI jobs are paused until the 1st of next month or until the budget is raised.) A trial key is always in block mode.
+
+The budget counts by calendar month in Vietnam time, so a new month starts the amount used again. To keep working before then, ask your administrator to raise the budget, then reopen the Usage and cost page so the app refreshes the figures. Local work is not limited by the budget because it costs nothing. The other messages shown when a job stops are in [Troubleshooting common problems](/en/docs/troubleshooting).

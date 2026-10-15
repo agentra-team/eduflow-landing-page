@@ -19,6 +19,8 @@ export const PAGES: Array<[string, 'vi' | 'en']> = [
   ['/en/docs/lesson-plans', 'en'], ['/en/docs/lesson-slides', 'en'],
   ['/huong-dan/dung-tro-ly-ai', 'vi'], ['/huong-dan/nap-tai-lieu', 'vi'],
   ['/en/docs/using-the-assistant', 'en'], ['/en/docs/adding-documents', 'en'],
+  ['/huong-dan/chi-phi-va-ngan-sach', 'vi'], ['/huong-dan/xu-ly-su-co', 'vi'],
+  ['/en/docs/costs-and-budget', 'en'], ['/en/docs/troubleshooting', 'en'],
   ['/lien-he', 'vi'], ['/en/contact', 'en'],
   ['/chinh-sach-bao-mat', 'vi'], ['/en/privacy', 'en'],
 ]
