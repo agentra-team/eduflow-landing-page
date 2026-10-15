@@ -17,7 +17,7 @@ import { routing, type Locale } from '@/i18n/routing'
 import { extractToc } from '@/lib/docs/toc'
 import { formatDate } from '@/lib/format'
 import { breadcrumb, techArticle } from '@/lib/seo/jsonld'
-import { buildMetadata, ogImageUrl } from '@/lib/seo/metadata'
+import { buildMetadata, docOgImageUrl } from '@/lib/seo/metadata'
 import { docSeo } from '@/lib/seo/pages'
 import { absoluteUrl } from '@/lib/seo/urls'
 
@@ -42,7 +42,7 @@ async function resolve(params: Params) {
 
 export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
   const { locale, id } = await resolve(params)
-  return buildMetadata({ locale, page: '/docs/[slug]', params: docParams(id), seo: docSeo(locale, id) })
+  return buildMetadata({ locale, page: '/docs/[slug]', params: docParams(id), seo: docSeo(locale, id), ogImage: docOgImageUrl(locale, id) })
 }
 
 export default async function DocPage({ params }: { params: Params }) {
@@ -94,7 +94,7 @@ export default async function DocPage({ params }: { params: Params }) {
           { name: c.title, url },
         ])}
       />
-      <JsonLd data={techArticle({ url, headline: c.title, description: c.description, locale, dateModified: doc.updatedAt, section: group, image: ogImageUrl(locale, '/') })} />
+      <JsonLd data={techArticle({ url, headline: c.title, description: c.description, locale, dateModified: doc.updatedAt, section: group, image: docOgImageUrl(locale, id) })} />
     </main>
   )
 }

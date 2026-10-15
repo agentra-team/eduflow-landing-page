@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import type { Locale, PageKey } from '@/i18n/routing'
+import { DOC_SLUGS, type DocId } from '@/content/docs/slugs'
 import { site } from '@/lib/site'
 import type { Seo } from './pages'
 import { absoluteUrl } from './urls'
@@ -11,6 +12,11 @@ const OWN_OG_IMAGE = new Set<PageKey>(['/download'])
 export function ogImageUrl(locale: Locale, page: PageKey): string {
   const prefix = locale === 'vi' ? '' : `/${locale}`
   return `${site.siteUrl()}${prefix}${OWN_OG_IMAGE.has(page) ? page : ''}/opengraph-image`
+}
+
+/** Ảnh chia sẻ của một bài hướng dẫn (app/og/docs/[slug]/route.tsx). */
+export function docOgImageUrl(locale: Locale, id: DocId): string {
+  return `${site.siteUrl()}/og/docs/${DOC_SLUGS[id][locale]}`
 }
 
 /** Metadata chuẩn của một trang: title từ sổ trang, canonical, hreflang (x-default = vi), Open Graph, Twitter (spec §9). */
