@@ -141,7 +141,8 @@ test('no client component reaches the docs registry', () => {
       queue.push(dep)
     }
   }
-  expect([...via.entries()].filter(([f]) => rel(f) === 'content/docs/index.ts').map(([, path]) => path)).toEqual([])
+  const HEAVY = ['content/docs/index.ts', 'content/topics/index.ts', 'lib/seo/pages.ts']
+  expect([...via.entries()].filter(([f]) => HEAVY.includes(rel(f))).map(([, path]) => path)).toEqual([])
 })
 
 test('a guide may point to a topic page only if that page exists', () => {

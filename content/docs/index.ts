@@ -46,12 +46,12 @@ export const DOCS: Record<DocId, DocEntry> = {
     updatedAt: '2026-10-15',
     vi: {
       title: 'Cài đặt trên macOS',
-      description: 'Tải đúng bộ cài theo chip của máy Mac, kéo vào Applications, mở lần đầu khi macOS cảnh báo, kích hoạt key hoặc dùng thử và nhận bản mới.',
+      description: 'Tải đúng bộ cài theo chip của máy Mac, kéo vào Applications, mở lần đầu khi macOS cảnh báo, kích hoạt key hoặc dùng thử và cài bản mới khi có.',
       keyword: 'cách cài EduFlow trên macOS',
     },
     en: {
       title: 'Install on macOS',
-      description: 'Download the right installer for your Mac chip, drag it to Applications, open it past the first macOS warning, activate a key or a trial, and update.',
+      description: 'Download the right installer for your Mac chip, drag it to Applications, open it past the first warning, activate a key or a trial, and install new versions.',
       keyword: 'install EduFlow on a Mac',
     },
   },
@@ -61,12 +61,12 @@ export const DOCS: Record<DocId, DocEntry> = {
     updatedAt: '2026-10-15',
     vi: {
       title: 'Cài đặt trên Windows',
-      description: 'Tải bộ cài EduFlow cho Windows 64-bit, chạy trình cài, mở qua cảnh báo SmartScreen, kích hoạt bằng key hoặc dùng thử và nhận bản mới trong app.',
+      description: 'Tải bộ cài EduFlow cho Windows 64-bit, chạy trình cài, mở qua cảnh báo SmartScreen, kích hoạt bằng key hoặc dùng thử và cài bản mới.',
       keyword: 'cách cài EduFlow trên Windows',
     },
     en: {
       title: 'Install on Windows',
-      description: 'Download the EduFlow installer for 64-bit Windows, run it, get past the SmartScreen warning, activate with a key or a trial, and get new versions in the app.',
+      description: 'Download the EduFlow installer for 64-bit Windows, run it, get past the SmartScreen warning, activate with a key or a trial, and install new versions.',
       keyword: 'install EduFlow on Windows',
     },
   },

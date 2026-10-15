@@ -357,8 +357,8 @@
           "desc": "Decks follow the required layout, with quizzes spread through the lesson and a preview from the very first step."
         },
         "o6": {
-          "title": "Full sets and a template library",
-          "desc": "One full-set run creates the lesson plan and the slides of the same lesson; the template library works offline."
+          "title": "Full sets and slide themes",
+          "desc": "One full-set run creates the lesson plan and the slides of the same lesson; the slides come with eight built-in themes."
         }
       },
       "screens": {

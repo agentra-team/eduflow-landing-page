@@ -838,7 +838,7 @@ export const TOPICS_EN: Record<TopicId, TopicCopy> = {
   'vs-chatgpt': {
     name: 'EduFlow vs ChatGPT',
     metaTitle: 'EduFlow vs ChatGPT for tests and lesson plans',
-    description: 'EduFlow vs ChatGPT for tests and lesson plans: when ChatGPT is enough, and when you need the blueprint, quality gates, test versions and sign-off of EduFlow.',
+    description: 'EduFlow vs ChatGPT for tests and lesson plans: when ChatGPT is enough, or you need the blueprint, quality gates, test versions and human approval in EduFlow.',
     keywords: ['ChatGPT lesson plans', 'EduFlow vs ChatGPT', 'ChatGPT prompts for lesson plans'],
     eyebrow: 'An honest comparison',
     h1: 'ChatGPT lesson plans and tests: how far it goes, and when you need EduFlow',

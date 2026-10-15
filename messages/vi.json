@@ -357,8 +357,8 @@
           "desc": "Deck theo bố cục bắt buộc, quiz rải suốt bài, xem trước ngay từ bước đầu."
         },
         "o6": {
-          "title": "Sinh cả bộ và thư viện mẫu",
-          "desc": "Một lần Sinh cả bộ tạo giáo án và slide của cùng bài dạy; thư viện mẫu dùng được khi mất mạng."
+          "title": "Sinh cả bộ và mẫu giao diện slide",
+          "desc": "Một lần Sinh cả bộ tạo giáo án và slide của cùng bài dạy; slide có tám mẫu giao diện có sẵn."
         }
       },
       "screens": {
