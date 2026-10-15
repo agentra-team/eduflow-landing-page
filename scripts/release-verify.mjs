@@ -41,6 +41,23 @@ export function versionProblems(body, expected) {
 }
 
 /**
+ * Giữ 'follow' (trang chủ có thể chuyển / sang /vi cùng origin) nhưng phản hồi cuối phải vẫn ở origin của domain chính:
+ * nếu không, domain chuyển sang *.vercel.app có thể khớp tag mà domain chính chưa phục vụ bản phát hành.
+ * @param {Response} res
+ * @param {string} siteUrl
+ * @param {string} label
+ * @returns {string | null}
+ */
+function redirectProblem(res, siteUrl, label) {
+  if (!res.url) return null
+  let origin = ''
+  try {
+    origin = new URL(res.url).origin
+  } catch {}
+  return origin === new URL(siteUrl).origin ? null : `${label} bị chuyển hướng sang ${JSON.stringify(res.url)}, khác origin ${siteUrl}`
+}
+
+/**
  * @param {string} siteUrl
  * @param {Expected} expected
  * @param {typeof fetch} fetchImpl
@@ -49,6 +66,8 @@ export function versionProblems(body, expected) {
 async function problemsNow(siteUrl, expected, fetchImpl) {
   try {
     const res = await fetchImpl(`${siteUrl}/version.json`, { headers: { 'Cache-Control': 'no-cache' }, signal: AbortSignal.timeout(10_000) })
+    const moved = redirectProblem(res, siteUrl, '/version.json')
+    if (moved) return [moved]
     if (!res.ok) return [`/version.json trả HTTP ${res.status}`]
     const problems = versionProblems(await res.json().catch(() => null), expected)
     // Route handler chỉ được chứng minh noindex trên `next start`; ở đây kiểm lại trên domain thật.
@@ -56,6 +75,8 @@ async function problemsNow(siteUrl, expected, fetchImpl) {
     if (!/noindex/i.test(robots)) problems.push(`X-Robots-Tag của /version.json là ${JSON.stringify(robots)}, cần chứa noindex`)
     if (problems.length > 0) return problems
     const home = await fetchImpl(`${siteUrl}/`, { signal: AbortSignal.timeout(10_000) })
+    const homeMoved = redirectProblem(home, siteUrl, 'trang chủ')
+    if (homeMoved) return [homeMoved]
     if (!home.ok) return [`trang chủ trả HTTP ${home.status}`]
     if (/noindex/i.test(home.headers.get('x-robots-tag') ?? '')) return ['trang chủ mang noindex trong header X-Robots-Tag']
     const html = await home.text()

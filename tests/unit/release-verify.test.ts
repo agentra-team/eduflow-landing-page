@@ -86,6 +86,24 @@ test('the home page must stay indexable, in the header and in the meta tag', asy
   await expect(run(home(200, {}, '<meta name="robots" content="index, follow">'))).resolves.toBeUndefined()
 })
 
+const at = (response: Response, url: string) => Object.defineProperty(response, 'url', { value: url })
+
+test('a redirect to another origin fails for version.json and for the home page, a same-origin one passes', async () => {
+  const run = (versionUrl: string, homeUrl: string) =>
+    verifyLive({
+      siteUrl: 'https://x.test',
+      expected: EXPECTED,
+      fetchImpl: (async (url: string) =>
+        url.endsWith('/version.json') ? at(json(EXPECTED), versionUrl) : at(home(), homeUrl)) as unknown as typeof fetch,
+      wait: async () => {},
+      attempts: 1,
+      log: () => {},
+    })
+  await expect(run('https://app.vercel.app/version.json', 'https://x.test/vi')).rejects.toThrow(/\/version\.json bị chuyển hướng sang "https:\/\/app\.vercel\.app\/version\.json"/)
+  await expect(run('https://x.test/version.json', 'https://app.vercel.app/vi')).rejects.toThrow(/trang chủ bị chuyển hướng sang "https:\/\/app\.vercel\.app\/vi"/)
+  await expect(run('https://x.test/version.json', 'https://x.test/vi')).resolves.toBeUndefined()
+})
+
 test('the CLI stops with ::error:: when Production has no site URL', () => {
   const r = spawnSync(process.execPath, [resolve('scripts/release-verify.mjs'), 'NEXT_PUBLIC_SITE_URL=""', '1.0.1', SHA], { encoding: 'utf8' })
   expect(r.status).toBe(1)
