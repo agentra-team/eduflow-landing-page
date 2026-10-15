@@ -8,9 +8,10 @@ on:
 permissions:
   contents: read
 
-# Một lần đẩy mới lên cùng nhánh hoặc cùng pull request huỷ lần chạy cũ đang dở (20 phút mỗi lần).
+# Trên pull request, lần đẩy mới huỷ lần chạy cũ đang dở (20 phút mỗi lần). Trên main mỗi commit một nhóm riêng (theo sha) nên
+# không lần chạy nào bị huỷ: workflow Release (release.yml) chỉ phát hành commit có CI xanh của chính nó.
 concurrency:
-  group: ci-${{ github.ref }}
+  group: ci-${{ github.ref == 'refs/heads/main' && github.sha || github.ref }}
   cancel-in-progress: true
 
 env:
