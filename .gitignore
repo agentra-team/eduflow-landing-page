@@ -46,3 +46,7 @@ next-env.d.ts
 
 # công cụ lập kế hoạch cục bộ (superpowers): không commit
 .superpowers/
+
+# Next tự sinh ở gốc repo, chứa U+2014: không commit
+/AGENTS.md
+/CLAUDE.md

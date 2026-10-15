@@ -185,7 +185,9 @@ test('no U+2014 em-dash in any source file', () => {
   const EM_DASH = /\u2014/
   const skipDir = (name: string) => (name.startsWith('.') && name !== '.github') || SKIP_DIRS.has(name)
   const isText = (f: string) => TEXT_EXTS.has(extname(f)) && basename(f) !== 'pnpm-lock.yaml'
-  const files = walk(ROOT, skipDir).filter(isText)
+  // AGENTS.md, CLAUDE.md ở gốc repo do Next tự sinh (đã vào .gitignore): bỏ qua đúng hai tệp đó, không bỏ tệp cùng tên ở nơi khác.
+  const GENERATED = new Set(['AGENTS.md', 'CLAUDE.md'].map((n) => join(ROOT, n)))
+  const files = walk(ROOT, skipDir).filter(isText).filter((f) => !GENERATED.has(f))
   expect(files.length).toBeGreaterThan(40)
   expect(files.filter((f) => EM_DASH.test(readFileSync(f, 'utf8'))).map(rel)).toEqual([])
 })
