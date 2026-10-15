@@ -98,3 +98,14 @@ test('language links point straight at the final URL', async ({ page }) => {
   expect(hrefs.filter((h) => h?.startsWith('/vi'))).toEqual([])
   expect(hrefs).toContain('/en/ai-for-teachers')
 })
+
+// Spec §7.1, §12.1: trang cấp có WebPage và FAQPage dựng từ đúng các câu hỏi đang hiển thị.
+for (const path of ['/ai-cho-giao-vien', '/en/ai-for-lecturers', '/ra-soat-chuong-trinh-dao-tao']) {
+  test(`${path} carries a WebPage and an FAQPage matching the questions shown`, async ({ page }) => {
+    await page.goto(path)
+    const ld = (await page.locator('script[type="application/ld+json"]').allTextContents()).map((s) => JSON.parse(s))
+    expect(ld.filter((d) => d['@type'] === 'WebPage')).toHaveLength(1)
+    const shown = (await page.locator('main details summary').allTextContents()).map((s) => s.trim())
+    expect(ld.find((d) => d['@type'] === 'FAQPage').mainEntity.map((q: { name: string }) => q.name)).toEqual(shown)
+  })
+}

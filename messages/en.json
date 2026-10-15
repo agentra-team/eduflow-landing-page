@@ -250,7 +250,7 @@
       },
       "hero": {
         "eyebrow": "K-12 level",
-        "h1": "Test papers, lesson plans and slides for every lesson",
+        "h1": "AI for teachers: test papers, lesson plans and slides for every lesson",
         "lead": "Choose the curriculum framework, build the test blueprint, let AI fill in the content, then review each warning yourself before publishing.",
         "audience": "For K-12 teachers, heads of subject groups and school leadership.",
         "note": "Exports carry the TRIAL (DÙNG THỬ) watermark until you sign."
@@ -293,8 +293,8 @@
           "windowTitle": "EduFlow · Test paper setup"
         },
         "s2": {
-          "title": "Results and 12 gates",
-          "desc": "The P1..P12 gate table prints how many units were checked; answer warnings must be confirmed question by question.",
+          "title": "Results and quality gates",
+          "desc": "The P1..P12 gate table reports how many units each gate checked, and a test runs the 8 gates that apply; answer warnings must be confirmed item by item.",
           "alt": "Results screen with the P1..P12 gate table",
           "windowTitle": "EduFlow · Results and quality gates"
         },
@@ -313,166 +313,240 @@
       "cta": {
         "h2": "Prepare your next lesson with EduFlow",
         "sub": "Download the app and click Try it on the first screen."
+      },
+      "faq": {
+        "q1": {
+          "q": "What can EduFlow prepare for K-12 teachers?",
+          "a": "Multiple-choice tests built from a four-level matrix, shuffled into several versions with the test specification, answer key and marking guide; Official Letter 5512 lesson plans; lesson slides with quizzes. The app builds the structure, AI fills in the content, and you review and sign."
+        },
+        "q2": {
+          "q": "Which question types can a test have?",
+          "a": "The current release writes multiple-choice questions. True or false, short-answer and structured essay questions are on the EduFlow roadmap."
+        },
+        "q3": {
+          "q": "How many versions can one test have?",
+          "a": "Up to 24 test versions. Questions and options are shuffled with a fixed key, so printing again gives the same versions; the answer key and marking guide are separate files."
+        },
+        "q4": {
+          "q": "Can I trust answer keys written by AI?",
+          "a": "A second AI pass solves the test again. Any item whose answer changes becomes a warning, and you confirm each item before approving."
+        },
+        "q5": {
+          "q": "Does AI publish a test or lesson plan on its own?",
+          "a": "No. AI content carries the Suggestion label until you approve it, quality gates have no skip button, and only people sign. Exports carry the TRIAL (DÙNG THỬ) watermark until you sign."
+        }
       }
     },
     "university": {
       "card": {
         "title": "University courses",
-        "p1": "CLOs, weekly plans, 90- or 150-minute session plans",
-        "p2": "10-section course syllabus",
-        "p3": "12 gates, G1..G12",
+        "p1": "A Course project, lecture materials read on your computer",
+        "p2": "Ask the assistant about your documents, with Source chips",
+        "p3": "CLOs, weekly plans, syllabus: roadmap",
         "link": "Explore the University courses level"
       },
       "meta": {
-        "title": "AI for lecturers: CLOs, weekly plans, syllabi",
-        "description": "AI for university lecturers: from lecture materials to course learning outcomes (CLOs), weekly plans, session plans, assessments and a signed course syllabus."
+        "title": "AI for lecturers: add materials, ask the assistant",
+        "description": "AI for university lecturers: EduFlow today creates Course projects, reads lecture materials on your computer and answers questions on them; syllabi are planned."
       },
       "hero": {
         "eyebrow": "University courses level",
-        "h1": "From lecture materials to a course syllabus with an approval signature",
-        "lead": "Load your lecture materials, let AI suggest CLOs, a weekly plan and session plans, then run the 12 gates before sending everything to the head of department.",
+        "h1": "AI for lecturers: add lecture materials and ask the assistant today, the syllabus is on the roadmap",
+        "lead": "Create a Course project, add your textbook and lecture materials so the app reads them on your computer, then ask the assistant about those documents. Tools for CLOs, weekly plans, session plans and the course syllabus are on the roadmap and not in the app yet.",
         "audience": "For lecturers and heads of department.",
-        "note": "Lecture materials are parsed on your computer; their content is never sent out."
+        "note": "Documents are read on your computer. When you ask the assistant, only the passages in the chips you keep go with the question; turn AI off for a project and nothing leaves your computer."
       },
       "outcomes": {
         "eyebrow": "What it does",
-        "h2": "Every element traces back to CLOs and standards",
+        "h2": "What works today, and what is on the roadmap",
         "o1": {
-          "title": "CLOs by Bloom level",
-          "desc": "A CLO set with every field of the standard template and verbs that match the Bloom level; gate G3 catches level mismatches."
+          "title": "A Course project",
+          "desc": "Create a project at the Course level to keep a course's documents and conversations together. This project has no drafting screen yet."
         },
         "o2": {
-          "title": "Weekly plan and LLOs",
-          "desc": "Each week carries its LLOs, Bloom level, linked CLOs and AI level; the weeks run continuously, with no gaps."
+          "title": "Add lecture materials and textbooks",
+          "desc": "Add PDF, Word, PowerPoint or image files, up to 80 MB and 300 pages each; the app reads them on your computer and splits them into passages with a section path and page numbers."
         },
         "o3": {
-          "title": "90- or 150-minute session plans",
-          "desc": "A phase table with lecturer activities, student activities and checks; total minutes match the session length."
+          "title": "Search passages on your computer",
+          "desc": "Type a question to try a search across every document in the project; it runs on your computer, costs 0 VND and needs no network."
         },
         "o4": {
-          "title": "Beamer and PPTX slides",
-          "desc": "A neutral SlideSpec renders Beamer PDF and PPTX on your computer; each slide's minute range matches the session plan."
+          "title": "Ask the assistant about your documents",
+          "desc": "The assistant picks matching passages on your computer and shows them as chips you can trim before sending; answers carry a Source chip that opens the exact passage."
         },
         "o5": {
-          "title": "Assessments with AI levels",
-          "desc": "Exams built from a CLO test blueprint, and assessment briefs that state the permitted AI level for each task."
+          "title": "Keep private parts private",
+          "desc": "A do-not-send-to-AI switch locks a section or block; turning AI off for the whole project means no content leaves your computer."
         },
         "o6": {
-          "title": "10-section course syllabus",
-          "desc": "Ten sections following the standard template, each paragraph with its source; a section only moves to approved when the lecturer clicks Pass."
+          "title": "Roadmap: CLOs, weekly plan, syllabus",
+          "desc": "Not in the app yet: CLOs with a Bloom-level gate, a weekly plan, session plans, a 10-section syllabus with sources, and approval through a signed package. No release date."
         }
       },
       "screens": {
-        "eyebrow": "On screen",
-        "h2": "Every violation leads straight to what needs fixing",
+        "eyebrow": "Planned screens",
+        "h2": "A picture of the course tools on the roadmap",
         "s1": {
-          "title": "Workbench",
-          "desc": "CLOs, the weekly plan and sessions on one screen, each with its related gates.",
-          "alt": "Course workbench",
-          "windowTitle": "EduFlow · Course workbench"
+          "title": "Workbench (planned)",
+          "desc": "Planned design: CLOs, the weekly plan and sessions on one screen. This screen is not in the app yet.",
+          "alt": "Illustration of the planned course workbench screen, not in the app yet",
+          "windowTitle": "EduFlow · Course workbench (planned)"
         },
         "s2": {
-          "title": "12 gates, G1..G12",
-          "desc": "Violations are sorted by severity, and each one opens exactly what needs fixing and the source standard.",
-          "alt": "Course quality gates screen",
-          "windowTitle": "EduFlow · Course quality gates"
+          "title": "Quality gates (planned)",
+          "desc": "Planned design: violations sorted by severity, each opening exactly what needs fixing. This screen is not in the app yet.",
+          "alt": "Illustration of the planned course quality gates screen, not in the app yet",
+          "windowTitle": "EduFlow · Course quality gates (planned)"
         },
         "s3": {
-          "title": "Approve, sign and export",
-          "desc": "The signing checklist, hash notarization and the package sent to the head of department for approval.",
-          "alt": "Approve, sign and export screen",
-          "windowTitle": "EduFlow · Approve, sign and export"
+          "title": "Approve, sign and export (planned)",
+          "desc": "Planned design: the signing checklist and the package sent to the head of department for approval. This screen is not in the app yet.",
+          "alt": "Illustration of the planned approve, sign and export screen, not in the app yet",
+          "windowTitle": "EduFlow · Approve, sign and export (planned)"
         }
       },
       "gates": {
-        "title": "12 gates, G1..G12",
-        "body": "Gates check inputs, CLO fields, Bloom levels, weekly traceability, assessment weights, AI resistance, timing, figures backed by a basis and the approval signature.",
-        "rule": "A gate that checked 0 units shows Gate error, never Pass."
+        "title": "Gates G1..G12: on the roadmap",
+        "body": "By design, twelve gates, G1..G12, check inputs, CLO fields, Bloom levels, weekly traceability, assessment weights, timing, figures backed by a basis and the approval signature. The app does not have these gates for the Course level yet.",
+        "rule": "A principle already running at the K-12 level: a gate that checked 0 units shows Gate error, never Pass."
       },
       "cta": {
-        "h2": "Prepare next term's course with EduFlow",
-        "sub": "Download the app and click Try it on the first screen."
+        "h2": "Bring your course materials into EduFlow",
+        "sub": "Download the app, create a Course project and add your documents; the course drafting tools will follow on the roadmap."
+      },
+      "faq": {
+        "q1": {
+          "q": "What does EduFlow do for lecturers?",
+          "a": "Today: create a Course project, add lecture materials and textbooks so the app reads them on your computer, search passages and ask the assistant about your documents. On the roadmap, not in the app yet: suggested CLOs, a weekly plan, session plans, assessments and a 10-section syllabus with gates."
+        },
+        "q2": {
+          "q": "How are CLOs checked?",
+          "a": "Not in the app yet; it is on the roadmap. By design, a CLO set must have every field of the standard template, with verbs that match the Bloom level; gate G3 catches level mismatches, and you decide the final wording. For now you check CLOs yourself; the course syllabus page explains how to write them."
+        },
+        "q3": {
+          "q": "Are my lecture materials sent anywhere?",
+          "a": "Reading, splitting and searching run on your computer, and the original files stay there. When you ask the assistant, only the passages in the chips you keep go with the question; a passage marked do-not-send-to-AI is never sent, and a project with AI turned off sends nothing off your computer."
+        },
+        "q4": {
+          "q": "What does a course syllabus contain?",
+          "a": "The syllabus builder is not in the app yet; it is on the roadmap. By design it has ten sections following the standard template, each paragraph with its source, built from approved CLOs, weekly plan and assessments; a section only becomes approved when you mark it as passed. The course syllabus page lists the sections a syllabus usually has."
+        },
+        "q5": {
+          "q": "How does the head of department approve?",
+          "a": "Approval through a signed package is on the roadmap, not available at the Course level yet. By design, you send a signed package, a signed version is locked against edits and the server notarizes its hash without seeing the content. For now, approval follows your faculty and school process."
+        }
       }
     },
     "program": {
       "card": {
         "title": "Degree program",
-        "p1": "A digital twin of the degree program",
-        "p2": "Legal validity checks at a review date",
-        "p3": "“What if” scenarios before you change anything",
+        "p1": "A Program project, degree program records added",
+        "p2": "Ask the assistant about the program's documents",
+        "p3": "Digital twin, review at a date: roadmap",
         "link": "Explore the Degree program level"
       },
       "meta": {
-        "title": "Curriculum review on a digital twin of the program",
-        "description": "Curriculum review on a digital twin of your degree program: learning outcome matrix, curriculum map checks, legal validity at a review date and what-if runs."
+        "title": "Curriculum review: what works today, roadmap",
+        "description": "Curriculum review in EduFlow: today the app adds program records, reads them on your computer and answers questions; the digital twin is on the roadmap."
       },
       "hero": {
         "eyebrow": "Degree program level",
-        "h1": "A digital twin of your degree program, checked at a review date",
-        "lead": "Load the degree program records and the course syllabus package, build a graph with the provenance of every edge, then review in three tiers: deterministic, comparative, suggestion.",
+        "h1": "Curriculum review: add your program records today, the digital twin is on the roadmap",
+        "lead": "Create a Program project, add the degree program records, course syllabi and regulations so the app reads them on your computer, then ask the assistant about those documents. The digital twin, the three-tier review and what-if scenarios are on the roadmap and not in the app yet.",
         "audience": "For the Quality Assurance Office, the Program Council and school leadership.",
         "note": "This is an internal working document, not a self-assessment report."
       },
       "outcomes": {
         "eyebrow": "What it does",
-        "h2": "Conclusions with a basis, no guessing",
+        "h2": "What works today, and what is on the roadmap",
         "o1": {
-          "title": "A digital twin with provenance",
-          "desc": "Every node and edge of the graph records its file, page and line; unknown codes must be confirmed by a person before the graph is built."
+          "title": "A Program project",
+          "desc": "Create a project at the Program level to keep the records of one degree program together. This project has no review screen yet."
         },
         "o2": {
-          "title": "Legal validity at the review date",
-          "desc": "Dead basis, expiring basis and not yet in force are three separate counts, never added into one."
+          "title": "Add degree program records",
+          "desc": "Add PDF, Word, PowerPoint or image files, up to 80 MB and 300 pages each; the app reads them on your computer and recognizes document types such as degree program, course syllabus and regulation."
         },
         "o3": {
-          "title": "Seven curriculum map checks",
-          "desc": "PLO coverage, PI coverage, progression, 5T, overload, gap, duplication; each check prints how many units it checked."
+          "title": "Ask the assistant about the records",
+          "desc": "The assistant picks matching passages on your computer and shows them as chips you can trim before sending; answers carry a Source chip that opens the exact passage, and turning AI off keeps the whole project private."
         },
         "o4": {
-          "title": "Criteria overlay",
-          "desc": "Each criterion under Circular 04/2025 has exactly one status: evidenced, evidence expired or not found yet."
+          "title": "Roadmap: a digital twin with provenance",
+          "desc": "Not in the app yet: a graph of the degree program where every edge records its file, page and line, then a three-tier review: deterministic, comparative, suggestion."
         },
         "o5": {
-          "title": "Suggestions need human review",
-          "desc": "Tier 3 shows suggestions with a dashed border; only approved suggestions go into the report."
+          "title": "Roadmap: curriculum map and validity",
+          "desc": "Not in the app yet: seven curriculum map checks, the legal validity of each basis at a review date, and a criteria overlay under Circular 04/2025."
         },
         "o6": {
-          "title": "“What if” scenarios",
-          "desc": "Try removing a course or changing a PLO on a copy of the graph and see the effect spread to the criteria before making the real change."
+          "title": "Roadmap: what-if scenarios",
+          "desc": "Not in the app yet: try removing a course or changing a PLO on a copy of the graph and see the effect spread to the criteria before making the real change."
         }
       },
       "screens": {
-        "eyebrow": "On screen",
-        "h2": "From graph to signed report",
+        "eyebrow": "Planned screens",
+        "h2": "A picture of the review tools on the roadmap",
         "s1": {
-          "title": "Digital twin",
-          "desc": "A layered graph, the provenance of every edge and bridges placed by people.",
-          "alt": "Degree program digital twin screen",
-          "windowTitle": "EduFlow · Digital twin"
+          "title": "Digital twin (planned)",
+          "desc": "Planned design: a layered graph, the provenance of every edge and bridges placed by people. This screen is not in the app yet.",
+          "alt": "Illustration of the planned degree program digital twin screen, not in the app yet",
+          "windowTitle": "EduFlow · Digital twin (planned)"
         },
         "s2": {
-          "title": "Three-tier review",
-          "desc": "The review date bar and the tier 1, tier 2 and tier 3 blocks; every number opens a list when clicked.",
-          "alt": "Three-tier review screen",
-          "windowTitle": "EduFlow · Three-tier review"
+          "title": "Three-tier review (planned)",
+          "desc": "Planned design: the review date bar and the tier 1, tier 2 and tier 3 blocks; every number opens a list when clicked. This screen is not in the app yet.",
+          "alt": "Illustration of the planned three-tier review screen, not in the app yet",
+          "windowTitle": "EduFlow · Three-tier review (planned)"
         },
         "s3": {
-          "title": "What-if scenario",
-          "desc": "A before and after table with the spread drawn on the graph, run on your computer at no cost.",
-          "alt": "What-if scenario screen",
-          "windowTitle": "EduFlow · What-if scenario"
+          "title": "What-if scenario (planned)",
+          "desc": "Planned design: a before and after table with the spread drawn on the graph, run on your computer. This screen is not in the app yet.",
+          "alt": "Illustration of the planned what-if scenario screen, not in the app yet",
+          "windowTitle": "EduFlow · What-if scenario (planned)"
         }
       },
       "gates": {
-        "title": "12 gates, K1..K12",
-        "body": "Gates check edge provenance, unknown codes, the review date on every result, all seven checks and the prerequisite criteria before the report is signed.",
-        "rule": "A gate that checked 0 units shows Gate error, never Pass."
+        "title": "Gates K1..K12: on the roadmap",
+        "body": "By design, twelve gates, K1..K12, check edge provenance, unknown codes, the review date on every result, all seven checks and the prerequisite criteria before the report is signed. The app does not have these gates for the Program level yet.",
+        "rule": "A principle already running at the K-12 level: a gate that checked 0 units shows Gate error, never Pass."
       },
       "cta": {
-        "h2": "Review your degree program on a clear basis",
-        "sub": "Download the app and click Try it on the first screen."
+        "h2": "Bring your program records into EduFlow",
+        "sub": "Download the app, create a Program project and add your records; the review tools will follow on the roadmap."
+      },
+      "faq": {
+        "q1": {
+          "q": "What does curriculum review in EduFlow cover?",
+          "a": "Today: create a Program project, add the degree program records, course syllabi and regulations so the app reads them on your computer, search passages and ask the assistant. On the roadmap, not in the app yet: a digital twin with the provenance of every edge and a three-tier review: deterministic, comparative, suggestion. The planned result is an internal working document, not a self-assessment report."
+        },
+        "q2": {
+          "q": "What does reviewing at a review date mean?",
+          "a": "Not in the app yet; it is on the roadmap. By design, every result is tied to a review date. Bases that have expired, bases about to expire and bases not yet in force on that date are three separate figures, never added into one."
+        },
+        "q3": {
+          "q": "What do the curriculum map checks cover?",
+          "a": "Not in the app yet; it is on the roadmap. By design, seven checks: PLO coverage, PI coverage, progression, 5T, overload, gap and duplication. Each check reports how many units it checked, and a check of 0 units is an error, never a pass."
+        },
+        "q4": {
+          "q": "How does the criteria overlay work?",
+          "a": "Not in the app yet; it is on the roadmap. By design, each criterion of Circular 04/2025 has exactly one status: evidence found, evidence expired or not found. Tier 3 suggestions need a person's approval before they enter a report."
+        },
+        "q5": {
+          "q": "Can I test a change before making it?",
+          "a": "Not in the app yet. On the roadmap, a what-if scenario will let you drop a course or change a PLO on a copy of the graph and see how the change spreads to the criteria, on your computer, at no cost."
+        }
       }
     }
+  },
+  "levelCommon": {
+    "topicsEyebrow": "Go deeper",
+    "topicsH2": "Topic pages for this level",
+    "docsEyebrow": "Guides",
+    "docsH2": "Step by step in the app",
+    "faqEyebrow": "FAQ",
+    "faqH2": "Frequently asked questions"
   },
   "assistant": {
     "meta": {

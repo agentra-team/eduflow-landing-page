@@ -250,7 +250,7 @@
       },
       "hero": {
         "eyebrow": "Cấp Phổ thông",
-        "h1": "Đề kiểm tra, giáo án và slide cho từng tiết dạy",
+        "h1": "AI cho giáo viên phổ thông: đề kiểm tra, giáo án và slide cho từng tiết dạy",
         "lead": "Chọn khung chương trình, lập ma trận, để AI điền nội dung rồi tự duyệt từng cảnh báo trước khi xuất bản.",
         "audience": "Cho giáo viên phổ thông, tổ trưởng chuyên môn và Ban giám hiệu.",
         "note": "Bản xuất mang dấu chìm DÙNG THỬ cho tới khi thầy cô ký."
@@ -293,8 +293,8 @@
           "windowTitle": "EduFlow · Soạn đề kiểm tra"
         },
         "s2": {
-          "title": "Kết quả và 12 cổng",
-          "desc": "Bảng cổng P1..P12 in số đơn vị đã kiểm; cảnh báo đáp án phải được xác nhận từng câu.",
+          "title": "Kết quả và cổng chất lượng",
+          "desc": "Bảng cổng P1..P12 in số đơn vị đã kiểm, đề kiểm tra chạy 8 cổng áp dụng; cảnh báo đáp án phải được xác nhận từng câu.",
           "alt": "Màn kết quả với bảng cổng P1..P12",
           "windowTitle": "EduFlow · Kết quả và cổng chất lượng"
         },
@@ -313,166 +313,240 @@
       "cta": {
         "h2": "Soạn tiết dạy tới cùng EduFlow",
         "sub": "Tải app và bấm Dùng thử ở màn đầu."
+      },
+      "faq": {
+        "q1": {
+          "q": "EduFlow giúp giáo viên phổ thông soạn những gì?",
+          "a": "Đề kiểm tra trắc nghiệm theo ma trận bốn mức, trộn nhiều mã đề kèm bản đặc tả, đáp án và hướng dẫn chấm; giáo án theo Công văn 5512; slide bài giảng có quiz. Máy dựng khung, AI điền nội dung, thầy cô duyệt và ký."
+        },
+        "q2": {
+          "q": "Đề kiểm tra có những dạng câu nào?",
+          "a": "Bản hiện tại soạn câu trắc nghiệm nhiều lựa chọn. Câu đúng sai, trả lời ngắn và tự luận có ý nằm trong lộ trình của EduFlow."
+        },
+        "q3": {
+          "q": "Một đề trộn được bao nhiêu mã?",
+          "a": "Tối đa 24 mã đề. Thứ tự câu và phương án được trộn theo khoá cố định, nên in lại vẫn ra đúng các mã cũ; đáp án và hướng dẫn chấm nằm ở tệp riêng."
+        },
+        "q4": {
+          "q": "Đáp án do AI viết có đáng tin không?",
+          "a": "Một lượt AI khác giải lại đề. Câu bị đổi đáp án hiện thành cảnh báo, và thầy cô xác nhận từng câu trước khi duyệt."
+        },
+        "q5": {
+          "q": "AI có tự xuất bản đề hay giáo án không?",
+          "a": "Không. Nội dung AI mang nhãn Đề xuất cho tới khi thầy cô duyệt, cổng chất lượng không có nút bỏ qua, và chỉ người dùng mới ký. Bản xuất mang dấu chìm DÙNG THỬ cho tới khi thầy cô ký."
+        }
       }
     },
     "university": {
       "card": {
         "title": "Học phần đại học",
-        "p1": "CLO, kế hoạch tuần, giáo án buổi 90 hoặc 150 phút",
-        "p2": "Đề cương 10 mục",
-        "p3": "12 cổng G1..G12",
+        "p1": "Dự án Học phần, nạp bài giảng đọc tại máy",
+        "p2": "Hỏi trợ lý trên tài liệu, có chip Nguồn",
+        "p3": "CLO, kế hoạch tuần, đề cương: lộ trình",
         "link": "Xem cấp Học phần"
       },
       "meta": {
-        "title": "AI cho giảng viên: CLO, kế hoạch tuần, đề cương",
-        "description": "AI cho giảng viên đại học: từ bài giảng tới chuẩn đầu ra học phần (CLO), kế hoạch tuần, giáo án buổi, đánh giá và đề cương, có cổng kiểm và chữ ký duyệt."
+        "title": "AI cho giảng viên: nạp bài giảng, hỏi trợ lý",
+        "description": "AI cho giảng viên đại học: EduFlow hiện cho tạo dự án Học phần, nạp bài giảng đọc tại máy và hỏi trợ lý trên tài liệu; CLO, đề cương thuộc lộ trình."
       },
       "hero": {
         "eyebrow": "Cấp Học phần đại học",
-        "h1": "Từ bài giảng tới đề cương có chữ ký duyệt",
-        "lead": "Nạp bài giảng, để AI đề xuất CLO, kế hoạch tuần và giáo án buổi, rồi kiểm 12 cổng trước khi gửi trưởng bộ môn.",
+        "h1": "AI cho giảng viên: nạp bài giảng và hỏi trợ lý hôm nay, đề cương nằm trong lộ trình",
+        "lead": "Tạo dự án Học phần, nạp giáo trình và bài giảng để app đọc tại máy, rồi hỏi trợ lý trên chính tài liệu đó. Công cụ soạn CLO, kế hoạch tuần, giáo án buổi và đề cương thuộc lộ trình, chưa có trong app.",
         "audience": "Cho giảng viên và trưởng bộ môn.",
-        "note": "Bài giảng được bóc tách tại máy, không gửi nội dung đi."
+        "note": "Tài liệu được đọc tại máy. Khi hỏi trợ lý, chỉ các đoạn ở chip mà thầy cô giữ lại mới đi cùng câu hỏi; bật Tắt AI cho dự án thì không gì rời khỏi máy."
       },
       "outcomes": {
         "eyebrow": "Làm được gì",
-        "h2": "Mọi phần tử truy vết về CLO và chuẩn",
+        "h2": "Hôm nay dùng được gì, và gì thuộc lộ trình",
         "o1": {
-          "title": "CLO theo Bloom",
-          "desc": "Bộ CLO đủ các trường của mẫu chuẩn, động từ khớp bậc Bloom; cổng G3 bắt chỗ lệch bậc."
+          "title": "Dự án Học phần",
+          "desc": "Tạo dự án ở cấp Học phần để gom tài liệu và cuộc trò chuyện của một học phần. Dự án này chưa có màn soạn nào."
         },
         "o2": {
-          "title": "Kế hoạch tuần và LLO",
-          "desc": "Mỗi tuần gắn LLO, bậc Bloom, CLO liên kết và mức AI; các tuần phủ liên tục, không hở."
+          "title": "Nạp bài giảng và giáo trình",
+          "desc": "Nạp PDF, Word, PowerPoint hoặc ảnh, tới 80 MB và 300 trang mỗi tệp; app đọc tại máy và tách đoạn có đường dẫn mục, số trang."
         },
         "o3": {
-          "title": "Giáo án buổi 90 hoặc 150 phút",
-          "desc": "Bảng pha với việc giảng viên, việc sinh viên và kiểm soát; tổng phút khớp thời lượng buổi."
+          "title": "Tìm đoạn tại máy",
+          "desc": "Gõ một câu để thử tìm trong mọi tài liệu của dự án; tìm tại máy, 0 đồng, không cần mạng."
         },
         "o4": {
-          "title": "Slide Beamer và PPTX",
-          "desc": "SlideSpec trung lập dựng ra Beamer PDF và PPTX tại máy; dải phút từng slide khớp giáo án."
+          "title": "Hỏi trợ lý trên tài liệu",
+          "desc": "Trợ lý chọn tại máy các đoạn khớp câu hỏi, hiện thành chip để thầy cô bỏ bớt trước khi gửi; câu trả lời có chip Nguồn mở đúng đoạn."
         },
         "o5": {
-          "title": "Đánh giá có mức AI",
-          "desc": "Đề thi theo ma trận CLO và assessment brief ghi rõ mức AI được phép cho từng phần việc."
+          "title": "Giữ kín phần cần giữ",
+          "desc": "Công tắc Không gửi cho AI khoá từng mục hay khối; Tắt AI cho cả dự án thì không nội dung nào rời khỏi máy."
         },
         "o6": {
-          "title": "Đề cương 10 mục",
-          "desc": "Mười mục theo mẫu chuẩn, mỗi đoạn kèm nguồn; mục chỉ chuyển sang đã duyệt khi giảng viên bấm Đạt."
+          "title": "Lộ trình: CLO, kế hoạch tuần, đề cương",
+          "desc": "Chưa có trong app: CLO có cổng kiểm theo bậc Bloom, kế hoạch tuần, giáo án buổi, đề cương mười mục có nguồn và duyệt qua gói đã ký. Chưa có ngày phát hành."
         }
       },
       "screens": {
-        "eyebrow": "Trên màn hình",
-        "h2": "Mỗi vi phạm dẫn thẳng tới chỗ cần sửa",
+        "eyebrow": "Màn dự kiến",
+        "h2": "Hình dung công cụ học phần trong lộ trình",
         "s1": {
-          "title": "Bàn làm việc",
-          "desc": "CLO, kế hoạch tuần và buổi học trên một màn, mỗi phần kèm cổng liên quan.",
-          "alt": "Bàn làm việc học phần",
-          "windowTitle": "EduFlow · Bàn làm việc học phần"
+          "title": "Bàn làm việc (dự kiến)",
+          "desc": "Thiết kế dự kiến: CLO, kế hoạch tuần và buổi học trên một màn. Màn này chưa có trong app.",
+          "alt": "Hình minh hoạ màn bàn làm việc học phần dự kiến, chưa có trong app",
+          "windowTitle": "EduFlow · Bàn làm việc học phần (dự kiến)"
         },
         "s2": {
-          "title": "12 cổng G1..G12",
-          "desc": "Vi phạm xếp theo mức nghiêm trọng, mỗi vi phạm mở đúng chỗ cần sửa và nguồn chuẩn.",
-          "alt": "Màn cổng chất lượng học phần",
-          "windowTitle": "EduFlow · Cổng chất lượng học phần"
+          "title": "Cổng chất lượng (dự kiến)",
+          "desc": "Thiết kế dự kiến: vi phạm xếp theo độ nghiêm trọng, mỗi vi phạm mở đúng chỗ cần sửa. Màn này chưa có trong app.",
+          "alt": "Hình minh hoạ màn cổng chất lượng học phần dự kiến, chưa có trong app",
+          "windowTitle": "EduFlow · Cổng chất lượng học phần (dự kiến)"
         },
         "s3": {
-          "title": "Duyệt, ký và xuất",
-          "desc": "Bảng điều kiện ký, công chứng mã băm và gói gửi trưởng bộ môn duyệt.",
-          "alt": "Màn duyệt, ký và xuất",
-          "windowTitle": "EduFlow · Duyệt, ký và xuất"
+          "title": "Duyệt, ký và xuất (dự kiến)",
+          "desc": "Thiết kế dự kiến: bảng điều kiện ký và gói gửi trưởng bộ môn duyệt. Màn này chưa có trong app.",
+          "alt": "Hình minh hoạ màn duyệt, ký và xuất dự kiến, chưa có trong app",
+          "windowTitle": "EduFlow · Duyệt, ký và xuất (dự kiến)"
         }
       },
       "gates": {
-        "title": "12 cổng G1..G12",
-        "body": "Cổng kiểm đầu vào, trường CLO, bậc Bloom, truy vết tuần, trọng số đánh giá, kháng AI, thời lượng, con số có căn cứ và chữ ký duyệt.",
-        "rule": "Cổng kiểm 0 đơn vị hiện Lỗi cổng, không bao giờ Đạt."
+        "title": "Cổng G1..G12: thuộc lộ trình",
+        "body": "Theo thiết kế, mười hai cổng G1..G12 kiểm đầu vào, trường CLO, bậc Bloom, truy vết tuần, trọng số đánh giá, thời lượng, con số có căn cứ và chữ ký duyệt. Hiện app chưa có các cổng này cho cấp Học phần.",
+        "rule": "Nguyên tắc đã chạy ở cấp Phổ thông: cổng kiểm 0 đơn vị hiện Lỗi cổng, không bao giờ Đạt."
       },
       "cta": {
-        "h2": "Chuẩn bị học phần kỳ tới cùng EduFlow",
-        "sub": "Tải app và bấm Dùng thử ở màn đầu."
+        "h2": "Nạp bài giảng học phần vào EduFlow",
+        "sub": "Tải app, tạo dự án Học phần và nạp tài liệu; công cụ soạn học phần sẽ tới theo lộ trình."
+      },
+      "faq": {
+        "q1": {
+          "q": "EduFlow giúp giảng viên những việc gì?",
+          "a": "Hôm nay: tạo dự án Học phần, nạp bài giảng và giáo trình để app đọc tại máy, tìm đoạn và hỏi trợ lý trên tài liệu. Thuộc lộ trình, chưa có: đề xuất CLO, kế hoạch tuần, giáo án buổi, đánh giá và đề cương mười mục có cổng kiểm."
+        },
+        "q2": {
+          "q": "CLO được kiểm thế nào?",
+          "a": "Chưa có trong app, thuộc lộ trình. Theo thiết kế, bộ CLO phải đủ các trường của mẫu chuẩn và động từ khớp bậc Bloom, cổng G3 bắt chỗ lệch bậc, giảng viên quyết định câu chữ cuối cùng. Hiện thầy cô tự soát CLO; trang đề cương chi tiết học phần giải thích cách viết."
+        },
+        "q3": {
+          "q": "Bài giảng có bị gửi đi không?",
+          "a": "Việc đọc, tách đoạn và tìm đoạn chạy tại máy, tệp gốc nằm trên máy của giảng viên. Khi hỏi trợ lý, chỉ các đoạn ở chip, do thầy cô giữ lại, đi cùng câu hỏi; đoạn bật Không gửi cho AI không bao giờ được gửi, và dự án bật Tắt AI thì không gì rời khỏi máy."
+        },
+        "q4": {
+          "q": "Đề cương học phần gồm những gì?",
+          "a": "Công cụ dựng đề cương chưa có trong app, thuộc lộ trình. Theo thiết kế là mười mục theo mẫu chuẩn, mỗi đoạn kèm nguồn, dựng từ CLO, kế hoạch tuần và đánh giá đã duyệt; mục chỉ chuyển sang đã duyệt khi giảng viên bấm Đạt. Trang đề cương chi tiết học phần nêu các mục thường có."
+        },
+        "q5": {
+          "q": "Trưởng bộ môn duyệt thế nào?",
+          "a": "Duyệt qua gói đã ký thuộc lộ trình, chưa có ở cấp Học phần. Theo thiết kế, giảng viên gửi gói đã ký, phiên bản đã ký bị khoá sửa, mã băm được máy chủ công chứng mà không thấy nội dung. Hiện việc duyệt theo quy trình của khoa và trường."
+        }
       }
     },
     "program": {
       "card": {
         "title": "Chương trình đào tạo",
-        "p1": "Bản sao số của CTĐT",
-        "p2": "Rà hiệu lực pháp lý tại một ngày xét",
-        "p3": "Kịch bản “nếu” trước khi sửa",
+        "p1": "Dự án Chương trình, nạp hồ sơ CTĐT",
+        "p2": "Hỏi trợ lý trên tài liệu của chương trình",
+        "p3": "Bản sao số, rà soát tại ngày xét: lộ trình",
         "link": "Xem cấp Chương trình"
       },
       "meta": {
-        "title": "Rà soát chương trình đào tạo tại một ngày xét",
-        "description": "Rà soát chương trình đào tạo trên bản sao số: ma trận chuẩn đầu ra, curriculum map, hiệu lực văn bản tại ngày xét và kịch bản “nếu” trước khi sửa."
+        "title": "Rà soát chương trình đào tạo: hiện có, lộ trình",
+        "description": "Rà soát chương trình đào tạo trên EduFlow: hiện app nạp hồ sơ CTĐT, đọc tại máy và cho hỏi trợ lý; bản sao số, curriculum map và ngày xét thuộc lộ trình."
       },
       "hero": {
         "eyebrow": "Cấp Chương trình đào tạo",
-        "h1": "Bản sao số của chương trình đào tạo, rà soát tại một ngày xét",
-        "lead": "Nạp hồ sơ CTĐT và gói đề cương, dựng đồ thị có xuất xứ từng cạnh, rồi rà ba tầng: tất định, đối sánh, đề xuất.",
+        "h1": "Rà soát chương trình đào tạo: nạp hồ sơ CTĐT hôm nay, bản sao số trong lộ trình",
+        "lead": "Tạo dự án Chương trình, nạp hồ sơ CTĐT, đề cương và văn bản quy định để app đọc tại máy, rồi hỏi trợ lý trên chính tài liệu đó. Bản sao số, rà soát ba tầng và kịch bản “nếu” thuộc lộ trình, chưa có trong app.",
         "audience": "Cho Phòng Đảm bảo chất lượng, Hội đồng CTĐT và Ban giám hiệu.",
         "note": "Đây là tài liệu làm việc nội bộ, không phải báo cáo tự đánh giá."
       },
       "outcomes": {
         "eyebrow": "Làm được gì",
-        "h2": "Kết luận có căn cứ, không đoán",
+        "h2": "Hôm nay dùng được gì, và gì thuộc lộ trình",
         "o1": {
-          "title": "Bản sao số có xuất xứ",
-          "desc": "Mỗi đỉnh và cạnh của đồ thị ghi tệp, trang, dòng; mã lạ phải được người xác nhận trước khi dựng."
+          "title": "Dự án Chương trình",
+          "desc": "Tạo dự án ở cấp Chương trình để gom hồ sơ của một chương trình đào tạo. Dự án này chưa có màn rà soát nào."
         },
         "o2": {
-          "title": "Hiệu lực pháp lý tại ngày xét",
-          "desc": "Căn cứ chết, nền sắp sập và chưa tới hiệu lực là ba con số riêng, không cộng thành một."
+          "title": "Nạp hồ sơ CTĐT",
+          "desc": "Nạp PDF, Word, PowerPoint hoặc ảnh, tới 80 MB và 300 trang mỗi tệp; app đọc tại máy và tự nhận loại tài liệu như CTĐT, Đề cương học phần, Văn bản quy định."
         },
         "o3": {
-          "title": "Bảy phép kiểm curriculum map",
-          "desc": "Bao phủ PLO, bao phủ PI, progression, 5T, overload, gap, duplication; mỗi phép in số đơn vị đã kiểm."
+          "title": "Hỏi trợ lý trên hồ sơ",
+          "desc": "Trợ lý chọn tại máy các đoạn khớp câu hỏi, hiện thành chip để thầy cô bỏ bớt trước khi gửi; câu trả lời có chip Nguồn mở đúng đoạn, và Tắt AI giữ kín cả dự án."
         },
         "o4": {
-          "title": "Lớp phủ tiêu chí",
-          "desc": "Mỗi tiêu chí theo TT 04/2025 có đúng một trạng thái: có minh chứng, minh chứng hết hạn hoặc chưa thấy."
+          "title": "Lộ trình: bản sao số có xuất xứ",
+          "desc": "Chưa có trong app: đồ thị của chương trình đào tạo, mỗi cạnh ghi tệp, trang, dòng, rồi rà ba tầng tất định, đối sánh, đề xuất."
         },
         "o5": {
-          "title": "Đề xuất cần người duyệt",
-          "desc": "Tầng 3 đưa đề xuất viền đứt; chỉ đề xuất đã duyệt mới vào báo cáo."
+          "title": "Lộ trình: curriculum map và hiệu lực",
+          "desc": "Chưa có trong app: bảy phép kiểm curriculum map, hiệu lực của căn cứ pháp lý tại một ngày xét và lớp phủ tiêu chí theo TT 04/2025."
         },
         "o6": {
-          "title": "Kịch bản “nếu”",
-          "desc": "Thử bỏ một học phần hay đổi một PLO trên bản sao đồ thị, thấy đường lan tới tiêu chí trước khi sửa thật."
+          "title": "Lộ trình: kịch bản “nếu”",
+          "desc": "Chưa có trong app: thử bỏ một học phần hay đổi một PLO trên bản sao đồ thị, thấy đường lan tới tiêu chí trước khi sửa thật."
         }
       },
       "screens": {
-        "eyebrow": "Trên màn hình",
-        "h2": "Từ đồ thị tới báo cáo ký",
+        "eyebrow": "Màn dự kiến",
+        "h2": "Hình dung công cụ rà soát trong lộ trình",
         "s1": {
-          "title": "Bản sao số",
-          "desc": "Đồ thị theo lớp, xuất xứ của từng cạnh và cầu nối do người đặt.",
-          "alt": "Màn bản sao số của chương trình đào tạo",
-          "windowTitle": "EduFlow · Bản sao số"
+          "title": "Bản sao số (dự kiến)",
+          "desc": "Thiết kế dự kiến: đồ thị theo lớp, xuất xứ của từng cạnh và cầu nối do người đặt. Màn này chưa có trong app.",
+          "alt": "Hình minh hoạ màn bản sao số dự kiến của chương trình đào tạo, chưa có trong app",
+          "windowTitle": "EduFlow · Bản sao số (dự kiến)"
         },
         "s2": {
-          "title": "Rà soát ba tầng",
-          "desc": "Thanh ngày xét, khối tầng 1, tầng 2 và tầng 3; mọi con số bấm được ra danh sách.",
-          "alt": "Màn rà soát ba tầng",
-          "windowTitle": "EduFlow · Rà soát ba tầng"
+          "title": "Rà soát ba tầng (dự kiến)",
+          "desc": "Thiết kế dự kiến: thanh ngày xét, khối tầng 1, tầng 2 và tầng 3; mọi con số bấm được ra danh sách. Màn này chưa có trong app.",
+          "alt": "Hình minh hoạ màn rà soát ba tầng dự kiến, chưa có trong app",
+          "windowTitle": "EduFlow · Rà soát ba tầng (dự kiến)"
         },
         "s3": {
-          "title": "Kịch bản nếu",
-          "desc": "Bảng trước và sau cùng đường lan vẽ trên đồ thị, chạy tại máy, 0 đồng.",
-          "alt": "Màn kịch bản nếu",
-          "windowTitle": "EduFlow · Kịch bản nếu"
+          "title": "Kịch bản nếu (dự kiến)",
+          "desc": "Thiết kế dự kiến: bảng trước và sau cùng đường lan vẽ trên đồ thị, chạy tại máy. Màn này chưa có trong app.",
+          "alt": "Hình minh hoạ màn kịch bản nếu dự kiến, chưa có trong app",
+          "windowTitle": "EduFlow · Kịch bản nếu (dự kiến)"
         }
       },
       "gates": {
-        "title": "12 cổng K1..K12",
-        "body": "Cổng kiểm xuất xứ cạnh, mã lạ, ngày xét trên mọi kết quả, đủ bảy phép kiểm và tiêu chí điều kiện trước khi ký báo cáo.",
-        "rule": "Cổng kiểm 0 đơn vị hiện Lỗi cổng, không bao giờ Đạt."
+        "title": "Cổng K1..K12: thuộc lộ trình",
+        "body": "Theo thiết kế, mười hai cổng K1..K12 kiểm xuất xứ cạnh, mã lạ, ngày xét trên mọi kết quả, đủ bảy phép kiểm và tiêu chí điều kiện trước khi ký báo cáo. Hiện app chưa có các cổng này cho cấp Chương trình.",
+        "rule": "Nguyên tắc đã chạy ở cấp Phổ thông: cổng kiểm 0 đơn vị hiện Lỗi cổng, không bao giờ Đạt."
       },
       "cta": {
-        "h2": "Rà soát chương trình với căn cứ rõ ràng",
-        "sub": "Tải app và bấm Dùng thử ở màn đầu."
+        "h2": "Đưa hồ sơ chương trình vào EduFlow",
+        "sub": "Tải app, tạo dự án Chương trình và nạp hồ sơ; công cụ rà soát sẽ tới theo lộ trình."
+      },
+      "faq": {
+        "q1": {
+          "q": "Rà soát chương trình đào tạo trên EduFlow gồm những gì?",
+          "a": "Hôm nay: tạo dự án Chương trình, nạp hồ sơ CTĐT, đề cương và văn bản quy định để app đọc tại máy, tìm đoạn và hỏi trợ lý. Thuộc lộ trình, chưa có: bản sao số có xuất xứ của từng cạnh và rà ba tầng tất định, đối sánh, đề xuất. Kết quả dự kiến là tài liệu làm việc nội bộ, không phải báo cáo tự đánh giá."
+        },
+        "q2": {
+          "q": "Rà soát tại một ngày xét nghĩa là gì?",
+          "a": "Chưa có trong app, thuộc lộ trình. Theo thiết kế, mọi kết quả gắn với một ngày xét; căn cứ đã hết hiệu lực, căn cứ sắp hết hiệu lực và căn cứ chưa tới hiệu lực tại ngày đó là ba con số riêng, không cộng thành một."
+        },
+        "q3": {
+          "q": "Curriculum map được kiểm những gì?",
+          "a": "Chưa có trong app, thuộc lộ trình. Theo thiết kế là bảy phép kiểm: bao phủ PLO, bao phủ PI, progression, 5T, overload, gap và duplication. Mỗi phép in số đơn vị đã kiểm, và phép kiểm 0 đơn vị là lỗi, không bao giờ là đạt."
+        },
+        "q4": {
+          "q": "Lớp phủ tiêu chí hoạt động thế nào?",
+          "a": "Chưa có trong app, thuộc lộ trình. Theo thiết kế, mỗi tiêu chí theo Thông tư 04/2025 có đúng một trạng thái: có minh chứng, minh chứng hết hạn hoặc chưa thấy. Đề xuất của tầng 3 cần người duyệt mới vào báo cáo."
+        },
+        "q5": {
+          "q": "Thử thay đổi chương trình trước khi sửa thật được không?",
+          "a": "Chưa được trong app. Theo lộ trình, kịch bản “nếu” sẽ cho thử bỏ một học phần hay đổi một PLO trên bản sao của đồ thị, thấy đường lan tới tiêu chí, chạy tại máy, 0 đồng."
+        }
       }
     }
+  },
+  "levelCommon": {
+    "topicsEyebrow": "Đọc sâu từng việc",
+    "topicsH2": "Trang chủ đề của cấp này",
+    "docsEyebrow": "Hướng dẫn",
+    "docsH2": "Làm từng bước trong app",
+    "faqEyebrow": "Hỏi đáp",
+    "faqH2": "Câu hỏi thường gặp"
   },
   "assistant": {
     "meta": {

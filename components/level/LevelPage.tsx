@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { getLocale, getTranslations } from 'next-intl/server'
+import { Faq } from '@/components/home/Faq'
 import { SectionHead } from '@/components/home/SectionHead'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { ButtonLink } from '@/components/ui/Button'
@@ -9,11 +10,14 @@ import { CtaBand } from '@/components/ui/CtaBand'
 import { Icon } from '@/components/ui/Icon'
 import { Section } from '@/components/ui/Section'
 import { WindowFrame } from '@/components/ui/WindowFrame'
+import { DOCS, docHref } from '@/content/docs'
+import { topicCopy, topicPage } from '@/content/topics'
+import { Link } from '@/i18n/navigation'
 import type { Locale } from '@/i18n/routing'
 import { cn } from '@/lib/cn'
-import { breadcrumb } from '@/lib/seo/jsonld'
+import { breadcrumb, faqPage, webPage } from '@/lib/seo/jsonld'
 import { buildMetadata } from '@/lib/seo/metadata'
-import { staticSeo } from '@/lib/seo/pages'
+import { finalTitle, pageName, staticSeo } from '@/lib/seo/pages'
 import { absoluteUrl } from '@/lib/seo/urls'
 import { LEVELS, type LevelKey } from './levels'
 
@@ -31,8 +35,12 @@ export async function levelMetadata(level: LevelKey): Promise<Metadata> {
 
 export async function LevelPage({ level }: { level: LevelKey }) {
   const locale = (await getLocale()) as Locale
-  const [t, tc, tn] = await Promise.all([getTranslations(ns(level)), getTranslations('common'), getTranslations('nav')])
+  const [t, tc, tn, tl] = await Promise.all([getTranslations(ns(level)), getTranslations('common'), getTranslations('nav'), getTranslations('levelCommon')])
   const cfg = LEVELS[level]
+  // Hỏi đáp hiện ra và JSON-LD FAQPage dựng từ cùng một danh sách.
+  const faq = (['q1', 'q2', 'q3', 'q4', 'q5'] as const).map((k) => ({ id: `${level}-${k}`, q: t(`faq.${k}.q`), a: t(`faq.${k}.a`) }))
+  const seo = staticSeo(locale, cfg.page)
+  const url = absoluteUrl(locale, cfg.page)
   return (
     <main id="main" className="flex-1">
       <section className="bg-[radial-gradient(900px_300px_at_20%_-80px,#E8F3E7_0%,rgba(232,243,231,0)_70%)] pt-12 pb-10 md:pt-16 md:pb-14">
@@ -111,8 +119,48 @@ export async function LevelPage({ level }: { level: LevelKey }) {
         </Container>
       </Section>
 
+      <Section className="pt-0 md:pt-0">
+        <Container className="flex flex-col gap-12">
+          <section className="flex flex-col gap-6">
+            <SectionHead align="left" eyebrow={tl('topicsEyebrow')} title={tl('topicsH2')} />
+            <ul className="grid gap-4 md:grid-cols-2">
+              {cfg.topics.map((id) => (
+                <li key={id}>
+                  <Link href={topicPage(id)} className="flex min-h-11 flex-col gap-1.5 rounded-card border border-line bg-card p-5 hover:border-muted">
+                    <span className="font-semibold">{topicCopy(locale, id).name}</span>
+                    <span className="text-[14.5px] text-ink2">{topicCopy(locale, id).card}</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </section>
+          <section className="flex flex-col gap-6">
+            <SectionHead align="left" eyebrow={tl('docsEyebrow')} title={tl('docsH2')} />
+            <ul className="grid gap-4 md:grid-cols-2">
+              {cfg.docs.map((id) => (
+                <li key={id}>
+                  <Link href={docHref(locale, id)} className="flex min-h-11 flex-col gap-1.5 rounded-card border border-line bg-card p-5 hover:border-muted">
+                    <span className="font-semibold">{DOCS[id][locale].title}</span>
+                    <span className="text-[14.5px] text-ink2">{DOCS[id][locale].description}</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </section>
+        </Container>
+      </Section>
+
+      <Section className="border-t border-line bg-card">
+        <Container>
+          <SectionHead eyebrow={tl('faqEyebrow')} title={tl('faqH2')} />
+          <Faq items={faq} />
+        </Container>
+      </Section>
+
       <CtaBand title={t('cta.h2')} sub={t('cta.sub')} primary={{ href: '/download', label: tc('download') }} secondary={{ href: '/contact', label: tc('contactSales') }} />
-      <JsonLd data={breadcrumb([{ name: tc('siteName'), url: absoluteUrl(locale, '/') }, { name: t('hero.eyebrow'), url: absoluteUrl(locale, cfg.page) }])} />
+      <JsonLd data={breadcrumb([{ name: tc('siteName'), url: absoluteUrl(locale, '/') }, { name: pageName(locale, cfg.page), url }])} />
+      <JsonLd data={webPage({ url, name: finalTitle(seo), description: seo.description, locale, about: pageName(locale, cfg.page) })} />
+      <JsonLd data={faqPage(faq)} />
     </main>
   )
 }

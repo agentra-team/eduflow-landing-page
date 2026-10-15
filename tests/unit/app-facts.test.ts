@@ -64,8 +64,27 @@ const SIGNED_CLAIMS = [
 // Khẳng định bộ cài CHƯA ký: cấm khi installerSigned = true.
 const UNSIGNED_CLAIMS = [/chưa (?:được )?ký số/i, /\bunsigned\b/i, /\bnot (?:yet )?(?:code[- ])?signed\b/i, /Unknown publisher/i, /nhà phát hành không xác định/i]
 
-const numberHits = (text: string) =>
-  RULES.flatMap((r) => [...text.normalize('NFC').matchAll(r.re)].filter((m) => !r.ok(toNumber(m[1]))).map((m) => `${r.name}: "${m[0]}"`))
+// Ngữ cảnh: "đề" (vi) hay "test" (en) trong 30 ký tự trước "<số> cổng" / "<số> gates" là nói về cổng của đề kiểm tra,
+// mà đề chỉ chạy appFacts.testGates cổng áp dụng (TC-230-01), không phải cả bảng P1..P12. "đề cương/xuất/nghị" không phải đề kiểm tra.
+const TEST_WORD = { vi: /(?<![\p{L}])đề(?![\p{L}])(?!\s+(?:cương|xuất|nghị|án|tài|mục))/iu, en: /(?<![\p{L}])tests?(?![\p{L}])/iu }
+const CONTEXT_RULES = [
+  { name: 'test gates (vi)', re: rx(' cổng(?![\\p{L}])'), word: TEST_WORD.vi },
+  { name: 'test gates (en)', re: rx(' (?:quality )?gates?\\b'), word: TEST_WORD.en },
+]
+const contextHits = (text: string) =>
+  CONTEXT_RULES.flatMap((r) =>
+    [...text.matchAll(r.re)]
+      .filter((m) => r.word.test(text.slice(Math.max(0, m.index - 30), m.index)) && toNumber(m[1]) !== appFacts.testGates)
+      .map((m) => `${r.name}: "${text.slice(Math.max(0, m.index - 30), m.index)}${m[0]}"`),
+  )
+
+const numberHits = (text: string) => {
+  const t = text.normalize('NFC')
+  return [
+    ...RULES.flatMap((r) => [...t.matchAll(r.re)].filter((m) => !r.ok(toNumber(m[1]))).map((m) => `${r.name}: "${m[0]}"`)),
+    ...contextHits(t),
+  ]
+}
 
 test('every number about the app matches lib/seo/app-facts.ts', () => {
   expect(texts().flatMap(([where, text]) => numberHits(text).map((h) => `${where} ${h}`))).toEqual([])
@@ -79,10 +98,10 @@ test('copy about installer signing follows appFacts.installerSigned', () => {
 
 // Một bộ chặn không bao giờ khớp thì vô dụng mà vẫn xanh: ghim cả câu nó phải bắt lẫn câu nó phải để yên.
 test('the fact guards catch what they target and spare neutral wording', () => {
-  for (const bad of ['Tối đa 30 mã đề', 'up to 32 test versions', '10 cổng chất lượng', '9 quality gates', 'ma trận năm mức', 'a five-level matrix', '500 đồng mỗi đề']) {
+  for (const bad of ['Tối đa 30 mã đề', 'up to 32 test versions', '10 cổng chất lượng', '9 quality gates', 'ma trận năm mức', 'a five-level matrix', '500 đồng mỗi đề', 'Kết quả đề kiểm tra: 12 cổng', 'đề kiểm tra chạy 12 cổng áp dụng', 'a test runs all 12 gates']) {
     expect(numberHits(bad), bad).not.toEqual([])
   }
-  for (const fine of ['Tối đa 24 mã đề', 'Soạn đề 45 phút Toán 10, 4 mã đề', '12 cổng P1..P12', 'đề chạy 8 cổng', 'ma trận bốn mức', 'Four-level test blueprints', 'K-12 level', '0 đồng', 'ba tầng kết luận']) {
+  for (const fine of ['Tối đa 24 mã đề', 'Soạn đề 45 phút Toán 10, 4 mã đề', '12 cổng P1..P12', 'đề chạy 8 cổng', 'Kết quả và 12 cổng', 'Bảng cổng P1..P12 in số đơn vị, đề kiểm tra chạy 8 cổng', 'đề cương có 12 cổng G1..G12', 'a test runs the 8 gates that apply', 'the course syllabus has 12 gates', 'ma trận bốn mức', 'Four-level test blueprints', 'K-12 level', '0 đồng', 'ba tầng kết luận']) {
     expect(numberHits(fine), fine).toEqual([])
   }
   const caught = (patterns: RegExp[], text: string) => patterns.some((r) => r.test(text.normalize('NFC')))
