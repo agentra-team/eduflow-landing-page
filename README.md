@@ -126,7 +126,8 @@ app/[locale]/assistant/page.tsx         # /tro-ly-ai
 app/[locale]/pricing/page.tsx           # /cach-tinh-phi
 app/[locale]/ai-transparency/page.tsx   # /minh-bach-ai
 app/[locale]/download/page.tsx          # /tai-ve
-app/[locale]/install/[os]/page.tsx      # /huong-dan-cai-dat/[os], os là macos hoặc windows
+app/[locale]/docs/page.tsx              # /huong-dan, /en/docs
+app/[locale]/docs/[slug]/page.tsx       # /huong-dan/<slug>, /en/docs/<slug>
 app/[locale]/contact/page.tsx           # /lien-he
 app/[locale]/privacy/page.tsx           # /chinh-sach-bao-mat
 app/[locale]/[...rest]/page.tsx         # đường dẫn lạ → 404 theo ngôn ngữ; cùng not-found.tsx, error.tsx
@@ -137,12 +138,13 @@ i18n/{routing,navigation,request}.ts    # locale, slug dịch (pathnames)
 global.d.ts  mdx-components.tsx  types/mdx.d.ts
 messages/{vi,en}.json                   # chuỗi giao diện; hai tệp phải cùng tập khoá
 content/releases.json                   # snapshot feed phát hành
-content/install/{index.ts,vi/*.mdx,en/*.mdx}   # hướng dẫn cài macOS và Windows
+content/docs/{index.ts,slugs.ts,vi/*.mdx,en/*.mdx}   # trung tâm hướng dẫn: sổ bài, slug và bài MDX hai ngôn ngữ
 content/privacy/{index.ts,vi.mdx,en.mdx}       # chính sách bảo mật
 lib/site.ts                             # thông tin công ty, siteUrl(), feedUrl()
 lib/env.ts                              # chặn build production thiếu domain thật
 lib/releases/{types,parse,feed,snapshot,state,index}.ts   # đọc feed, snapshot, trạng thái sắp phát hành
 lib/seo/{urls,metadata,jsonld,og}       # canonical, hreflang, JSON-LD, ảnh OG
+lib/docs/{toc,validate}.ts              # mục lục từ nguồn MDX, luật kiểm sổ bài và thân bài
 lib/{analytics,consent,useConsent,contact,format,platform,usePlatform,cn}.ts
 components/ui/        # Button, Callout, Card, Container, Section, Icon, Logo, WindowFrame, CtaBand
 components/site/      # Header, NavLinks, MobileNav, Footer, LocaleSwitcher, SkipLink, ConsentBar, AnalyticsGate, CopyButton, TrackedAnchor
@@ -150,7 +152,8 @@ components/seo/       # JsonLd
 components/home/      # Hero, HeroCta, LevelCards, AssistantShowcase, PipelineStrip, TrustGrid, CostTeaser, DownloadBlock, FaqSection, Faq, FinalCta, SectionHead
 components/level/     # LevelPage và cấu hình ba cấp
 components/download/  # PlatformCard, PlatformGrid, DownloadLink, ChecksumField, SystemRequirements, PrelaunchNotice
-components/guide/     # Step, Toc, OsTabs, CodeBlock
+components/guide/     # Step, CodeBlock (dùng trong MDX)
+components/docs/      # DocsNav, DocsToc, DocsPager, DocHelp, Ui, Figure
 scripts/sync-releases.mjs  capture-product-images.mjs  serve-fixtures.mjs
 public/images/product/*.webp            # ảnh sản phẩm chụp từ canvas app
 assets/fonts/                           # Be Vietnam Pro cho ảnh OG
@@ -166,7 +169,7 @@ vitest.config.mts  playwright.config.ts  lighthouserc.json  .github/workflows/ci
 | Muốn đổi | Sửa ở | Lưu ý |
 |---|---|---|
 | Chữ trên giao diện | `messages/vi.json` trước (bản gốc), rồi `messages/en.json` | Hai tệp phải cùng tập khoá. Mô tả meta (`*.description`) dài 140 tới 160 ký tự. Tiêu đề meta (`*.meta.title`) không lặp "EduFlow" vì template đã thêm. Bản tiếng Anh không được lẫn chữ Việt. |
-| Hướng dẫn cài đặt | `content/install/vi/*.mdx` rồi `content/install/en/*.mdx` | `meta.toc` là mục lục, `meta.updated` là ngày cập nhật. Thêm hoặc xoá tệp MDX thì sửa `MDX_TOTAL` và `MDX_ENGLISH` ở `tests/unit/content.test.ts`. |
+| Bài hướng dẫn | `content/docs/vi/*.mdx` rồi `content/docs/en/*.mdx`; title, mô tả, ngày cập nhật ở `content/docs/index.ts` (`DOCS`) | Mục lục dựng từ tiêu đề `##` và các `<Step id title>` của bài. Đổi nội dung thật thì đổi `updatedAt`. Thêm bài: mục "Thêm một bài hướng dẫn" bên dưới. |
 | Chính sách bảo mật | `content/privacy/vi.mdx` rồi `content/privacy/en.mdx` | Sửa cả `meta.updated`. PO và pháp chế rà soát trước khi công bố. |
 | Tên công ty, email, điện thoại, Zalo, địa chỉ, URL công ty | `lib/site.ts` | Điện thoại để trống thì thẻ Điện thoại và Zalo ẩn. Vài chỗ chép tay, xem `docs/van-hanh.md`, mục 4. |
 | Năm ở dòng bản quyền của footer | `components/site/Footer.tsx` (`year`) | Đang ghi cứng 2026, đổi tay mỗi năm. |
@@ -174,6 +177,14 @@ vitest.config.mts  playwright.config.ts  lighthouserc.json  .github/workflows/ci
 | Ảnh sản phẩm | `pnpm capture-images` | `docs/van-hanh.md`, mục 3. |
 
 Luật nội dung (spec mục 15): không hứa kết quả kiểm định hay xếp loại, cấp Chương trình là công cụ làm việc nội bộ chứ không phải báo cáo tự đánh giá; không nói AI thay giáo viên, luôn nói máy đề xuất, người duyệt và ký; chỉ dùng con số có trong đặc tả app; trang Cách tính phí không ghi giá; chưa nêu tên nhà cung cấp mô hình và chưa cam kết huấn luyện trên dữ liệu của trường (chờ OQ-L07); không dùng ký tự gạch ngang dài U+2014 ở bất cứ tệp nào; văn bản tiếng Việt gọi người đọc là "thầy cô". `tests/unit/content.test.ts` chặn gạch ngang dài, "đạt kiểm định", các cách nói AI thay giáo viên, giảng viên hay thầy cô, tên nhà cung cấp mô hình và cam kết về huấn luyện mô hình, và ghim lời "tài liệu làm việc nội bộ, không phải báo cáo tự đánh giá" của cấp Chương trình; test "không có giá" ở e2e kiểm trang Cách tính phí. Hai luật còn lại (con số chỉ lấy từ đặc tả app, gọi người đọc là "thầy cô") chưa có test, nên rà tay khi sửa chữ.
+
+### Thêm một bài hướng dẫn
+
+1. Thêm mã bài vào `DOC_IDS` và slug hai ngôn ngữ vào `DOC_SLUGS` (`content/docs/slugs.ts`). Slug chữ thường không dấu, nối bằng gạch, không trùng slug nào ở cả hai ngôn ngữ.
+2. Thêm mục vào `DOCS` (`content/docs/index.ts`): nhóm, thứ tự, `updatedAt` (ngày Việt Nam, `TZ=Asia/Ho_Chi_Minh date +%F`), `title`, `description` 110 tới 160 ký tự, `keyword` dạng tác vụ. Title kèm hậu tố (" · Hướng dẫn EduFlow", " · EduFlow Docs") dài quá 60 ký tự thì thêm `metaTitle`.
+3. Viết `content/docs/vi/<slug>.mdx` và `content/docs/en/<slug>.mdx`: tiêu đề từ `##`, chữ trơn; bước dùng `<Steps>`, `<Step n id title>`; ảnh dùng `<Figure>`; nhãn nút của app trong bài tiếng Anh bọc `<Ui>`. Mọi tên nút và đường đi màn đối chiếu với `main` của repo app.
+4. Thêm hai dòng import vào `DOC_SOURCES`, hai đường dẫn vào `tests/e2e/pages.ts`, và tăng `MDX_TOTAL` (thêm 2), `MDX_ENGLISH` (thêm 1) ở `tests/unit/content.test.ts`.
+5. `pnpm verify`. Build dừng khi sổ sai và báo tên tệp, tên trường.
 
 ## Biến môi trường
 

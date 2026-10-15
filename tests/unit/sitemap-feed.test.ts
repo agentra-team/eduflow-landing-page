@@ -1,6 +1,9 @@
 import { afterEach, beforeEach, expect, test, vi } from 'vitest'
 import sitemap from '@/app/sitemap'
+import { DOCS } from '@/content/docs'
+import { DOC_IDS, DOC_SLUGS } from '@/content/docs/slugs'
 import { indexablePages, pageUrl } from '@/lib/seo/pages'
+import { absoluteUrl } from '@/lib/seo/urls'
 
 // Tệp riêng: seo.test.ts đã giả fetchFeed trả null, còn ở đây feed cần đổi theo từng ca.
 const feeds = vi.hoisted(() => ({ windows: null as unknown, mac: null as unknown }))
@@ -33,7 +36,14 @@ const datedUrls = () =>
 // Chính sách bảo mật cập nhật 2026-09-30 (giờ Việt Nam, UTC+7) = 2026-09-29T17:00:00.000Z.
 const PRIVACY_LASTMOD = new Date('2026-09-29T17:00:00.000Z')
 const PRIVACY_URLS = ['https://eduflow.test/chinh-sach-bao-mat', 'https://eduflow.test/en/privacy']
-const datedContent = () => Object.fromEntries(PRIVACY_URLS.map((u) => [u, PRIVACY_LASTMOD]))
+// Bài hướng dẫn mang ngày cập nhật của sổ bài (content/docs/index.ts), cũng là nửa đêm giờ Việt Nam như ca ghi cứng ở trên.
+const docDates = () =>
+  Object.fromEntries(
+    DOC_IDS.flatMap((id) =>
+      (['vi', 'en'] as const).map((l) => [absoluteUrl(l, '/docs/[slug]', { slug: DOC_SLUGS[id][l] }), new Date(`${DOCS[id].updatedAt}T00:00:00+07:00`)]),
+    ),
+  )
+const datedContent = () => ({ ...Object.fromEntries(PRIVACY_URLS.map((u) => [u, PRIVACY_LASTMOD])), ...docDates() })
 
 beforeEach(() => {
   vi.stubEnv('DOWNLOAD_FEED_URL', 'https://feed.example.test/desktop')
@@ -46,8 +56,9 @@ afterEach(() => {
   vi.useRealTimers()
 })
 
-test('the registry marks exactly the privacy pages as dated content', () => {
-  expect(datedUrls()).toEqual([...PRIVACY_URLS].sort())
+test('the registry marks exactly the privacy pages and the docs articles as dated content', () => {
+  expect(datedUrls()).toEqual([...PRIVACY_URLS, ...Object.keys(docDates())].sort())
+  expect(Object.keys(docDates())).toHaveLength(DOC_IDS.length * 2)
 })
 
 test('home and Download carry the feed release date, dated content its own date, every other page none', async () => {

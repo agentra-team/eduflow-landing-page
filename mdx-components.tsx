@@ -1,7 +1,10 @@
 import type { MDXComponents } from 'mdx/types'
+import { Figure } from '@/components/docs/Figure'
+import { Ui } from '@/components/docs/Ui'
 import { CodeBlock } from '@/components/guide/CodeBlock'
 import { Step, Steps, SubBlock } from '@/components/guide/Step'
 import { Callout } from '@/components/ui/Callout'
+import { headingId } from '@/lib/docs/toc'
 
 const components = {
   Steps,
@@ -9,7 +12,13 @@ const components = {
   SubBlock,
   Callout,
   CodeBlock,
-  h2: (props) => <h2 className="scroll-mt-24 pt-2 text-2xl font-bold tracking-[-0.01em]" {...props} />,
+  Ui,
+  Figure,
+  h2: ({ children, ...props }) => (
+    <h2 id={headingId(children)} className="scroll-mt-24 pt-2 text-2xl font-bold tracking-[-0.01em]" {...props}>
+      {children}
+    </h2>
+  ),
   h3: (props) => <h3 className="text-[17px] font-semibold" {...props} />,
   p: (props) => <p className="text-base leading-relaxed text-ink2" {...props} />,
   ol: (props) => <ol className="flex list-decimal flex-col gap-2 pl-5 text-base leading-relaxed text-ink2" {...props} />,

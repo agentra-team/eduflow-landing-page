@@ -13,8 +13,8 @@ test('absoluteUrl localizes slugs and prefixes', async () => {
   expect(absoluteUrl('vi', '/k12')).toBe('https://eduflow.test/ai-cho-giao-vien')
   expect(absoluteUrl('en', '/university')).toBe('https://eduflow.test/en/ai-for-lecturers')
   expect(absoluteUrl('vi', '/pricing')).toBe('https://eduflow.test/cach-tinh-phi')
-  expect(absoluteUrl('en', '/install/[os]', { os: 'macos' })).toBe('https://eduflow.test/en/install/macos')
-  expect(absoluteUrl('vi', '/install/[os]', { os: 'windows' })).toBe('https://eduflow.test/huong-dan-cai-dat/windows')
+  expect(absoluteUrl('en', '/docs/[slug]', { slug: 'install-macos' })).toBe('https://eduflow.test/en/docs/install-macos')
+  expect(absoluteUrl('vi', '/docs')).toBe('https://eduflow.test/huong-dan')
 })
 
 test('buildMetadata takes the SEO copy from the page registry, with per-language params', async () => {
@@ -34,9 +34,9 @@ test('buildMetadata takes the SEO copy from the page registry, with per-language
     absolute: 'Install · EduFlow Docs',
   })
   // Slug khác nhau giữa hai ngôn ngữ (bài hướng dẫn): canonical và hreflang dùng đúng params của từng ngôn ngữ.
-  const d = buildMetadata({ locale: 'vi', page: '/install/[os]', params: { vi: { os: 'macos' }, en: { os: 'windows' } }, seo: { title: 'X', description: 'd' } })
-  expect(d.alternates?.canonical).toBe('https://eduflow.test/huong-dan-cai-dat/macos')
-  expect(d.alternates?.languages).toMatchObject({ en: 'https://eduflow.test/en/install/windows' })
+  const d = buildMetadata({ locale: 'vi', page: '/docs/[slug]', params: { vi: { slug: 'cai-dat-macos' }, en: { slug: 'install-macos' } }, seo: { title: 'X', description: 'd' } })
+  expect(d.alternates?.canonical).toBe('https://eduflow.test/huong-dan/cai-dat-macos')
+  expect(d.alternates?.languages).toMatchObject({ en: 'https://eduflow.test/en/docs/install-macos' })
   expect(buildMetadata({ locale: 'vi', page: '/download', seo: { title: 'T', description: 'd' } }).openGraph?.images).toEqual([
     { url: 'https://eduflow.test/download/opengraph-image', width: 1200, height: 630, alt: 'T' },
   ])

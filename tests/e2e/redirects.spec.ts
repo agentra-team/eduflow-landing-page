@@ -16,3 +16,15 @@ test('an old URL with a trailing slash and a query still lands on the new page',
   expect(res?.status()).toBe(200)
   await expect(page).toHaveURL(/\/ai-cho-giao-vien\?utm_source=app$/)
 })
+
+test('an old install link from the app keeps its query on the new article', async ({ page }) => {
+  const res = await page.goto('/huong-dan-cai-dat/macos?utm_source=app')
+  expect(res?.status()).toBe(200)
+  await expect(page).toHaveURL(/\/huong-dan\/cai-dat-macos\?utm_source=app$/)
+})
+
+test('an old English install link with a trailing slash and a query lands on the new article', async ({ page }) => {
+  const res = await page.goto('/en/install/windows/?utm_source=app')
+  expect(res?.status()).toBe(200)
+  await expect(page).toHaveURL(/\/en\/docs\/install-windows\?utm_source=app$/)
+})

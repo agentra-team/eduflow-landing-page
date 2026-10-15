@@ -74,7 +74,7 @@ test('softwareApplication describes the v1 app without offers or ratings', () =>
     featureList: brand.features.vi,
     audience: { '@type': 'Audience', audienceType: brand.audience.vi },
     downloadUrl: 'https://eduflow.test/tai-ve',
-    softwareHelp: { '@type': 'CreativeWork', url: 'https://eduflow.test/huong-dan-cai-dat/macos' },
+    softwareHelp: { '@type': 'CreativeWork', url: 'https://eduflow.test/huong-dan' },
     publisher: PUBLISHER,
     softwareVersion: '1.0.0',
     datePublished: '2026-10-01',

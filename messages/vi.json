@@ -32,8 +32,7 @@
     "guides": "Hướng dẫn",
     "trust": "Tin cậy",
     "company": "Công ty",
-    "installMacos": "Cài đặt trên macOS",
-    "installWindows": "Cài đặt trên Windows",
+    "allDocs": "Tất cả hướng dẫn",
     "privacy": "Chính sách bảo mật",
     "copyright": "© {year} Agentra JSC · Đà Nẵng, Việt Nam"
   },
@@ -756,36 +755,41 @@
       "cta": "Liên hệ để dùng sớm"
     }
   },
-  "install": {
-    "eyebrow": "Hướng dẫn cài đặt",
-    "breadcrumbDownload": "Tải về",
-    "breadcrumbInstall": "Hướng dẫn cài đặt",
-    "tocTitle": "Trên trang này",
-    "tabs": {
-      "macos": "macOS",
-      "windows": "Windows"
-    },
-    "updated": "Cập nhật {date}",
-    "minutes": "{n} phút đọc",
-    "bottom": {
-      "title": "Sẵn sàng cài đặt?",
-      "body": "Tải bộ cài đúng máy rồi làm theo các bước ở trên.",
-      "downloadMac": "Chọn bộ cài macOS",
-      "downloadWindows": "Tải bộ cài Windows",
-      "other": {
-        "macos": "Xem hướng dẫn cho macOS",
-        "windows": "Xem hướng dẫn cho Windows"
-      }
-    },
+  "docs": {
     "meta": {
-      "macos": {
-        "title": "Cài đặt trên macOS",
-        "description": "Chọn đúng bộ cài EduFlow theo chip của máy Mac, cài vào Applications, kích hoạt bằng key hoặc dùng thử, chọn hồ sơ làm việc và nhận bản cập nhật mới."
-      },
-      "windows": {
-        "title": "Cài đặt trên Windows",
-        "description": "Tải bộ cài EduFlow cho Windows 64-bit, chạy trình cài, mở qua cảnh báo SmartScreen, kích hoạt bằng key hoặc dùng thử và nhận bản mới trong app."
-      }
+      "title": "Hướng dẫn sử dụng EduFlow: cài đặt, soạn đề, trợ lý",
+      "description": "Hướng dẫn sử dụng EduFlow từng bước: cài trên macOS và Windows, kích hoạt key, soạn đề kiểm tra, giáo án, slide, dùng trợ lý AI và xử lý sự cố."
+    },
+    "eyebrow": "Trung tâm hướng dẫn",
+    "h1": "Hướng dẫn sử dụng EduFlow",
+    "lead": "Từng bước cài đặt, kích hoạt và dùng các tính năng có trong bản phát hành đầu của EduFlow, viết theo đúng màn hình của app.",
+    "home": "Hướng dẫn",
+    "quickStart": {
+      "h2": "Bắt đầu trong 5 phút",
+      "lead": "Cài app, kích hoạt key hoặc dùng thử, rồi soạn đề kiểm tra đầu tiên."
+    },
+    "groups": {
+      "start": "Bắt đầu",
+      "k12": "Phổ thông",
+      "assistant": "Trợ lý và tài liệu",
+      "operations": "Chi phí và vận hành"
+    },
+    "nav": "Mục lục hướng dẫn",
+    "toc": "Trong bài này",
+    "breadcrumb": "Vị trí trong trang",
+    "updated": "Cập nhật {date}",
+    "prev": "Bài trước",
+    "next": "Bài sau",
+    "readMore": "Đọc thêm",
+    "help": {
+      "title": "Không giải được?",
+      "body": "Gửi câu hỏi cho Agentra kèm ảnh chụp màn hình, hoặc tải bản mới nhất của EduFlow.",
+      "contact": "Liên hệ",
+      "download": "Tải EduFlow"
+    },
+    "notFound": {
+      "h2": "Không tìm thấy điều cần tìm?",
+      "body": "Gửi câu hỏi cho Agentra, hoặc tải EduFlow và bắt đầu từ bài cài đặt."
     }
   },
   "contact": {

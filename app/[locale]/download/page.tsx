@@ -8,6 +8,7 @@ import { JsonLd } from '@/components/seo/JsonLd'
 import { Callout } from '@/components/ui/Callout'
 import { Container } from '@/components/ui/Container'
 import { Icon } from '@/components/ui/Icon'
+import { docHref } from '@/content/docs'
 import { Link } from '@/i18n/navigation'
 import type { Locale } from '@/i18n/routing'
 import { releaseLead } from '@/lib/format'
@@ -33,7 +34,7 @@ export default async function DownloadPage() {
   const [{ assets }, t, tc] = await Promise.all([getReleases(), getTranslations('download'), getTranslations('common')])
   const lead = releaseLead(latestRelease(assets), locale)
   const guide = (os: 'macos' | 'windows', label: string) => (
-    <Link href={{ pathname: '/install/[os]', params: { os } }} className="font-semibold underline underline-offset-2">
+    <Link href={docHref(locale, os === 'macos' ? 'install-macos' : 'install-windows')} className="font-semibold underline underline-offset-2">
       {label}
     </Link>
   )

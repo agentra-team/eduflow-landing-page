@@ -91,8 +91,8 @@ export function softwareApplication(assets: ReleaseAsset[], locale: Locale): Jso
     featureList: brand.features[locale],
     audience: { '@type': 'Audience', audienceType: brand.audience[locale] },
     downloadUrl: absoluteUrl(locale, '/download'),
-    // Trỏ trung tâm hướng dẫn khi có; tạm thời là bài cài đặt.
-    softwareHelp: { '@type': 'CreativeWork', url: absoluteUrl(locale, '/install/[os]', { os: 'macos' }) },
+    // Trung tâm hướng dẫn (spec §9.1)
+    softwareHelp: { '@type': 'CreativeWork', url: absoluteUrl(locale, '/docs') },
     publisher: publisher(),
     // Không rõ ngày phát hành ('') thì bỏ datePublished thay vì khai chuỗi rỗng.
     ...(latest ? { softwareVersion: latest.version, ...(latest.releaseDate ? { datePublished: latest.releaseDate.slice(0, 10) } : {}) } : {}),

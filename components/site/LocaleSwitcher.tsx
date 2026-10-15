@@ -28,7 +28,7 @@ export function LocaleSwitcher({ className }: { className?: string }) {
         return (
           <a
             key={code}
-            href={localeHref(pathname, params, code)}
+            href={localeHref(pathname, params, locale, code)}
             hrefLang={code}
             aria-current={on ? 'true' : undefined}
             onClick={() => !on && track({ name: 'locale_switch', from: locale, to: code })}

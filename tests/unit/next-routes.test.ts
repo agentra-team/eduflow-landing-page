@@ -1,15 +1,15 @@
 import { expect, test } from 'vitest'
+import { DOC_IDS, DOC_SLUGS } from '@/content/docs/slugs'
 import { routing, type PageKey } from '@/i18n/routing'
 import { headerRules, LEGACY_REDIRECTS, redirectRules } from '@/lib/next-routes'
 import { localizedPath } from '@/lib/seo/urls'
 
-// Đường dẫn công khai hiện tại của mọi trang tĩnh, hai ngôn ngữ.
+// Đường dẫn công khai hiện tại của mọi trang tĩnh và mọi bài hướng dẫn, hai ngôn ngữ.
 const current = () =>
-  new Set(
-    (Object.keys(routing.pathnames) as PageKey[])
-      .filter((k) => !k.includes('['))
-      .flatMap((k) => routing.locales.map((l) => localizedPath(l, k))),
-  )
+  new Set([
+    ...(Object.keys(routing.pathnames) as PageKey[]).filter((k) => !k.includes('[')).flatMap((k) => routing.locales.map((l) => localizedPath(l, k))),
+    ...DOC_IDS.flatMap((id) => routing.locales.map((l) => localizedPath(l, '/docs/[slug]', { slug: DOC_SLUGS[id][l] }))),
+  ])
 
 test('legacy redirects point at live paths and never at another redirect', () => {
   const live = current()
@@ -18,9 +18,7 @@ test('legacy redirects point at live paths and never at another redirect', () =>
     expect(live.has(source), `${source} vẫn là đường dẫn sống`).toBe(false)
     expect(sources.has(destination), `${destination} lại là nguồn chuyển hướng`).toBe(false)
   }
-  for (const r of LEGACY_REDIRECTS.filter((r) => !r.destination.includes('/huong-dan/') && !r.destination.includes('/docs/'))) {
-    expect(live.has(r.destination), r.destination).toBe(true)
-  }
+  for (const r of LEGACY_REDIRECTS) expect(live.has(r.destination), r.destination).toBe(true)
 })
 
 test('legacy redirects are permanent (308)', () => {

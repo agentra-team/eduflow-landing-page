@@ -32,8 +32,7 @@
     "guides": "Guides",
     "trust": "Trust",
     "company": "Company",
-    "installMacos": "Install on macOS",
-    "installWindows": "Install on Windows",
+    "allDocs": "All guides",
     "privacy": "Privacy policy",
     "copyright": "© {year} Agentra JSC · Da Nang, Vietnam"
   },
@@ -756,36 +755,41 @@
       "cta": "Contact us for early access"
     }
   },
-  "install": {
-    "eyebrow": "Installation guide",
-    "breadcrumbDownload": "Download",
-    "breadcrumbInstall": "Installation guide",
-    "tocTitle": "On this page",
-    "tabs": {
-      "macos": "macOS",
-      "windows": "Windows"
-    },
-    "updated": "Updated {date}",
-    "minutes": "{n} min read",
-    "bottom": {
-      "title": "Ready to install?",
-      "body": "Download the right installer for your computer, then follow the steps above.",
-      "downloadMac": "Choose a macOS installer",
-      "downloadWindows": "Download the Windows installer",
-      "other": {
-        "macos": "See the macOS guide",
-        "windows": "See the Windows guide"
-      }
-    },
+  "docs": {
     "meta": {
-      "macos": {
-        "title": "Install on macOS",
-        "description": "Choose the right installer for your chip, install into Applications, activate with a license key or a trial, choose a work profile and update to new versions."
-      },
-      "windows": {
-        "title": "Install on Windows",
-        "description": "Download the EduFlow installer for 64-bit Windows, run it, get past the SmartScreen warning, activate with a key or a trial, and get new versions in the app."
-      }
+      "title": "EduFlow user guide: install, tests, assistant",
+      "description": "The EduFlow user guide, step by step: install on macOS and Windows, activate a key, create tests, lesson plans and slides, use the AI assistant, fix problems."
+    },
+    "eyebrow": "Help center",
+    "h1": "EduFlow user guide",
+    "lead": "Step-by-step guides to install, activate and use the features of the first EduFlow release, written against the screens of the app.",
+    "home": "Docs",
+    "quickStart": {
+      "h2": "Get started in 5 minutes",
+      "lead": "Install the app, activate a key or start a trial, then create your first test."
+    },
+    "groups": {
+      "start": "Get started",
+      "k12": "K-12",
+      "assistant": "Assistant and documents",
+      "operations": "Costs and operations"
+    },
+    "nav": "Guide contents",
+    "toc": "In this article",
+    "breadcrumb": "Location in the site",
+    "updated": "Updated {date}",
+    "prev": "Previous",
+    "next": "Next",
+    "readMore": "Read more",
+    "help": {
+      "title": "Still stuck?",
+      "body": "Send Agentra your question with a screenshot, or download the latest EduFlow version.",
+      "contact": "Contact",
+      "download": "Download EduFlow"
+    },
+    "notFound": {
+      "h2": "Can't find what you need?",
+      "body": "Send Agentra your question, or download EduFlow and start with the install guide."
     }
   },
   "contact": {

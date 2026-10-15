@@ -1,7 +1,8 @@
 import type { Locale } from '@/i18n/routing'
 
 /**
- * Mã và slug của bài hướng dẫn (spec §7.4). Tệp nhỏ, không import MDX, để component phía client (nút đổi ngôn ngữ) dùng được.
+ * Mã và slug của bài hướng dẫn (spec §7.4). Tệp nhỏ, không import MDX hay sổ bài, để component phía client (nút đổi ngôn ngữ,
+ * thẻ bộ cài của trang Tải về) dùng được mà không kéo sổ bài vào JS phía client (quyết định 1).
  * Slug là chữ thường không dấu nối bằng gạch, duy nhất qua cả hai ngôn ngữ: ảnh chia sẻ /og/docs/<slug> suy ra ngôn ngữ từ slug.
  * Thêm bài: thêm mã vào DOC_IDS, slug vào DOC_SLUGS, mục vào DOCS (content/docs/index.ts) và hai tệp MDX.
  */
@@ -23,4 +24,14 @@ export function findDocSlug(slug: string): { id: DocId; locale: Locale } | undef
     for (const locale of ['vi', 'en'] as const) if (DOC_SLUGS[id][locale] === slug) return { id, locale }
   }
   return undefined
+}
+
+/** href cho `Link` của next-intl: slug theo đúng ngôn ngữ của trang đang dựng. */
+export function docHref(locale: Locale, id: DocId) {
+  return { pathname: '/docs/[slug]' as const, params: { slug: DOC_SLUGS[id][locale] } }
+}
+
+/** params theo từng ngôn ngữ cho buildMetadata và sổ trang. */
+export function docParams(id: DocId): Record<Locale, { slug: string }> {
+  return { vi: { slug: DOC_SLUGS[id].vi }, en: { slug: DOC_SLUGS[id].en } }
 }

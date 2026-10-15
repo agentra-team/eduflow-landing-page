@@ -1,5 +1,6 @@
 import { useTranslations } from 'next-intl'
 import { Icon } from '@/components/ui/Icon'
+import { docHref } from '@/content/docs/slugs'
 import { Link } from '@/i18n/navigation'
 import type { Locale } from '@/i18n/routing'
 import { cn } from '@/lib/cn'
@@ -68,7 +69,7 @@ export function PlatformCard({
         {t('btn')}
       </DownloadLink>
       <Link
-        href={{ pathname: '/install/[os]', params: { os } }}
+        href={docHref(locale, os === 'macos' ? 'install-macos' : 'install-windows')}
         className="inline-flex min-h-11 items-center gap-1.5 text-[14.5px] font-semibold text-accent-strong hover:text-accent md:min-h-0"
       >
         {guideLabel ?? t('guide')}

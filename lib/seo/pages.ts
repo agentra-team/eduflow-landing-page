@@ -1,4 +1,5 @@
-import { GUIDE_OS } from '@/content/install'
+import { DOC_TITLE_SUFFIX, DOCS, docParams } from '@/content/docs'
+import { DOC_IDS, type DocId } from '@/content/docs/slugs'
 import { PRIVACY_META } from '@/content/privacy/meta'
 import type { Locale, PageKey } from '@/i18n/routing'
 import en from '@/messages/en.json'
@@ -38,6 +39,7 @@ export const STATIC_PAGES = {
   '/assistant': { meta: (m) => m.assistant.meta, keyword: { vi: 'trợ lý AI cho giáo viên', en: 'AI assistant for teachers' } },
   '/pricing': { meta: (m) => m.pricing.meta, absoluteTitle: true, keyword: { vi: 'chi phí EduFlow', en: 'EduFlow pricing' } },
   '/download': { meta: (m) => m.download.meta, absoluteTitle: true, keyword: { vi: 'tải EduFlow', en: 'download EduFlow' } },
+  '/docs': { meta: (m) => m.docs.meta, absoluteTitle: true, keyword: { vi: 'hướng dẫn sử dụng EduFlow', en: 'EduFlow user guide' } },
   '/ai-transparency': { meta: (m) => m.transparency.meta, keyword: { vi: 'minh bạch AI', en: 'AI and data transparency' } },
   '/contact': { meta: (m) => m.contact.meta, absoluteTitle: true, keyword: { vi: 'liên hệ Agentra EduFlow', en: 'contact Agentra EduFlow' } },
   '/privacy': { meta: (_, locale) => PRIVACY_META[locale], keyword: null, updatedAt: PRIVACY_META.vi.updated },
@@ -49,6 +51,12 @@ export function staticSeo(locale: Locale, key: StaticPageKey): Seo {
   const entry: StaticEntry = STATIC_PAGES[key]
   const { title, description } = entry.meta(MESSAGES[locale], locale)
   return { title, description, ...(entry.absoluteTitle ? { absoluteTitle: true } : {}) }
+}
+
+/** Chữ SEO của một bài hướng dẫn: từ sổ bài, hậu tố riêng của docs (" · Hướng dẫn EduFlow", " · EduFlow Docs"). */
+export function docSeo(locale: Locale, id: DocId): Seo {
+  const c = DOCS[id][locale]
+  return { title: c.metaTitle ?? c.title, description: c.description, titleSuffix: DOC_TITLE_SUFFIX[locale] }
 }
 
 export type IndexablePage = {
@@ -67,17 +75,17 @@ export function indexablePages(): IndexablePage[] {
     const entry: StaticEntry = STATIC_PAGES[key]
     return { id: key, key, seo: both((l) => staticSeo(l, key)), keyword: entry.keyword, ...(entry.updatedAt ? { updatedAt: entry.updatedAt } : {}) }
   })
-  // Hai trang cài đặt cũ, tới khi hai bài này chuyển vào trung tâm hướng dẫn.
-  const install = GUIDE_OS.map(
-    (os): IndexablePage => ({
-      id: `install:${os}`,
-      key: '/install/[os]',
-      params: both(() => ({ os })),
-      seo: both((l) => MESSAGES[l].install.meta[os]),
-      keyword: null,
+  const docs = DOC_IDS.map(
+    (id): IndexablePage => ({
+      id: `doc:${id}`,
+      key: '/docs/[slug]',
+      params: docParams(id),
+      seo: both((l) => docSeo(l, id)),
+      keyword: both((l) => DOCS[id][l].keyword),
+      updatedAt: DOCS[id].updatedAt,
     }),
   )
-  return [...statics, ...install]
+  return [...statics, ...docs]
 }
 
 export function pageUrl(p: IndexablePage, locale: Locale): string {

@@ -1,6 +1,7 @@
 import { useLocale, useTranslations } from 'next-intl'
 import { Container } from '@/components/ui/Container'
 import { Logo } from '@/components/ui/Logo'
+import { DOCS, docHref } from '@/content/docs'
 import { Link } from '@/i18n/navigation'
 import type { Locale } from '@/i18n/routing'
 import { site } from '@/lib/site'
@@ -34,8 +35,9 @@ export function Footer() {
             <Link href="/download" className={linkClass}>{tn('download')}</Link>
           </FooterColumn>
           <FooterColumn title={t('guides')}>
-            <Link href={{ pathname: '/install/[os]', params: { os: 'macos' } }} className={linkClass}>{t('installMacos')}</Link>
-            <Link href={{ pathname: '/install/[os]', params: { os: 'windows' } }} className={linkClass}>{t('installWindows')}</Link>
+            <Link href={docHref(locale, 'install-macos')} className={linkClass}>{DOCS['install-macos'][locale].title}</Link>
+            <Link href={docHref(locale, 'install-windows')} className={linkClass}>{DOCS['install-windows'][locale].title}</Link>
+            <Link href="/docs" className={linkClass}>{t('allDocs')}</Link>
             <Link href="/pricing" className={linkClass}>{tn('pricing')}</Link>
           </FooterColumn>
           <FooterColumn title={t('trust')}>

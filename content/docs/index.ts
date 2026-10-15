@@ -1,6 +1,10 @@
+import type { ComponentType } from 'react'
 import type { Locale } from '@/i18n/routing'
 import { todayInVietnam, validateDocs } from '@/lib/docs/validate'
 import { DOC_IDS, DOC_SLUGS, type DocId } from './slugs'
+
+// Hai hàm chỉ cần slug, nằm ở slugs.ts để component phía client import được; mã phía server import ở đâu cũng được.
+export { docHref, docParams } from './slugs'
 
 /*
  * Sổ bài hướng dẫn (spec §7.4): nhóm, thứ tự, ngày cập nhật và chữ SEO của từng bài, hai ngôn ngữ. Metadata nằm ở đây thay
@@ -67,9 +71,29 @@ export function docsInOrder(): DocId[] {
   return [...DOC_IDS].sort((a, b) => DOC_GROUPS.indexOf(DOCS[a].group) - DOC_GROUPS.indexOf(DOCS[b].group) || DOCS[a].order - DOCS[b].order)
 }
 
+/** Nhóm có bài, đúng thứ tự hiển thị, mỗi nhóm theo thứ tự đọc. Dẫn thanh bên và mục lục hướng dẫn. */
+export function docsByGroup(): Array<{ group: DocGroup; ids: DocId[] }> {
+  const order = docsInOrder()
+  return DOC_GROUPS.map((group) => ({ group, ids: order.filter((id) => DOCS[id].group === group) })).filter((g) => g.ids.length > 0)
+}
+
 /** Đường dẫn tệp MDX tính từ gốc repo. */
 export function docFile(locale: Locale, id: DocId): string {
   return `content/docs/${locale}/${DOC_SLUGS[id][locale]}.mdx`
+}
+
+type MdxBody = { default: ComponentType<Record<string, unknown>> }
+
+/** Bảng import tĩnh để Turbopack phân tích được. Thêm bài: thêm hai dòng ở đây. */
+export const DOC_SOURCES: Record<Locale, Record<DocId, () => Promise<MdxBody>>> = {
+  vi: {
+    'install-macos': () => import('./vi/cai-dat-macos.mdx'),
+    'install-windows': () => import('./vi/cai-dat-windows.mdx'),
+  },
+  en: {
+    'install-macos': () => import('./en/install-macos.mdx'),
+    'install-windows': () => import('./en/install-windows.mdx'),
+  },
 }
 
 /** Dừng build khi sổ sai; thông báo nêu từng tệp và trường. */

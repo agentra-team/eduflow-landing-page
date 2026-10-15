@@ -8,8 +8,9 @@ export const PAGES: Array<[string, 'vi' | 'en']> = [
   ['/cach-tinh-phi', 'vi'], ['/en/pricing', 'en'],
   ['/minh-bach-ai', 'vi'], ['/en/ai-transparency', 'en'],
   ['/tai-ve', 'vi'], ['/en/download', 'en'],
-  ['/huong-dan-cai-dat/macos', 'vi'], ['/huong-dan-cai-dat/windows', 'vi'],
-  ['/en/install/macos', 'en'], ['/en/install/windows', 'en'],
+  ['/huong-dan', 'vi'], ['/en/docs', 'en'],
+  ['/huong-dan/cai-dat-macos', 'vi'], ['/huong-dan/cai-dat-windows', 'vi'],
+  ['/en/docs/install-macos', 'en'], ['/en/docs/install-windows', 'en'],
   ['/lien-he', 'vi'], ['/en/contact', 'en'],
   ['/chinh-sach-bao-mat', 'vi'], ['/en/privacy', 'en'],
 ]

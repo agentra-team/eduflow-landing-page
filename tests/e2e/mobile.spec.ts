@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test'
 import { waitForHydration } from './hydration'
 
-const VI_PAGES = ['/', '/ai-cho-giao-vien', '/ai-cho-giang-vien', '/ra-soat-chuong-trinh-dao-tao', '/tro-ly-ai', '/cach-tinh-phi', '/minh-bach-ai', '/tai-ve', '/huong-dan-cai-dat/macos', '/huong-dan-cai-dat/windows', '/lien-he', '/chinh-sach-bao-mat']
+const VI_PAGES = ['/', '/ai-cho-giao-vien', '/ai-cho-giang-vien', '/ra-soat-chuong-trinh-dao-tao', '/tro-ly-ai', '/cach-tinh-phi', '/minh-bach-ai', '/tai-ve', '/huong-dan', '/huong-dan/cai-dat-macos', '/huong-dan/cai-dat-windows', '/lien-he', '/chinh-sach-bao-mat']
 
 test('mobile menu opens with the five nav links and a download button', async ({ page }) => {
   await page.goto('/')

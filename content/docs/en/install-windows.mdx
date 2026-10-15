@@ -1,0 +1,58 @@
+<Steps>
+
+<Step n={1} id="tai-tep" title="Download the installer">
+
+Download the file `EduFlow Setup <version>.exe` from the Download page. The file runs on Windows 10 22H2 or later (64-bit).
+
+</Step>
+
+<Step n={2} id="trinh-cai" title="Run the installer">
+
+Double-click the **.exe** file. If SmartScreen shows a warning, follow step 3 and come back here. Keep the default install folder or choose another one, click **Install**, then open EduFlow from the Start menu.
+
+</Step>
+
+<Step n={3} id="smartscreen" title="Get past the SmartScreen warning">
+
+The installer is not signed yet with a Microsoft certificate, so Windows Defender SmartScreen shows **"Windows protected your PC"** and the publisher line reads **Unknown publisher**.
+
+1. Click **More info**.
+2. Check that the file name is the file you just downloaded from the EduFlow Download page.
+3. Click **Run anyway**.
+
+To make sure the file was not altered, compare the SHA-512 checksum on the Download page with the output of this command (open PowerShell in the folder that holds the file):
+
+<CodeBlock code={'certutil -hashfile "EduFlow Setup <version>.exe" SHA512'} copyLabel="Copy" copiedLabel="Copied" />
+
+</Step>
+
+<Step n={4} id="kich-hoat" title="Activate or start a trial">
+
+On the Welcome screen:
+
+1. If you have a license key from your school: enter the key, which starts with `EDU-` followed by groups of 4 characters, and click <Ui>Kích hoạt</Ui> (Activate).
+2. If you do not have a license key yet: click <Ui>Dùng thử</Ui> (Try it), then fill in your full name, email, phone number and organization. When Agentra has trial auto-approval turned on, the computer receives a trial key right away; otherwise the request waits for approval and the app activates itself once the request is approved.
+
+A trial key works on 1 computer, with a trial budget and an expiry date.
+
+</Step>
+
+<Step n={5} id="ho-so" title="Choose a work profile">
+
+Choose the role you use most: K-12 teacher, lecturer, head of department, Quality Assurance Office, Program Council or school leadership. A profile only arranges the interface, locks no feature, and can be changed in <Ui>Cài đặt</Ui> (Settings).
+
+</Step>
+
+<Step n={6} id="cap-nhat" title="Get new versions">
+
+When a new version is available, the app shows a notification. Click <Ui>Tải về</Ui> (Download), keep working while it downloads, then click <Ui>Khởi động lại để cài</Ui> (Restart to install). Your projects and data stay as they are.
+
+</Step>
+
+<Step n={7} id="go-cai" title="Uninstall">
+
+Open Windows **Settings > Apps**, find **EduFlow** and click **Uninstall**. Project data lives in the app's data folder; if you need to keep it, create a backup in EduFlow's <Ui>Cài đặt</Ui> (Settings), under <Ui>Lưu trữ và sao lưu</Ui> (Storage and backup), before uninstalling.
+
+</Step>
+
+</Steps>

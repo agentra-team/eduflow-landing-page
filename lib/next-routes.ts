@@ -17,6 +17,10 @@ export const LEGACY_REDIRECTS: ReadonlyArray<{ source: string; destination: stri
   { source: '/en/university-courses', destination: '/en/ai-for-lecturers' },
   { source: '/chuong-trinh', destination: '/ra-soat-chuong-trinh-dao-tao' },
   { source: '/en/program-review', destination: '/en/curriculum-review' },
+  { source: '/huong-dan-cai-dat/macos', destination: '/huong-dan/cai-dat-macos' },
+  { source: '/en/install/macos', destination: '/en/docs/install-macos' },
+  { source: '/huong-dan-cai-dat/windows', destination: '/huong-dan/cai-dat-windows' },
+  { source: '/en/install/windows', destination: '/en/docs/install-windows' },
 ]
 
 const SECURITY_HEADERS = [

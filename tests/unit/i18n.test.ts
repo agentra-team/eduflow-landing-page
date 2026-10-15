@@ -24,7 +24,9 @@ describe('i18n', () => {
       '/pricing': { vi: '/cach-tinh-phi', en: '/pricing' },
       '/ai-transparency': { vi: '/minh-bach-ai', en: '/ai-transparency' },
       '/download': { vi: '/tai-ve', en: '/download' },
-      '/install/[os]': { vi: '/huong-dan-cai-dat/[os]', en: '/install/[os]' },
+      // Trung tâm hướng dẫn: slug bài khác nhau giữa hai ngôn ngữ (content/docs/slugs.ts)
+      '/docs': { vi: '/huong-dan', en: '/docs' },
+      '/docs/[slug]': { vi: '/huong-dan/[slug]', en: '/docs/[slug]' },
       '/contact': { vi: '/lien-he', en: '/contact' },
       '/privacy': { vi: '/chinh-sach-bao-mat', en: '/privacy' },
     })

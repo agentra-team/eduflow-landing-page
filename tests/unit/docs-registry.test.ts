@@ -1,6 +1,9 @@
+import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs'
+import { dirname, join, relative, resolve, sep } from 'node:path'
+import { fileURLToPath } from 'node:url'
 import { expect, test } from 'vitest'
-import { DOC_GROUPS, DOC_TITLE_SUFFIX, DOCS, docsInOrder, QUICK_START } from '@/content/docs'
-import { DOC_IDS, DOC_SLUGS, docIdFromSlug, findDocSlug } from '@/content/docs/slugs'
+import { DOC_GROUPS, DOC_TITLE_SUFFIX, DOCS, docsByGroup, docsInOrder, QUICK_START } from '@/content/docs'
+import { DOC_IDS, DOC_SLUGS, docHref, docIdFromSlug, docParams, findDocSlug } from '@/content/docs/slugs'
 import { extractToc, scanDocLines, slugifyHeading } from '@/lib/docs/toc'
 import { checkDocBody, todayInVietnam, validateDocs } from '@/lib/docs/validate'
 
@@ -91,4 +94,51 @@ test('scanDocLines returns headings and steps with line numbers and skips fenced
     { line: 6, kind: 'step', text: 'Chọn', id: 'chon', title: 'Chọn' },
     { line: 7, kind: 'heading', level: 3, text: 'Con', id: 'con' },
   ])
+})
+
+test('docsByGroup lists the non-empty groups in display order, each in reading order', () => {
+  const groups = docsByGroup()
+  expect(groups.map((g) => g.group)).toEqual(DOC_GROUPS.filter((g) => DOC_IDS.some((id) => DOCS[id].group === g)))
+  expect(groups.flatMap((g) => g.ids)).toEqual(docsInOrder())
+  for (const { group, ids } of groups) {
+    expect(ids.length, group).toBeGreaterThan(0)
+    for (const id of ids) expect(DOCS[id].group, id).toBe(group)
+  }
+})
+
+test('docHref and docParams carry the slug of each language', () => {
+  expect(docHref('vi', 'install-macos')).toEqual({ pathname: '/docs/[slug]', params: { slug: 'cai-dat-macos' } })
+  expect(docHref('en', 'install-macos')).toEqual({ pathname: '/docs/[slug]', params: { slug: 'install-macos' } })
+  for (const id of DOC_IDS) expect(docParams(id)).toEqual({ vi: { slug: DOC_SLUGS[id].vi }, en: { slug: DOC_SLUGS[id].en } })
+})
+
+// Quyết định 1, spec §9.3: sổ bài kéo theo bảng import MDX và luật kiểm sổ, nên không được vào JS phía client. Component phía client
+// (và mọi tệp chúng import) chỉ dùng content/docs/slugs.ts. Import chỉ lấy kiểu (`import type`) bị xoá khi biên dịch nên được phép.
+test('no client component reaches the docs registry', () => {
+  const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../..')
+  const rel = (f: string) => relative(ROOT, f).split(sep).join('/')
+  const IMPORT = /^\s*(?:import|export)\s+(?!type\b)(?:[\w*{}\s,]+?\s+from\s+)?['"]([^'"]+)['"]|\bimport\(\s*['"]([^'"]+)['"]\s*\)/gm
+  const resolveSpec = (from: string, spec: string) => {
+    const base = spec.startsWith('@/') ? join(ROOT, spec.slice(2)) : spec.startsWith('.') ? resolve(dirname(from), spec) : null
+    if (!base) return null
+    return [base, `${base}.ts`, `${base}.tsx`, join(base, 'index.ts'), join(base, 'index.tsx')].find((p) => existsSync(p) && statSync(p).isFile()) ?? null
+  }
+  const importsOf = (file: string) =>
+    [...readFileSync(file, 'utf8').matchAll(IMPORT)].map((m) => resolveSpec(file, m[1] ?? m[2])).filter((p): p is string => p !== null && /\.tsx?$/.test(p))
+  const walk = (dir: string): string[] =>
+    readdirSync(dir, { withFileTypes: true }).flatMap((e) => (e.isDirectory() ? walk(join(dir, e.name)) : /\.tsx?$/.test(e.name) ? [join(dir, e.name)] : []))
+  const clients = ['app', 'components', 'lib', 'i18n'].flatMap((d) => walk(join(ROOT, d))).filter((f) => /^\s*['"]use client['"]/.test(readFileSync(f, 'utf8')))
+  expect(clients.map(rel)).toContain('components/download/PlatformGrid.tsx')
+  // Đi theo import từ mỗi component phía client; ghi lại đường đi để báo lỗi chỉ đúng chỗ.
+  const via = new Map<string, string>(clients.map((f) => [f, rel(f)]))
+  const queue = [...clients]
+  while (queue.length) {
+    const file = queue.shift()!
+    for (const dep of importsOf(file)) {
+      if (via.has(dep)) continue
+      via.set(dep, `${via.get(file)} > ${rel(dep)}`)
+      queue.push(dep)
+    }
+  }
+  expect([...via.entries()].filter(([f]) => rel(f) === 'content/docs/index.ts').map(([, path]) => path)).toEqual([])
 })
