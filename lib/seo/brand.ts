@@ -62,7 +62,7 @@ export const brand = {
   /** Chỉ tính năng có trong bản phát hành đầu của app (v1); JSON-LD featureList và llms.txt dùng danh sách này. */
   features: {
     vi: [
-      `Soạn đề kiểm tra trắc nghiệm nhiều lựa chọn theo ma trận chủ đề × ${appFacts.matrixLevels} mức (nhận biết, thông hiểu, vận dụng, vận dụng cao); AI viết câu, thầy cô duyệt từng câu`,
+      `Soạn đề kiểm tra theo ma trận chủ đề × ${appFacts.matrixLevels} mức (nhận biết, thông hiểu, vận dụng, vận dụng cao), dạng trắc nghiệm hoặc kết hợp trắc nghiệm và tự luận; AI viết câu, thầy cô duyệt từng câu`,
       `Xuất đề tối đa ${appFacts.maxTestVersions} mã đề, xáo trộn câu hỏi và phương án theo khoá cố định, kèm đáp án và hướng dẫn chấm ở tệp riêng`,
       'Giáo án theo Công văn 5512 và slide bài giảng 16:9 có quiz, từ khung chương trình GDPT 2018 có sẵn trong app',
       'Cổng chất lượng chạy tại máy, mỗi cổng in số đơn vị đã kiểm; thầy cô duyệt và ký trước khi xuất',
@@ -72,7 +72,7 @@ export const brand = {
       'Ứng dụng desktop cho macOS (Apple Silicon, Intel) và Windows 64-bit; dữ liệu dự án nằm ở máy thầy cô',
     ],
     en: [
-      `Multiple-choice tests built from a topic × ${appFacts.matrixLevels}-level matrix (recognition, comprehension, application, advanced application); AI writes the items, you review each one`,
+      `Tests built from a topic × ${appFacts.matrixLevels}-level matrix (recognition, comprehension, application, advanced application), multiple-choice or multiple-choice plus essay; AI writes the items, you review each one`,
       `Export up to ${appFacts.maxTestVersions} test versions, with questions and options shuffled by a fixed key, and the answer key and marking guide in separate files`,
       'Official Letter 5512 lesson plans and 16:9 lesson slides with quizzes, from the 2018 general education curriculum built into the app',
       'Quality gates run on your computer and each gate reports how many units it checked; you review and sign before exporting',

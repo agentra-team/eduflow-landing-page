@@ -19,8 +19,16 @@ export const appFacts = {
   programGates: 12,
   /** Ba cấp trên site (Phổ thông, Học phần, Chương trình), theo R6; v1 của app chỉ có Phổ thông (rủi ro K1). */
   levels: 3,
-  /** Dạng câu của đề ở v1: chỉ nhiều lựa chọn. Đúng sai, trả lời ngắn, tự luận có ý là E2a (V2-05). */
-  testQuestionTypes: ['multiple-choice'],
+  /**
+   * Dạng câu của đề ở v1: nhiều lựa chọn (bốn phương án, một đáp án) và bài tự luận có điểm kèm hướng dẫn chấm. Đề có hai hình thức:
+   * "Trắc nghiệm" và "Kết hợp trắc nghiệm và tự luận" (eduflow-application exam/examLabels.ts:9; SetupStep.tsx:363,379 có "Số bài tự luận",
+   * "Điểm tự luận"; contracts/src/examSkills.ts:37 có essays). Đúng sai, trả lời ngắn, tự luận có ý (nhiều ý nhỏ có điểm) là E2a (V2-05).
+   */
+  testQuestionTypes: ['multiple-choice', 'essay'],
+  /** Giới hạn ma trận và đề. Nguồn: eduflow-application packages/contracts/src/exam.ts:60 (MATRIX_ROWS_MAX), :62 (EXAM_QUESTIONS_MAX), examSkills.ts:10 (EXAM_ITEMS_CALL_MAX). */
+  matrixMaxRows: 40,
+  testMaxItems: 200,
+  topicMaxItems: 120,
   /** Việc chạy tại máy (cổng, trộn mã đề, biên dịch, đọc và OCR tại máy) tốn 0 đồng. Nguồn: spec app §8, DR2a. */
   localWorkCostVnd: 0,
   /** Ngân sách tháng của key cảnh báo khi dùng tới 80%. Nguồn: M1f, spec 30/09. */
