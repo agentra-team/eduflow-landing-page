@@ -120,7 +120,7 @@ export const DOCS: Record<DocId, DocEntry> = {
     group: 'k12',
     order: 2,
     updatedAt: '2026-10-15',
-    topic: 'test-generator',
+    topic: 'test-versions',
     vi: {
       title: 'Xuất đề với nhiều mã đề',
       description: 'Chọn số mã đề tối đa 24, bật hoặc tắt xáo trộn câu và đáp án, xem các phép kiểm tra rồi xuất DOCX hoặc PDF; đáp án và hướng dẫn chấm nằm ở tệp riêng.',
@@ -136,6 +136,7 @@ export const DOCS: Record<DocId, DocEntry> = {
     group: 'k12',
     order: 3,
     updatedAt: '2026-10-15',
+    topic: 'lesson-plans',
     vi: {
       title: 'Soạn giáo án theo Công văn 5512',
       description: 'Soạn giáo án theo Công văn 5512 trên EduFlow: chọn bài, để AI viết bốn hoạt động, đọc cảnh báo của cổng, sửa, duyệt và xuất DOCX hoặc PDF.',
@@ -151,6 +152,7 @@ export const DOCS: Record<DocId, DocEntry> = {
     group: 'k12',
     order: 4,
     updatedAt: '2026-10-15',
+    topic: 'lesson-slides',
     vi: {
       title: 'Tạo slide bài giảng có quiz',
       description: 'Tạo slide bài giảng 16:9 trên EduFlow: chọn Slide hay Cả bộ, chọn giao diện, để AI viết nội dung và quiz, xem trước, đọc cổng, duyệt và xuất PDF hoặc PPTX.',

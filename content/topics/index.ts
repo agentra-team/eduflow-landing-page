@@ -8,7 +8,7 @@ import { TOPICS_VI } from './vi'
  * sitemap, footer, llms.txt, JSON-LD và khối "Chủ đề liên quan". Khoá routing của cả sáu trang đã có ở i18n/routing.ts.
  * Thêm chủ đề: thêm mã ở đây, nội dung ở vi.ts và en.ts, thư mục route mỏng app/[locale]/<mã>/ (page.tsx, opengraph-image.tsx).
  */
-export const TOPIC_IDS = ['test-generator'] as const
+export const TOPIC_IDS = ['test-generator', 'test-versions', 'lesson-plans', 'lesson-slides'] as const
 export type TopicId = (typeof TOPIC_IDS)[number]
 
 export const topicPage = (id: TopicId) => `/${id}` as const satisfies PageKey
@@ -29,6 +29,9 @@ const shot = (name: string) => ({ src: `/images/product/${name}.webp`, width: 16
 
 export const TOPIC_META: Record<TopicId, TopicMeta> = {
   'test-generator': { pillar: 'k12', image: shot('exam-setup'), updatedAt: '2026-10-15' },
+  'test-versions': { pillar: 'k12', image: shot('result'), updatedAt: '2026-10-15' },
+  'lesson-plans': { pillar: 'k12', updatedAt: '2026-10-15' },
+  'lesson-slides': { pillar: 'k12', updatedAt: '2026-10-15' },
 }
 
 /** Link trong thân bài: trang chủ đề khác (anchor là `name` của nó), bài hướng dẫn, trang tĩnh, hoặc nguồn ngoài. */
