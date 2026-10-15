@@ -2,21 +2,21 @@
 
 import { useLocale, useTranslations } from 'next-intl'
 import { useParams } from 'next/navigation'
-import type { ComponentProps } from 'react'
-import { Link, usePathname } from '@/i18n/navigation'
+import { usePathname } from '@/i18n/navigation'
 import { routing, type Locale } from '@/i18n/routing'
+import { localeHref } from '@/i18n/switch'
 import { track } from '@/lib/analytics'
 import { cn } from '@/lib/cn'
 
-type Href = ComponentProps<typeof Link>['href']
-
-/** Chuyển VI/EN bằng link thật (bot theo được), giữ nguyên trang hiện tại (slug dịch theo locale). */
+/**
+ * Chuyển VI/EN bằng link thật (bot theo được), giữ nguyên trang hiện tại (slug dịch theo locale). Dùng `<a>` thường:
+ * `Link` của next-intl với locale khác sinh `/vi/...` rồi chuyển hướng, và đổi locale đằng nào cũng nạp lại root layout.
+ */
 export function LocaleSwitcher({ className }: { className?: string }) {
   const locale = useLocale() as Locale
   const t = useTranslations('common')
   const pathname = usePathname()
   const params = useParams()
-  const href = { pathname, params } as Href
   return (
     <div
       role="group"
@@ -26,10 +26,9 @@ export function LocaleSwitcher({ className }: { className?: string }) {
       {routing.locales.map((code) => {
         const on = code === locale
         return (
-          <Link
+          <a
             key={code}
-            href={href}
-            locale={code}
+            href={localeHref(pathname, params, code)}
             hrefLang={code}
             aria-current={on ? 'true' : undefined}
             onClick={() => !on && track({ name: 'locale_switch', from: locale, to: code })}
@@ -39,7 +38,7 @@ export function LocaleSwitcher({ className }: { className?: string }) {
             )}
           >
             {code.toUpperCase()}
-          </Link>
+          </a>
         )
       })}
     </div>

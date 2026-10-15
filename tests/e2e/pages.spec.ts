@@ -101,3 +101,12 @@ for (const width of [640, 768, 820, 1024]) {
     }
   })
 }
+
+// Spec §4.5: link đổi ngôn ngữ trỏ thẳng URL cuối, không qua /vi/... rồi chuyển hướng.
+test('language links point straight at the final URL', async ({ page }) => {
+  await page.goto('/ai-cho-giao-vien')
+  const hrefs = await page.locator('a[hreflang]').evaluateAll((as) => as.map((a) => a.getAttribute('href')))
+  expect(hrefs.length).toBeGreaterThanOrEqual(4)
+  expect(hrefs.filter((h) => h?.startsWith('/vi'))).toEqual([])
+  expect(hrefs).toContain('/en/ai-for-teachers')
+})
