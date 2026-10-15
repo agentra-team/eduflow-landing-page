@@ -278,7 +278,7 @@ export const TOPICS_EN: Record<TopicId, TopicCopy> = {
       steps: [
         {
           title: 'Write the test and approve it first',
-          text: 'Versions are built from a test written in the app, so the test needs its items, has passed the quality gates and has been approved by you. An unapproved test can still be exported, but the export carries a DÙNG THỬ (trial) watermark.',
+          text: 'Versions are built from a test written in the app, so the test already has its items, has passed the quality gates and has been approved by you. An unapproved test can still be exported, but the export carries a DÙNG THỬ (trial) watermark.',
           doc: 'create-a-test',
         },
         {
@@ -320,7 +320,7 @@ export const TOPICS_EN: Record<TopicId, TopicCopy> = {
     faq: [
       {
         q: 'Can EduFlow shuffle a Word or PDF test I already have?',
-        a: 'Not yet. EduFlow shuffles a test written in the app, where each item has four options, one answer and a learning requirement the app can check. Reading an old test from a Word or PDF file into the app is on the roadmap, with no date.',
+        a: 'Not yet. EduFlow shuffles a test written in the app, where each item has four options, one answer, so the app can check the key after shuffling. Reading an old test from a Word or PDF file into the app is on the roadmap, with no date.',
       },
       {
         q: 'How many versions can one test have?',
@@ -548,7 +548,7 @@ export const TOPICS_EN: Record<TopicId, TopicCopy> = {
           'The look',
           'You pick a PowerPoint theme or adjust it yourself.',
           'Differs by tool; check how it lets you pick a theme and colours.',
-          'Eight built-in looks, your own and your school\'s looks, a main colour (it must contrast enough, at least 3:1, to read on a projector) and a designer of your own.',
+          'Eight built-in looks, your own and your school\'s looks, a main colour (it must contrast enough, at least 3:1, to read on a projector) and a designer for building your own look.',
         ],
         [
           'Checking before use',

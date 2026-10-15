@@ -279,7 +279,7 @@ export const TOPICS_VI: Record<TopicId, TopicCopy> = {
       steps: [
         {
           title: 'Soạn đề và duyệt trước',
-          text: 'Mã đề dựng từ một đề đã soạn trong app, nên đề cần có câu hỏi, nên đã qua cổng chất lượng và đã được thầy cô duyệt. Xuất đề chưa duyệt vẫn được, nhưng bản xuất mang dấu chìm DÙNG THỬ.',
+          text: 'Mã đề dựng từ một đề đã soạn trong app, nên đề đã có câu hỏi, đã qua cổng chất lượng và đã được thầy cô duyệt. Xuất đề chưa duyệt vẫn được, nhưng bản xuất mang dấu chìm DÙNG THỬ.',
           doc: 'create-a-test',
         },
         {
@@ -321,7 +321,7 @@ export const TOPICS_VI: Record<TopicId, TopicCopy> = {
     faq: [
       {
         q: 'EduFlow có trộn được đề Word hay PDF tôi đang có không?',
-        a: 'Chưa. EduFlow trộn đề soạn trong app, nơi mỗi câu có bốn phương án, một đáp án và yêu cầu cần đạt để app kiểm lại. Đọc một đề cũ từ tệp Word hay PDF vào app thuộc lộ trình, chưa có ngày.',
+        a: 'Chưa. EduFlow trộn đề soạn trong app, nơi mỗi câu có bốn phương án, một đáp án để app kiểm lại khi xáo. Đọc một đề cũ từ tệp Word hay PDF vào app thuộc lộ trình, chưa có ngày.',
       },
       {
         q: 'Một đề trộn được bao nhiêu mã đề?',
@@ -549,7 +549,7 @@ export const TOPICS_VI: Record<TopicId, TopicCopy> = {
           'Giao diện',
           'Thầy cô chọn mẫu của PowerPoint hay tự chỉnh.',
           'Khác nhau tuỳ công cụ; thầy cô xem công cụ cho chọn mẫu và màu ra sao.',
-          'Tám mẫu có sẵn, mẫu Của tôi và Của trường, màu chủ đạo (phải đủ tương phản từ 3:1 để đọc trên máy chiếu) và trình tự thiết kế.',
+          'Tám mẫu có sẵn, mẫu Của tôi và Của trường, màu chủ đạo (phải đủ tương phản từ 3:1 để đọc trên máy chiếu) và nút Tự thiết kế để dựng giao diện riêng.',
         ],
         [
           'Kiểm trước khi dùng',

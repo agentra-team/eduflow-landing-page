@@ -29,7 +29,7 @@ const shot = (name: string) => ({ src: `/images/product/${name}.webp`, width: 16
 
 export const TOPIC_META: Record<TopicId, TopicMeta> = {
   'test-generator': { pillar: 'k12', image: shot('exam-setup'), updatedAt: '2026-10-15' },
-  'test-versions': { pillar: 'k12', image: shot('result'), updatedAt: '2026-10-15' },
+  'test-versions': { pillar: 'k12', updatedAt: '2026-10-15' },
   'lesson-plans': { pillar: 'k12', updatedAt: '2026-10-15' },
   'lesson-slides': { pillar: 'k12', updatedAt: '2026-10-15' },
   'course-syllabus': { pillar: 'university', image: shot('course-workbench'), updatedAt: '2026-10-15' },
