@@ -21,6 +21,22 @@ describe('parseFeeds', () => {
     expect(assets[2]).toMatchObject({ fileName: 'EduFlow-1.0.0.dmg', sizeBytes: 309876543 })
     expect(assets.every((a) => a.releaseDate.startsWith('2026-10-01'))).toBe(true)
   })
+  test('macOS falls back to the zips when the feed has no dmg (the app builds macOS on Linux)', () => {
+    const file = (url: string, size: number) => ({ url, sha512: 'c2hh', size })
+    const zipOnly = {
+      version: '1.0.7',
+      files: [file('EduFlow-1.0.7-arm64.zip', 146), file('EduFlow-1.0.7-x64.zip', 150)],
+      path: 'EduFlow-1.0.7-arm64.zip',
+      releaseDate: '2026-10-16T09:00:00.000Z',
+    }
+    const assets = parseFeeds({ mac: zipOnly }, BASE)
+    expect(assets.map((a) => [a.platform, a.fileName, a.url, a.sizeBytes])).toEqual([
+      ['macos-arm64', 'EduFlow-1.0.7-arm64.zip', `${BASE}EduFlow-1.0.7-arm64.zip`, 146],
+      ['macos-x64', 'EduFlow-1.0.7-x64.zip', `${BASE}EduFlow-1.0.7-x64.zip`, 150],
+    ])
+    // A dmg still wins over the zip of the same arch.
+    expect(parseFeeds({ mac }, BASE).map((a) => a.fileName)).toEqual(['EduFlow-1.0.0-arm64.dmg', 'EduFlow-1.0.0.dmg'])
+  })
   test('missing or malformed feed yields no asset for that platform, no throw', () => {
     expect(parseFeeds({ mac }, BASE).map((a) => a.platform)).toEqual(['macos-arm64', 'macos-x64'])
     expect(parseFeeds({ windows: { nonsense: true }, mac: null }, BASE)).toEqual([])

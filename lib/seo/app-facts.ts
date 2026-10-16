@@ -54,7 +54,7 @@ export const appFacts = {
   budgetWarnPercent: 80,
   /** Key dùng thử chạy trên 1 máy, có ngân sách và ngày hết hạn. Nguồn: RK1, US-101 tới US-108. */
   trialDevices: 1,
-  /** Bộ cài có cho: dmg arm64 và x64, nsis x64. Nguồn: packages/desktop/package.json, R1. */
+  /** Bộ cài có cho: zip macOS arm64 và x64 (dựng trên Linux, không còn dmg từ 16/10/2026), nsis x64. Nguồn: packages/desktop/package.json, R1. */
   platforms: { macos: ['Apple Silicon', 'Intel'], windows: ['x64'] },
   /** Hệ điều hành tối thiểu, như trang Tải về đã công bố (spec 30/09). */
   minOs: { macos: '12', windows: '10 22H2' },

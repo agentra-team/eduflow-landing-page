@@ -56,7 +56,8 @@ function toAsset(platform: Platform, feed: Feed, file: FeedFile, baseUrl: string
 
 /**
  * latest.yml (Windows) và latest-mac.yml (macOS) → danh sách tệp tải, thứ tự windows-x64, macos-arm64, macos-x64.
- * Bỏ .zip và .blockmap (chỉ cho auto-update). Feed thiếu hoặc sai hình dạng → bỏ qua phần đó, không ném lỗi (spec §7.3).
+ * macOS: .dmg khi feed có; không có thì .zip (app dựng bản macOS trên Linux từ 16/10/2026, nơi không làm được dmg, nên feed
+ * chỉ có zip). Bỏ .blockmap. Feed thiếu hoặc sai hình dạng → bỏ qua phần đó, không ném lỗi (spec §7.3).
  */
 export function parseFeeds(input: { windows?: unknown; mac?: unknown }, baseUrl: string): ReleaseAsset[] {
   const out: ReleaseAsset[] = []
@@ -67,8 +68,10 @@ export function parseFeeds(input: { windows?: unknown; mac?: unknown }, baseUrl:
   }
   if (isFeed(input.mac)) {
     const feed = input.mac
-    const arm64 = feed.files.find((f) => f.url.endsWith('-arm64.dmg'))
-    const x64 = feed.files.find((f) => f.url.endsWith('.dmg') && !f.url.includes('arm64'))
+    const arm64 = feed.files.find((f) => f.url.endsWith('-arm64.dmg')) ?? feed.files.find((f) => f.url.endsWith('-arm64.zip'))
+    const x64 =
+      feed.files.find((f) => f.url.endsWith('.dmg') && !f.url.includes('arm64')) ??
+      feed.files.find((f) => f.url.endsWith('.zip') && !f.url.includes('arm64'))
     if (arm64) out.push(toAsset('macos-arm64', feed, arm64, baseUrl))
     if (x64) out.push(toAsset('macos-x64', feed, x64, baseUrl))
   }
