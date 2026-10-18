@@ -4,12 +4,12 @@ export function Step({ n, id, title, children }: { n: number; id: string; title:
     <li className="flex gap-4 md:gap-5">
       <span
         aria-hidden="true"
-        className="mt-0.5 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-accent text-[15px] font-bold text-white"
+        className="mt-0.5 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-accent text-[15px] font-semibold text-white"
       >
         {n}
       </span>
       <div className="flex min-w-0 flex-1 flex-col gap-3.5 border-b border-line pb-8 md:pb-10">
-        <h2 id={id} className="scroll-mt-24 pt-1 text-[22px] leading-snug font-bold tracking-[-0.01em] md:text-2xl">
+        <h2 id={id} className="scroll-mt-24 pt-1 text-[22px] leading-snug font-semibold tracking-[-0.01em] md:text-2xl">
           {title}
         </h2>
         {children}

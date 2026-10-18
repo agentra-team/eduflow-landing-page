@@ -35,13 +35,13 @@ export default async function DocsIndexPage() {
       <Section className="pt-0 md:pt-0">
         <Container className="flex flex-col gap-12">
           <section className="flex flex-col gap-4">
-            <h2 className="text-[24px] font-bold">{t('quickStart.h2')}</h2>
+            <h2 className="text-[24px] font-semibold">{t('quickStart.h2')}</h2>
             <p className="text-ink2">{t('quickStart.lead')}</p>
             <ol className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
               {QUICK_START.map((id, i) => (
                 <li key={id}>
                   <Link href={docHref(locale, id)} className={card}>
-                    <span className="font-mono text-[13px] font-semibold text-accent-strong">{String(i + 1).padStart(2, '0')}</span>
+                    <span className="font-mono text-[13px] font-semibold text-accent">{String(i + 1).padStart(2, '0')}</span>
                     <span className="font-semibold">{DOCS[id][locale].title}</span>
                     <span className="text-[14.5px] text-ink2">{DOCS[id][locale].description}</span>
                   </Link>
@@ -51,7 +51,7 @@ export default async function DocsIndexPage() {
           </section>
           {docsByGroup().map(({ group, ids }) => (
             <section key={group} className="flex flex-col gap-4">
-              <h2 className="text-[24px] font-bold">{t(`groups.${group}`)}</h2>
+              <h2 className="text-[24px] font-semibold">{t(`groups.${group}`)}</h2>
               <ul className="grid gap-4 md:grid-cols-2">
                 {ids.map((id) => (
                   <li key={id}>

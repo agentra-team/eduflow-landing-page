@@ -24,7 +24,7 @@ export function ChecksumField({
         {toggleLabel}
       </summary>
       <div className="mt-2 flex items-center gap-2 rounded-control border border-dashed border-line px-2.5 py-2">
-        <span className="text-[11px] font-bold tracking-[0.5px] text-muted">SHA-512</span>
+        <span className="text-[11px] font-semibold tracking-[0.5px] text-muted">SHA-512</span>
         <code className="min-w-0 flex-1 truncate font-mono text-xs text-ink2" title={sha512}>
           {short}
         </code>

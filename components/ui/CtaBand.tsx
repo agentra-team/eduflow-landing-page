@@ -21,7 +21,7 @@ export function CtaBand({
   return (
     <section className="bg-brand-deep py-14 md:py-22">
       <Container className="flex flex-col items-center gap-4 text-center md:gap-5">
-        <h2 className="max-w-[820px] font-display text-[28px] leading-[1.18] font-bold text-white text-balance md:text-[38px] md:leading-[1.15]">{title}</h2>
+        <h2 className="max-w-[820px] font-display text-[28px] leading-[1.18] font-semibold tracking-[-0.02em] text-white text-balance md:text-[38px] md:leading-[1.15]">{title}</h2>
         <p className="max-w-[640px] text-[15.5px] leading-relaxed text-white/80 md:text-[17px]">{sub}</p>
         <div className="mt-2 flex w-full flex-col gap-2.5 sm:w-auto sm:flex-row sm:gap-3">
           {'externalHref' in primary ? (

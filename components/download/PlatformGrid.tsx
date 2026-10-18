@@ -19,7 +19,7 @@ export function PlatformGrid({ assets, locale }: { assets: ReleaseAsset[]; local
   return (
     <>
       {os ? (
-        <p className="inline-flex items-center gap-2.5 rounded-full border border-accent-line bg-accent-soft py-2 pr-4 pl-3 text-sm font-semibold text-accent-strong">
+        <p className="inline-flex items-center gap-2.5 rounded-full border border-accent-line bg-accent-soft py-2 pr-4 pl-3 text-sm font-semibold text-accent">
           <Icon name={os === 'macos' ? 'apple' : 'windows'} size={18} />
           {t(`detected.${os}`)}
         </p>

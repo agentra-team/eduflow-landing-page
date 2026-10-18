@@ -27,7 +27,7 @@ export function NavLinks({ onNavigate, className }: { onNavigate?: () => void; c
             aria-current={active ? 'page' : undefined}
             className={cn(
               'border-b-2 py-1.5 text-[15px] transition-colors',
-              active ? 'border-accent font-semibold text-ink' : 'border-transparent font-normal text-ink2 hover:text-ink',
+              active ? 'border-accent font-semibold text-ink' : 'border-transparent font-medium text-muted hover:text-ink',
               className,
             )}
           >

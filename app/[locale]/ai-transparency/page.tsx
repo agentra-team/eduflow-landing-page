@@ -25,7 +25,7 @@ export default async function TransparencyPage() {
   const [t, tc, tn] = await Promise.all([getTranslations('transparency'), getTranslations('common'), getTranslations('nav')])
   return (
     <main id="main" className="flex-1">
-      <section className="bg-[radial-gradient(900px_300px_at_20%_-80px,#E8F3E7_0%,rgba(232,243,231,0)_70%)] pt-12 pb-8 md:pt-16 md:pb-10">
+      <section className="bg-[radial-gradient(900px_300px_at_20%_-80px,var(--color-accent-soft)_0%,transparent_70%)] pt-12 pb-8 md:pt-16 md:pb-10">
         <Container className="flex flex-col gap-4">
           <SectionHead as="h1" align="left" eyebrow={t('eyebrow')} title={t('h1')} lead={t('lead')} />
           <p className="text-sm text-muted">{t('updated', { date: formatDate(UPDATED, locale) })}</p>
@@ -36,7 +36,7 @@ export default async function TransparencyPage() {
           <ol className="flex max-w-[820px] flex-col divide-y divide-line border-y border-line">
             {ITEMS.map((key, i) => (
               <li key={key} className="flex gap-4 py-6 md:gap-6 md:py-7">
-                <span className="w-8 shrink-0 pt-0.5 text-[15px] font-bold text-accent-strong tabular-nums md:w-10">{String(i + 1).padStart(2, '0')}</span>
+                <span className="w-8 shrink-0 pt-0.5 text-[15px] font-semibold text-accent tabular-nums md:w-10">{String(i + 1).padStart(2, '0')}</span>
                 <div className="flex flex-col gap-2">
                   <h2 className="text-xl leading-snug font-semibold">{t(`${key}.title`)}</h2>
                   <p className="text-base leading-relaxed text-ink2">{t(`${key}.body`)}</p>

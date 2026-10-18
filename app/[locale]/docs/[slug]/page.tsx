@@ -73,7 +73,7 @@ export default async function DocPage({ params }: { params: Params }) {
               <Icon name="chevron-right" size={14} />
               <span className="text-ink2" aria-current="page">{c.title}</span>
             </nav>
-            <h1 className="font-display text-[32px] leading-[1.12] font-bold tracking-[-0.02em] text-balance md:text-[42px]">{c.title}</h1>
+            <h1 className="font-display text-[32px] leading-[1.12] font-semibold tracking-[-0.02em] text-balance md:text-[42px]">{c.title}</h1>
             <p className="text-base leading-relaxed text-ink2 text-pretty md:text-lg">{c.description}</p>
             <p className="text-sm text-muted">{t('updated', { date: formatDate(doc.updatedAt, locale) })}</p>
           </header>
@@ -83,8 +83,8 @@ export default async function DocPage({ params }: { params: Params }) {
           </div>
           {doc.topic ? (
             <aside className="flex flex-col gap-1.5 rounded-card border border-line bg-card p-5">
-              <span className="text-[12.5px] font-bold tracking-[0.5px] text-muted uppercase">{t('readMore')}</span>
-              <Link href={topicPage(doc.topic)} className="font-semibold text-accent-strong underline underline-offset-2 hover:text-ink">
+              <span className="text-[12.5px] font-semibold tracking-[0.5px] text-muted uppercase">{t('readMore')}</span>
+              <Link href={topicPage(doc.topic)} className="font-semibold text-accent underline underline-offset-2 hover:text-ink">
                 {topicCopy(locale, doc.topic).name}
               </Link>
               <span className="text-[14.5px] text-ink2">{topicCopy(locale, doc.topic).card}</span>

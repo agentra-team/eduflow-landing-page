@@ -43,7 +43,7 @@ export async function LevelPage({ level }: { level: LevelKey }) {
   const url = absoluteUrl(locale, cfg.page)
   return (
     <main id="main" className="flex-1">
-      <section className="bg-[radial-gradient(900px_300px_at_20%_-80px,#E8F3E7_0%,rgba(232,243,231,0)_70%)] pt-12 pb-10 md:pt-16 md:pb-14">
+      <section className="bg-[radial-gradient(900px_300px_at_20%_-80px,var(--color-accent-soft)_0%,transparent_70%)] pt-12 pb-10 md:pt-16 md:pb-14">
         <Container className="flex flex-col gap-5">
           <SectionHead as="h1" align="left" eyebrow={t('hero.eyebrow')} title={t('hero.h1')} lead={t('hero.lead')} />
           <p className="text-[15px] text-ink2">{t('hero.audience')}</p>
@@ -70,8 +70,8 @@ export async function LevelPage({ level }: { level: LevelKey }) {
               )}
             >
               <div className="flex flex-col gap-3">
-                <span className="font-mono text-[13px] font-semibold text-accent-strong">{String(i + 1).padStart(2, '0')}</span>
-                <h3 className="font-display text-[24px] leading-tight font-bold">{t(`screens.${s}.title`)}</h3>
+                <span className="font-mono text-[13px] font-semibold text-accent">{String(i + 1).padStart(2, '0')}</span>
+                <h3 className="font-display text-[24px] leading-tight font-semibold">{t(`screens.${s}.title`)}</h3>
                 <p className="text-[16px] leading-relaxed text-ink2">{t(`screens.${s}.desc`)}</p>
               </div>
               <WindowFrame
@@ -95,7 +95,7 @@ export async function LevelPage({ level }: { level: LevelKey }) {
           <div className="mt-8 grid gap-4 md:mt-12 md:grid-cols-3 md:gap-6">
             {OUTCOMES.map((o, i) => (
               <div key={o} className="flex flex-col gap-3 rounded-card border border-line bg-page p-6">
-                <span className="inline-flex h-10 w-10 items-center justify-center rounded-[10px] bg-accent-soft text-accent-strong">
+                <span className="inline-flex h-10 w-10 items-center justify-center rounded-[10px] bg-accent-soft text-accent">
                   <Icon name={cfg.icons[i]} size={20} />
                 </span>
                 <h3 className="text-[17px] leading-snug font-semibold">{t(`outcomes.${o}.title`)}</h3>
@@ -109,9 +109,9 @@ export async function LevelPage({ level }: { level: LevelKey }) {
       <Section>
         <Container>
           <div className="flex flex-col gap-3 rounded-card border border-accent-line bg-accent-soft p-6 md:p-8">
-            <h2 className="font-display text-[24px] font-bold">{t('gates.title')}</h2>
+            <h2 className="font-display text-[24px] font-semibold">{t('gates.title')}</h2>
             <p className="text-[16px] leading-relaxed text-ink2">{t('gates.body')}</p>
-            <p className="inline-flex items-center gap-2 text-[15px] font-semibold text-accent-strong">
+            <p className="inline-flex items-center gap-2 text-[15px] font-semibold text-accent">
               <Icon name="shield" size={18} />
               {t('gates.rule')}
             </p>

@@ -33,7 +33,7 @@ export function LocaleSwitcher({ className }: { className?: string }) {
             aria-current={on ? 'true' : undefined}
             onClick={() => !on && track({ name: 'locale_switch', from: locale, to: code })}
             className={cn(
-              'inline-flex h-11 items-center rounded-full px-3.5 md:h-[30px] md:px-2.5 text-[12.5px] font-bold tracking-[0.4px] transition-colors',
+              'inline-flex h-11 items-center rounded-full px-3.5 md:h-[30px] md:px-2.5 text-[12.5px] font-semibold tracking-[0.4px] transition-colors',
               on ? 'bg-card2 text-ink shadow-[0_1px_2px_rgba(0,0,0,0.08)]' : 'text-muted hover:text-ink',
             )}
           >

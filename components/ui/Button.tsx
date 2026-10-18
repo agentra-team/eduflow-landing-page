@@ -7,23 +7,24 @@ import type { IconName } from './icons'
 type Variant = 'primary' | 'secondary' | 'white' | 'ghost-white'
 type Size = 'sm' | 'md' | 'lg'
 
-// Màu viền focus đi theo biến thể: xanh accent (#237A31) chỉ đạt tương phản 2,7:1 trên dải CTA tối (#1E2B23), dưới mức 3:1 cho thành phần giao diện,
+// Màu viền focus đi theo biến thể: trên dải CTA navy (#141736) xanh accent (#0177FB) chỉ đạt 4,2:1, viền trắng đạt hơn 17:1,
 // nên hai nút trắng dùng viền trắng. Không đặt màu ở lớp nền chung: cn() chỉ nối chuỗi, hai class cùng thuộc tính sẽ thắng thua theo thứ tự trong CSS.
+// Nút hình viên thuốc theo Figma (spec blue retheme §4.3): nút chính nền #0177FB, hover #0167D9; nút phụ viền mảnh trên nền trắng.
 const VARIANT: Record<Variant, string> = {
   primary: 'border-accent bg-accent text-white hover:bg-accent-strong hover:border-accent-strong focus-visible:outline-accent',
-  secondary: 'border-line bg-card text-ink hover:border-muted focus-visible:outline-accent',
+  secondary: 'border-line bg-card text-ink hover:border-faint focus-visible:outline-accent',
   white: 'border-white bg-white text-brand-deep hover:bg-page focus-visible:outline-white',
   'ghost-white': 'border-white/45 bg-transparent text-white hover:bg-white/10 focus-visible:outline-white',
 }
 const SIZE: Record<Size, string> = {
-  sm: 'h-10 px-4 text-sm',
-  md: 'h-[46px] px-5 text-[15px]',
-  lg: 'h-13 px-6 text-base',
+  sm: 'h-10 px-5 text-sm',
+  md: 'h-[46px] px-6 text-[15px]',
+  lg: 'h-[54px] px-7 text-base',
 }
 
 export function buttonClasses(variant: Variant = 'primary', size: Size = 'md', full = false, className?: string) {
   return cn(
-    'inline-flex items-center justify-center gap-2 rounded-control border font-semibold leading-none whitespace-nowrap transition-colors',
+    'inline-flex items-center justify-center gap-2 rounded-full border-[1.5px] font-semibold leading-none whitespace-nowrap transition-colors',
     'focus-visible:outline-2 focus-visible:outline-offset-2',
     VARIANT[variant],
     SIZE[size],

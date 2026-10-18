@@ -18,7 +18,7 @@ const h = <P,>(type: ComponentType<P>, props: Omit<P, 'children'>, ...children: 
   createElement(type as ComponentType<Omit<P, 'children'>>, props, ...children)
 
 describe('Button focus ring', () => {
-  test('is white on the dark CTA band, where the accent green is about 2.7:1 and below the 3:1 non-text level', () => {
+  test('is white on the navy CTA band, where the accent blue #0177FB reaches only about 4.2:1 and white reads far stronger', () => {
     for (const variant of ['white', 'ghost-white'] as const) {
       const classes = buttonClasses(variant)
       expect(classes, variant).toContain('focus-visible:outline-white')
@@ -26,7 +26,7 @@ describe('Button focus ring', () => {
     }
   })
 
-  test('stays the accent green on the light variants', () => {
+  test('stays the accent blue on the light variants', () => {
     for (const variant of ['primary', 'secondary'] as const) {
       const classes = buttonClasses(variant)
       expect(classes, variant).toContain('focus-visible:outline-accent')
@@ -39,6 +39,17 @@ describe('Button focus ring', () => {
       expect(buttonClasses(variant), variant).toContain('focus-visible:outline-2')
       expect(buttonClasses(variant), variant).toContain('focus-visible:outline-offset-2')
     }
+  })
+})
+
+describe('Button shape', () => {
+  test('is a pill on every variant, as in the Figma reference', () => {
+    for (const variant of ['primary', 'secondary', 'white', 'ghost-white'] as const) expect(buttonClasses(variant), variant).toContain('rounded-full')
+  })
+
+  test('the primary button is the brand blue and darkens to the hover blue', () => {
+    expect(buttonClasses('primary')).toContain('bg-accent')
+    expect(buttonClasses('primary')).toContain('hover:bg-accent-strong')
   })
 })
 

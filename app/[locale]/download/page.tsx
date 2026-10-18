@@ -40,7 +40,7 @@ export default async function DownloadPage() {
   )
   return (
     <main id="main" className="flex-1">
-      <section className="bg-[radial-gradient(900px_300px_at_20%_-80px,#E8F3E7_0%,rgba(232,243,231,0)_70%)] pt-12 pb-10 md:pt-16 md:pb-12">
+      <section className="bg-[radial-gradient(900px_300px_at_20%_-80px,var(--color-accent-soft)_0%,transparent_70%)] pt-12 pb-10 md:pt-16 md:pb-12">
         <Container>
           <SectionHead
             as="h1"
@@ -78,7 +78,7 @@ export default async function DownloadPage() {
               {t(`signing.${SIGNING}.body`)} {guide('windows', t('guideWindows'))} · {guide('macos', t('guideMac'))}
             </Callout>
             <div className="flex gap-3.5 rounded-xl border border-line bg-card2 p-5">
-              <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-[10px] bg-accent-soft text-accent-strong">
+              <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-[10px] bg-accent-soft text-accent">
                 <Icon name="refresh" size={20} />
               </span>
               <div className="flex flex-col gap-1">
@@ -90,7 +90,7 @@ export default async function DownloadPage() {
           <p className="mt-7 text-center text-[14.5px] text-muted">
             {t.rich('help', {
               email: () => (
-                <a href={`mailto:${site.email}`} className="font-semibold text-accent-strong">
+                <a href={`mailto:${site.email}`} className="font-semibold text-accent">
                   {site.email}
                 </a>
               ),

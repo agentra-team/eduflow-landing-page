@@ -13,7 +13,7 @@ export async function DocsNav({ current }: { current?: DocId }) {
     <div className="flex flex-col gap-5">
       {docsByGroup().map(({ group, ids }) => (
         <div key={group} className="flex flex-col gap-1.5">
-          <p className="text-[12.5px] font-bold tracking-[0.5px] text-muted uppercase">{t(`groups.${group}`)}</p>
+          <p className="text-[12.5px] font-semibold tracking-[0.5px] text-muted uppercase">{t(`groups.${group}`)}</p>
           <ul className="flex flex-col">
             {ids.map((id) => (
               <li key={id}>

@@ -28,7 +28,7 @@ export async function DocsToc({ items, variant }: { items: TocItem[]; variant: '
   }
   return (
     <nav aria-label={t('toc')} className="hidden lg:sticky lg:top-24 lg:flex lg:flex-col lg:gap-3">
-      <span className="pl-3 text-[12.5px] font-bold tracking-[0.5px] text-muted uppercase">{t('toc')}</span>
+      <span className="pl-3 text-[12.5px] font-semibold tracking-[0.5px] text-muted uppercase">{t('toc')}</span>
       {list}
     </nav>
   )

@@ -21,16 +21,16 @@ export async function generateMetadata(): Promise<Metadata> {
   return buildMetadata({ locale, page: '/contact', seo: staticSeo(locale, '/contact') })
 }
 
-const linkClass = 'inline-flex min-h-11 items-center gap-1.5 text-[14.5px] font-semibold text-accent-strong hover:text-accent md:min-h-0'
+const linkClass = 'inline-flex min-h-11 items-center gap-1.5 text-[14.5px] font-semibold text-accent hover:text-accent-strong md:min-h-0'
 
 function ContactCard({ icon, label, value, sub, action }: { icon: IconName; label: string; value: React.ReactNode; sub: string; action: React.ReactNode }) {
   return (
     <div className="flex flex-col gap-3.5 rounded-xl border border-line bg-card p-6">
-      <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-accent-soft text-accent-strong">
+      <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-accent-soft text-accent">
         <Icon name={icon} size={22} />
       </span>
       <div className="flex flex-col gap-1.5">
-        <span className="text-[13px] font-bold tracking-[0.5px] text-muted uppercase">{label}</span>
+        <span className="text-[13px] font-semibold tracking-[0.5px] text-muted uppercase">{label}</span>
         <span className="text-xl leading-snug font-semibold break-words">{value}</span>
         <span className="text-[14.5px] leading-relaxed text-ink2">{sub}</span>
       </div>
@@ -50,7 +50,7 @@ export default async function ContactPage() {
   ]
   return (
     <main id="main" className="flex-1">
-      <section className="bg-[radial-gradient(900px_300px_at_20%_-80px,#E8F3E7_0%,rgba(232,243,231,0)_70%)] pt-12 pb-10 md:pt-16 md:pb-12">
+      <section className="bg-[radial-gradient(900px_300px_at_20%_-80px,var(--color-accent-soft)_0%,transparent_70%)] pt-12 pb-10 md:pt-16 md:pb-12">
         <Container>
           <SectionHead as="h1" align="left" eyebrow={t('eyebrow')} title={t('h1')} lead={t('lead')} />
         </Container>
@@ -89,10 +89,10 @@ export default async function ContactPage() {
             {STEPS.map(({ key, icon }, i) => (
               <div key={key} className="flex flex-col gap-3.5 rounded-xl border border-line bg-card2 p-6">
                 <div className="flex items-center justify-between">
-                  <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-accent-soft text-accent-strong">
+                  <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-accent-soft text-accent">
                     <Icon name={icon} size={22} />
                   </span>
-                  <span className="text-[13px] font-bold text-muted">{t('key.step', { n: i + 1 })}</span>
+                  <span className="text-[13px] font-semibold text-muted">{t('key.step', { n: i + 1 })}</span>
                 </div>
                 <h3 className="text-lg leading-snug font-semibold">{t(`key.${key}.title`)}</h3>
                 <p className="text-[15px] leading-relaxed text-ink2">{t(`key.${key}.desc`)}</p>
@@ -118,7 +118,7 @@ export default async function ContactPage() {
           </div>
           <div className="flex flex-col gap-4 self-start rounded-xl border border-line bg-card p-6 md:p-7">
             <div className="flex items-center gap-3">
-              <span className="inline-flex h-10 w-10 items-center justify-center rounded-[10px] bg-accent-soft text-accent-strong">
+              <span className="inline-flex h-10 w-10 items-center justify-center rounded-[10px] bg-accent-soft text-accent">
                 <Icon name="bug" size={20} />
               </span>
               <b className="text-base">{t('support.boxTitle')}</b>

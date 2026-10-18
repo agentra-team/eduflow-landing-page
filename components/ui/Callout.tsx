@@ -4,7 +4,7 @@ import { Icon } from './Icon'
 const KINDS = {
   info: 'border-info-border bg-info-soft text-info-text',
   warning: 'border-warn-border bg-warn-soft text-warn-text',
-  note: 'border-accent-line bg-accent-soft text-accent-strong',
+  note: 'border-accent-line bg-accent-soft text-accent',
 } as const
 
 export function Callout({

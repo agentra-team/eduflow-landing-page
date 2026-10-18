@@ -42,12 +42,12 @@ export function PlatformCard({
   return (
     <div
       className={cn(
-        'relative flex flex-col gap-4 rounded-xl border bg-card px-5 pt-6 pb-5 md:px-6',
-        highlighted ? 'border-accent shadow-[0_0_0_3px_#E8F3E7]' : 'border-line shadow-[0_1px_2px_rgba(0,0,0,0.03)]',
+        'relative flex flex-col gap-4 rounded-card border bg-card px-5 pt-6 pb-5 md:px-6',
+        highlighted ? 'border-accent shadow-[0_0_0_3px_var(--color-accent-soft)]' : 'border-line-faint shadow-card',
       )}
     >
       {badge ? (
-        <span className="absolute -top-3 left-5 rounded-full bg-accent px-2.5 py-0.5 text-[11.5px] font-bold tracking-[0.3px] text-white">
+        <span className="absolute -top-3 left-5 rounded-full bg-accent px-2.5 py-0.5 text-[11.5px] font-semibold tracking-[0.3px] text-white">
           {badge}
         </span>
       ) : null}
@@ -70,7 +70,7 @@ export function PlatformCard({
       </DownloadLink>
       <Link
         href={docHref(locale, os === 'macos' ? 'install-macos' : 'install-windows')}
-        className="inline-flex min-h-11 items-center gap-1.5 text-[14.5px] font-semibold text-accent-strong hover:text-accent md:min-h-0"
+        className="inline-flex min-h-11 items-center gap-1.5 text-[14.5px] font-semibold text-accent hover:text-accent-strong md:min-h-0"
       >
         {guideLabel ?? t('guide')}
         <Icon name="arrow-right" size={16} />

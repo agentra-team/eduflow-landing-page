@@ -20,9 +20,9 @@ import { finalTitle, pageName, topicSeo } from '@/lib/seo/pages'
 import { absoluteUrl } from '@/lib/seo/urls'
 import { site } from '@/lib/site'
 
-const H2 = 'text-[24px] leading-[1.2] font-bold tracking-[-0.01em] text-balance md:text-[30px]'
+const H2 = 'text-[24px] leading-[1.2] font-semibold tracking-[-0.01em] text-balance md:text-[30px]'
 const P = 'text-[16.5px] leading-relaxed text-ink2'
-const LINK = 'font-semibold text-accent-strong underline underline-offset-2 hover:text-ink'
+const LINK = 'font-semibold text-accent underline underline-offset-2 hover:text-ink'
 const PILLAR_PAGE = { k12: '/k12', university: '/university', program: '/program' } as const
 
 export async function topicMetadata(id: TopicId): Promise<Metadata> {
@@ -57,7 +57,7 @@ function Block({ block, locale }: { block: TopicBlock; locale: Locale }) {
       <h2 className={H2}>{block.h2}</h2>
       {block.paras?.map((p) => <p key={p} className={P}>{p}</p>)}
       {block.items ? (
-        <List className={block.ordered ? 'flex list-decimal flex-col gap-3 pl-6 marker:font-semibold marker:text-accent-strong' : 'flex flex-col gap-3'}>
+        <List className={block.ordered ? 'flex list-decimal flex-col gap-3 pl-6 marker:font-semibold marker:text-accent' : 'flex flex-col gap-3'}>
           {block.items.map((it) => (
             <li key={it.text} className={block.ordered ? `pl-1 ${P}` : `flex gap-3 ${P}`}>
               {block.ordered ? null : <Icon name="check" size={20} className="mt-1 shrink-0 text-accent" />}
@@ -91,7 +91,7 @@ export async function TopicPage({ id }: { id: TopicId }) {
   ]
   return (
     <main id="main" className="flex-1">
-      <section className="bg-[radial-gradient(900px_300px_at_20%_-80px,#E8F3E7_0%,rgba(232,243,231,0)_70%)] pt-10 pb-10 md:pt-14 md:pb-12">
+      <section className="bg-[radial-gradient(900px_300px_at_20%_-80px,var(--color-accent-soft)_0%,transparent_70%)] pt-10 pb-10 md:pt-14 md:pb-12">
         <Container className="flex flex-col gap-4">
           <nav aria-label={t('breadcrumb')} className="flex flex-wrap items-center gap-2 text-[13.5px] text-muted">
             <Link href="/" className="inline-flex min-h-11 items-center hover:text-ink md:min-h-0">{tc('siteName')}</Link>
@@ -104,8 +104,8 @@ export async function TopicPage({ id }: { id: TopicId }) {
             <Icon name="chevron-right" size={14} />
             <span className="text-ink2" aria-current="page">{c.name}</span>
           </nav>
-          <span className="text-[13px] font-bold tracking-[0.6px] text-accent-strong uppercase">{c.eyebrow}</span>
-          <h1 className="max-w-[900px] font-display text-[32px] leading-[1.12] font-bold tracking-[-0.02em] text-balance md:text-[48px] md:leading-[1.08]">{c.h1}</h1>
+          <span className="w-fit rounded-full bg-accent-soft px-3.5 py-1.5 text-[13.5px] font-semibold text-accent">{c.eyebrow}</span>
+          <h1 className="max-w-[900px] font-display text-[32px] leading-[1.12] font-semibold tracking-[-0.02em] text-balance md:text-[48px] md:leading-[1.08]">{c.h1}</h1>
           <p className="max-w-[800px] text-base leading-relaxed text-ink2 text-pretty md:text-lg">{c.lead}</p>
           <div className="mt-2 flex flex-col gap-2.5 sm:flex-row sm:gap-3">
             <ButtonLink href="/download" icon="download">{tc('download')}</ButtonLink>
@@ -119,7 +119,7 @@ export async function TopicPage({ id }: { id: TopicId }) {
         <Container>
           <article className="flex max-w-[800px] flex-col gap-12 md:gap-14">
             <aside className="rounded-xl border border-accent-line bg-accent-soft p-5 md:p-6">
-              <p className="text-[13px] font-bold tracking-[0.6px] text-accent-strong uppercase">{t('inShort')}</p>
+              <p className="text-[13px] font-semibold tracking-[0.6px] text-accent uppercase">{t('inShort')}</p>
               <p className="mt-2 text-[16.5px] leading-relaxed text-ink"><Highlight text={c.inShort} term={c.keywords[0]} /></p>
             </aside>
 
@@ -160,7 +160,7 @@ export async function TopicPage({ id }: { id: TopicId }) {
             <section className="flex flex-col gap-4">
               <h2 className={H2}>{c.howTo.h2}</h2>
               {c.howTo.lead ? <p className={P}>{c.howTo.lead}</p> : null}
-              <ol className="flex list-decimal flex-col gap-4 pl-6 marker:font-semibold marker:text-accent-strong">
+              <ol className="flex list-decimal flex-col gap-4 pl-6 marker:font-semibold marker:text-accent">
                 {c.howTo.steps.map((s) => (
                   <li key={s.title} className={`pl-1 ${P}`}>
                     <strong className="font-semibold text-ink">{s.title}.</strong> {s.text}
@@ -183,7 +183,7 @@ export async function TopicPage({ id }: { id: TopicId }) {
                 {pillar ? (
                   <li>
                     <Link href={pillar} className="flex min-h-11 flex-col gap-1 rounded-card border border-line bg-card p-4 hover:border-muted">
-                      <span className="text-[12.5px] font-bold tracking-[0.5px] text-muted uppercase">{t('pillar')}</span>
+                      <span className="text-[12.5px] font-semibold tracking-[0.5px] text-muted uppercase">{t('pillar')}</span>
                       <span className="font-semibold">{pageName(locale, pillar)}</span>
                     </Link>
                   </li>

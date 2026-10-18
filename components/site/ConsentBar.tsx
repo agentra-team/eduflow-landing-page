@@ -27,7 +27,7 @@ export function ConsentBar() {
       <div className="mx-auto flex max-w-[1200px] flex-col gap-3 md:flex-row md:items-center md:gap-6">
         <p className="flex-1 text-[14px] leading-relaxed text-ink2">
           {t('text')}{' '}
-          <Link href="/privacy" className="font-semibold text-accent-strong underline underline-offset-2">
+          <Link href="/privacy" className="font-semibold text-accent underline underline-offset-2">
             {t('policy')}
           </Link>
         </p>

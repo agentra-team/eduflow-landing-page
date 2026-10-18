@@ -35,7 +35,7 @@ export default async function PricingPage() {
   const sales = contactSalesHref(locale)
   return (
     <main id="main" className="flex-1">
-      <section className="bg-[radial-gradient(900px_300px_at_20%_-80px,#E8F3E7_0%,rgba(232,243,231,0)_70%)] pt-12 pb-10 md:pt-16 md:pb-14">
+      <section className="bg-[radial-gradient(900px_300px_at_20%_-80px,var(--color-accent-soft)_0%,transparent_70%)] pt-12 pb-10 md:pt-16 md:pb-14">
         <Container className="flex flex-col gap-5">
           <SectionHead as="h1" align="left" eyebrow={t('hero.eyebrow')} title={t('hero.h1')} lead={t('hero.lead')} />
           <div className="flex flex-col gap-3 sm:flex-row">
@@ -51,7 +51,7 @@ export default async function PricingPage() {
           <ol className="mt-8 grid gap-4 md:mt-10 md:grid-cols-2">
             {STEPS.map((s, i) => (
               <li key={s} className="flex gap-4 rounded-card border border-line bg-card p-5">
-                <span className="font-mono text-[15px] font-semibold text-accent-strong">{String(i + 1).padStart(2, '0')}</span>
+                <span className="font-mono text-[15px] font-semibold text-accent">{String(i + 1).padStart(2, '0')}</span>
                 <div className="flex flex-col gap-1.5">
                   <h3 className="text-[17px] font-semibold">{t(`steps.${s}.title`)}</h3>
                   <p className="text-[15px] leading-relaxed text-ink2">{t(`steps.${s}.body`)}</p>
@@ -64,7 +64,7 @@ export default async function PricingPage() {
 
       <Section className="border-y border-line bg-card">
         <Container className="flex flex-col gap-4">
-          <h2 className="font-display text-[26px] font-bold">{t('formula.title')}</h2>
+          <h2 className="font-display text-[26px] font-semibold">{t('formula.title')}</h2>
           <p className="rounded-control border border-line bg-page px-5 py-4 font-mono text-[15px] text-ink md:text-[17px]">{t('formula.expr')}</p>
           <p className="max-w-[820px] text-[15px] leading-relaxed text-ink2">{t('formula.note')}</p>
         </Container>
