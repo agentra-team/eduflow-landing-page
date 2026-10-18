@@ -37,3 +37,7 @@ test('the home copy never claims what the app does not do yet (R-K1)', () => {
     expect(all).not.toMatch(/ký và|and sign|công chứng|notariz|Khởi động lại|Restart|tự báo khi có bản mới|tells you when a new version/i)
   }
 })
+
+test('the blue phrase of the home H1 is a literal part of the H1 in every locale (blue retheme §4.5)', () => {
+  for (const m of [vi, en]) expect(m.home.hero.h1).toContain(m.home.hero.h1Accent)
+})

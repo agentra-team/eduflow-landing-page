@@ -26,13 +26,13 @@ export function HeroCta({
   let primary: React.ReactNode
   if (downloadState(assets) === 'prelaunch') {
     primary = (
-      <ButtonLink href="/contact" size="lg" icon="mail" className="w-full sm:w-auto" onClick={() => track({ name: 'cta_click', id: 'hero_early_access', location: 'hero' })}>
+      <ButtonLink href="/contact" size="lg" icon="mail" className="w-full shadow-cta sm:w-auto" onClick={() => track({ name: 'cta_click', id: 'hero_early_access', location: 'hero' })}>
         {labels.prelaunch}
       </ButtonLink>
     )
   } else if (os === 'windows' && windows) {
     primary = (
-      <DownloadLink asset={windows} location="hero" size="lg" className="w-full sm:w-auto">
+      <DownloadLink asset={windows} location="hero" size="lg" className="w-full shadow-cta sm:w-auto">
         {labels.windows}
       </DownloadLink>
     )
@@ -42,7 +42,7 @@ export function HeroCta({
         href="/download"
         size="lg"
         icon="download"
-        className="w-full sm:w-auto"
+        className="w-full shadow-cta sm:w-auto"
         onClick={() => track({ name: 'cta_click', id: macReady ? 'hero_download_mac' : 'hero_download', location: 'hero' })}
       >
         {macReady ? labels.mac : labels.default}
@@ -50,7 +50,7 @@ export function HeroCta({
     )
   }
   return (
-    <div className="mt-1.5 flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
+    <div className="flex w-full flex-col gap-3.5 sm:w-auto sm:flex-row sm:flex-wrap">
       {primary}
       <a
         href="#tro-ly"

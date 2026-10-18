@@ -18,7 +18,7 @@ export function faqItems(t: (key: string) => string) {
 export function FaqSection() {
   const t = useTranslations('home.faq')
   return (
-    <Section className="border-t border-line bg-card">
+    <Section className="bg-sidebar">
       <Container>
         <SectionHead eyebrow={t('eyebrow')} title={t('h2')} />
         <Faq items={faqItems((k) => t(k as Parameters<typeof t>[0]))} />

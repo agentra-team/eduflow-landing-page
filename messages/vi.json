@@ -62,6 +62,7 @@
     "hero": {
       "eyebrow": "App desktop cho macOS và Windows",
       "h1": "Phần mềm AI cho giáo viên: soạn đề kiểm tra, giáo án và slide bài giảng",
+      "h1Accent": "đề kiểm tra",
       "sub": "Hôm nay EduFlow soạn đề kiểm tra, giáo án và slide cho giáo viên phổ thông. Giảng viên và Phòng Đảm bảo chất lượng nạp tài liệu và hỏi trợ lý; soạn đề cương, rà soát chương trình thuộc lộ trình. Máy dựng khung chuẩn, AI điền nội dung, thầy cô duyệt.",
       "platformNote": "EduFlow chạy trên máy tính macOS và Windows.",
       "ctaDefault": "Tải EduFlow",

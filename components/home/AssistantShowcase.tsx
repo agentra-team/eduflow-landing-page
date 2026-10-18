@@ -18,14 +18,14 @@ const POINTS: Array<{ key: 'p1' | 'p2' | 'p3' | 'p4'; icon: IconName }> = [
 export function AssistantShowcase() {
   const t = useTranslations('home.assistant')
   return (
-    <Section id="tro-ly" className="scroll-mt-20 border-y border-line bg-card">
+    <Section id="tro-ly" className="scroll-mt-20 bg-sidebar">
       <Container className="grid items-center gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] lg:gap-14">
         <div className="flex flex-col gap-6">
           <SectionHead align="left" eyebrow={t('eyebrow')} title={t('h2')} lead={t('lead')} />
           <ul className="flex flex-col gap-4">
             {POINTS.map(({ key, icon }) => (
               <li key={key} className="flex gap-3.5">
-                <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-[10px] bg-accent-soft text-accent-strong">
+                <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-[14px] bg-card text-accent shadow-card">
                   <Icon name={icon} size={20} />
                 </span>
                 <div className="flex flex-col gap-1">
@@ -35,7 +35,7 @@ export function AssistantShowcase() {
               </li>
             ))}
           </ul>
-          <Link href="/assistant" className="inline-flex min-h-11 items-center gap-2 text-[15.5px] font-semibold text-accent-strong hover:text-accent md:min-h-0">
+          <Link href="/assistant" className="inline-flex min-h-11 items-center gap-2 text-[15.5px] font-semibold text-accent hover:text-accent-strong md:min-h-0">
             {t('link')}
             <Icon name="arrow-right" size={18} />
           </Link>

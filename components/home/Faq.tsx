@@ -7,12 +7,12 @@ import { track } from '@/lib/analytics'
 
 export function Faq({ items }: { items: Array<{ id: string; q: string; a: string; link?: { href: ComponentProps<typeof Link>['href']; label: string } }> }) {
   return (
-    <div className="mx-auto mt-8 max-w-[800px] border-t border-line md:mt-10">
+    <div className="mx-auto mt-8 max-w-[860px] rounded-card bg-card px-5 shadow-card md:mt-10 md:px-8">
       {items.map(({ id, q, a, link }, i) => (
         <details
           key={id}
           open={i === 0}
-          className="group border-b border-line"
+          className="group border-b border-line-faint last:border-b-0"
           onToggle={(e) => e.currentTarget.open && track({ name: 'faq_open', id })}
         >
           <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-4 text-[16px] leading-snug font-semibold md:py-5 md:text-[17px] [&::-webkit-details-marker]:hidden">
@@ -22,7 +22,7 @@ export function Faq({ items }: { items: Array<{ id: string; q: string; a: string
           <p className="pb-5 text-[15px] leading-relaxed text-ink2 md:pr-11 md:text-[15.5px]">{a}</p>
           {link ? (
             <p className="-mt-3 pb-5">
-              <Link href={link.href} className="font-semibold text-accent-strong underline underline-offset-2 hover:text-ink">{link.label}</Link>
+              <Link href={link.href} className="font-semibold text-accent underline underline-offset-2 hover:text-ink">{link.label}</Link>
             </p>
           ) : null}
         </details>

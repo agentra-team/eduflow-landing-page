@@ -62,6 +62,7 @@
     "hero": {
       "eyebrow": "Desktop app for macOS and Windows",
       "h1": "AI software for teachers: test papers, lesson plans and lesson slides",
+      "h1Accent": "test papers",
       "sub": "Today EduFlow writes test papers, lesson plans and slides for K-12 teachers. Lecturers and quality assurance offices load documents and ask the assistant; course syllabi and curriculum review are on the roadmap. The app builds the standard structure, AI fills in the content, and you review.",
       "platformNote": "EduFlow runs on macOS and Windows computers.",
       "ctaDefault": "Download EduFlow",
