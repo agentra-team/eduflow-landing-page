@@ -91,7 +91,7 @@
       "h2": "Ask, request edits and hand over tasks right on the screen you are working on",
       "lead": "The assistant understands the project and artifact you have open, answers in three tiers of conclusions and offers action cards, so the app does the work when you click.",
       "p1": {
-        "title": "Knows what you are looking at",
+        "title": "Helps with what you are working on",
         "desc": "The “Viewing” chips show each item that is sent. The assistant only receives a structured summary, never the original files; remove a chip and that item is not sent."
       },
       "p2": {
@@ -659,7 +659,7 @@
       "eyebrow": "How the assistant works",
       "h2": "Clear about what the assistant knows and what it may do",
       "c1": {
-        "title": "Knows what you are looking at",
+        "title": "Helps with what you are working on",
         "desc": "The “Viewing” chips list each context item. Only a structured summary is sent; remove a chip and that item is not sent."
       },
       "c2": {

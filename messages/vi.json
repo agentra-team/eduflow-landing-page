@@ -91,7 +91,7 @@
       "h2": "Hỏi, nhờ sửa và giao việc ngay trên màn đang làm",
       "lead": "Trợ lý hiểu dự án và hiện vật thầy cô đang mở, trả lời theo ba tầng kết luận và đưa thẻ hành động để app làm việc khi thầy cô bấm.",
       "p1": {
-        "title": "Biết thầy cô đang xem gì",
+        "title": "Giúp đúng việc thầy cô đang làm",
         "desc": "Chip “Đang xem” cho thấy từng mục gửi đi. Trợ lý chỉ nhận bản tóm tắt có cấu trúc, không nhận tệp gốc; bỏ chip là mục đó không được gửi."
       },
       "p2": {
@@ -659,7 +659,7 @@
       "eyebrow": "Cách trợ lý làm việc",
       "h2": "Rõ ràng trợ lý biết gì và được làm gì",
       "c1": {
-        "title": "Biết thầy cô đang xem gì",
+        "title": "Giúp đúng việc thầy cô đang làm",
         "desc": "Chip “Đang xem” liệt kê từng mục ngữ cảnh. Chỉ bản tóm tắt có cấu trúc được gửi đi; bỏ chip là mục đó không được gửi."
       },
       "c2": {
