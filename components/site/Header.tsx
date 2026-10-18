@@ -15,7 +15,7 @@ export function Header() {
       <div className="absolute inset-0 -z-10 bg-card/95 backdrop-blur" aria-hidden="true" />
       <Container className="flex h-full items-center gap-8">
         <Link href="/" className="flex min-h-11 items-center">
-          <Logo height={30} priority />
+          <Logo height={32} priority />
         </Link>
         {/* Menu ngang hiện từ 1100 px. Ở 1024 px bản tiếng Anh cần 999 px cho một hàng, trong khi chỉ có 960 px. */}
         <nav aria-label={t('mainNav')} className="ml-auto hidden items-center gap-6 min-[1100px]:flex">

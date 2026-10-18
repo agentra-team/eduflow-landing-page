@@ -10,14 +10,14 @@ export const OG_SIZE = { width: 1200, height: 630 }
 
 async function fonts() {
   const dir = join(process.cwd(), 'assets/fonts')
-  const [bold, regular] = await Promise.all([readFile(join(dir, 'BeVietnamPro-Bold.ttf')), readFile(join(dir, 'BeVietnamPro-Regular.ttf'))])
+  const [semibold, regular] = await Promise.all([readFile(join(dir, 'PlusJakartaSans-SemiBold.ttf')), readFile(join(dir, 'PlusJakartaSans-Regular.ttf'))])
   return [
-    { name: 'BeVietnamPro', data: bold, weight: 700 as const, style: 'normal' as const },
-    { name: 'BeVietnamPro', data: regular, weight: 400 as const, style: 'normal' as const },
+    { name: 'PlusJakartaSans', data: semibold, weight: 600 as const, style: 'normal' as const },
+    { name: 'PlusJakartaSans', data: regular, weight: 400 as const, style: 'normal' as const },
   ]
 }
 
-/** Ảnh Open Graph 1200×630: nền ink tới olive, logo, tiêu đề và dòng phụ (spec §9.1). */
+/** Ảnh Open Graph 1200×630: nền navy tới xanh dương, logo, tiêu đề và dòng phụ (spec §9.1, blue retheme §4.5). */
 export async function ogImage({ title, subtitle, badge }: { title: string; subtitle: string; badge?: string }) {
   return new ImageResponse(
     (
@@ -29,25 +29,25 @@ export async function ogImage({ title, subtitle, badge }: { title: string; subti
           flexDirection: 'column',
           justifyContent: 'space-between',
           padding: 72,
-          background: 'linear-gradient(135deg, #1E2A14 0%, #567F2E 100%)',
+          background: 'linear-gradient(135deg, #141736 0%, #0177FB 100%)',
           color: '#ffffff',
-          fontFamily: 'BeVietnamPro',
+          fontFamily: 'PlusJakartaSans',
         }}
       >
         <div style={{ display: 'flex', alignItems: 'center', gap: 18 }}>
-          <LogoMark size={56} tone="white" small={false} />
-          <span style={{ fontSize: 34, fontWeight: 700, letterSpacing: 0.5 }}>EduFlow</span>
+          <LogoMark size={56} tone="white" />
+          <span style={{ fontSize: 34, fontWeight: 600, letterSpacing: -0.5 }}>EduFlow</span>
           {badge ? (
             <span
               style={{
                 marginLeft: 16,
                 padding: '6px 16px',
                 borderRadius: 999,
-                background: 'rgba(242,165,65,0.22)',
-                border: '1px solid rgba(242,165,65,0.6)',
-                color: '#FDF1DE',
+                background: 'rgba(1,215,223,0.18)',
+                border: '1px solid rgba(1,215,223,0.6)',
+                color: '#FFFFFF',
                 fontSize: 24,
-                fontWeight: 700,
+                fontWeight: 600,
               }}
             >
               {badge}
@@ -55,7 +55,7 @@ export async function ogImage({ title, subtitle, badge }: { title: string; subti
           ) : null}
         </div>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 22 }}>
-          <div style={{ fontSize: title.length > 80 ? 56 : 66, fontWeight: 700, lineHeight: 1.12, letterSpacing: -1, maxWidth: 1000 }}>{title}</div>
+          <div style={{ fontSize: title.length > 80 ? 56 : 66, fontWeight: 600, lineHeight: 1.12, letterSpacing: -1, maxWidth: 1000 }}>{title}</div>
           <div style={{ fontSize: 30, fontWeight: 400, lineHeight: 1.4, color: 'rgba(255,255,255,0.8)', maxWidth: 1056 }}>{subtitle}</div>
         </div>
         <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 24, color: 'rgba(255,255,255,0.65)' }}>

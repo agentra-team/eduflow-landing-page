@@ -1,27 +1,37 @@
 @import "tailwindcss";
 
-/* Bảng màu Phấn xanh của app EduFlow (spec §8.1), đặt vào tên token kế thừa từ docops-landing-page để dùng lại component:
-   paper→page, surface→card/card2, ink-2→ink2, ink-3→muted, brand-strong→accent, chữ link→accent-strong,
-   brand-tint→accent-soft, lime→brand-light, tier1→brand-deep. */
+/* Bảng màu xanh dương theo Figma (spec 2026-10-18-eduflow-blue-retheme §4.1, §4.5), đúng màu Figma, không làm đậm hơn.
+   Tên token giữ từ bản trước để component không phải đổi: paper→page/sidebar, ink-2→ink2, ink-3→muted, ink-4→faint,
+   brand-strong→accent (nền nút, link), hover→accent-strong, brand-tint→accent-soft, tier1→brand-deep. */
 @theme {
-  --color-page: #F6F7F2;
+  --color-page: #FFFFFF;
   --color-card: #FFFFFF;
   --color-card2: #FFFFFF;
-  --color-sidebar: #EEF1EA;
-  --color-chrome: #ECEEE8;
-  --color-ink: #16201A;
-  --color-ink2: #3F4A43;
-  --color-muted: #5B675F;
-  --color-line: #DDE3DA;
-  --color-brand-light: #9BCB3C;
-  --color-brand: #2F8F3C;
-  --color-accent: #237A31;
-  --color-accent-strong: #1F6A2B;
-  --color-accent-soft: #E8F3E7;
-  --color-accent-line: #CFE3CC;
-  --color-brand-deep: #1E2B23;
+  --color-sidebar: #F6F8FB;
+  --color-chrome: #F8FAFD;
+  --color-ink: #141736;
+  --color-ink2: #45465E;
+  --color-muted: #7D8DA6;
+  --color-faint: #A5B4CB;
+  --color-line: #DFE5F1;
+  --color-line-faint: #EEF2F8;
+  --color-brand-light: #01D7DF;
+  --color-brand: #0177FB;
+  --color-accent: #0177FB;
+  --color-accent-strong: #0167D9;
+  --color-accent-soft: #E8F2FF;
+  --color-accent-line: #DFE5F1;
+  --color-brand-deep: #141736;
+  --color-teal: #01D7DF;
+  --color-teal-text: #01BCC4;
+  --color-teal-soft: #E0FAFB;
+  --color-coral: #FE6470;
+  --color-coral-soft: #FFE8EA;
+  --color-green: #6ED097;
+  --color-green-text: #4FC283;
+  --color-green-soft: #E6F7EE;
   --color-tier3: #6D28D9;
-  --color-good: #2F8F3C;
+  --color-good: #4FC283;
   --color-warn-dot: #F59E0B;
   --color-warn-soft: #FEF3C7;
   --color-warn-text: #9A4A06;
@@ -30,14 +40,23 @@
   --color-info-soft: #E0EAFF;
   --color-info-text: #1E3A8A;
   --color-info-border: #C7D7FE;
-  --radius-card: 14px;
-  --radius-control: 10px;
-  --radius-modal: 16px;
+  --color-window-red: #FF5F57;
+  --color-window-amber: #FEBC2E;
+  --color-window-green: #28C840;
+  --radius-card: 20px;
+  --radius-control: 12px;
+  --radius-modal: 20px;
+  /* Bóng mềm của khối nổi và thẻ (Figma): thay cho viền đậm. */
+  --shadow-soft: 0 22px 44px -4px rgba(159, 159, 159, 0.15);
+  --shadow-card: 0 9px 30px rgba(174, 174, 174, 0.18);
+  --shadow-float: 0 22px 44px -4px rgba(159, 159, 159, 0.3);
+  --shadow-window: 0 30px 60px -12px rgba(20, 23, 54, 0.18);
+  --shadow-cta: 0 16px 32px -12px rgba(1, 119, 251, 0.55);
 }
 
 @theme inline {
-  --font-sans: var(--font-be-vietnam), system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-display: var(--font-fraunces), Georgia, serif;
+  --font-sans: var(--font-jakarta), system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: var(--font-jakarta), system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-mono: var(--font-jetbrains), ui-monospace, "SF Mono", Menlo, monospace;
 }
 
@@ -55,10 +74,15 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-/* Mọi H1, H2 dùng Fraunces (Global Constraints), kể cả tiêu đề trong MDX và trong trang chép từ docops-landing-page. */
+/* Chỉ ba độ đậm 400, 500, 600 (Figma). Tiêu đề và chữ nhấn đậm 600, không còn chữ có chân. */
 @layer base {
   h1,
   h2 {
     @apply font-display;
+    font-weight: 600;
+  }
+  b,
+  strong {
+    font-weight: 600;
   }
 }

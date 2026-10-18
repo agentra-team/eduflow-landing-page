@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 import { hasLocale, NextIntlClientProvider } from 'next-intl'
 import { getTranslations } from 'next-intl/server'
-import { Be_Vietnam_Pro, Fraunces, JetBrains_Mono } from 'next/font/google'
+import { JetBrains_Mono, Plus_Jakarta_Sans } from 'next/font/google'
 import { notFound } from 'next/navigation'
 import { JsonLd } from '@/components/seo/JsonLd'
 import { AnalyticsGate } from '@/components/site/AnalyticsGate'
@@ -15,12 +15,12 @@ import { site } from '@/lib/site'
 import '@/app/globals.css'
 
 // ROOT layout (không có app/layout.tsx) để `locale` là root param, đọc được khi render tĩnh (next-intl 4, Next 16.3).
-const sans = Be_Vietnam_Pro({ subsets: ['latin', 'vietnamese'], weight: ['400', '600', '700'], variable: '--font-be-vietnam', display: 'swap' })
-const display = Fraunces({ subsets: ['latin', 'vietnamese'], weight: ['600', '700'], variable: '--font-fraunces', display: 'swap' })
+// Một font cho cả chữ thường và tiêu đề, chỉ ba độ đậm của Figma (spec blue retheme §4.5).
+const sans = Plus_Jakarta_Sans({ subsets: ['latin', 'vietnamese'], weight: ['400', '500', '600'], variable: '--font-jakarta', display: 'swap' })
 const mono = JetBrains_Mono({ subsets: ['latin', 'vietnamese'], weight: ['400', '600'], variable: '--font-jetbrains', display: 'swap' })
 
 export const dynamicParams = false
-export const viewport: Viewport = { themeColor: '#567F2E', width: 'device-width', initialScale: 1 }
+export const viewport: Viewport = { themeColor: '#0177FB', width: 'device-width', initialScale: 1 }
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params
@@ -44,7 +44,7 @@ export default async function LocaleLayout({ children, params }: { children: Rea
   const { locale } = await params
   if (!hasLocale(routing.locales, locale)) notFound()
   return (
-    <html lang={locale} data-scroll-behavior="smooth" className={`${sans.variable} ${display.variable} ${mono.variable}`}>
+    <html lang={locale} data-scroll-behavior="smooth" className={`${sans.variable} ${mono.variable}`}>
       <body className="flex min-h-dvh flex-col bg-page font-sans text-ink antialiased">
         <NextIntlClientProvider>
           <SkipLink />

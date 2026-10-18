@@ -165,7 +165,7 @@ components/docs/      # DocsNav, DocsToc, DocsPager, DocHelp, Ui, Figure
 scripts/sync-releases.mjs  capture-product-images.mjs  serve-fixtures.mjs
 scripts/release-tag.mjs  release-ci.mjs  release-verify.mjs   # các bước kiểm của workflow Release
 public/images/product/*.webp            # ảnh sản phẩm chụp từ canvas app
-assets/fonts/                           # Be Vietnam Pro cho ảnh OG
+assets/fonts/                           # Plus Jakarta Sans 400, 600 cho ảnh OG
 docs/superpowers/{specs,plans}/         # spec và kế hoạch triển khai
 docs/thiet-ke/                          # nguồn canvas thiết kế landing page
 docs/van-hanh.md                        # sổ tay vận hành
