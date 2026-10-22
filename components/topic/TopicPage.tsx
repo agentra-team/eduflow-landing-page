@@ -118,7 +118,7 @@ export async function TopicPage({ id }: { id: TopicId }) {
       <section className="pb-16 md:pb-24">
         <Container>
           <article className="flex max-w-[800px] flex-col gap-12 md:gap-14">
-            <aside className="rounded-xl border border-accent-line bg-accent-soft p-5 md:p-6">
+            <aside className="rounded-lg border border-accent-line bg-accent-soft p-5 md:p-6">
               <p className="text-[13px] font-semibold tracking-[0.6px] text-accent uppercase">{t('inShort')}</p>
               <p className="mt-2 text-[16.5px] leading-relaxed text-ink"><Highlight text={c.inShort} term={c.keywords[0]} /></p>
             </aside>
@@ -130,12 +130,12 @@ export async function TopicPage({ id }: { id: TopicId }) {
             </section>
 
             {meta.image ? (
-              <Image src={meta.image.src} alt={c.imageAlt} width={meta.image.width} height={meta.image.height} sizes="(min-width: 840px) 800px, 100vw" className="h-auto w-full rounded-xl border border-line" />
+              <Image src={meta.image.src} alt={c.imageAlt} width={meta.image.width} height={meta.image.height} sizes="(min-width: 840px) 800px, 100vw" className="h-auto w-full rounded-lg border border-line" />
             ) : null}
 
             <section className="flex flex-col gap-4">
               <h2 className={H2}>{c.table.h2}</h2>
-              <div tabIndex={0} role="region" aria-label={c.table.caption} className="overflow-x-auto rounded-xl border border-line bg-card">
+              <div tabIndex={0} role="region" aria-label={c.table.caption} className="overflow-x-auto rounded-lg border border-line bg-card">
                 <table className="w-full min-w-[640px] border-collapse text-left text-[15px] leading-relaxed">
                   <caption className="sr-only">{c.table.caption}</caption>
                   <thead className="bg-sidebar">

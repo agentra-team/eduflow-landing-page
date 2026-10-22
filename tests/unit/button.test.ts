@@ -43,8 +43,8 @@ describe('Button focus ring', () => {
 })
 
 describe('Button shape', () => {
-  test('has 12px corners on every variant, never a pill', () => {
-    for (const variant of ['primary', 'secondary', 'white', 'ghost-white'] as const) expect(buttonClasses(variant), variant).toContain('rounded-xl')
+  test('has 6px corners on every variant, never a pill', () => {
+    for (const variant of ['primary', 'secondary', 'white', 'ghost-white'] as const) expect(buttonClasses(variant), variant).toContain('rounded-md')
   })
 
   test('the primary button is the brand green and darkens to the hover green', () => {

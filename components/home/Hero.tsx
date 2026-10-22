@@ -66,7 +66,7 @@ export function Hero({ assets }: { assets: ReleaseAsset[] }) {
         </div>
 
         <div className="relative min-w-0 pt-6 pb-8 sm:px-6">
-          <div aria-hidden="true" className="absolute inset-y-0 right-0 left-10 rounded-[40px] bg-accent-soft" />
+          <div aria-hidden="true" className="absolute inset-y-0 right-0 left-10 rounded-lg bg-accent-soft" />
           <WindowFrame
             src="/images/product/assistant-home.webp"
             alt={t('imageAlt')}
@@ -77,8 +77,8 @@ export function Hero({ assets }: { assets: ReleaseAsset[] }) {
             sizes="(min-width: 1200px) 620px, (min-width: 1024px) 52vw, 100vw"
             className="relative sm:ml-10"
           />
-          <div aria-hidden="true" className="absolute bottom-0 left-0 hidden items-center gap-3 rounded-2xl bg-card px-4 py-3 shadow-float sm:flex">
-            <span className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-coral text-white">
+          <div aria-hidden="true" className="absolute bottom-0 left-0 hidden items-center gap-3 rounded-lg bg-card px-4 py-3 shadow-float sm:flex">
+            <span className="inline-flex h-10 w-10 items-center justify-center rounded-md bg-coral text-white">
               <Icon name="file" size={20} strokeWidth={1.8} />
             </span>
             <span className="flex flex-col gap-0.5">
@@ -86,8 +86,8 @@ export function Hero({ assets }: { assets: ReleaseAsset[] }) {
               <span className="text-[12px] text-muted">{tf('versions')}</span>
             </span>
           </div>
-          <div aria-hidden="true" className="absolute top-0 right-0 hidden items-center gap-2.5 rounded-2xl bg-card px-3.5 py-2.5 shadow-float sm:flex">
-            <span className="inline-flex h-8 w-8 items-center justify-center rounded-[10px] bg-teal-soft text-teal-text">
+          <div aria-hidden="true" className="absolute top-0 right-0 hidden items-center gap-2.5 rounded-lg bg-card px-3.5 py-2.5 shadow-float sm:flex">
+            <span className="inline-flex h-8 w-8 items-center justify-center rounded-md bg-teal-soft text-teal-text">
               <Icon name="shield" size={18} strokeWidth={2} />
             </span>
             <span className="text-[13px] font-semibold">{tt('t1.title')}</span>
@@ -96,7 +96,7 @@ export function Hero({ assets }: { assets: ReleaseAsset[] }) {
       </Container>
 
       <Container className="mt-12 md:mt-16">
-        <ul className="grid gap-5 rounded-[24px] bg-sidebar p-6 sm:grid-cols-2 md:p-7 lg:grid-cols-4">
+        <ul className="grid gap-5 rounded-lg bg-sidebar p-6 sm:grid-cols-2 md:p-7 lg:grid-cols-4">
           {FACTS.map(({ key, num, icon, tone }) => (
             <li key={key} className="flex flex-col gap-1.5 px-1 md:px-2">
               {icon ? (

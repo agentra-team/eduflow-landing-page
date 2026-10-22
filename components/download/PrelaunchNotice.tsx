@@ -6,7 +6,7 @@ export function PrelaunchNotice({ title, body, cta, headingLevel = 'h2' }: { tit
   const Heading = headingLevel
   return (
     <div data-testid="prelaunch" className="mx-auto flex max-w-[760px] flex-col items-center gap-4 rounded-card border border-accent-line bg-accent-soft px-6 py-10 text-center">
-      <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-card text-accent">
+      <span className="inline-flex h-12 w-12 items-center justify-center rounded-md bg-card text-accent">
         <Icon name="clock" size={24} />
       </span>
       <Heading className="font-display text-2xl font-semibold">{title}</Heading>

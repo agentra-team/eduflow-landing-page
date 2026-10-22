@@ -24,7 +24,7 @@ export function TrustGrid() {
         <div className="mt-8 grid gap-3 md:mt-12 md:grid-cols-3 md:gap-6">
           {ITEMS.map(({ key, icon }) => (
             <div key={key} className="flex flex-col gap-2.5 rounded-card bg-card p-5 shadow-card md:gap-3.5 md:p-7">
-              <span className="inline-flex h-11 w-11 items-center justify-center rounded-[14px] bg-accent-soft text-accent">
+              <span className="inline-flex h-11 w-11 items-center justify-center rounded-md bg-accent-soft text-accent">
                 <Icon name={icon} size={22} />
               </span>
               <h3 className="text-[17px] leading-snug font-semibold md:text-lg">{t(`${key}.title`)}</h3>

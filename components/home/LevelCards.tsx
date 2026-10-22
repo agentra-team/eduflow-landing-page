@@ -23,7 +23,7 @@ export function LevelCards() {
         <div className="mt-8 grid gap-4 md:mt-12 md:grid-cols-3 md:gap-6">
           {LEVELS.map(({ key, href, icon, tile }) => (
             <div key={key} className="flex flex-col gap-4 rounded-card border border-line-faint bg-card p-6 shadow-card md:p-7">
-              <span className={`inline-flex h-12 w-12 items-center justify-center rounded-[14px] ${tile}`}>
+              <span className={`inline-flex h-12 w-12 items-center justify-center rounded-md ${tile}`}>
                 <Icon name={icon} size={22} />
               </span>
               <h3 className="text-xl font-semibold tracking-[-0.01em]">{tl(`${key}.card.title`)}</h3>

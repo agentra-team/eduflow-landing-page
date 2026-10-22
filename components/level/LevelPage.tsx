@@ -95,7 +95,7 @@ export async function LevelPage({ level }: { level: LevelKey }) {
           <div className="mt-8 grid gap-4 md:mt-12 md:grid-cols-3 md:gap-6">
             {OUTCOMES.map((o, i) => (
               <div key={o} className="flex flex-col gap-3 rounded-card border border-line bg-page p-6">
-                <span className="inline-flex h-10 w-10 items-center justify-center rounded-[10px] bg-accent-soft text-accent">
+                <span className="inline-flex h-10 w-10 items-center justify-center rounded-md bg-accent-soft text-accent">
                   <Icon name={cfg.icons[i]} size={20} />
                 </span>
                 <h3 className="text-[17px] leading-snug font-semibold">{t(`outcomes.${o}.title`)}</h3>

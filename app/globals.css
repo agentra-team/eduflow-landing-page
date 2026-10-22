@@ -43,9 +43,9 @@
   --color-window-red: #FF5F57;
   --color-window-amber: #FEBC2E;
   --color-window-green: #28C840;
-  --radius-card: 20px;
-  --radius-control: 12px;
-  --radius-modal: 20px;
+  --radius-card: 8px;
+  --radius-control: 6px;
+  --radius-modal: 8px;
   /* Bóng mềm của khối nổi và thẻ (Figma): thay cho viền đậm. */
   --shadow-soft: 0 22px 44px -4px rgba(159, 159, 159, 0.15);
   --shadow-card: 0 9px 30px rgba(174, 174, 174, 0.18);

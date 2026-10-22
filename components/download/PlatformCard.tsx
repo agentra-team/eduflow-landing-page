@@ -52,7 +52,7 @@ export function PlatformCard({
         </span>
       ) : null}
       <div className="flex items-center gap-3.5">
-        <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-sidebar text-ink">
+        <span className="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-md bg-sidebar text-ink">
           <Icon name={os === 'windows' ? 'windows' : 'apple'} size={24} />
         </span>
         <div className="flex flex-col gap-0.5">

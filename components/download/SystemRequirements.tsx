@@ -21,9 +21,9 @@ export function SystemRequirements() {
   return (
     <div className="grid gap-4 md:grid-cols-2 md:gap-6">
       {(['windows', 'macos'] as const).map((os) => (
-        <div key={os} className="flex flex-col gap-3.5 rounded-xl border border-line bg-card p-5 md:p-6">
+        <div key={os} className="flex flex-col gap-3.5 rounded-lg border border-line bg-card p-5 md:p-6">
           <div className="flex items-center gap-3">
-            <span className="inline-flex h-10 w-10 items-center justify-center rounded-[10px] bg-sidebar text-ink">
+            <span className="inline-flex h-10 w-10 items-center justify-center rounded-md bg-sidebar text-ink">
               <Icon name={os === 'windows' ? 'windows' : 'apple'} size={20} />
             </span>
             <h3 className="text-lg font-semibold">{os === 'windows' ? 'Windows' : 'macOS'}</h3>

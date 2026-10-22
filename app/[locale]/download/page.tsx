@@ -77,8 +77,8 @@ export default async function DownloadPage() {
             <Callout kind={appFacts.installerSigned ? 'info' : 'warning'} title={t(`signing.${SIGNING}.title`)}>
               {t(`signing.${SIGNING}.body`)} {guide('windows', t('guideWindows'))} · {guide('macos', t('guideMac'))}
             </Callout>
-            <div className="flex gap-3.5 rounded-xl border border-line bg-card2 p-5">
-              <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-[10px] bg-accent-soft text-accent">
+            <div className="flex gap-3.5 rounded-lg border border-line bg-card2 p-5">
+              <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-accent-soft text-accent">
                 <Icon name="refresh" size={20} />
               </span>
               <div className="flex flex-col gap-1">

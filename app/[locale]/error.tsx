@@ -13,7 +13,7 @@ export default function ErrorPage({ error, reset }: { error: Error & { digest?: 
     <main id="main" className="flex-1 mx-auto flex max-w-[1200px] flex-col items-start gap-4 px-4 py-24">
       <h1 className="text-4xl font-semibold">{t('title')}</h1>
       <p className="text-ink2">{t('body')}</p>
-      <button type="button" onClick={reset} className="rounded-full bg-accent px-6 py-3 font-semibold text-white hover:bg-accent-strong">
+      <button type="button" onClick={reset} className="rounded-md bg-accent px-6 py-3 font-semibold text-white hover:bg-accent-strong">
         {tc('retry')}
       </button>
     </main>
