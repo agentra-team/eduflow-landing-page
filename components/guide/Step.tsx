@@ -25,7 +25,7 @@ export function Steps({ children }: { children: React.ReactNode }) {
 /** Khối con trong một bước (vd. 3a / 3b theo phiên bản macOS). */
 export function SubBlock({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <div className="flex flex-col gap-3 rounded-xl border border-line bg-card p-4 md:p-5">
+    <div className="flex flex-col gap-3 rounded-lg border border-line bg-card p-4 md:p-5">
       <h3 className="text-[17px] font-semibold">{title}</h3>
       {children}
     </div>

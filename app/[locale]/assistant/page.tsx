@@ -60,7 +60,7 @@ export default async function AssistantPage() {
           <div className="mt-8 grid gap-4 md:mt-12 md:grid-cols-3 md:gap-6">
             {WHERE.map(({ key, icon }) => (
               <div key={key} className="flex flex-col gap-3 rounded-card border border-line bg-page p-6">
-                <span className="inline-flex h-10 w-10 items-center justify-center rounded-[10px] bg-accent-soft text-accent"><Icon name={icon} size={20} /></span>
+                <span className="inline-flex h-10 w-10 items-center justify-center rounded-md bg-accent-soft text-accent"><Icon name={icon} size={20} /></span>
                 <h3 className="text-[17px] font-semibold">{t(`where.${key}.title`)}</h3>
                 <p className="text-[15px] leading-relaxed text-ink2">{t(`where.${key}.desc`)}</p>
               </div>
@@ -76,7 +76,7 @@ export default async function AssistantPage() {
             <ul className="flex flex-col gap-4">
               {HOW.map(({ key, icon }) => (
                 <li key={key} className="flex gap-3.5">
-                  <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-[10px] bg-accent-soft text-accent"><Icon name={icon} size={20} /></span>
+                  <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-accent-soft text-accent"><Icon name={icon} size={20} /></span>
                   <div className="flex flex-col gap-1">
                     <b className="text-base">{t(`how.${key}.title`)}</b>
                     <span className="text-[15px] leading-relaxed text-ink2">{t(`how.${key}.desc`)}</span>

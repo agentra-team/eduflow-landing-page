@@ -1,29 +1,30 @@
 import Image from 'next/image'
 
-/** Màu logo C "Chữ E chấm" (spec blue retheme §4.4, bảng Main): thanh navy, ba chấm xanh, ngọc, hồng cam. */
-export const BRAND_COLORS = { navy: '#141736', blue: '#0177FB', teal: '#01D7DF', coral: '#FE6470', white: '#FFFFFF' } as const
+/** Màu logo Agentra (chữ A, PO 2026-10-22): nét trái xanh lá sáng, nét phải xanh lá thương hiệu. */
+export const BRAND_COLORS = { light: '#8CBF3C', green: '#6A9C39', white: '#FFFFFF' } as const
 
 /** Tỷ lệ tệp public/brand/eduflow-wordmark*.svg (viewBox 414 × 104), do scripts/brand/build_wordmark.py dựng. */
 export const WORDMARK_VIEWBOX = { width: 414, height: 104 } as const
 
+/** Hai nét của chữ A Agentra trên viewBox "36 36 428 428". */
+export const LOGO_A = { viewBox: '36 36 428 428', left: '255,72 313,174 153,428 41,428', right: '331,206 458,428 344,428 282,327 251,327' } as const
+
 /**
- * Logo C trên lưới 64: thanh dọc bo tròn và ba chấm xếp dọc. `tone="white"` cho nền đậm: thanh trắng, chấm trên trắng mờ 75%.
+ * Chữ A Agentra. `tone="white"` cho nền đậm: hai nét trắng, nét phải trắng mờ 75%.
  * Không dùng Fragment trong <svg>: ogImage() render component này bằng satori, vốn chỉ nhận phần tử gốc của SVG.
  */
 export function LogoMark({ size = 32, title, tone = 'color' }: { size?: number; title?: string; tone?: 'color' | 'white' }) {
   const white = tone === 'white'
   return (
-    <svg width={size} height={size} viewBox="0 0 64 64" {...(title ? { role: 'img', 'aria-label': title } : { 'aria-hidden': true })}>
+    <svg width={size} height={size} viewBox={LOGO_A.viewBox} {...(title ? { role: 'img', 'aria-label': title } : { 'aria-hidden': true })}>
       {title ? <title>{title}</title> : null}
-      <rect x="8" y="5" width="15" height="54" rx="7.5" fill={white ? BRAND_COLORS.white : BRAND_COLORS.navy} />
-      <circle cx="40" cy="13" r="8" fill={white ? BRAND_COLORS.white : BRAND_COLORS.blue} fillOpacity={white ? 0.75 : 1} />
-      <circle cx="35" cy="32" r="8" fill={BRAND_COLORS.teal} />
-      <circle cx="40" cy="51" r="8" fill={BRAND_COLORS.coral} />
+      <polygon points={LOGO_A.left} fill={white ? BRAND_COLORS.white : BRAND_COLORS.light} />
+      <polygon points={LOGO_A.right} fill={white ? BRAND_COLORS.white : BRAND_COLORS.green} fillOpacity={white ? 0.75 : 1} />
     </svg>
   )
 }
 
-/** Logo đủ (logo C và chữ EduFlow đậm 600 dạng path, không cần nạp font). */
+/** Logo đủ (chữ A Agentra và chữ EduFlow đậm 600 dạng path, không cần nạp font). */
 export function Logo({ height = 30, tone = 'color', priority = false }: { height?: number; tone?: 'color' | 'white'; priority?: boolean }) {
   const src = tone === 'white' ? '/brand/eduflow-wordmark-white.svg' : '/brand/eduflow-wordmark.svg'
   return (

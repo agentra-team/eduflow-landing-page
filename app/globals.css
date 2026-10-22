@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-/* Bảng màu xanh dương theo Figma (spec 2026-10-18-eduflow-blue-retheme §4.1, §4.5), đúng màu Figma, không làm đậm hơn.
+/* Bảng màu theo Figma (spec 2026-10-18-eduflow-blue-retheme §4.1, §4.5), màu thương hiệu xanh lá theo logo Agentra (2026-10-22), đúng màu gốc, không làm đậm hơn.
    Tên token giữ từ bản trước để component không phải đổi: paper→page/sidebar, ink-2→ink2, ink-3→muted, ink-4→faint,
    brand-strong→accent (nền nút, link), hover→accent-strong, brand-tint→accent-soft, tier1→brand-deep. */
 @theme {
@@ -15,11 +15,11 @@
   --color-faint: #A5B4CB;
   --color-line: #DFE5F1;
   --color-line-faint: #EEF2F8;
-  --color-brand-light: #01D7DF;
-  --color-brand: #0177FB;
-  --color-accent: #0177FB;
-  --color-accent-strong: #0167D9;
-  --color-accent-soft: #E8F2FF;
+  --color-brand-light: #8CBF3C;
+  --color-brand: #6A9C39;
+  --color-accent: #6A9C39;
+  --color-accent-strong: #5A8731;
+  --color-accent-soft: #EEF5E4;
   --color-accent-line: #DFE5F1;
   --color-brand-deep: #141736;
   --color-teal: #01D7DF;
@@ -43,15 +43,15 @@
   --color-window-red: #FF5F57;
   --color-window-amber: #FEBC2E;
   --color-window-green: #28C840;
-  --radius-card: 20px;
-  --radius-control: 12px;
-  --radius-modal: 20px;
+  --radius-card: 8px;
+  --radius-control: 6px;
+  --radius-modal: 8px;
   /* Bóng mềm của khối nổi và thẻ (Figma): thay cho viền đậm. */
   --shadow-soft: 0 22px 44px -4px rgba(159, 159, 159, 0.15);
   --shadow-card: 0 9px 30px rgba(174, 174, 174, 0.18);
   --shadow-float: 0 22px 44px -4px rgba(159, 159, 159, 0.3);
   --shadow-window: 0 30px 60px -12px rgba(20, 23, 54, 0.18);
-  --shadow-cta: 0 16px 32px -12px rgba(1, 119, 251, 0.55);
+  --shadow-cta: 0 16px 32px -12px rgba(106, 156, 57, 0.45);
 }
 
 @theme inline {

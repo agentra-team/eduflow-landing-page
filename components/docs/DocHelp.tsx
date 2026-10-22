@@ -8,7 +8,7 @@ import { ButtonLink } from '@/components/ui/Button'
 export async function DocHelp({ title, body }: { title?: string; body?: string } = {}) {
   const t = await getTranslations('docs.help')
   return (
-    <div className="flex flex-col gap-4 rounded-xl border border-accent-line bg-accent-soft p-5 md:flex-row md:items-center md:justify-between md:p-6">
+    <div className="flex flex-col gap-4 rounded-lg border border-accent-line bg-accent-soft p-5 md:flex-row md:items-center md:justify-between md:p-6">
       <div className="flex flex-col gap-1">
         <b className="text-base">{title ?? t('title')}</b>
         <span className="text-[14.5px] text-ink2">{body ?? t('body')}</span>

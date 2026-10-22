@@ -25,8 +25,8 @@ const linkClass = 'inline-flex min-h-11 items-center gap-1.5 text-[14.5px] font-
 
 function ContactCard({ icon, label, value, sub, action }: { icon: IconName; label: string; value: React.ReactNode; sub: string; action: React.ReactNode }) {
   return (
-    <div className="flex flex-col gap-3.5 rounded-xl border border-line bg-card p-6">
-      <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-accent-soft text-accent">
+    <div className="flex flex-col gap-3.5 rounded-lg border border-line bg-card p-6">
+      <span className="inline-flex h-11 w-11 items-center justify-center rounded-md bg-accent-soft text-accent">
         <Icon name={icon} size={22} />
       </span>
       <div className="flex flex-col gap-1.5">
@@ -87,9 +87,9 @@ export default async function ContactPage() {
           <SectionHead align="left" eyebrow={t('key.eyebrow')} title={t('key.h2')} />
           <div className="mt-8 grid gap-4 md:mt-10 md:grid-cols-3 md:gap-6">
             {STEPS.map(({ key, icon }, i) => (
-              <div key={key} className="flex flex-col gap-3.5 rounded-xl border border-line bg-card2 p-6">
+              <div key={key} className="flex flex-col gap-3.5 rounded-lg border border-line bg-card2 p-6">
                 <div className="flex items-center justify-between">
-                  <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-accent-soft text-accent">
+                  <span className="inline-flex h-11 w-11 items-center justify-center rounded-md bg-accent-soft text-accent">
                     <Icon name={icon} size={22} />
                   </span>
                   <span className="text-[13px] font-semibold text-muted">{t('key.step', { n: i + 1 })}</span>
@@ -116,9 +116,9 @@ export default async function ContactPage() {
               ))}
             </ul>
           </div>
-          <div className="flex flex-col gap-4 self-start rounded-xl border border-line bg-card p-6 md:p-7">
+          <div className="flex flex-col gap-4 self-start rounded-lg border border-line bg-card p-6 md:p-7">
             <div className="flex items-center gap-3">
-              <span className="inline-flex h-10 w-10 items-center justify-center rounded-[10px] bg-accent-soft text-accent">
+              <span className="inline-flex h-10 w-10 items-center justify-center rounded-md bg-accent-soft text-accent">
                 <Icon name="bug" size={20} />
               </span>
               <b className="text-base">{t('support.boxTitle')}</b>

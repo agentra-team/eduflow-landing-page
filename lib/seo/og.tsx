@@ -17,7 +17,7 @@ async function fonts() {
   ]
 }
 
-/** Ảnh Open Graph 1200×630: nền navy tới xanh dương, logo, tiêu đề và dòng phụ (spec §9.1, blue retheme §4.5). */
+/** Ảnh Open Graph 1200×630: nền navy tới xanh lá Agentra, logo, tiêu đề và dòng phụ (spec §9.1, blue retheme §4.5). */
 export async function ogImage({ title, subtitle, badge }: { title: string; subtitle: string; badge?: string }) {
   return new ImageResponse(
     (
@@ -29,7 +29,7 @@ export async function ogImage({ title, subtitle, badge }: { title: string; subti
           flexDirection: 'column',
           justifyContent: 'space-between',
           padding: 72,
-          background: 'linear-gradient(135deg, #141736 0%, #0177FB 100%)',
+          background: 'linear-gradient(135deg, #141736 0%, #6A9C39 100%)',
           color: '#ffffff',
           fontFamily: 'PlusJakartaSans',
         }}

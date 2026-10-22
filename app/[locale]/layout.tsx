@@ -20,7 +20,7 @@ const sans = Plus_Jakarta_Sans({ subsets: ['latin', 'vietnamese'], weight: ['400
 const mono = JetBrains_Mono({ subsets: ['latin', 'vietnamese'], weight: ['400', '600'], variable: '--font-jetbrains', display: 'swap' })
 
 export const dynamicParams = false
-export const viewport: Viewport = { themeColor: '#0177FB', width: 'device-width', initialScale: 1 }
+export const viewport: Viewport = { themeColor: '#6A9C39', width: 'device-width', initialScale: 1 }
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params

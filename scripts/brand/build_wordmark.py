@@ -1,4 +1,4 @@
-"""Dựng public/brand/eduflow-wordmark*.svg: logo C "Chữ E chấm" + chữ "EduFlow" (Plus Jakarta Sans 600) đã chuyển thành path.
+"""Dựng public/brand/eduflow-wordmark*.svg: chữ A Agentra (PO 2026-10-22) + chữ "EduFlow" (Plus Jakarta Sans 600) đã chuyển thành path.
 
 Chạy từ gốc repo: python3 scripts/brand/build_wordmark.py <đường dẫn PlusJakartaSans[wght].ttf> public/brand
 Font: https://github.com/google/fonts/raw/main/ofl/plusjakartasans/PlusJakartaSans%5Bwght%5D.ttf (OFL). Không commit font
@@ -20,16 +20,15 @@ GAP = 32
 SIZE = 68
 TRACKING = -0.02  # em
 WEIGHT = 600
-NAVY, BLUE, TEAL, CORAL, WHITE = '#141736', '#0177FB', '#01D7DF', '#FE6470', '#FFFFFF'
+NAVY, LIGHT, GREEN, WHITE = '#141736', '#8CBF3C', '#6A9C39', '#FFFFFF'
+VIEWBOX = 428  # chữ A vẽ trên viewBox "36 36 428 428"
 
 
-def mark(bar: str, top: str, top_opacity: str = '') -> str:
-    """Logo C trên lưới 64: thanh dọc bo tròn và ba chấm xếp dọc (bảng Main)."""
+def mark(left: str, right: str, right_opacity: str = '') -> str:
+    """Chữ A Agentra: nét trái xanh lá sáng, nét phải xanh lá."""
     return (
-        f'<rect x="8" y="5" width="15" height="54" rx="7.5" fill="{bar}"/>'
-        f'<circle cx="40" cy="13" r="8" fill="{top}"{top_opacity}/>'
-        f'<circle cx="35" cy="32" r="8" fill="{TEAL}"/>'
-        f'<circle cx="40" cy="51" r="8" fill="{CORAL}"/>'
+        f'<polygon points="255,72 313,174 153,428 41,428" fill="{left}"/>'
+        f'<polygon points="331,206 458,428 344,428 282,327 251,327" fill="{right}"{right_opacity}/>'
     )
 
 
@@ -67,13 +66,13 @@ def main(font_path: str, out_dir: str) -> None:
     dy = MARK / 2 - (b[1] + b[3]) / 2
     width = round(b[2] + 2)
     variants = (
-        ('eduflow-wordmark.svg', mark(NAVY, BLUE), NAVY),
+        ('eduflow-wordmark.svg', mark(LIGHT, GREEN), NAVY),
         ('eduflow-wordmark-white.svg', mark(WHITE, WHITE, ' fill-opacity="0.75"'), WHITE),
     )
     for name, glyph, text in variants:
         svg = (
             f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {width} {MARK}" role="img" aria-label="EduFlow">'
-            f'<g transform="scale({MARK / 64:.4f})">{glyph}</g>'
+            f'<g transform="scale({MARK / VIEWBOX:.4f}) translate(-36 -36)">{glyph}</g>'
             f'<g fill="{text}" transform="translate(0 {dy:.2f})"><path d="{word}"/></g>'
             '</svg>\n'
         )

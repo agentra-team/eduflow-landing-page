@@ -25,7 +25,7 @@ export function AssistantShowcase() {
           <ul className="flex flex-col gap-4">
             {POINTS.map(({ key, icon }) => (
               <li key={key} className="flex gap-3.5">
-                <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-[14px] bg-card text-accent shadow-card">
+                <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-md bg-card text-accent shadow-card">
                   <Icon name={icon} size={20} />
                 </span>
                 <div className="flex flex-col gap-1">

@@ -8,10 +8,10 @@ export default function NotFoundPage() {
       <h1 className="text-4xl font-semibold">{t('title')}</h1>
       <p className="text-ink2">{t('body')}</p>
       <div className="flex gap-3">
-        <Link href="/" className="rounded-full bg-accent px-6 py-3 font-semibold text-white hover:bg-accent-strong">
+        <Link href="/" className="rounded-md bg-accent px-6 py-3 font-semibold text-white hover:bg-accent-strong">
           {t('home')}
         </Link>
-        <Link href="/download" className="rounded-full border border-line bg-card px-6 py-3 font-semibold">
+        <Link href="/download" className="rounded-md border border-line bg-card px-6 py-3 font-semibold">
           {t('download')}
         </Link>
       </div>

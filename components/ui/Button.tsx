@@ -7,9 +7,9 @@ import type { IconName } from './icons'
 type Variant = 'primary' | 'secondary' | 'white' | 'ghost-white'
 type Size = 'sm' | 'md' | 'lg'
 
-// Màu viền focus đi theo biến thể: trên dải CTA navy (#141736) xanh accent (#0177FB) chỉ đạt 4,2:1, viền trắng đạt hơn 17:1,
+// Màu viền focus đi theo biến thể: trên dải CTA navy (#141736) xanh lá accent (#6A9C39) chỉ đạt khoảng 5,4:1, viền trắng đạt hơn 17:1,
 // nên hai nút trắng dùng viền trắng. Không đặt màu ở lớp nền chung: cn() chỉ nối chuỗi, hai class cùng thuộc tính sẽ thắng thua theo thứ tự trong CSS.
-// Nút hình viên thuốc theo Figma (spec blue retheme §4.3): nút chính nền #0177FB, hover #0167D9; nút phụ viền mảnh trên nền trắng.
+// Nút bo góc 12 px (PO 2026-10-20: góc chỉ 8 hoặc 12 px, không dùng nút viên thuốc): nút chính nền #6A9C39 (logo Agentra), hover #5A8731; nút phụ viền mảnh trên nền trắng.
 const VARIANT: Record<Variant, string> = {
   primary: 'border-accent bg-accent text-white hover:bg-accent-strong hover:border-accent-strong focus-visible:outline-accent',
   secondary: 'border-line bg-card text-ink hover:border-faint focus-visible:outline-accent',
@@ -24,7 +24,7 @@ const SIZE: Record<Size, string> = {
 
 export function buttonClasses(variant: Variant = 'primary', size: Size = 'md', full = false, className?: string) {
   return cn(
-    'inline-flex items-center justify-center gap-2 rounded-full border-[1.5px] font-semibold leading-none whitespace-nowrap transition-colors',
+    'inline-flex items-center justify-center gap-2 rounded-md border-[1.5px] font-semibold leading-none whitespace-nowrap transition-colors',
     'focus-visible:outline-2 focus-visible:outline-offset-2',
     VARIANT[variant],
     SIZE[size],
