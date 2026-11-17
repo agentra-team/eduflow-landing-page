@@ -60,12 +60,12 @@ Với Next 16.3.7, lần chạy `pnpm dev` đầu tiên, nếu Next nhận ra m�
 Bốn điều kiện, thiếu một là test đỏ hoặc chạy nhầm bản dựng:
 
 1. **Dựng lại sau mỗi lần đổi chế độ.** Feed được đọc lúc dựng, nên feed giả phải chạy **trước** `pnpm build`.
-2. **`NEXT_PUBLIC_GA_MEASUREMENT_ID=G-TEST` lúc dựng.** `consent.spec.ts` kiểm GA4 chỉ nạp sau khi đồng ý; thiếu ID giả thì GA không bao giờ nạp và test đỏ.
+2. **`NEXT_PUBLIC_GA_MEASUREMENT_ID=G-TEST` và `NEXT_PUBLIC_CLARITY_PROJECT_ID=clarity-test` lúc dựng.** `consent.spec.ts` kiểm GA4 và Clarity chỉ nạp sau khi đồng ý; thiếu ID giả thì chúng không bao giờ nạp và test đỏ.
 3. **Cổng 3200 phải trống trước mỗi chế độ.** Ở máy cục bộ Playwright dùng lại máy chủ đang chạy trên cổng đó, nên một `pnpm start` còn sót (hoặc chạy tay) làm test chạy trên bản dựng của chế độ khác mà không báo gì. Kiểm bằng `lsof -nP -iTCP:3200 -sTCP:LISTEN`; có thì dừng đúng tiến trình đó theo PID.
 4. **Snapshot rỗng cho `oneos` và `prelaunch` khi `content/releases.json` đã chứa bản thật.** `oneos` sẽ lấy macOS từ snapshot, còn `prelaunch` không còn là sắp phát hành. Chế độ `feed` không cần vì feed thắng snapshot. CI tự ghi snapshot rỗng; ở máy thì làm tay, lệnh ở khối thứ hai dưới đây.
 
 ```bash
-export NEXT_PUBLIC_GA_MEASUREMENT_ID=G-TEST
+export NEXT_PUBLIC_GA_MEASUREMENT_ID=G-TEST NEXT_PUBLIC_CLARITY_PROJECT_ID=clarity-test
 lsof -nP -iTCP:3200 -sTCP:LISTEN     # không in gì là cổng trống; có thì kill <PID> đúng tiến trình đó
 
 # Chế độ feed
@@ -213,7 +213,8 @@ Luật nội dung (spec mục 15): không hứa kết quả kiểm định hay x
 | `DOWNLOAD_FEED_URL` | Có, từ khi có bản phát hành đầu tiên | Feed kênh ổn định mà electron-updater của app đọc: thư mục chứa `latest.yml` và `latest-mac.yml`; code tự thêm `/` ở cuối. Để trống thì dùng snapshot; snapshot rỗng thì là trạng thái sắp phát hành. | OQ-L02 |
 | `NEXT_PUBLIC_GA_MEASUREMENT_ID` | Không | Mã GA4 dạng `G-XXXX`. Thiếu thì không có GA4. GA4 chỉ nạp sau khi khách bấm "Đồng ý" ở thanh cookie. | OQ-L03 |
 | `NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` | Không | Mã xác minh Google Search Console (chỉ giá trị `content` của thẻ meta). | |
-| `NEXT_PUBLIC_CONSENT_BANNER` | Không | `off` tắt thanh cookie (GA4 nạp ngay). Mọi giá trị khác, kể cả không đặt, là bật. Ở production giữ bật: chính sách bảo mật nói GA4 chỉ nạp sau "Đồng ý". | OQ-L03 |
+| `NEXT_PUBLIC_CLARITY_PROJECT_ID` | Không | Chỉ để thử (CI đặt `clarity-test`). Không đặt thì bản production dùng mã Microsoft Clarity thật trong `lib/clarity.ts` (`z6n0gfh6zp`), còn dev và preview không nạp Clarity. Clarity chỉ nạp sau "Đồng ý", như GA4. | |
+| `NEXT_PUBLIC_CONSENT_BANNER` | Không | `off` tắt thanh cookie (GA4 và Clarity nạp ngay). Mọi giá trị khác, kể cả không đặt, là bật. Ở production giữ bật: chính sách bảo mật nói GA4 chỉ nạp sau "Đồng ý". | OQ-L03 |
 
 Các biến `NEXT_PUBLIC_*` được nhúng lúc dựng, và biến đặt trên Vercel chỉ áp cho bản dựng tạo sau đó: đổi giá trị xong, preview đổi ở lần push sau, còn production phải dựng lại bằng workflow Release (chạy tay với tag đang chạy, `docs/van-hanh.md`, mục 8.4, cách 2). Bản preview do Vercel dựng từ Git nhận `VERCEL_ENV` và `NEXT_PUBLIC_VERCEL_ENV` khi công tắc "Enable access to System Environment Variables" (Settings, Environment Variables; trước đây ghi là "Automatically expose System Environment Variables") đang bật: giữ công tắc bật. Bản production do workflow Release dựng bằng `vercel build` trên GitHub Actions, nơi Vercel không cấp biến hệ thống, nên workflow tự đặt `VERCEL_ENV=production`, `NEXT_PUBLIC_VERCEL_ENV=production`, `VERCEL_GIT_COMMIT_SHA` và `RELEASE_TAG`. `VERCEL_ENV=production` bật chốt chặn của `lib/env.ts` (domain thật, và `RELEASE_TAG` khi dựng cho Vercel); `NEXT_PUBLIC_VERCEL_ENV` quyết định site có nhúng script Vercel Analytics và Speed Insights (ở máy dev và CI không nhúng, để khỏi 404). Không đặt bốn biến này trong Environment Variables của Vercel.
 

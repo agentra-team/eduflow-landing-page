@@ -39,7 +39,7 @@
   },
   "consent": {
     "label": "Thông báo cookie",
-    "text": "Trang này dùng cookie phân tích (Google Analytics) để hiểu cách khách truy cập dùng trang. Từ chối không ảnh hưởng tới việc tải EduFlow.",
+    "text": "Trang này dùng cookie phân tích (Google Analytics, Microsoft Clarity) để hiểu cách khách truy cập dùng trang. Từ chối không ảnh hưởng tới việc tải EduFlow.",
     "policy": "Chính sách bảo mật",
     "accept": "Đồng ý",
     "decline": "Từ chối"

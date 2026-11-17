@@ -10,6 +10,7 @@ import { Footer } from '@/components/site/Footer'
 import { Header } from '@/components/site/Header'
 import { SkipLink } from '@/components/site/SkipLink'
 import { routing } from '@/i18n/routing'
+import { clarityProjectId } from '@/lib/clarity'
 import { organization, website } from '@/lib/seo/jsonld'
 import { site } from '@/lib/site'
 import '@/app/globals.css'
@@ -52,7 +53,7 @@ export default async function LocaleLayout({ children, params }: { children: Rea
           {children}
           <Footer />
           <ConsentBar />
-          <AnalyticsGate gaId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID} />
+          <AnalyticsGate gaId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID} clarityId={clarityProjectId()} />
           <JsonLd data={organization(locale)} />
           <JsonLd data={website(locale)} />
         </NextIntlClientProvider>

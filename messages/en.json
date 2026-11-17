@@ -39,7 +39,7 @@
   },
   "consent": {
     "label": "Cookie notice",
-    "text": "This site uses analytics cookies (Google Analytics) to understand how visitors use it. Declining does not affect downloading EduFlow.",
+    "text": "This site uses analytics cookies (Google Analytics, Microsoft Clarity) to understand how visitors use it. Declining does not affect downloading EduFlow.",
     "policy": "Privacy policy",
     "accept": "Accept",
     "decline": "Decline"

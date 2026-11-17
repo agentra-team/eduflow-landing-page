@@ -34,8 +34,8 @@ const datedUrls = () =>
     .flatMap((p) => (['vi', 'en'] as const).map((l) => pageUrl(p, l)))
     .sort()
 
-// Chính sách bảo mật cập nhật 2026-09-30 (giờ Việt Nam, UTC+7) = 2026-09-29T17:00:00.000Z.
-const PRIVACY_LASTMOD = new Date('2026-09-29T17:00:00.000Z')
+// Chính sách bảo mật cập nhật 2026-11-17 (giờ Việt Nam, UTC+7) = 2026-11-16T17:00:00.000Z.
+const PRIVACY_LASTMOD = new Date('2026-11-16T17:00:00.000Z')
 const PRIVACY_URLS = ['https://eduflow.test/chinh-sach-bao-mat', 'https://eduflow.test/en/privacy']
 // Bài hướng dẫn mang ngày cập nhật của sổ bài (content/docs/index.ts), cũng là nửa đêm giờ Việt Nam như ca ghi cứng ở trên.
 const docDates = () =>

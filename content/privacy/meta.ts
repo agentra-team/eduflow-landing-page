@@ -5,11 +5,11 @@ export const PRIVACY_META: Record<Locale, { title: string; description: string; 
   vi: {
     title: 'Chính sách bảo mật',
     description: 'Trang web EduFlow thu thập gì, dùng cookie phân tích ra sao, cách rút lại đồng ý, liên kết ngoài và quyền của thầy cô theo Nghị định 13/2023/NĐ-CP.',
-    updated: '2026-09-30',
+    updated: '2026-11-17',
   },
   en: {
     title: 'Privacy policy',
     description: 'What the EduFlow website collects, how it uses analytics cookies, how to withdraw consent, external links and your rights under Decree 13/2023/ND-CP.',
-    updated: '2026-09-30',
+    updated: '2026-11-17',
   },
 }
